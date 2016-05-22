@@ -1,0 +1,36 @@
+update tab_cliente set est_civil_paciente = "CASADA" where est_civil_paciente in ("CASADO(A)","CASADA(O)") and sexo_paciente in ("F","FEMININO")
+
+update tab_cliente set est_civil_paciente = "SOLTEIRA" where est_civil_paciente in ("SOLTEIRO(A)","SOLTEIRA(O)") and sexo_paciente in ("F","FEMININO")
+
+update tab_cliente set est_civil_paciente = "VIÚVA" where est_civil_paciente in ("VIÚVO(A)","VIÚVA(O)") and sexo_paciente in ("F","FEMININO")
+
+update tab_cliente set est_civil_paciente = "DIVORCIADA" where est_civil_paciente in ("DIVORCIADO(A)","DIVORCIADA(O)") and sexo_paciente in ("F","FEMININO")
+
+update tab_cliente set est_civil_paciente = "DESQUITADA" where est_civil_paciente in ("DESQUITADO(A)","DESQUITADA(O)") and sexo_paciente in ("F","FEMININO")
+
+
+
+update tab_cliente set est_civil_paciente = "CASADO" where est_civil_paciente in ("CASADO(A)","CASADA(O)") and sexo_paciente in ("M","MASCULINO");
+
+update tab_cliente set est_civil_paciente = "SOLTEIRO" where est_civil_paciente in ("SOLTEIRO(A)","SOLTEIRA(O)") and sexo_paciente in ("M","MASCULINO");
+
+update tab_cliente set est_civil_paciente = "VIÚVO" where est_civil_paciente in ("VIÚVO(A)","VIÚVA(O)") and sexo_paciente in ("M","MASCULINO");
+
+update tab_cliente set est_civil_paciente = "DIVORCIADO" where est_civil_paciente in ("DIVORCIADO(A)","DIVORCIADA(O)") and sexo_paciente in ("M","MASCULINO");
+
+update tab_cliente set est_civil_paciente = "DESQUITADO" where est_civil_paciente in ("DESQUITADO(A)","DESQUITADA(O)") and sexo_paciente in ("M","MASCULINO");
+
+
+update tab_cliente set sexo_paciente = "MASCULINO" where sexo_paciente = "M";
+
+update tab_cliente set sexo_paciente = "FEMININO" where sexo_paciente = "F";
+
+
+update tab_consultas set presente = false where presente is null;
+
+update tab_consultas set atendido = false where atendido is null;
+
+
+update usuario set data_expira = "2000-11-08"
+
+update usuario set tipousuario = "Recepcionista" where tipousuario is null

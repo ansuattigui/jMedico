@@ -1,0 +1,69 @@
+#fundo {
+    -fx-background-color: #ffffff;
+}
+
+.button {
+    -fx-border-color: #3E7B7B;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-family: "Arial", Helvetica, Arial, sans-serif;
+    -fx-font-size: 12;
+    -fx-text-fill: #000000;
+}
+
+.button:hover {
+    -fx-font-size: 12;
+}
+
+.btnClick {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.text-field {
+    -fx-font-family: arial;
+    -fx-font-size: 12;
+}
+
+.label {
+    -fx-font-family: arial;
+    -fx-font-weight: bold;
+}
+
+.label-fundo-escuro {
+    -fx-text-fill:white;
+}
+
+.label-fundo-escuro-titulo {
+    -fx-text-fill:white;
+    -fx-font-size: 18;
+}
+
+.table-column {
+    -fx-font-family: arial;
+    -fx-font-size: 12;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-background-color: #0C504E;
+}
+
+.tab-pane, .tab:selected, .border-pane, .banner {
+    -fx-background-color: radial-gradient(focus-angle 45deg, focus-distance 20%, center 25% 25%, radius 50%, reflect, #206967, #5D9896, #0C504E 75%);
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.mensagens {
+    -fx-background-color: linear-gradient(to right, gray, lightgray, white);
+}
+
+.divMensagens {    
+    -fx-border-width: 0.5;
+    -fx-border-color: black;
+}

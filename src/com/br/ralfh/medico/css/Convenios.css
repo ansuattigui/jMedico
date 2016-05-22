@@ -1,0 +1,29 @@
+
+.fundo {
+    -fx-background-radius: 5;
+    -fx-background-color: linear-gradient(to right, silver, #D9CCC1, white);
+}
+
+.label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #000000;
+}
+
+.text-field:disabled {
+    -fx-background-color: white;
+}
+
+.tab:selected {
+}
+
+.tab-header-background {
+    -fx-background-color: #6C3100;
+}
+
+.choice-box:disabled,.combo-box:disabled,.date-picker:disabled,.check-box:disabled {
+    -fx-opacity: 1;
+}
+
+#mbFichaMedica {
+    -fx-background-color: #666666;
+}

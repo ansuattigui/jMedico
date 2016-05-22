@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Atestado" pageWidth="595" pageHeight="822" columnWidth="329" leftMargin="238" rightMargin="28" topMargin="133" bottomMargin="104" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idAtestado" class="java.lang.Integer"/>
+	<parameter name="dataAtestado" class="java.lang.String"/>
+	<parameter name="imagemAssinatura" class="java.awt.Image"/>
+	<queryString>
+		<![CDATA[SELECT
+     tab_atestados_paciente.`IDAtestado` AS tab_atestados_paciente_IDAtestado,
+     tab_atestados_paciente.`IDPaciente` AS tab_atestados_paciente_IDPaciente,
+     tab_atestados_paciente.`DataAtestado` AS tab_atestados_paciente_DataAtestado,
+     tab_atestados_paciente.`TipoAtestado` AS tab_atestados_paciente_TipoAtestado,
+     tab_atestados_paciente.`atestado` AS tab_atestados_paciente_atestado,
+     tab_atestados_paciente.`rodape` AS tab_atestados_paciente_rodape,
+     tab_atestados_paciente.`cabecalho` AS tab_atestados_paciente_cabecalho,
+     tab_atestados_paciente.`paciente_cod_paciente` AS tab_atestados_paciente_paciente_cod_paciente
+FROM
+     `tab_atestados_paciente` tab_atestados_paciente
+WHERE
+      tab_atestados_paciente.`IDAtestado` = $P{idAtestado}]]>
+	</queryString>
+	<field name="tab_atestados_paciente_IDAtestado" class="java.lang.Integer"/>
+	<field name="tab_atestados_paciente_IDPaciente" class="java.lang.Integer"/>
+	<field name="tab_atestados_paciente_DataAtestado" class="java.sql.Timestamp"/>
+	<field name="tab_atestados_paciente_TipoAtestado" class="java.lang.String"/>
+	<field name="tab_atestados_paciente_atestado" class="java.lang.String"/>
+	<field name="tab_atestados_paciente_rodape" class="java.lang.String"/>
+	<field name="tab_atestados_paciente_cabecalho" class="java.lang.String"/>
+	<field name="tab_atestados_paciente_paciente_cod_paciente" class="java.lang.Integer"/>
+	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="329" height="20" isRemoveLineWhenBlank="true" uuid="4b503a0f-ffc5-42fc-b356-8d172687689f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<paragraph spacingAfter="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tab_atestados_paciente_cabecalho}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="17" width="329" height="20" uuid="9b4f08c9-bd88-4f22-ad60-218bb97ac002"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="12"/>
+					<paragraph lineSpacing="1_1_2" spacingAfter="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tab_atestados_paciente_atestado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="329" height="21" isRemoveLineWhenBlank="true" uuid="fd5c8200-c82e-4fff-ac3d-524d2b7351ce"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tab_atestados_paciente_rodape}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="115" splitType="Stretch">
+			<textField pattern="">
+				<reportElement x="107" y="12" width="214" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rio de Janeiro, "+$P{dataAtestado}]]></textFieldExpression>
+			</textField>
+			<elementGroup/>
+			<staticText>
+				<reportElement x="133" y="78" width="161" height="20" uuid="4d95ae19-159c-4355-a45f-6ecda0a9c49f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Médico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="61" width="161" height="20" uuid="1064ad19-696d-443f-983a-53085f678c91"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[J. Horácio T. de Carvalho]]></text>
+			</staticText>
+			<line>
+				<reportElement x="133" y="55" width="161" height="1" uuid="53c5e4a4-c2af-46f6-a424-a57485147959"/>
+			</line>
+			<staticText>
+				<reportElement x="133" y="94" width="161" height="20" uuid="df9a09d3-b727-4c08-8dd2-684ef831bdb0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CRM 52.21.543-3]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recibo" pageWidth="595" pageHeight="842" columnWidth="545" leftMargin="22" rightMargin="28" topMargin="56" bottomMargin="20" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idRecibo" class="java.lang.Integer"/>
+	<parameter name="dataRecibo" class="java.lang.String"/>
+	<parameter name="logoCabecalho" class="java.awt.Image"/>
+	<parameter name="logoRodape" class="java.awt.Image"/>
+	<parameter name="imagemAssinatura" class="java.awt.Image"/>
+	<queryString>
+		<![CDATA[SELECT
+     tab_recibos_paciente.`IDRecibo` AS tab_recibos_paciente_IDRecibo,
+     tab_recibos_paciente.`IDPaciente` AS tab_recibos_paciente_IDPaciente,
+     tab_recibos_paciente.`DataRecibo` AS tab_recibos_paciente_DataRecibo,
+     tab_recibos_paciente.`TipoRecibo` AS tab_recibos_paciente_TipoRecibo,
+     tab_recibos_paciente.`recibo` AS tab_recibos_paciente_recibo,
+     tab_recibos_paciente.`rodape` AS tab_recibos_paciente_rodape,
+     tab_recibos_paciente.`cabecalho` AS tab_recibos_paciente_cabecalho
+FROM
+     `tab_recibos_paciente` tab_recibos_paciente
+WHERE
+     tab_recibos_paciente.`IDRecibo` = $P{idRecibo}]]>
+	</queryString>
+	<field name="tab_recibos_paciente_IDRecibo" class="java.lang.Integer"/>
+	<field name="tab_recibos_paciente_IDPaciente" class="java.lang.Integer"/>
+	<field name="tab_recibos_paciente_DataRecibo" class="java.sql.Date"/>
+	<field name="tab_recibos_paciente_TipoRecibo" class="java.lang.String"/>
+	<field name="tab_recibos_paciente_recibo" class="java.lang.String"/>
+	<field name="tab_recibos_paciente_rodape" class="java.lang.String"/>
+	<field name="tab_recibos_paciente_cabecalho" class="java.lang.String"/>
+	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<background>
+		<band height="700" splitType="Stretch">
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="180" y="55" width="1" height="645" uuid="9402ee87-4dd7-47b9-8914-d1e0d4dc0c7d"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="9" y="93" width="160" height="20" uuid="541d9b4b-6dfd-4fec-a48b-9e3b886ef988"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[clínica médica e cardiológica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="110" width="160" height="20" uuid="b536eb2e-2bc1-426e-a01d-cca6ce3073b6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[j. horácio t. de carvalho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="128" width="160" height="20" uuid="601a5f34-c06d-4628-9c18-7f9395100ac5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[crm: 52.21.543-3]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="2" y="0" width="180" height="91" uuid="70472e58-9d47-4f1d-8d97-4c7c60a8fadd"/>
+				<imageExpression><![CDATA[$P{logoCabecalho}]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="33" y="616" width="90" height="79" uuid="35e70107-d223-4e0a-955d-f184784069ae"/>
+				<imageExpression><![CDATA[$P{logoRodape}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="130">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="197" y="108" width="348" height="22" isRemoveLineWhenBlank="true" uuid="4b503a0f-ffc5-42fc-b356-8d172687689f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<paragraph firstLineIndent="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tab_recibos_paciente_cabecalho}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement stretchType="RelativeToBandHeight" x="197" y="12" width="348" height="20" uuid="9b4f08c9-bd88-4f22-ad60-218bb97ac002"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tab_recibos_paciente_recibo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="197" y="0" width="348" height="20" isRemoveLineWhenBlank="true" uuid="fd5c8200-c82e-4fff-ac3d-524d2b7351ce"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tab_recibos_paciente_rodape}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="37">
+			<staticText>
+				<reportElement x="0" y="0" width="545" height="37" uuid="52a55ac4-3023-4192-8252-3cb2d2ce588f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
+				</textElement>
+				<text><![CDATA[Consultório: Estrada de Jacarepaguá, 7709 - Grupo 409/411
+Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="132" splitType="Stretch">
+			<textField pattern="">
+				<reportElement x="227" y="23" width="288" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rio de Janeiro, "+$P{dataRecibo}]]></textFieldExpression>
+			</textField>
+			<elementGroup/>
+			<elementGroup>
+				<line>
+					<reportElement x="329" y="67" width="161" height="1" uuid="8674fe38-3a76-4ee5-af1c-ceb022946128"/>
+				</line>
+				<staticText>
+					<reportElement x="329" y="106" width="161" height="20" uuid="8d1095c2-1094-4e4c-9544-59c59b64a152"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CRM 52.21.543-3]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="329" y="90" width="161" height="20" uuid="44029f90-c52d-452c-8f91-3ae2da8a6bdf"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Médico]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="329" y="73" width="161" height="20" uuid="91025c1a-92c6-422a-a1dc-80536bbb6000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
+				</staticText>
+			</elementGroup>
+		</band>
+	</summary>
+</jasperReport>

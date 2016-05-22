@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" snapToPixel="false" styleClass="fundo" stylesheets="@../css/pacientes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.SelecMedicoController">
+  <children><VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<children><VBox alignment="TOP_CENTER" spacing="5.0">
+<children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-titulos" text="Selecionar um médico" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="TOP">
+              <font>
+                <Font name="System Bold" size="19.0" />
+              </font>
+              <GridPane.margin>
+                <Insets left="10.0" fx:id="x1" />
+              </GridPane.margin>
+            </Text>
+            <Line endX="420.0" style="-fx-stroke: white;" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+</children>
+<VBox.margin>
+<Insets bottom="10.0" />
+</VBox.margin>
+<padding>
+<Insets top="10.0" />
+</padding></VBox>
+        <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" prefWidth="400.0" rowValignment="CENTER" BorderPane.alignment="TOP_CENTER">
+          <children>
+            <TableView fx:id="tabelaMedicos" prefHeight="250.0" prefWidth="410.0">
+              <columns>
+                <TableColumn fx:id="medicoCol" editable="false" prefWidth="165.0" text="Medico" />
+                <TableColumn fx:id="nomeCol" editable="false" prefWidth="235.0" text="Nome Completo" />
+              </columns>
+            </TableView>
+          </children>
+<VBox.margin>
+<Insets bottom="10.0" />
+</VBox.margin>
+        </FlowPane><FlowPane alignment="TOP_RIGHT">
+<children><HBox alignment="BOTTOM_CENTER" spacing="4.0">
+<children><Button fx:id="btnConf" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnConfFired" text="Button">
+<graphic><ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/accept.png" />
+</image></ImageView>
+</graphic></Button><Button fx:id="btnCanc" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnCancFired" text="Button">
+<graphic><ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/cancel.png" />
+</image></ImageView>
+</graphic></Button>
+</children>
+<FlowPane.margin>
+<Insets left="10.0" />
+</FlowPane.margin></HBox>
+</children>
+<padding>
+<Insets right="15.0" />
+</padding>
+<VBox.margin>
+<Insets bottom="10.0" />
+</VBox.margin></FlowPane>
+</children></VBox>
+  </children>
+</AnchorPane>

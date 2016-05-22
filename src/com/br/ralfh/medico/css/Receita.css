@@ -1,0 +1,17 @@
+/* 
+    Document   : Prescreve
+    Created on : 25/04/2013, 14:28:32
+    Author     : ralfh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#fundo {
+    -fx-border-width: 1;
+    -fx-border-color: #6C3100;
+    -fx-background-color: radial-gradient(focus-angle 45deg, focus-distance 20%, center 25% 25%, radius 50%, reflect, gray, darkgray 75%, dimgray);
+}

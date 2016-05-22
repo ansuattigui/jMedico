@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receita" pageWidth="564" pageHeight="833" columnWidth="298" leftMargin="238" rightMargin="28" topMargin="153" bottomMargin="79" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idReceita" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nomePaciente" class="java.lang.String"/>
+	<parameter name="dataReceita" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[select * from prescricao where receita_id = $P{idReceita} order by medicamento, viaAdmin]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="aplicacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medicamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modoUso" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="receita_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="posologia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="viaAdmin" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<group name="viaAdmin">
+		<groupExpression><![CDATA[$F{viaAdmin}]]></groupExpression>
+		<groupHeader>
+			<band height="29">
+				<textField>
+					<reportElement x="0" y="5" width="218" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isItalic="false" isUnderline="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{viaAdmin}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50">
+			<textField>
+				<reportElement x="0" y="25" width="298" height="25" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="53" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="5" width="298" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{row_NUMBER}+") "+$F{medicamento}+" __________ "+$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="27" width="298" height="20" uuid="a6fc66b2-8b0f-40e6-ac2e-12a90ce4ace1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isItalic="true"/>
+					<paragraph leftIndent="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{posologia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="137" splitType="Stretch">
+			<textField>
+				<reportElement x="15" y="12" width="269" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rio de Janeiro, "+$P{dataReceita}]]></textFieldExpression>
+			</textField>
+			<elementGroup>
+				<staticText>
+					<reportElement x="99" y="116" width="100" height="20" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CRM 5221543-3]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="77" y="81" width="144" height="20" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="99" y="99" width="100" height="20" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Médico]]></text>
+				</staticText>
+			</elementGroup>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="docplus" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>com.br.ralfh.medico.modelos.Grupo</class>
+    <class>com.br.ralfh.medico.modelos.Medicamento</class>
+    <class>com.br.ralfh.medico.modelos.Paciente</class>
+    <class>com.br.ralfh.medico.modelos.Posologia</class>
+    <class>com.br.ralfh.medico.modelos.Prescricao</class>
+    <class>com.br.ralfh.medico.modelos.Receita</class>
+    <class>com.br.ralfh.medico.modelos.Agenda</class>
+    <class>com.br.ralfh.medico.modelos.HorarioAgenda</class>
+    <class>com.br.ralfh.medico.modelos.PrimeiraConsulta</class>
+    <class>com.br.ralfh.medico.modelos.Convenio</class>
+    <class>com.br.ralfh.medico.modelos.ConsultaSubs</class>
+    <class>com.br.ralfh.medico.modelos.Usuario</class>
+    <class>com.br.ralfh.medico.modelos.Medico</class>
+    <class>com.br.ralfh.medico.modelos.Conexao</class>
+    <class>com.br.ralfh.medico.modelos.Atestado</class>
+    <class>com.br.ralfh.medico.modelos.ModeloAtestado</class>
+    <class>com.br.ralfh.medico.modelos.Tuss</class>
+    <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+    <properties>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+      <property name="hibernate.show_sql" value="false"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/docplus?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="arv0702"/>
+    </properties>
+  </persistence-unit>
+</persistence>

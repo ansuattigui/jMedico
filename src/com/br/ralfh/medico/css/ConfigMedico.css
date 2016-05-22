@@ -1,0 +1,23 @@
+.hboxCabecalho {
+    -fx-border-width: 1;
+    -fx-border-color: gray;
+    -fx-background-color: linear-gradient(to top, #7D491F, white);
+}
+
+.labelCabecalho {
+    -fx-text-fill: #333333;
+    -fx-font-weight:  bold;
+}
+
+.hboxCells, .vboxCells {
+    -fx-border-width: 1;
+    -fx-border-color: #333333;
+}
+
+.tab-header-background {
+    -fx-background-color: linear-gradient(to top, #7D491F, white);
+}
+
+.combo-box:disabled {
+}
+

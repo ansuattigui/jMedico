@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import jidefx.scene.control.field.DateField?>
+<?import jidefx.scene.control.field.FormattedTextField?>
+
+<AnchorPane prefHeight="630.0" prefWidth="700.0" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.PacienteController">
+<children>
+<VBox AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<VBox alignment="CENTER" AnchorPane.bottomAnchor="404.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><MenuBar VBox.vgrow="NEVER" xmlns:fx="http://javafx.com/fxml">
+  <menus>
+    <Menu mnemonicParsing="false" text="Paciente">
+      <items><MenuItem fx:id="miCriarPaciente" mnemonicParsing="false" text="Criar" /><MenuItem fx:id="miAtualPaciente" mnemonicParsing="false" text="Atualizar" /><SeparatorMenuItem mnemonicParsing="false" /><MenuItem fx:id="miDelPaciente" mnemonicParsing="false" text="Deletar" /><SeparatorMenuItem mnemonicParsing="false" /><MenuItem fx:id="miConfPaciente" mnemonicParsing="false" text="Confirma" /><MenuItem fx:id="miCancPaciente" mnemonicParsing="false" text="Cancela" /><SeparatorMenuItem mnemonicParsing="false" /><MenuItem fx:id="miProcPaciente" mnemonicParsing="false" text="Procurar" /><SeparatorMenuItem mnemonicParsing="false" />
+        <MenuItem fx:id="miSairPaciente" mnemonicParsing="false" text="Sair" />
+      </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Editar">
+      <items>
+        <MenuItem mnemonicParsing="false" text="Delete" />
+      </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Ajuda">
+      <items>
+        <MenuItem mnemonicParsing="false" text="About" />
+      </items>
+    </Menu>
+  </menus>
+</MenuBar><ToolBar VBox.vgrow="NEVER" xmlns:fx="http://javafx.com/fxml">
+  <items>
+    <Button fx:id="btnCriarPaciente" contentDisplay="TOP" mnemonicParsing="false" onAction="#criaPacienteFired" prefWidth="70.0" styleClass="botaotool" text="Criar">
+<graphic><ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-add.png" />
+</image></ImageView>
+</graphic></Button><Button fx:id="btnAtualPaciente" contentDisplay="TOP" mnemonicParsing="false" onAction="#atualizaPacienteFired" prefWidth="70.0" styleClass="botaotool" text="Atualizar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-edit.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Button fx:id="btnDelPaciente" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnDelPacienteFired" prefWidth="70.0" styleClass="botaotool" text="Deletar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-delete.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Separator opacity="0.0" prefWidth="5.0" /><Button fx:id="btnConfPaciente" contentDisplay="TOP" mnemonicParsing="false" onAction="#confPacienteFired" prefWidth="70.0" styleClass="botaotool" text="Confirma" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-check.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Button fx:id="btnCancPaciente" contentDisplay="TOP" mnemonicParsing="false" onAction="#cancPacienteFired" prefWidth="70.0" styleClass="botaotool" text="Cancela" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-restrict.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Separator opacity="0.0" prefWidth="5.0" />
+<Button fx:id="btnProcurar" contentDisplay="TOP" layoutX="403.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnProcurarFired" prefWidth="70.0" styleClass="botaotool" text="Apagar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-search.png" />
+</image>
+</ImageView>
+</graphic>
+</Button>
+                        <Separator layoutX="365.0" layoutY="10.0" opacity="0.0" prefHeight="63.0" prefWidth="130.0" /><Button fx:id="btnSair" contentDisplay="TOP" mnemonicParsing="false" onAction="#sairFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Sair" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/Door-Out.png" />
+</image>
+</ImageView>
+</graphic>
+</Button>
+  </items>
+<VBox.margin>
+<Insets bottom="2.0" />
+</VBox.margin>
+</ToolBar>
+</children>
+</VBox><VBox styleClass="fundo">
+<children>
+<HBox fillHeight="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+                              <HBox spacing="4.0">
+                                 <children>
+                                    <VBox fillWidth="false" spacing="4.0">
+<children>
+<Label text="Codigo Ant." />
+                                          <HBox spacing="2.0">
+<children>
+<TextField fx:id="codAntPaciente" alignment="CENTER" maxWidth="70.0" />
+                                                <Button fx:id="btnProcCodAnt" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnProcCodAntFired" styleClass="botaopq" text="Button" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/find.png" />
+</image>
+</ImageView>
+</graphic>
+</Button>
+</children>
+                                          </HBox>
+</children>
+</VBox>
+                                    <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Nome" />
+                                          <HBox spacing="2.0">
+<children>
+<TextField fx:id="nomePaciente" prefWidth="300.0" />
+                                                <Button fx:id="btnProcNome" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnProcNomeFired" styleClass="botaopq" text="Button" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/find.png" />
+</image>
+</ImageView>
+</graphic>
+</Button>
+</children>
+                                          </HBox>
+</children>
+</VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="4.0">
+                                 <children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Sexo" />
+                                          <ChoiceBox fx:id="sexoPaciente" prefWidth="150.0" xmlns:fx="http://javafx.com/fxml" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Nascimento" />
+                                          <DateField fx:id="nascPaciente" popupButtonVisible="true" prefWidth="120.0" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Idade" />
+<TextField fx:id="idade" alignment="CENTER" editable="false" prefWidth="40.0" />
+</children>
+</VBox>
+                                    <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Etnia" />
+<ChoiceBox fx:id="etniaPaciente" prefWidth="130.0" />
+</children>
+</VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="4.0">
+                                 <children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Naturalidade" />
+                                          <ComboBox fx:id="naturPaciente" editable="true" prefWidth="180.0" xmlns:fx="http://javafx.com/fxml" />
+</children>
+</VBox>
+                                    <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Nacionalidade" />
+<ComboBox fx:id="nacionPaciente" editable="true" prefWidth="130.0" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Estado Civil" />
+<ChoiceBox fx:id="estCivilPaciente" prefWidth="130.0" />
+</children>
+</VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="4.0">
+                                 <children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Profissão" />
+                                          <TextField fx:id="profPaciente" prefWidth="190.0" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="RG" />
+                                          <TextField fx:id="rgPaciente" alignment="CENTER" prefWidth="130.0" />
+</children>
+</VBox>
+                                    <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="CPF" />
+<TextField fx:id="cpfPaciente" alignment="CENTER" prefWidth="120.0" />
+</children>
+</VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="4.0">
+                                 <children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Convênio" />
+                                          <ComboBox fx:id="convPaciente" prefWidth="200.0" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Matricula" />
+<TextField fx:id="matConvPaciente" alignment="CENTER" prefWidth="200.0" />
+</children>
+</VBox>
+                                 </children>
+                              </HBox>
+</children>
+<HBox.margin>
+<Insets />
+</HBox.margin>
+</VBox><VBox alignment="TOP_CENTER" fillWidth="false" spacing="5.0" style="-fx-border-color: #6C3100; -fx-border-width: 0.5; -fx-border-radius: 5; -fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<VBox alignment="CENTER" fillWidth="false" style="-fx-border-color: blue; -fx-border-radius: 5; -fx-border-style: dashed; -fx-border-width: 0.3;" VBox.vgrow="NEVER">
+<children>
+<ImageView fx:id="imageFotografia" fitHeight="130.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+</children>
+<padding>
+<Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+</padding>
+</VBox>
+<Button fx:id="btnFotografar" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="109.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnFotografarFired" styleClass="botaopq" text="Fotografar">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/Webcam.png" />
+</image>
+</ImageView>
+</graphic>
+</Button>
+</children>
+<padding>
+<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+</padding>
+<HBox.margin>
+<Insets left="15.0" top="15.0" />
+</HBox.margin>
+<effect>
+<InnerShadow />
+</effect>
+</VBox>
+</children>
+<VBox.margin>
+<Insets />
+</VBox.margin>
+<padding>
+<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+</padding>
+</HBox>
+<HBox spacing="15.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><TabPane prefWidth="470.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml">
+  <tabs>
+    <Tab text="Endereço">
+      <content>
+        <AnchorPane>
+<children>
+<VBox alignment="TOP_CENTER" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+                                                <HBox spacing="4.0">
+                                                   <children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Endereço" />
+                                                            <TextField fx:id="enderPaciente" prefWidth="330.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Nº" />
+                                                            <TextField fx:id="numEndPaciente" alignment="CENTER" prefWidth="60.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox spacing="4.0">
+                                                   <children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Complemento" />
+                                                            <TextField fx:id="compEndPaciente" alignment="CENTER" prefWidth="120.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Bairro" />
+<TextField fx:id="bairroPaciente" alignment="CENTER" prefWidth="165.0" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="CEP" />
+                                                            <HBox spacing="2.0">
+                                                               <children>
+                                                                  <FormattedTextField fx:id="fmtCEP" prefWidth="110.0" />
+                                                                  <Button fx:id="btnProcCep" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnProcCepFired" styleClass="botaopq" text="Button">
+                                                                     <graphic>
+                                                                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../imagens/find.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                     </graphic>
+                                                                  </Button>
+                                                               </children>
+                                                            </HBox>
+</children>
+</VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox spacing="4.0">
+                                                   <children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Cidade" />
+<TextField fx:id="cidadePaciente" alignment="CENTER" prefWidth="200.0" />
+</children>
+</VBox>
+                                                      <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="UF" />
+                                                            <ComboBox fx:id="ufPaciente" editable="true" prefWidth="80.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</VBox>
+                                                   </children>
+                                                </HBox>
+</children>
+</VBox>
+</children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Telefones / email">
+      <content>
+        <AnchorPane>
+<children>
+<VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+                                                <HBox spacing="6.0">
+                                                   <children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Telefone res." />
+<TextField fx:id="telResPaciente" alignment="CENTER" prefWidth="110.0" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Telefone com." />
+<TextField fx:id="telComPaciente" alignment="CENTER" prefWidth="110.0" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Celular" />
+<TextField fx:id="celularPaciente" alignment="CENTER" prefWidth="110.0" />
+</children>
+</VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox spacing="4.0">
+                                                   <children>
+                                                      <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="email" />
+<TextField fx:id="emailPaciente" alignment="CENTER" prefWidth="300.0" />
+</children>
+</VBox>
+                                                   </children>
+                                                </HBox>
+</children>
+                                             <padding>
+                                                <Insets left="5.0" top="5.0" />
+                                             </padding>
+</VBox>
+</children></AnchorPane>
+      </content>
+    </Tab><Tab text="Indicação / Status">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                                             <children>
+                                                <HBox spacing="6.0">
+                                                   <children>
+                                                      <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                                                         <children>
+                                                            <Label text="Indicação" />
+                                                            <TextField fx:id="indicacao" alignment="CENTER" prefWidth="200.0" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                                                         <children>
+                                                            <Label text="Status" />
+                                                            <ComboBox fx:id="statusPac" editable="true" prefWidth="130.0" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="15.0" layoutY="15.0" spacing="6.0">
+                                                   <children>
+                                                      <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                                                         <children>
+                                                            <Label text="Paciente desde" />
+                                                            <DateField fx:id="dataPrimConsulta" alignment="CENTER" promptText="dd/MM/yyyy" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox disable="true" fillWidth="false" prefHeight="50.0" spacing="4.0" visible="false">
+                                                         <children>
+                                                            <Label text="Situação Cadastral" />
+                                                            <ComboBox fx:id="sitCadastro" editable="true" prefWidth="130.0" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <padding>
+                                                <Insets left="5.0" top="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children></AnchorPane>
+  </content>
+</Tab>
+  </tabs>
+<VBox.margin>
+<Insets bottom="10.0" left="10.0" />
+</VBox.margin>
+<padding>
+<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+</padding>
+<HBox.margin>
+<Insets bottom="10.0" left="10.0" />
+</HBox.margin>
+</TabPane>
+                        <VBox alignment="CENTER_LEFT" spacing="5.0">
+                           <children>
+                              <HBox spacing="2.0">
+                                 <children>
+                                    <Button fx:id="btnFichaMedica" alignment="CENTER" contentDisplay="TOP" minHeight="72.0" mnemonicParsing="false" onAction="#fichaMedicaFired" prefWidth="90.0" styleClass="botaotool" text="Ficha Médica" textAlignment="CENTER" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../imagens/ficha-medica.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="btnAtestados" contentDisplay="TOP" minHeight="72.0" mnemonicParsing="false" onAction="#btnAtestadosFired" prefWidth="90.0" styleClass="botaotool" text="Atestados" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../imagens/ficha-medica.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="2.0">
+                                 <children>
+                                    <Button fx:id="btnReceitas" contentDisplay="TOP" layoutX="10.0" layoutY="69.0" minHeight="72.0" mnemonicParsing="false" onAction="#btnReceitasFired" prefWidth="90.0" styleClass="botaotool" text="Receitas" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../imagens/ficha-medica.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="btnRecibos" contentDisplay="TOP" layoutX="10.0" layoutY="159.0" minHeight="72.0" mnemonicParsing="false" onAction="#btnRecibosFired" prefWidth="90.0" styleClass="botaotool" text="Recibos" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../imagens/ficha-medica.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+</children>
+</HBox>
+</children>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <VBox.margin>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </VBox.margin></VBox>
+</children>
+</VBox>
+</children></AnchorPane>

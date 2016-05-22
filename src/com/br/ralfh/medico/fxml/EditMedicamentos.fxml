@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane snapToPixel="false" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.EditMedicamentoController">
+  <children>
+      <VBox spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+         <children>
+      <Text fx:id="lblAcao" fill="NAVY" strokeType="OUTSIDE" strokeWidth="0.0" text="Medicamento" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
+        <font>
+          <Font name="System Bold" size="19.0" />
+        </font>
+        <GridPane.margin>
+          <Insets left="10.0" fx:id="x1" />
+        </GridPane.margin>
+      </Text>
+      <Line endX="370.0" stroke="NAVY" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+         </children>
+         <padding>
+            <Insets left="15.0" />
+         </padding>
+      </VBox>
+<VBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+  <children>
+      <VBox alignment="CENTER_LEFT" spacing="5.0">
+        <children>
+          <Label text="Grupo:" textFill="WHITE" />
+                  <ComboBox fx:id="cbGrupos" prefWidth="340.0" />
+        </children>
+      </VBox>
+            <VBox spacing="5.0">
+               <children>
+          <Label text="Principio Ativo:" textFill="WHITE" />
+          <TextField id="tfChave" fx:id="principioAtivo" prefWidth="340.0" />
+               </children>
+            </VBox>
+            <VBox layoutX="20.0" layoutY="14.0" spacing="5.0">
+               <children>
+                  <Label text="Nome Comercial:" textFill="WHITE" />
+                  <TextField id="tfChave" fx:id="nomeComercial" prefWidth="340.0" />
+               </children>
+            </VBox>
+  </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+</VBox>
+<HBox alignment="BOTTOM_RIGHT" maxHeight="-1.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+  <children>
+    <Button fx:id="btnConfirma" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnConfirmaFired" prefHeight="30.0" prefWidth="40.0" styleClass="botaopq" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/accept.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+    <Button fx:id="btnCancela" mnemonicParsing="false" onAction="#btnCancelaFired" prefHeight="30.0" prefWidth="40.0" styleClass="botaopq">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/Cancel-32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+  </children>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
+</HBox>
+  </children>
+   <padding>
+      <Insets bottom="10.0" />
+   </padding>
+</AnchorPane>

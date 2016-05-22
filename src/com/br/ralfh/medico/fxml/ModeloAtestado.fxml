@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.web.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane snapToPixel="false" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.ModeloAtestadoController">
+  <children>
+      <VBox fillWidth="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar id="" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Modelo">
+                     <items>
+                        <MenuItem fx:id="miNovoModelo" mnemonicParsing="false" onAction="#btnNovoModeloFired" text="Criar" />
+                        <MenuItem fx:id="miEditaModelo" mnemonicParsing="false" onAction="#btnEditaModeloFired" text="Atualizar" />
+                        <MenuItem fx:id="miExcluiModelo" mnemonicParsing="false" onAction="#btnExcluiModeloFired" text="Deletar" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="miConfirma" mnemonicParsing="false" onAction="#btnConfirmaFired" text="Salvar" />
+                        <MenuItem fx:id="miCancela" mnemonicParsing="false" onAction="#btnCancelaFired" text="Cancelar" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Ajuda">
+                     <items>
+                        <MenuItem fx:id="mnItemSobre" mnemonicParsing="false" text="Sobre o JReceita" />
+                     </items>
+                  </Menu>
+               </menus>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </MenuBar>
+            <ToolBar>
+               <items>
+                  <Button fx:id="btnNovoModelo" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnNovoModeloFired" prefWidth="70.0" styleClass="botaotool" text="Criar">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/Page-Add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="btnSaveReceita" fx:id="btnEditaModelo" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnEditaModeloFired" prefWidth="70.0" styleClass="botaotool" text="Atualizar">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/Page-Edit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="btnCancelaREceita" fx:id="btnExcluiModelo" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnExcluiModeloFired" prefWidth="70.0" styleClass="botaotool" text="Deletar">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/montagens/Page-Cancel.fw.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Separator opacity="0.0" orientation="VERTICAL" prefWidth="10.0" />
+                  <Button id="btnSaveReceita" fx:id="btnConfirma" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnConfirmaFired" prefWidth="70.0" styleClass="botaotool" text="Confirma">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/montagens/Page-Save.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="btnSaveReceita" fx:id="btnCancela" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnCancelaFired" prefWidth="70.0" styleClass="botaotool" text="Cancela">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/montagens/Page-Delete.fw.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Separator opacity="0.0" orientation="VERTICAL" prefWidth="170.0" />
+                  <Button fx:id="btnSair" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnSairFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Sair">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/Door-Out.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </items>
+            </ToolBar>
+         </children>
+      </VBox><VBox alignment="CENTER" prefWidth="650.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
+<children>
+            <HBox spacing="20.0">
+               <children>
+            <TableView fx:id="tabelaModelos" prefHeight="160.0" prefWidth="500.0">
+              <columns>
+                <TableColumn fx:id="modeloCol" editable="false" maxWidth="-1.0" minWidth="480.0" prefWidth="-1.0" resizable="false" sortable="false" text="Nome do Modelo" />
+              </columns>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+            </TableView>
+               </children>
+            </HBox>
+            <VBox spacing="10.0">
+               <children>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Nome do modelo:" />
+                        <TextField fx:id="nomeModelo" prefHeight="25.0" prefWidth="375.0">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <TabPane prefHeight="280.0" prefWidth="610.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" tabMinWidth="80.0">
+                     <tabs>
+                        <Tab closable="false" text="Cabeçalho">
+                           <content>
+                              <VBox alignment="CENTER" fillWidth="false">
+                                 <children>
+                                    <HTMLEditor fx:id="htmlEditorCabecalho" htmlText="" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab closable="false" text="Corpo">
+                           <content>
+                              <VBox spacing="2.0">
+                                 <children>
+                                    <HTMLEditor fx:id="htmlEditorCorpo" htmlText="" />
+                                    <HBox>
+                                       <children>
+                                          <Button fx:id="nomepac" mnemonicParsing="false" onAction="#nomepacFired" text="Nome" />
+                                          <Button fx:id="nascpac" mnemonicParsing="false" onAction="#nascpacFired" text="Nascimento" />
+                                          <Button fx:id="identpac" mnemonicParsing="false" onAction="#identpacFired" text="Identidade" />
+                                          <Button fx:id="cpfpac" layoutX="139.0" layoutY="10.0" mnemonicParsing="false" onAction="#cpfpacFired" text="CPF" />
+                                          <Button fx:id="datapac" layoutX="212.0" layoutY="10.0" mnemonicParsing="false" onAction="#datapacFired" text="Data do Dia" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="2.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab closable="false" text="Rodapé">
+                           <content>
+                              <VBox>
+                                 <children>
+                                    <HTMLEditor fx:id="htmlEditorRodape" htmlText="" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </VBox>
+</children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </padding></VBox>
+  </children>
+</AnchorPane>

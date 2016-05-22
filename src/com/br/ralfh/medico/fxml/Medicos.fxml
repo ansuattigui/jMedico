@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefWidth="650.0" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.MedicosController">
+<children>
+<VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><MenuBar xmlns:fx="http://javafx.com/fxml">
+  <menus>
+    <Menu mnemonicParsing="false" text="Médico">
+      <items><MenuItem fx:id="miCriarConvenio" mnemonicParsing="false" text="Criar" /><MenuItem fx:id="miAtualConvenio" mnemonicParsing="false" text="Atualizar" /><SeparatorMenuItem mnemonicParsing="false" /><MenuItem fx:id="miDelConvenio" mnemonicParsing="false" text="Deletar" /><SeparatorMenuItem mnemonicParsing="false" /><MenuItem fx:id="miConfConvenio" mnemonicParsing="false" text="Confirma" /><MenuItem fx:id="miCancConvenio" mnemonicParsing="false" text="Cancela" /><SeparatorMenuItem mnemonicParsing="false" /><MenuItem fx:id="miProcConvenio" mnemonicParsing="false" text="Procurar" /><SeparatorMenuItem mnemonicParsing="false" />
+        <MenuItem fx:id="miSairConvenio" mnemonicParsing="false" text="Sair" />
+      </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Editar">
+      <items>
+        <MenuItem mnemonicParsing="false" text="Delete" />
+      </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Ajuda">
+      <items>
+        <MenuItem mnemonicParsing="false" text="About" />
+      </items>
+    </Menu>
+  </menus>
+</MenuBar><ToolBar xmlns:fx="http://javafx.com/fxml">
+  <items>
+    <Button fx:id="btnCriarMedico" contentDisplay="TOP" mnemonicParsing="false" onAction="#criaMedicoFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Criar">
+<graphic><ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-add.png" />
+</image></ImageView>
+</graphic></Button><Button fx:id="btnAtualMedico" contentDisplay="TOP" mnemonicParsing="false" onAction="#atualizaMedicoFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Atualizar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-edit.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Button fx:id="btnDelMedico" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnDelMedicoFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Deletar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-delete.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Separator prefWidth="20.0" /><Button fx:id="btnConfMedico" contentDisplay="TOP" mnemonicParsing="false" onAction="#confMedicoFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Confirma" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-check.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Button fx:id="btnCancMedico" contentDisplay="TOP" mnemonicParsing="false" onAction="#cancMedicoFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Cancela" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-restrict.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Separator prefWidth="110.0" /><Separator prefHeight="60.0" />
+<Button fx:id="btnProcurar" contentDisplay="TOP" layoutX="403.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnProcurarFired" prefHeight="60.0" styleClass="botaotool" text="Procurar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-search.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Button fx:id="btnSairMedico" contentDisplay="TOP" mnemonicParsing="false" onAction="#sairMedicoFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Sair" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/Door-Out.png" />
+</image>
+</ImageView>
+</graphic>
+</Button>
+  </items>
+<VBox.margin>
+<Insets />
+</VBox.margin>
+</ToolBar>
+</children>
+</VBox>
+<VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="98.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><TabPane tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml">
+  <tabs>
+    <Tab text="Dados Pessoais">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0">
+<children>
+<FlowPane hgap="5.0" layoutX="10.0" layoutY="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Nome médico" />
+<HBox>
+<children>
+<TextField fx:id="nomeMedico" prefHeight="25.0" prefWidth="250.0" />
+</children>
+</HBox>
+</children>
+</VBox>
+</children>
+<padding>
+<Insets left="5.0" top="5.0" />
+</padding>
+</FlowPane><FlowPane hgap="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="56.0">
+<children><VBox fillWidth="false" prefHeight="50.0" spacing="4.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label text="Nome completo" /><HBox>
+<children>
+<TextField fx:id="nomeCompleto" prefHeight="25.0" prefWidth="250.0" />
+</children></HBox>
+</children>
+</VBox><VBox fillWidth="false" spacing="4.0">
+<children><Label text="Identidade" /><HBox>
+<children><TextField fx:id="identidade" alignment="CENTER" prefWidth="130.0" />
+</children></HBox>
+</children></VBox>
+<VBox fillWidth="false" layoutX="122.0" layoutY="15.0" prefHeight="50.0" spacing="4.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label text="CPF" />
+<HBox>
+<children>
+<TextField fx:id="cpf" prefHeight="25.0" prefWidth="174.0" />
+</children>
+</HBox>
+</children>
+</VBox>
+</children>
+<VBox.margin>
+<Insets />
+</VBox.margin>
+<padding>
+<Insets left="5.0" top="5.0" />
+</padding></FlowPane><FlowPane hgap="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="112.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Endereço" /><TextField fx:id="endereco" prefWidth="360.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Nº" /><TextField fx:id="numEndereco" alignment="CENTER" prefWidth="60.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Complemento" /><TextField fx:id="compEndereco" alignment="CENTER" prefWidth="150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</VBox>
+</children>
+<padding>
+<Insets left="5.0" top="5.0" />
+</padding>
+<VBox.margin>
+<Insets />
+</VBox.margin>
+</FlowPane><FlowPane hgap="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="168.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Bairro" />
+<TextField fx:id="bairro" alignment="CENTER" prefWidth="200.0" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="CEP" />
+<TextField fx:id="cep" alignment="CENTER" prefWidth="100.0" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Cidade" />
+<TextField fx:id="cidade" alignment="CENTER" prefWidth="200.0" />
+</children>
+</VBox><VBox fillWidth="false" prefHeight="50.0" spacing="4.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label text="UF" /><ComboBox fx:id="uf" prefWidth="80.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</VBox>
+</children>
+<padding>
+<Insets left="5.0" top="5.0" />
+</padding>
+<VBox.margin>
+<Insets />
+</VBox.margin>
+</FlowPane>
+<FlowPane hgap="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="223.0">
+<children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Telefones" />
+<TextField fx:id="telefone1" alignment="CENTER" prefWidth="140.0" />
+</children>
+</VBox>
+<VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label />
+<TextField fx:id="telefone2" alignment="CENTER" prefWidth="140.0" />
+</children>
+</VBox><VBox fillWidth="false" prefHeight="50.0" spacing="4.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label text="email" />
+<TextField fx:id="email" alignment="CENTER" prefWidth="260.0" />
+</children>
+</VBox>
+</children>
+<padding>
+<Insets left="5.0" top="5.0" />
+</padding>
+<VBox.margin>
+<Insets />
+</VBox.margin>
+</FlowPane><FlowPane hgap="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="278.0">
+<children>
+<VBox spacing="4.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><Label text="Ativo" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<HBox spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><RadioButton fx:id="rbAtivo" mnemonicParsing="false" selected="true" text="Sim">
+<toggleGroup>
+<ToggleGroup fx:id="tgAtivo" />
+</toggleGroup></RadioButton><RadioButton fx:id="rbInativo" mnemonicParsing="false" text="Não" toggleGroup="$tgAtivo" />
+</children>
+</HBox>
+</children>
+</VBox>
+</children>
+<padding>
+<Insets left="5.0" top="5.0" />
+</padding></FlowPane>
+</children>
+<padding>
+<Insets bottom="5.0" left="5.0" top="10.0" />
+</padding></AnchorPane>
+      </content>
+    </Tab><Tab text="Dados Profissionais">
+<content><AnchorPane>
+<children><FlowPane hgap="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<VBox fillWidth="false" prefHeight="50.0" spacing="2.0">
+<children>
+<Label text="Especialidade" />
+<HBox /><ComboBox fx:id="especialidade" editable="true" prefWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</VBox>
+<VBox fillWidth="false" layoutX="122.0" layoutY="15.0" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="CRM" />
+<HBox>
+<children>
+<TextField fx:id="crm" prefWidth="174.0" />
+</children>
+</HBox>
+</children>
+</VBox>
+</children>
+<padding>
+<Insets left="5.0" top="5.0" />
+</padding>
+</FlowPane>
+</children>
+<padding>
+<Insets left="5.0" top="10.0" />
+</padding></AnchorPane>
+</content>
+</Tab>
+    <Tab text="Agenda de Consultas">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0">
+<padding>
+<Insets top="10.0" />
+</padding>
+<children>
+                              <HBox alignment="CENTER" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label text="Configurações da Agenda de Consultas">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox><BorderPane layoutX="114.0" layoutY="52.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+<top><HBox alignment="CENTER_LEFT" spacing="1.0" BorderPane.alignment="CENTER_LEFT">
+<children>
+<HBox alignment="CENTER" layoutX="11.0" layoutY="10.0" prefHeight="30.0" prefWidth="95.0" styleClass="hboxCabecalho" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="95.0" styleClass="labelCabecalho" />
+</children>
+</HBox>
+<HBox alignment="CENTER" prefHeight="30.0" prefWidth="70.0" styleClass="hboxCabecalho" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" styleClass="labelCabecalho" text="Segunda" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</HBox>
+<HBox alignment="CENTER" prefHeight="30.0" prefWidth="70.0" styleClass="hboxCabecalho" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="10.0" prefHeight="20.0" styleClass="labelCabecalho" text="Terça" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</HBox>
+<HBox alignment="CENTER" prefHeight="30.0" prefWidth="70.0" styleClass="hboxCabecalho" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="10.0" prefHeight="20.0" styleClass="labelCabecalho" text="Quarta" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</HBox>
+<HBox alignment="CENTER" prefHeight="30.0" prefWidth="70.0" styleClass="hboxCabecalho" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label alignment="CENTER" contentDisplay="CENTER" layoutX="97.0" layoutY="10.0" prefHeight="20.0" styleClass="labelCabecalho" text="Quinta" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</HBox>
+<HBox alignment="CENTER" prefHeight="30.0" prefWidth="70.0" styleClass="hboxCabecalho" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="10.0" prefHeight="20.0" styleClass="labelCabecalho" text="Sexta" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</HBox>
+<HBox alignment="CENTER" prefHeight="30.0" prefWidth="70.0" styleClass="hboxCabecalho" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label alignment="CENTER" contentDisplay="CENTER" layoutX="155.0" layoutY="10.0" prefHeight="20.0" styleClass="labelCabecalho" text="Sábado" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</HBox>
+<HBox alignment="CENTER" prefHeight="30.0" prefWidth="70.0" styleClass="hboxCabecalho" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Label alignment="CENTER" contentDisplay="CENTER" layoutX="184.0" layoutY="10.0" prefHeight="20.0" styleClass="labelCabecalho" text="Domingo" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+</children>
+</HBox>
+</children>
+<BorderPane.margin>
+<Insets top="20.0" />
+</BorderPane.margin></HBox>
+</top>
+<center><VBox spacing="1.0" BorderPane.alignment="CENTER">
+<children><HBox prefHeight="41.0" prefWidth="200.0" spacing="1.0">
+<children><HBox alignment="CENTER" prefHeight="40.0" prefWidth="70.0" styleClass="hboxCells">
+<children><CheckBox fx:id="cbAtendeSeg" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" />
+</children>
+<padding>
+<Insets left="5.0" />
+</padding></HBox>
+<HBox alignment="CENTER" layoutX="11.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="hboxCells" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<CheckBox fx:id="cbAtendeTer" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" />
+</children>
+<padding>
+<Insets left="5.0" />
+</padding>
+</HBox>
+<HBox alignment="CENTER" layoutX="82.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="hboxCells" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<CheckBox fx:id="cbAtendeQua" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" />
+</children>
+<padding>
+<Insets left="5.0" />
+</padding>
+</HBox>
+<HBox alignment="CENTER" layoutX="153.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="hboxCells" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<CheckBox fx:id="cbAtendeQui" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" />
+</children>
+<padding>
+<Insets left="5.0" />
+</padding>
+</HBox>
+<HBox alignment="CENTER" layoutX="224.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="hboxCells" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<CheckBox fx:id="cbAtendeSex" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" />
+</children>
+<padding>
+<Insets left="5.0" />
+</padding>
+</HBox>
+<HBox alignment="CENTER" layoutX="295.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="hboxCells" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<CheckBox fx:id="cbAtendeSab" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" />
+</children>
+<padding>
+<Insets left="5.0" />
+</padding>
+</HBox>
+<HBox alignment="CENTER" layoutX="366.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="hboxCells" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<CheckBox fx:id="cbAtendeDom" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" />
+</children>
+<padding>
+<Insets left="5.0" />
+</padding>
+</HBox>
+</children>
+<padding>
+<Insets left="1.0" />
+</padding></HBox>
+<HBox layoutX="10.0" layoutY="90.0" prefHeight="41.0" prefWidth="200.0" spacing="1.0">
+<padding>
+<Insets left="1.0" />
+</padding>
+                                             <children>
+                                                <VBox prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="interSeg" alignment="CENTER" editable="false" promptText="00" />
+                                                      <Slider fx:id="slidIntSeg" blockIncrement="5.0" max="60.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="11.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="interTer" alignment="CENTER" editable="false" promptText="00" />
+                                                      <Slider fx:id="slidIntTer" blockIncrement="5.0" max="60.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="82.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="interQua" alignment="CENTER" editable="false" promptText="00" />
+                                                      <Slider fx:id="slidIntQua" blockIncrement="5.0" max="60.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="153.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="interQui" alignment="CENTER" editable="false" promptText="00" />
+                                                      <Slider fx:id="slidIntQui" blockIncrement="5.0" max="60.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="224.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="interSex" alignment="CENTER" editable="false" promptText="00" />
+                                                      <Slider fx:id="slidIntSex" blockIncrement="5.0" max="60.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="295.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="interSab" alignment="CENTER" editable="false" promptText="00" />
+                                                      <Slider fx:id="slidIntSab" blockIncrement="5.0" max="60.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="366.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="interDom" alignment="CENTER" editable="false" promptText="00" />
+                                                      <Slider fx:id="slidIntDom" blockIncrement="5.0" max="60.0" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+</HBox>
+<HBox layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="200.0" spacing="1.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<padding>
+<Insets left="1.0" />
+</padding>
+                                             <children>
+                                                <VBox prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="inicioSeg" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidInicioSeg" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="11.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="inicioTer" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidInicioTer" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children></VBox>
+                                                <VBox layoutX="82.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="inicioQua" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidInicioQua" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children></VBox>
+                                                <VBox layoutX="11.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="inicioQui" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidInicioQui" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children></VBox>
+                                                <VBox layoutX="224.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="inicioSex" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidInicioSex" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children></VBox>
+                                                <VBox layoutX="295.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="inicioSab" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidInicioSab" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children></VBox>
+                                                <VBox layoutX="366.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="inicioDom" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidInicioDom" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children></VBox>
+                                             </children>
+</HBox>
+<HBox layoutX="10.0" layoutY="50.0" prefHeight="40.0" prefWidth="200.0" spacing="1.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<padding>
+<Insets left="1.0" />
+</padding>
+                                             <children>
+                                                <VBox prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="fimSeg" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidFimSeg" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="11.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="fimTer" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidFimTer" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="82.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="fimQua" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidFimQua" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="153.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="fimQui" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidFimQui" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="224.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="fimSex" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidFimSex" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="295.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="fimSab" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidFimSab" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox layoutX="366.0" layoutY="10.0" prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                                   <children>
+                                                      <TextField fx:id="fimDom" alignment="CENTER" editable="false" promptText="00:00" />
+                                                      <Slider fx:id="slidFimDom" blockIncrement="1.0" majorTickUnit="5.0" max="288.0" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+</HBox>
+</children></VBox>
+</center>
+<left><VBox prefWidth="95.0" spacing="1.0" BorderPane.alignment="CENTER">
+<children><HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="41.0" styleClass="hboxCabecalho">
+<children><Label styleClass="labelCabecalho" text="Atende" />
+</children>
+<padding>
+<Insets right="8.0" />
+</padding></HBox><HBox alignment="CENTER_RIGHT" prefHeight="41.0" styleClass="hboxCabecalho">
+<children><Label styleClass="labelCabecalho" text="Intervalo" />
+</children>
+<padding>
+<Insets right="8.0" />
+</padding></HBox><HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="41.0" styleClass="hboxCabecalho" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><Label styleClass="labelCabecalho" text="Início" />
+</children>
+<padding>
+<Insets right="8.0" />
+</padding></HBox><HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="41.0" styleClass="hboxCabecalho" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><Label styleClass="labelCabecalho" text="Fim" />
+</children>
+<padding>
+<Insets right="8.0" />
+</padding></HBox>
+</children>
+                                       <BorderPane.margin>
+                                          <Insets />
+                                       </BorderPane.margin></VBox>
+</left></BorderPane>
+</children></AnchorPane>
+      </content>
+    </Tab>
+                  <Tab text="Configurações da Agenda">
+                     <content>
+                        <AnchorPane>
+                           <children>
+                              <FlowPane hgap="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <VBox prefHeight="80.0" spacing="5.0">
+                                       <children>
+                                          <Label prefHeight="35.0" prefWidth="80.0" text="Limite Consultas/dia" textAlignment="CENTER" wrapText="true" />
+                                          <VBox prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                             <children>
+                                                <TextField fx:id="limiteConsDia" alignment="CENTER" promptText="0" />
+                                                <Slider fx:id="slidLimConsDia" blockIncrement="1.0" max="60.0" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="15.0" layoutY="15.0" prefHeight="80.0" spacing="5.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="35.0" prefWidth="100.0" text="Limite Primeira Vez/dia" textAlignment="CENTER" wrapText="true" />
+                                          <VBox prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                             <children>
+                                                <TextField fx:id="limitePrimVezDia" alignment="CENTER" promptText="0" />
+                                                <Slider fx:id="slidLimPrimVezDia" blockIncrement="1.0" max="60.0" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="100.0" layoutY="15.0" prefHeight="80.0" spacing="5.0">
+                                       <children>
+                                          <Label prefHeight="35.0" prefWidth="100.0" text="Limite Emergências/dia" textAlignment="CENTER" wrapText="true" />
+                                          <VBox prefHeight="40.0" prefWidth="70.0" styleClass="vboxCells">
+                                             <children>
+                                                <TextField fx:id="limiteEmergDia" alignment="CENTER" promptText="0" />
+                                                <Slider fx:id="slidLimEmergDia" blockIncrement="1.0" max="60.0" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" top="5.0" />
+                                 </padding>
+                              </FlowPane>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" top="10.0" />
+                           </padding>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+  </tabs>
+</TabPane>
+</children>
+<VBox.margin>
+<Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+</VBox.margin>
+<padding>
+<Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+</padding>
+</VBox>
+</children></AnchorPane>

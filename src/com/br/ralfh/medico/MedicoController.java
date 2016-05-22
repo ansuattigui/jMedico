@@ -1,0 +1,346 @@
+package com.br.ralfh.medico;
+
+import com.br.ralfh.medico.jdbc.ConnectionFactory;
+import com.br.ralfh.medico.modelos.Conexao;
+import com.br.ralfh.medico.modelos.Conexoes;
+import com.br.ralfh.medico.modelos.Usuario;
+import java.io.IOException;
+import java.net.URL;
+import java.time.Instant;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
+import javafx.scene.control.TitledPane;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Line;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+/**
+ *
+ * @author ralfh
+ */
+public class MedicoController extends Controller {
+    
+    private static EntityManagerFactory entityManagerFactory;
+    private static HashMap<String,GUIFactory> mapaJanelas;
+
+    
+    /** Dados de conexão do usuário com o Sistema **/    
+    /**
+     * @return the conexao
+     */
+    public static Conexao getConexao() {
+        return conexao;
+    }
+
+    /**
+     * @return the perfilUsuario
+     */
+    
+    private static Usuario perfilUsuario;
+    public static Conexao conexao;
+    private SocketsServer ss;
+    private Thread tSS;
+    private static ConnectionFactory connFact;
+    
+    @FXML Accordion menuPrincipal;
+    @FXML TitledPane tpaneAgenda;
+    @FXML Button btnPacientes;
+    @FXML Button btnAgenda;
+    @FXML Button btnModelosAtestado;
+    @FXML Button btnModelosRecibo;
+    @FXML Button btnGrupos;
+    @FXML Button btnModos;
+    @FXML Button btnMedicamentos;
+    @FXML Button btnReceita;
+    @FXML Button btnConfig;
+    @FXML Button btnConvenio;
+    @FXML Button btnTuss;
+    @FXML Button btnFaturConvenio;
+    @FXML Button btnRecibos;
+    @FXML Button btnUsuario;
+    @FXML Button btnMedico;
+    @FXML ImageView ivFundo;
+    @FXML Line lineFundo;    
+    @FXML StackPane spTitle;
+    
+    public MedicoController() {
+        perfilUsuario = null;
+        conexao = null;
+        connFact = new ConnectionFactory();
+        MedicoController.mapaJanelas = new HashMap<>();
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {        
+        try {
+            if (loginShow()==null) {
+                System.exit(0);
+            } else {
+                conectaSistema(perfilUsuario);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MedicoController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        menuPrincipal.setExpandedPane(tpaneAgenda);
+        configToolTips();
+    }   
+    
+    
+    /** Cria uma entrada na tabela de conexoes com os dados do usuário, máquina e conexão **/
+    private void conectaSistema(Usuario user) {        
+        EntityManager manager = JPAUtil.getEntityManager();
+        manager.getTransaction().begin();        
+        conexao = new Conexao();
+        conexao.setHoraConexao(Date.from(Instant.now()));
+        conexao.setUsuario(user);
+        conexao.setMachine(Conexoes.getLocalHostIP().getHostName());
+        conexao.setIp(Conexoes.getLocalHostIP().getHostAddress());   
+        try {
+            manager.persist(conexao);        
+            manager.getTransaction().commit();
+        } catch (Exception ex) {
+            ShowDialog("EX",ex.getMessage(), null);
+        } finally {
+            manager.close();     
+        }
+        
+        ss = new SocketsServer();
+        tSS = new Thread(ss);
+        tSS.start();
+
+    }
+    
+    
+    /** remove entrada da tabela de conexões **/    
+    private void desconectaSistema() {        
+        EntityManager manager = JPAUtil.getEntityManager();
+        manager.getTransaction().begin();        
+        manager.remove(manager.getReference(Conexao.class, getConexao().getId()));  
+        manager.getTransaction().commit();
+        manager.close();      
+        
+        tSS.interrupt();
+    }
+    
+    
+    /** Define ações realizadas quando do fechamento do sistema **/
+    @Override
+    public void addStageCloseListener() {
+        getController().getStage().setOnHiding(new EventHandler<WindowEvent>() {
+          @Override
+          public void handle(WindowEvent we) {
+              desconectaSistema();
+                System.exit(0);
+          }
+    });     
+    }
+    
+    
+    /** retorna perfil do usuario conectado para configuração de opções do sistema **/
+    public static Usuario getPerfilUsuario() {
+        return perfilUsuario;
+    }
+    
+    /** Configura os ToolTips dos botões da tela principal do sistema **/
+    public void configToolTips() {
+        btnAgenda.setTooltip(new Tooltip("Acessar a Agenda do Médico"));
+        btnModelosAtestado.setTooltip(new Tooltip("Configurar Modelos de Atestado Médico"));
+        btnModelosRecibo.setTooltip(new Tooltip("Configurar Modelos de Recibo de Pagamento"));
+        btnConvenio.setTooltip(new Tooltip("Acessar o Cadastro de Convênios"));
+        btnFaturConvenio.setTooltip(new Tooltip("Acessar o Faturamento de Convênios"));
+        btnUsuario.setTooltip(new Tooltip("Acessar o Cadastro de Usuários do Sistema"));
+        btnMedico.setTooltip(new Tooltip("Acessar o Cadastro de Médicos do Sistema"));
+        btnMedicamentos.setTooltip(new Tooltip("Cadastro de Medicamentos"));
+        btnGrupos.setTooltip(new Tooltip("Cadastro de Grupos de Medicamento"));
+        btnModos.setTooltip(new Tooltip("Cadastro de posologias"));
+        btnPacientes.setTooltip(new Tooltip("Cadastro de Pacientes"));
+    }
+
+    /** Apresenta a tela de Login do Sistema **/
+    private Usuario loginShow() throws IOException {
+        String fxmlGUI = "fxml/Login.fxml";
+        String titleGUI = "Autenticação";
+        StageStyle fxmlStyle = StageStyle.UTILITY;
+        GUIFactory login = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle);
+        LoginController controller = (LoginController) login.getController();
+        login.showAndWait();
+        perfilUsuario = controller.getUser();
+        return perfilUsuario;
+    }
+
+    
+    public void btnPacientesFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/Pacientes.fxml";
+        String titleGUI = "Cadastro do Paciente";
+        StageStyle fxmlStyle = StageStyle.DECORATED;
+        GUIFactory pacientes = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle);
+        Controller controller = pacientes.getController();
+
+        controller = (PacienteController) controller;
+        //controller.addStageCloseListener();
+        pacientes.showAndWait();   
+    }
+    
+    public void btnModosFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/Posologias.fxml";
+        String titleGUI = "Posologias";
+        StageStyle fxmlStyle = StageStyle.UTILITY;
+        GUIFactory posologia = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        posologia.showAndWait();
+    }
+    
+    
+    public void btnGruposFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/Grupos.fxml";
+        String titleGUI = "Grupo de Medicamentos";
+        StageStyle fxmlStyle = StageStyle.UTILITY;
+        GUIFactory grupos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        grupos.showAndWait();
+    }
+            
+    public void btnMedicamentosFired(ActionEvent event) throws Exception {                        
+        String fxmlGUI = "fxml/Medicamentos.fxml";
+        String titleGUI = "Medicamentos";
+        StageStyle fxmlStyle = StageStyle.UTILITY;
+        GUIFactory medicamentos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        medicamentos.showAndWait();
+    }
+    
+    public void btnReceitaFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/Receita.fxml";
+        String titleGUI = "Receitas do Paciente";
+        StageStyle fxmlStyle = StageStyle.DECORATED;
+        GUIFactory receita = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        receita.showAndWait();
+    }
+
+    public void btnAgendaFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/Agenda.fxml";
+        String titleGUI = "Agenda de Consultas";
+        StageStyle fxmlStyle = StageStyle.DECORATED;
+        GUIFactory agenda = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        agenda.showAndWait();
+    }
+
+    public void btnModelosAtestadoFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/ModeloAtestado.fxml";
+        String titleGUI = "Modelos de Atestados Médicos";
+        StageStyle fxmlStyle = StageStyle.DECORATED;
+        GUIFactory modelo = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        modelo.showAndWait();
+    }
+
+    public void btnModelosReciboFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/ModeloRecibo.fxml";
+        String titleGUI = "Modelos de Recibos";
+        StageStyle fxmlStyle = StageStyle.DECORATED;
+        GUIFactory modelo = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        modelo.showAndWait();
+    }
+    
+    public void btnConvenioFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/Convenio.fxml";
+        String titleGUI = "Cadastro de Convenios";
+        StageStyle fxmlStyle = StageStyle.UTILITY;
+        GUIFactory convenio = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        convenio.showAndWait(); 
+    }
+
+/*    
+    public void btnTussFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/Tuss.fxml";
+        String titleGUI = "TUSS / Cadastro de Procedimentos";
+        StageStyle fxmlStyle = StageStyle.UTILITY;
+        GUIFactory tuss = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        tuss.showAndWait(); 
+    }
+*/
+    
+    @FXML
+    public void btnFaturConvenioFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/FaturConvenio.fxml";
+        String titleGUI = "Faturamento de Convenios";
+        StageStyle fxmlStyle = StageStyle.UTILITY;
+        GUIFactory faturconvenio = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        faturconvenio.showAndWait();        
+    }
+    
+    @FXML
+    public void btnRecibosFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/FaturRecibos.fxml";
+        String titleGUI = "Recibos Emitidos";
+        StageStyle fxmlStyle = StageStyle.UTILITY;
+        GUIFactory recibos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        recibos.showAndWait();        
+    }
+
+    
+    public void btnUsuarioFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/Usuarios.fxml";
+        String titleGUI = "Cadastro de Usuarios";
+        StageStyle fxmlStyle = StageStyle.UTILITY;
+        GUIFactory usuario = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        usuario.showAndWait(); 
+       
+    }
+
+    public void btnMedicoFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/Medicos.fxml";
+        String titleGUI = "Cadastro de Medicos";
+        StageStyle fxmlStyle = StageStyle.UNIFIED;
+        GUIFactory medico = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        medico.showAndWait();        
+    }
+    
+    /**
+     * @return the connFact
+     */
+    public static ConnectionFactory getConn() {
+        return connFact;
+    }
+
+    /**
+     * @return the entityManagerFactory
+     */
+    public static EntityManagerFactory getEntityManagerFactory() {
+        return entityManagerFactory;
+    }
+
+    /**
+     * @param entityManagerFactory the entityManagerFactory to set
+     */
+    public static void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+        MedicoController.entityManagerFactory = entityManagerFactory;
+    }
+    
+    
+    public static GUIFactory getMapaJanelas(String chave) {
+        GUIFactory gui = null;
+        if (mapaJanelas.containsKey(chave)) {
+            gui = mapaJanelas.get(chave);
+        }        
+        
+        return gui;
+    }
+
+    public static void setEntradaMapaJanelas(String chave,GUIFactory valor) {
+        mapaJanelas.put(chave, valor);
+    }
+    
+    public static void apagaEntradaMapaJanelas(String chave) {
+        mapaJanelas.remove(chave);
+    }    
+}

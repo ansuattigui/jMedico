@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.embed.swing.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.CameraController">
+<children><VBox alignment="CENTER" prefWidth="240.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+            <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="banner">
+               <children>
+                  <ImageView blendMode="MULTIPLY" fitHeight="75.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/Webcam.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label text="Focalize e clique no botão abaixo para capturar a imagem desejada." textAlignment="JUSTIFY" wrapText="true" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+<VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="200.0" VBox.vgrow="NEVER">
+<children>
+<SwingNode fx:id="swingNode" />
+</children>
+<padding>
+<Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+</padding>
+</VBox>
+            <HBox alignment="CENTER">
+               <children>
+      <Button fx:id="btnFotografar" alignment="CENTER" mnemonicParsing="false" onAction="#btnFotografarFired" prefHeight="30.0" prefWidth="100.0" styleClass="btnClick" text="Click!" textFill="#6c3100">
+      <font>
+      <Font name="System Bold" size="14.0" />
+      </font>
+                  </Button>
+               </children>
+            </HBox>
+</children>
+<padding>
+<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+</padding>
+</VBox>
+</children>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+<padding>
+<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+</padding></AnchorPane>
