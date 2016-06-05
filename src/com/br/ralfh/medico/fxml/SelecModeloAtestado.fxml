@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.web.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" snapToPixel="false" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.SelecModeloController">
+<AnchorPane id="AnchorPane" snapToPixel="false" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.SelecModeloController">
   <children><VBox alignment="CENTER" fillWidth="false" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 <children><VBox alignment="TOP_CENTER" fillWidth="false" spacing="5.0">
 <children>
@@ -36,7 +44,7 @@
                       <TableColumn fx:id="modeloCol" editable="false" prefWidth="324.0" text="Modelo" />
                     </columns>
                   </TableView>
-                        <WebView fx:id="wvModelo" maxHeight="-1.0" maxWidth="-1.0" minHeight="300.0" minWidth="400.0" prefHeight="-1.0" prefWidth="-1.0" />
+                        <WebView fx:id="wvModelo" disable="true" maxHeight="-1.0" maxWidth="-1.0" minHeight="300.0" minWidth="400.0" prefHeight="-1.0" prefWidth="-1.0" />
                      </children>
                   </VBox>
           </children>

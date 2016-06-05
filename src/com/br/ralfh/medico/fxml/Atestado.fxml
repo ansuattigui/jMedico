@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.input.*?>
-<?import java.net.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.web.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.HTMLEditor?>
 
-<AnchorPane snapToPixel="false" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.AtestadoController">
+<AnchorPane snapToPixel="false" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.AtestadoController">
   <children>
       <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -151,7 +163,7 @@
             </TableView>
                </children>
             </HBox>
-            <VBox spacing="10.0">
+            <VBox maxHeight="350.0" spacing="10.0">
                <children>
                   <VBox spacing="5.0">
                      <children>
@@ -178,16 +190,7 @@
                            <content>
                               <VBox>
                                  <children>
-                                    <HTMLEditor fx:id="htmlEditorCorpo" htmlText="" prefHeight="235.0" />
-                                    <HBox>
-                                       <children>
-                                          <Button fx:id="nomepac" mnemonicParsing="false" onAction="#nomepacFired" text="Nome" />
-                                          <Button fx:id="nascpac" mnemonicParsing="false" onAction="#nascpacFired" text="Nascimento" />
-                                          <Button fx:id="identpac" mnemonicParsing="false" onAction="#identpacFired" text="Identidade" />
-                                          <Button fx:id="cpfpac" layoutX="139.0" layoutY="10.0" mnemonicParsing="false" onAction="#cpfpacFired" text="CPF" />
-                                          <Button fx:id="datapac" layoutX="212.0" layoutY="10.0" mnemonicParsing="false" onAction="#datapacFired" text="Data do Dia" />
-                                       </children>
-                                    </HBox>
+                                    <HTMLEditor fx:id="htmlEditorCorpo" htmlText="" />
                                  </children>
                               </VBox>
                            </content>

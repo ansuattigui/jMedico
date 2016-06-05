@@ -259,16 +259,6 @@ public class MedicoController extends Controller {
         convenio.showAndWait(); 
     }
 
-/*    
-    public void btnTussFired(ActionEvent event) throws Exception {
-        String fxmlGUI = "fxml/Tuss.fxml";
-        String titleGUI = "TUSS / Cadastro de Procedimentos";
-        StageStyle fxmlStyle = StageStyle.UTILITY;
-        GUIFactory tuss = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
-        tuss.showAndWait(); 
-    }
-*/
-    
     @FXML
     public void btnFaturConvenioFired(ActionEvent event) throws Exception {
         String fxmlGUI = "fxml/FaturConvenio.fxml";

@@ -31,8 +31,6 @@ import javafx.scene.web.HTMLEditor;
 import javafx.stage.StageStyle;
 import javax.swing.ImageIcon;
 import net.sf.jasperreports.engine.JRException;
-import org.jsoup.Jsoup;
-import org.jsoup.examples.HtmlToPlainText;
 
 /**
  * FXML Controller class
@@ -85,12 +83,6 @@ public class AtestadoController extends Controller {
     @FXML public HTMLEditor htmlEditorCabecalho;
     @FXML public HTMLEditor htmlEditorCorpo;
     @FXML public HTMLEditor htmlEditorRodape;
-    
-    @FXML public Button nomepac;
-    @FXML public Button nascpac;
-    @FXML public Button identpac;
-    @FXML public Button cpfpac;
-    @FXML public Button datapac;
     
     public AtestadoController() {   
         this.status = StatusBtn.IDLE;
@@ -366,6 +358,7 @@ public class AtestadoController extends Controller {
         return resultado;
     }
     
+/*    
     public void nomepacFired(ActionEvent ae) {
         String html = htmlEditorCorpo.getHtmlText();
         String texto = new HtmlToPlainText().getPlainText(Jsoup.parse(html));
@@ -405,7 +398,8 @@ public class AtestadoController extends Controller {
         String htmlNew = Jsoup.parse(texto).html();
         htmlEditorCorpo.setHtmlText(htmlNew);
     }
-    
+*/
+
     public void habilEdicaoFired() {
         nomeAtestado.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         htmlEditorCabecalho.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
@@ -436,11 +430,6 @@ public class AtestadoController extends Controller {
         miAtestadoGavetaT.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoPrateleiraT.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoReduzidoT.setDisable(status!=StatusBtn.SHOWING);
-        nomepac.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
-        nascpac.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
-        identpac.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
-        cpfpac.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
-        datapac.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
     }
     
     @SuppressWarnings("empty-statement")

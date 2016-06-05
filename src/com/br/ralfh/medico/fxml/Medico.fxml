@@ -1,52 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane focusTraversable="false" prefHeight="600.0" prefWidth="900.0" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.MedicoController">
-  <children><BorderPane layoutX="22.0" layoutY="51.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-<center>
-            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView cache="true" fitHeight="380.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-      <image>
-      <Image url="@../imagens/logoJHTC.jpg" />
-      </image>
-      <BorderPane.margin>
-      <Insets />
-      </BorderPane.margin>
-      <effect>
-      <DropShadow />
-      </effect>
-                  </ImageView>
-               </children>
-            </VBox>
-</center>
-<left><Accordion fx:id="menuPrincipal" BorderPane.alignment="CENTER" HBox.hgrow="NEVER">
-  <panes>
-    <TitledPane fx:id="tpaneAgenda" alignment="CENTER_RIGHT" contentDisplay="CENTER" expanded="false" text="Agenda" textAlignment="RIGHT">
-<content><VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-<children>
+<AnchorPane focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="210.0" prefHeight="550.0" prefWidth="210.0" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.MedicoController">
+  <children>
+      <VBox alignment="CENTER" layoutX="-18.0" layoutY="-18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Accordion fx:id="menuPrincipal">
+      <panes>
+      <TitledPane fx:id="tpaneAgenda" alignment="CENTER_RIGHT" contentDisplay="CENTER" expanded="false" text="Agenda" textAlignment="RIGHT">
+      <content>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <children>
             <Button fx:id="btnAgenda" alignment="CENTER" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#btnAgendaFired" prefHeight="30.0" prefWidth="120.0" styleClass="botaomd" text="Agenda" GridPane.columnIndex="0" GridPane.rowIndex="2">
               <font>
                 <Font name="Arial" size="11.0" fx:id="x2" />
               </font>
             </Button>
-</children></VBox>
-</content>
-<effect>
-<InnerShadow />
-</effect>
-<font>
-<Font name="Arial" size="14.0" />
-</font>
-    </TitledPane>
+      </children>
+                        </VBox>
+      </content>
+      <effect>
+      <InnerShadow />
+      </effect>
+      <font>
+      <Font name="Arial" size="14.0" />
+      </font>
+      </TitledPane>
                   <TitledPane alignment="CENTER_RIGHT" contentDisplay="CENTER" expanded="false" layoutX="13.0" layoutY="13.0" text="Configurações">
                      <content>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -70,41 +63,46 @@
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
-                  </TitledPane><TitledPane alignment="CENTER_RIGHT" contentDisplay="CENTER" expanded="false" text="Convenios" xmlns:fx="http://javafx.com/fxml">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-<children><VBox alignment="CENTER" layoutX="65.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-<children><Button fx:id="btnConvenio" alignment="CENTER" contentDisplay="TEXT_ONLY" minWidth="135.0" mnemonicParsing="false" onAction="#btnConvenioFired" prefHeight="30.0" styleClass="botaomd" text="Convenio" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-<font>
-<Font name="Arial" size="11.0" />
-</font>
-</Button>
+                  </TitledPane>
+                  <TitledPane alignment="CENTER_RIGHT" contentDisplay="CENTER" expanded="false" text="Convenios" xmlns:fx="http://javafx.com/fxml">
+      <content>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+      <children>
+                              <VBox alignment="CENTER" layoutX="65.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+                                    <Button fx:id="btnConvenio" alignment="CENTER" contentDisplay="TEXT_ONLY" minWidth="135.0" mnemonicParsing="false" onAction="#btnConvenioFired" prefHeight="30.0" styleClass="botaomd" text="Convenio" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+      <font>
+      <Font name="Arial" size="11.0" />
+      </font>
+      </Button>
                                     <Button fx:id="btnTuss" alignment="CENTER" contentDisplay="TEXT_ONLY" disable="true" layoutX="31.0" layoutY="157.0" minWidth="135.0" mnemonicParsing="false" prefHeight="30.0" styleClass="botaomd" text="Tuss" visible="false">
                                        <font>
                                           <Font name="Arial" size="11.0" />
                                        </font>
                                     </Button>
-</children></VBox>
-</children></AnchorPane>
-  </content>
-<font>
-<Font name="Tahoma" size="14.0" />
-</font>
-<effect>
-<InnerShadow />
-</effect>
-</TitledPane>
+      </children>
+                              </VBox>
+      </children>
+                        </AnchorPane>
+      </content>
+      <font>
+      <Font name="Tahoma" size="14.0" />
+      </font>
+      <effect>
+      <InnerShadow />
+      </effect>
+      </TitledPane>
                   <TitledPane alignment="CENTER_RIGHT" contentDisplay="CENTER" expanded="false" text="Relatorios">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <VBox alignment="CENTER" layoutX="65.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-<Button fx:id="btnFaturConvenio" alignment="CENTER" contentDisplay="TEXT_ONLY" minWidth="135.0" mnemonicParsing="false" onAction="#btnFaturConvenioFired" prefHeight="30.0" styleClass="botaomd" text="Faturamento">
-<font>
-<Font name="Arial" size="11.0" />
-</font>
-</Button>
+      <Button fx:id="btnFaturConvenio" alignment="CENTER" contentDisplay="TEXT_ONLY" minWidth="135.0" mnemonicParsing="false" onAction="#btnFaturConvenioFired" prefHeight="30.0" styleClass="botaomd" text="Faturamento">
+      <font>
+      <Font name="Arial" size="11.0" />
+      </font>
+      </Button>
                                     <Button fx:id="btnRecibos" alignment="CENTER" contentDisplay="TEXT_ONLY" minWidth="135.0" mnemonicParsing="false" onAction="#btnRecibosFired" prefHeight="30.0" styleClass="botaomd" text="Recibos">
                                        <font>
                                           <Font name="Arial" size="11.0" />
@@ -121,113 +119,120 @@
                      <effect>
                         <InnerShadow />
                      </effect>
-                  </TitledPane><TitledPane alignment="CENTER_RIGHT" contentDisplay="CENTER" expanded="false" text="Cadastros" xmlns:fx="http://javafx.com/fxml">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-<children>
-<VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-<children><Button fx:id="btnUsuario" alignment="CENTER" contentDisplay="TEXT_ONLY" minWidth="135.0" mnemonicParsing="false" onAction="#btnUsuarioFired" prefHeight="30.0" styleClass="botaomd" text="Usuarios" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-<font>
-<Font name="Arial" size="11.0" />
-</font>
-</Button>
-<Button fx:id="btnMedico" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="39.0" layoutY="206.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnMedicoFired" prefHeight="30.0" styleClass="botaomd" text="Médicos" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-<font>
-<Font name="Arial" size="11.0" />
-</font>
-</Button>
-</children>
-</VBox>
-</children></AnchorPane>
-  </content>
-<font>
-<Font name="Tahoma" size="14.0" />
-</font>
-<effect>
-<InnerShadow />
-</effect>
-</TitledPane>
-    <TitledPane alignment="CENTER_RIGHT" contentDisplay="CENTER" expanded="false" text="Medicamentos">
-<content><VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-<children>
+                  </TitledPane>
+                  <TitledPane alignment="CENTER_RIGHT" contentDisplay="CENTER" expanded="false" text="Cadastros" xmlns:fx="http://javafx.com/fxml">
+      <content>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+      <children>
+      <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+      <children>
+                                    <Button fx:id="btnUsuario" alignment="CENTER" contentDisplay="TEXT_ONLY" minWidth="135.0" mnemonicParsing="false" onAction="#btnUsuarioFired" prefHeight="30.0" styleClass="botaomd" text="Usuarios" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+      <font>
+      <Font name="Arial" size="11.0" />
+      </font>
+      </Button>
+      <Button fx:id="btnMedico" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="39.0" layoutY="206.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnMedicoFired" prefHeight="30.0" styleClass="botaomd" text="Médicos" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+      <font>
+      <Font name="Arial" size="11.0" />
+      </font>
+      </Button>
+      </children>
+      </VBox>
+      </children>
+                        </AnchorPane>
+      </content>
+      <font>
+      <Font name="Tahoma" size="14.0" />
+      </font>
+      <effect>
+      <InnerShadow />
+      </effect>
+      </TitledPane>
+      <TitledPane alignment="CENTER_RIGHT" contentDisplay="CENTER" expanded="false" text="Medicamentos">
+      <content>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+      <children>
                     <Button fx:id="btnGrupos" contentDisplay="TEXT_ONLY" graphicTextGap="0.0" maxHeight="-1.0" maxWidth="-1.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnGruposFired" prefHeight="30.0" styleClass="botaomd" text="Grupos" textAlignment="CENTER">
                       <font>
                         <Font name="Arial" size="11.0" fx:id="x4" />
                       </font>
                     </Button>
                     <Button fx:id="btnModos" contentDisplay="TEXT_ONLY" graphicTextGap="0.0" maxHeight="-1.0" maxWidth="-1.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnModosFired" prefHeight="30.0" styleClass="botaomd" text="Posologias" textAlignment="CENTER">
-<font>
-<Font name="Arial" size="11.0" />
-</font></Button>
+      <font>
+      <Font name="Arial" size="11.0" />
+      </font>
+                              </Button>
                     <Button fx:id="btnMedicamentos" contentDisplay="TEXT_ONLY" graphicTextGap="0.0" maxHeight="-1.0" maxWidth="-1.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnMedicamentosFired" prefHeight="30.0" styleClass="botaomd" text="Medicamentos" textAlignment="CENTER">
-<font>
-<Font name="Arial" size="11.0" />
-</font></Button>
-</children></VBox>
-</content>
-<effect>
-<InnerShadow />
-</effect>
-<font>
-<Font name="Tahoma" size="14.0" />
-</font>
-    </TitledPane>
-    <TitledPane alignment="CENTER_RIGHT" contentDisplay="CENTER" expanded="false" text="Pacientes">
-<content><VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-<children>
+      <font>
+      <Font name="Arial" size="11.0" />
+      </font>
+                              </Button>
+      </children>
+                        </VBox>
+      </content>
+      <effect>
+      <InnerShadow />
+      </effect>
+      <font>
+      <Font name="Tahoma" size="14.0" />
+      </font>
+      </TitledPane>
+      <TitledPane alignment="CENTER_RIGHT" contentDisplay="CENTER" expanded="false" text="Pacientes">
+      <content>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <children>
             <Button fx:id="btnPacientes" blendMode="MULTIPLY" contentDisplay="TEXT_ONLY" graphicTextGap="0.0" minWidth="135.0" mnemonicParsing="false" mouseTransparent="false" onAction="#btnPacientesFired" pickOnBounds="false" prefHeight="30.0" styleClass="botaomd" text="Pacientes" textFill="BLACK" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
               <font>
                 <Font name="Arial" size="11.0" fx:id="x5" />
               </font>
             </Button>
-</children></VBox>
-</content>
-<effect>
-<InnerShadow />
-</effect>
-<font>
-<Font name="Tahoma" size="14.0" />
-</font>
-    </TitledPane>
-  </panes>
-<HBox.margin>
-<Insets bottom="10.0" left="10.0" top="10.0" />
-</HBox.margin>
-<padding>
-<Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-</padding>
-<BorderPane.margin>
-<Insets bottom="5.0" left="5.0" top="5.0" />
-</BorderPane.margin>
-</Accordion>
-</left>
-         <bottom>
-            <HBox alignment="CENTER_RIGHT" prefHeight="40.0" styleClass="mensagens" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
+      </children>
+                        </VBox>
+      </content>
+      <effect>
+      <InnerShadow />
+      </effect>
+      <font>
+      <Font name="Tahoma" size="14.0" />
+      </font>
+      </TitledPane>
+      </panes>
+      <padding>
+      <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+      </padding>
+      </Accordion>
+            <VBox alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER_LEFT" spacing="5.0" style="-fx-border-color: teal;" visible="false">
-                     <children>
-                        <Label alignment="CENTER" text="Mensagens">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblMensagens" alignment="CENTER" prefWidth="300.0" />
-                     </children>
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                     <effect>
-                        <InnerShadow />
-                     </effect>
-                  </HBox>
+                  <ImageView cache="true" fitHeight="380.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <effect>
+            <DropShadow />
+            </effect>
+                     <image>
+                        <Image url="@../imagens/logoJHTC.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </VBox>
+            <HBox alignment="BOTTOM_CENTER" spacing="5.0" style="-fx-border-color: teal;" visible="false">
+               <children>
+                  <Label alignment="CENTER" text="Mensagens">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblMensagens" alignment="CENTER" prefWidth="300.0" />
                </children>
                <padding>
-                  <Insets bottom="3.0" right="3.0" top="3.0" />
+                  <Insets left="5.0" />
                </padding>
+               <effect>
+                  <InnerShadow />
+               </effect>
             </HBox>
-         </bottom></BorderPane>
+         </children>
+      </VBox>
   </children>
 </AnchorPane>

@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -24,13 +25,16 @@ public class JDocplus extends Application {
         
         MedicoController controller = (MedicoController) loader.getController();
         controller.setStage(mainStage);
+       
         controller.addStageCloseListener();
+        controller.getStage().setMaxWidth(230);
         controller.getStage().setMaximized(true);
         Scene scene = new Scene(root);
         
         mainStage.setScene(scene);        
         mainStage.setTitle("JDocplus");
         mainStage.getIcons().add(new Image(getClass().getResourceAsStream("imagens/icons/stethoscope_no_sh.png")));
+        mainStage.initStyle(StageStyle.UTILITY);
         mainStage.show();
         
     }
