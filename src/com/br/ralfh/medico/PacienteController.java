@@ -116,7 +116,6 @@ public class PacienteController extends Controller {
         addListenerDataNasc();
         addListenerUF();
         setButtons();
-//        addStageCloseListener();
     } 
     
     @Override

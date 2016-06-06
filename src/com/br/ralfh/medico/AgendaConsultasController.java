@@ -398,24 +398,14 @@ public class AgendaConsultasController extends Controller {
     }
     
     
-    public void btnCadastroFired(ActionEvent ae) throws IOException {
-        
+    public void btnCadastroFired(ActionEvent ae) throws IOException {        
         if (!horario.get().getPaciente().isEmpty()) {
-                    
-            String fxmlGUI;
-            String titleGUI;
+            String fxmlGUI = "fxml/Pacientes.fxml";;
+            String titleGUI = "Cadastro do Paciente";
             StageStyle fxmlStyle;
             GUIFactory pacientes;
             Controller controller;
             Paciente pac = null;
-
-//            if (perfilUsuario.getTipoUsuario().equals("Medico")) {
-//                fxmlGUI = "fxml/PacienteFichaMed.fxml";
-//                titleGUI = "Ficha Médica do Paciente";
-//            } else {
-                fxmlGUI = "fxml/Pacientes.fxml";
-                titleGUI = "Cadastro do Paciente";
-//            }
 
             fxmlStyle = StageStyle.DECORATED;
             pacientes = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle);
@@ -431,12 +421,6 @@ public class AgendaConsultasController extends Controller {
             }
 
             controller = (PacienteController) controller;
-/*            if (controller instanceof PacienteController) {
-                controller = (PacienteController) controller;
-            } else if (controller instanceof PacienteFichaMedController) {
-                controller = (PacienteFichaMedController) controller;            
-            }
-*/
 
             if (horario.get().getCodPaciente()!= 0) {
                 controller.setPaciente(horario.get().getCodAntigoPaciente(),horario.get().getId());
