@@ -30,7 +30,7 @@ public class SelecModeloController extends Controller {
     @FXML public TableView<ModeloAtestado> tabelaModelos;
     @FXML private TableColumn<ModeloAtestado,Integer> ordemCol;
     @FXML private TableColumn<ModeloAtestado,String> modeloCol;
-    @FXML public WebView wvModelo; 
+    //@FXML public WebView wvModelo; 
     
     public SelecModeloController() {   
         sopModelos = FXCollections.observableArrayList(); 
@@ -44,7 +44,7 @@ public class SelecModeloController extends Controller {
     public void initialize(URL url, ResourceBundle rb) {
         initTableModelos();
         addModelosListener();
-        AddListenerSelecModelo();
+        //AddListenerSelecModelo();
         initDados();
     }   
     
@@ -78,7 +78,8 @@ public class SelecModeloController extends Controller {
     public String getRodapeModelo() {
         return tabelaModelos.getSelectionModel().getSelectedItem().getRodape();
     }
-    
+
+    /*
     public void AddListenerSelecModelo() {
         tabelaModelos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
         @Override
@@ -91,6 +92,7 @@ public class SelecModeloController extends Controller {
         }
         }); 
     }
+    */
     
     
     

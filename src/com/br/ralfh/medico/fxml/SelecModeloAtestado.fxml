@@ -15,7 +15,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.web.WebView?>
 
 <AnchorPane id="AnchorPane" snapToPixel="false" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.SelecModeloController">
   <children><VBox alignment="CENTER" fillWidth="false" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -36,15 +35,14 @@
 </VBox.margin></VBox>
         <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" rowValignment="CENTER" BorderPane.alignment="TOP_CENTER">
           <children>
-                  <VBox alignment="TOP_CENTER" fillWidth="false" spacing="5.0">
+                  <VBox alignment="TOP_CENTER" fillWidth="false">
                      <children>
-                  <TableView fx:id="tabelaModelos" prefHeight="150.0">
+                  <TableView fx:id="tabelaModelos" prefHeight="300.0">
                     <columns>
                       <TableColumn fx:id="ordemCol" editable="false" prefWidth="74.0" text="Ordem" />
-                      <TableColumn fx:id="modeloCol" editable="false" prefWidth="324.0" text="Modelo" />
+                      <TableColumn fx:id="modeloCol" editable="false" prefWidth="350.0" text="Modelo" />
                     </columns>
                   </TableView>
-                        <WebView fx:id="wvModelo" disable="true" maxHeight="-1.0" maxWidth="-1.0" minHeight="300.0" minWidth="400.0" prefHeight="-1.0" prefWidth="-1.0" />
                      </children>
                   </VBox>
           </children>

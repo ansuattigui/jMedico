@@ -82,16 +82,15 @@ public class PacienteController extends Controller {
     @FXML ChoiceBox<Etnia> etniaPaciente;         @FXML TextField rgPaciente;
     @FXML TextField cpfPaciente;                  @FXML TextField profPaciente;
     @FXML TextField enderPaciente;                @FXML TextField numEndPaciente;
-    @FXML TextField compEndPaciente;              @FXML TextField bairroPaciente;
-    
+    @FXML TextField compEndPaciente;              @FXML TextField bairroPaciente;    
     @FXML FormattedTextField fmtCEP;              @FXML TextField cidadePaciente;
     @FXML ComboBox ufPaciente;                    @FXML TextField telResPaciente;
     @FXML TextField telComPaciente;               @FXML TextField celularPaciente;
     @FXML TextField emailPaciente;                @FXML ComboBox convPaciente;
     @FXML TextField matConvPaciente;
     
-    @FXML TextField indicacao;                    @FXML FormattedTextField dataPrimConsulta;    
-    @FXML ComboBox<StatusPaciente> statusPac;             @FXML ComboBox<SitCadastro> sitCadastro;
+    @FXML TextField indicacao;                    @FXML TextField dataPrimConsulta;    
+    @FXML ComboBox<StatusPaciente> statusPac;     @FXML ComboBox<SitCadastro> sitCadastro;
     
     private byte[] bFotografia; 
 
@@ -227,7 +226,7 @@ public class PacienteController extends Controller {
                 StatusPaciente.values()
             );        
         statusPac.getItems().addAll(options);
-        statusPac.getSelectionModel().selectFirst();         //  CRIAR ENTRADAS EM STATUS  datafield em pacientes  mascara dados datafield
+        statusPac.getSelectionModel().selectFirst();    //  CRIAR ENTRADAS EM STATUS  datafield em pacientes  mascara dados datafield
     }
 
     private void initComboSitCadastro() {
@@ -563,7 +562,11 @@ public class PacienteController extends Controller {
         paciente.setEmail(emailPaciente.getText()); 
         
         paciente.setIndicacao(indicacao.getText());
-        paciente.setStatus(statusPac.getValue().toString());
+        if (statusPac.getValue()!=null) {
+            paciente.setStatus(statusPac.getValue().toString());
+        } else {
+            paciente.setStatus(statusPac.getItems().get(0).name());
+        }
 //        paciente.setSitCadastro(sitCadastro.getValue().toString());
         
         paciente.setFotografia(bFotografia);             

@@ -85,9 +85,7 @@ public class LoginController extends Controller {
     
     @FXML
     public void btnSalvaConfigFired(ActionEvent ae) {
-        
         try {
-            
             if (driver.getText().isEmpty()) {
                 throw new CampoEmBrancoException("Informe o Driver de acesso ao BD");
             } else {

@@ -66,7 +66,7 @@ public class Usuarios {
         query.setParameter("pusuario",user);
         try {
             Usuario usu = query.getSingleResult();
-            if(Util.decriptografa(usu.getSenha()).equals(passw)) {
+            if((Util.decriptografa(usu.getSenha()).toUpperCase()).equals(passw.toUpperCase())) {
                 resultado = Boolean.TRUE;
             } 
         } catch (NoResultException re) {
