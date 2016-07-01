@@ -8,6 +8,7 @@ import com.br.ralfh.medico.modelos.Paciente;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -23,13 +24,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import javax.swing.ImageIcon;
+import jidefx.scene.control.field.DateField;
 import net.sf.jasperreports.engine.JRException;
 
 /**
@@ -77,6 +81,7 @@ public class AtestadoController extends Controller {
 
     
     @FXML public TextField nomeAtestado;
+    @FXML public DateField dataAtestado;
     @FXML public TableView<Atestado> tabelaAtestados;
     @FXML public TableColumn<Atestado,String> dataCol;
     @FXML public TableColumn<Atestado,String> atestadoCol;
@@ -97,7 +102,7 @@ public class AtestadoController extends Controller {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        initTabelaModelos();
+        initTabelaAtestados();
         addAtestadosListener();
         addListenerAtestado();
         AddListenerSelecModelo();
@@ -129,6 +134,7 @@ public class AtestadoController extends Controller {
             atestados.showAndWait(); 
 
             if (controller.getCloseModal()) {  
+                dataAtestado.setValue(Util.dHoje());
                 nomeAtestado.setText(controller.getNomeModelo());
                 htmlEditorCabecalho.setHtmlText(controller.getCabecalhoModelo());
                 htmlEditorCorpo.setHtmlText(trataTagsAtestado(controller.getCorpoModelo()));
@@ -271,8 +277,16 @@ public class AtestadoController extends Controller {
         this.stage.close();
     }
 
-    private void initTabelaModelos() {
-        dataCol.setCellValueFactory(new PropertyValueFactory<>("data"));
+    private void initTabelaAtestados() {
+//        dataCol.setCellValueFactory(new PropertyValueFactory<>("data"));
+        
+        dataCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Atestado,String>, ObservableValue<String>>() {
+            @Override 
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Atestado,String> d) {
+                SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
+                return new SimpleObjectProperty<>(dt.format(d.getValue().getData()));
+            }
+        });
         atestadoCol.setCellValueFactory(new PropertyValueFactory<>("tipo"));
     }
        
@@ -315,6 +329,7 @@ public class AtestadoController extends Controller {
     
     
     private void mostraAtestado() {
+        dataAtestado.setValue(atestado.getData());
         nomeAtestado.setText(atestado.getTipo());
         htmlEditorCabecalho.setHtmlText(atestado.getCabecalho());
         htmlEditorCorpo.setHtmlText(atestado.getCorpo());
@@ -322,6 +337,7 @@ public class AtestadoController extends Controller {
     }
     
     private void limpaAtestado() {
+        dataAtestado.clear();
         nomeAtestado.clear();
         htmlEditorCabecalho.setHtmlText("");
         htmlEditorCorpo.setHtmlText("");
@@ -331,6 +347,7 @@ public class AtestadoController extends Controller {
     
     private Boolean preencheAtestado(Atestado atest) {        
         Boolean resultado = Boolean.FALSE;
+        atest.setData(dataAtestado.getValue());
         atest.setTipo(nomeAtestado.getText());
         atest.setPaciente(sopPaciente.get());
         try {            

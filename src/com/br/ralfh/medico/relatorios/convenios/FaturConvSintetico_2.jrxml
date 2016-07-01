@@ -16,14 +16,14 @@
      @curRow:=@curRow+1 AS rank,
      tmc.cod_convenio AS cod,
      count(tmc.cod_convenio) AS cons,
-     (SELECT count(ecg) AS necg FROM `tab_consultas` tmc2 WHERE tmc2.cod_convenio = tmc.cod_convenio and ecg IS true and tmc2.datahora BETWEEN $P{inicio} and $P{fim}) as necg,
+     (SELECT count(ecg) AS necg FROM `tab_consultas` tmc2 WHERE tmc2.cod_convenio = tmc.cod_convenio and ecg IS true and tmc2.data BETWEEN $P{inicio} and $P{fim}) as necg,
      tc.`nome_convenio` AS nome
 FROM
      `tab_convenio` tc
 INNER JOIN `tab_consultas` tmc ON tc.`cod_convenio` = tmc.`cod_convenio`
 INNER JOIN (SELECT @curRow := 0) r
 WHERE
-     tmc.datahora BETWEEN $P{inicio} and $P{fim} and tmc.atendido is true
+     tmc.data BETWEEN $P{inicio} and $P{fim} and tmc.atendido is true
 GROUP BY
      tmc.cod_convenio
 ORDER BY

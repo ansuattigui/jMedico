@@ -79,8 +79,8 @@ public class FaturConvenioController extends Controller {
                 strDataFim = dataFim.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             }
             String logo = new File("logoJHTC.jpg").getAbsolutePath();
-            Date dDataIni = Util.udate(dataInicio.getValue());
-            Date dDataFim = Util.udate(dataFim.getValue());
+            Date dDataIni = Util.udate(dataInicio.getValue().atStartOfDay());
+            Date dDataFim = Util.udate(dataFim.getValue().atTime(23,59));
             String periodo = strDataIni + " à " + strDataFim;
 
             hm = new HashMap();        
@@ -98,13 +98,10 @@ public class FaturConvenioController extends Controller {
     }
     
     
-    public void btnConfirmaFired(ActionEvent event) {
-        
-        switch (tipoRelat) {
-            
+    public void btnConfirmaFired(ActionEvent event) {        
+        switch (tipoRelat) {            
             case convenioSintetico: {
-                if (preparaRelatorio()) {
-                
+                if (preparaRelatorio()) {                
                     String fileName = "relatorios/convenios/FaturConvSintetico_2.jasper";
                     DataAccessRelatorios relat = new DataAccessRelatorios();
                     try {
