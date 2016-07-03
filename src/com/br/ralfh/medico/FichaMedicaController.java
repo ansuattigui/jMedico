@@ -170,8 +170,7 @@ public class FichaMedicaController extends Controller {
     }
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {   
-        
+    public void initialize(URL url, ResourceBundle rb) {           
         initComboAparCircPrCons();
         addFreqCardPrimConsListener();
         addFreqCardConsSubsListener();
@@ -407,50 +406,52 @@ public class FichaMedicaController extends Controller {
     public void confFichaMedicaFired(ActionEvent event) {    
         EntityManager manager = JPAUtil.getEntityManager();
         manager.getTransaction().begin();
-        if (status == StatusBtn.UPDATING) {
-            try {
-                setPrimeiraConsulta();
-            } catch (FormatoNumericoInvalidoException ex) {
-                Controller.ShowDialog("EX", ex.getMessage(), null);
-                return;
-            }
-            if (FichaMedica.salvaPrimeiraConsulta(manager,primeiraconsulta)) {                
-                manager.getTransaction().commit();
-                Controller.ShowDialog("ATBS", "Registro atualizado com sucesso!", null);
-                status = StatusBtn.IDLE;
-            } else {
-                manager.getTransaction().rollback();
-                Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null);
-            }
-        } else if (status == StatusBtn.UPDATECONSSUB) {     
-            
-            try {
+        if (null != status) switch (status) {
+            case UPDATING:
+                try {
+                    setPrimeiraConsulta();
+                } catch (Exception ex) {
+                    Controller.ShowDialog("EX", ex.getMessage(), null);
+                    return;
+                }   
+                
+                if (FichaMedica.salvaPrimeiraConsulta(manager,primeiraconsulta)) {                
+                    manager.getTransaction().commit();
+                    Controller.ShowDialog("ATBS", "Registro atualizado com sucesso!", null);
+                    status = StatusBtn.IDLE;
+                } else {
+                    manager.getTransaction().rollback();
+                    Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null);
+                }   break;
+            case UPDATECONSSUB:
+                try {
+                    setConsultaSubs();
+                } catch (FormatoNumericoInvalidoException ex) {
+                    Controller.ShowDialog("EX", ex.getMessage(), null);
+                    return;
+                }   if (FichaMedica.salvaConsultaSubs(manager, consubs)) {  
+                    Controller.ShowDialog("ATBS", "Registro atualizado com sucesso!", null);
+                    status = StatusBtn.IDLE;
+                    manager.getTransaction().commit();
+                } else {
+                    manager.getTransaction().rollback();
+                    Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null);
+                }   olConsultasSubs.setAll(FichaMedica.getConsultasSubs(paciente));
+                break;
+            case INSERTCONSSUB:
+                consubs = new ConsultaSubs();
                 setConsultaSubs();
-            } catch (FormatoNumericoInvalidoException ex) {
-                Controller.ShowDialog("EX", ex.getMessage(), null);
-                return;
-            }
-            if (FichaMedica.salvaConsultaSubs(manager, consubs)) {  
-                Controller.ShowDialog("ATBS", "Registro atualizado com sucesso!", null);
-                status = StatusBtn.IDLE;
-                manager.getTransaction().commit();
-            } else {
-                manager.getTransaction().rollback();
-                Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null);
-            }
-            olConsultasSubs.setAll(FichaMedica.getConsultasSubs(paciente));
-        } else if (status == StatusBtn.INSERTCONSSUB) {            
-            consubs = new ConsultaSubs();
-            setConsultaSubs();
-            if (FichaMedica.novaConsultaSubs(manager, consubs)) {
-                manager.getTransaction().commit();
-                Controller.ShowDialog("ATBS", "Registro atualizado com sucesso!", null);
-                status = StatusBtn.IDLE;  
-            } else {
-                manager.getTransaction().rollback();
-                Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null);
-            }
-            olConsultasSubs.setAll(FichaMedica.getConsultasSubs(paciente));
+                if (FichaMedica.novaConsultaSubs(manager, consubs)) {
+                    manager.getTransaction().commit();
+                    Controller.ShowDialog("ATBS", "Registro atualizado com sucesso!", null);
+                    status = StatusBtn.IDLE;
+                } else {
+                    manager.getTransaction().rollback();
+                    Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null);
+                }   olConsultasSubs.setAll(FichaMedica.getConsultasSubs(paciente));
+                break;
+            default:
+                break;
         }
         manager.close();
         setButtons();      
@@ -575,7 +576,7 @@ public class FichaMedicaController extends Controller {
         tcPrimeiraCons.setText(primeiraconsulta.getTcPrimCons());
     }
     
-    private void setPrimeiraConsulta() throws FormatoNumericoInvalidoException {
+    private void setPrimeiraConsulta() throws Exception {
         primeiraconsulta.setData(dataPrimConsulta.getValue());
         primeiraconsulta.setQp(qpPrimeiraCons.getText());
         primeiraconsulta.setHda(hdaPrimeiraCons.getText());
@@ -618,7 +619,7 @@ public class FichaMedicaController extends Controller {
             primeiraconsulta.setMenarcaidade(Integer.parseInt(menarcAnosPrimeiraCons.getText()));
         } catch (NullPointerException ex) {
             primeiraconsulta.setMenarcaidade(0);
-        }        
+        }      
         primeiraconsulta.setGestacoes(gestacPrimeiraCons.isSelected());        
         try {
             primeiraconsulta.setGestanumeros(Integer.parseInt(gestacNumPrimeiraCons.getText()));
@@ -663,6 +664,8 @@ public class FichaMedicaController extends Controller {
             primeiraconsulta.setFreqcard(Integer.parseInt(frcardPrimeiraCons.getText()));
         } catch (NullPointerException ex) {
             primeiraconsulta.setFreqcard(0);
+        } catch (NumberFormatException ex1) {
+            throw new Exception("Verifique o campo Frequência Cardíaca");
         }
         try {
             primeiraconsulta.setPulso(Integer.parseInt(pulsoPrimeiraCons.getText()));
