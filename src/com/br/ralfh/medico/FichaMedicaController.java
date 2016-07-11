@@ -33,7 +33,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
 import jidefx.scene.control.field.DateField;
+import org.hibernate.exception.ConstraintViolationException;
 
 /**
  * FXML Controller class
@@ -286,7 +288,7 @@ public class FichaMedicaController extends Controller {
         this.primeiraconsulta = FichaMedica.getPrimeiraConsulta(pac);
         this.sopPrimeiraConsulta.set(this.primeiraconsulta);
         this.listaConsubs.addAll(FichaMedica.getConsultasSubs(pac));
-        initDatasCS();
+//        initDatasCS();
         this.olConsultasSubs.setAll(listaConsubs);
         this.prontuario = FichaMedica.getProntuario(paciente);
         this.olProntuario.set(prontuario);
@@ -325,9 +327,9 @@ public class FichaMedicaController extends Controller {
             @Override
             public void onChanged(Change c ) {
                 if (olConsultasSubs.size() > 0) {
-//                    tvConsultasSubs.getItems().setAll(olConsultasSubs);  
                     prontuario = FichaMedica.getProntuario(paciente);
                     olProntuario.set(prontuario);
+                    initDatasCS();
                 }
             }
         });           
@@ -414,7 +416,6 @@ public class FichaMedicaController extends Controller {
                     Controller.ShowDialog("EX", ex.getMessage(), null);
                     return;
                 }   
-                
                 if (FichaMedica.salvaPrimeiraConsulta(manager,primeiraconsulta)) {                
                     manager.getTransaction().commit();
                     Controller.ShowDialog("ATBS", "Registro atualizado com sucesso!", null);
@@ -442,13 +443,22 @@ public class FichaMedicaController extends Controller {
                 consubs = new ConsultaSubs();
                 setConsultaSubs();
                 if (FichaMedica.novaConsultaSubs(manager, consubs)) {
-                    manager.getTransaction().commit();
-                    Controller.ShowDialog("ATBS", "Registro atualizado com sucesso!", null);
+                    try {
+                        manager.getTransaction().commit();
+                    } catch (PersistenceException ex) {
+                        Controller.ShowDialog("EX", "Já existe consulta com esta data", null);
+                        break;
+                    }
+                    
+                    verificar carga das consubs após a inclusão.
+                    
+                    Controller.ShowDialog("ATBS", "Registro incluido com sucesso!", null);
                     status = StatusBtn.IDLE;
                 } else {
                     manager.getTransaction().rollback();
                     Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null);
-                }   olConsultasSubs.setAll(FichaMedica.getConsultasSubs(paciente));
+                }   
+                olConsultasSubs.setAll(FichaMedica.getConsultasSubs(paciente));
                 break;
             default:
                 break;
