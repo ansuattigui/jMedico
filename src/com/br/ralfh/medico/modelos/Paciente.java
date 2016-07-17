@@ -57,16 +57,6 @@ public class Paciente implements Serializable {
     private Convenio convenio;    
     @Column(name = "numero_conveniado") private String numConveniado;
     
-//    @OneToOne (cascade = CascadeType.REMOVE) //@JoinColumn(name = "cod_paciente")
-//    private PrimeiraConsulta primconsulta;
-    
-//    @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL) @JoinColumn(name = "cod_paciente")
-//    private Collection<ConsultaSubs> consultasSubs;
-    
-//    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
-//    @JoinColumn(name = "paciente_cod_paciente")
-//    private Collection<Receita> receitas;
-    
     public Paciente() {
         id = -1;
         //primconsulta = new PrimeiraConsulta();

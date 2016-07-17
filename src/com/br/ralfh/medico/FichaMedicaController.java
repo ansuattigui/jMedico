@@ -35,7 +35,6 @@ import javafx.stage.WindowEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import jidefx.scene.control.field.DateField;
-import org.hibernate.exception.ConstraintViolationException;
 
 /**
  * FXML Controller class
@@ -188,13 +187,7 @@ public class FichaMedicaController extends Controller {
         getController().getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
           @Override
           public void handle(WindowEvent we) {
-            
               btnConfFichaMedica.fire();
-                /*              if (status==StatusBtn.UPDATING) {
-                  
-              } else if ((status==StatusBtn.INSERTCONSSUB)|(status==StatusBtn.UPDATECONSSUB)) {
-                  
-              } */
           }
         });
     }
@@ -213,10 +206,10 @@ public class FichaMedicaController extends Controller {
             case "gestacPrimeiraCons": gestacNumPrimeiraCons.requestFocus();break;
             case "menopPrimeiraCons": menopAnosPrimeiraCons.requestFocus();break;
         }
-        
     }
     
     private void initDatasCS() {
+        datasConsultas.getChildren().clear();
         for(ConsultaSubs cs : listaConsubs) {
             Button bt = new Button();
             bt.setMinWidth(140);
@@ -239,7 +232,6 @@ public class FichaMedicaController extends Controller {
     
     private void initComboAparCircPrCons() {
         comboapcircPrimeiraCons.getItems().clear();
-//        comboapcircPrimeiraCons.getItems().setAll(FichaMedica.getAparResp());
         comboapcircPrimeiraCons.getItems().add("RCI");
         comboapcircPrimeiraCons.getItems().add("RCR, 2T");
     }
@@ -288,11 +280,9 @@ public class FichaMedicaController extends Controller {
         this.primeiraconsulta = FichaMedica.getPrimeiraConsulta(pac);
         this.sopPrimeiraConsulta.set(this.primeiraconsulta);
         this.listaConsubs.addAll(FichaMedica.getConsultasSubs(pac));
-//        initDatasCS();
         this.olConsultasSubs.setAll(listaConsubs);
         this.prontuario = FichaMedica.getProntuario(paciente);
         this.olProntuario.set(prontuario);
-//        selecPagConsulta();
     }
     
     private void addPrimeiraConsultaListener() { 
@@ -334,17 +324,6 @@ public class FichaMedicaController extends Controller {
             }
         });           
     }  
-
-    /*
-    private ConsultaSubs getConsSubs(String data) {
-        ConsultaSubs cons = null;
-        for(ConsultaSubs cs : listaConsubs) {
-            if (cs.getDataExt().equals(data))
-                cons = cs;
-        }
-        return cons;
-    }
-    */
     
     public void btnGrafFired(ActionEvent ae) throws IOException {        
         String fxmlGUI = "fxml/GraficoPABarra.fxml";
@@ -357,7 +336,6 @@ public class FichaMedicaController extends Controller {
         controller.setTipoGrafico(btn.getId());
         
         controller.initGrafico(paciente);        
-//        controller.initGrafico(fichamedica);        
         graficopa.showAndWait();                
     }
     
@@ -390,7 +368,7 @@ public class FichaMedicaController extends Controller {
     public void delConsSubsFired(ActionEvent event) {
         if (ExcluiRegistroDlg("ECS", "", null)) {
             EntityManager manager = JPAUtil.getEntityManager();
-            manager.getTransaction().begin();
+            manager.getTransaction().begin();  
             if (FichaMedica.excluiConsultaSubs(manager,consubs)) {
                 manager.getTransaction().commit();
                 Controller.ShowDialog("ATBS", "Registro excluído com sucesso!", null);
@@ -449,16 +427,14 @@ public class FichaMedicaController extends Controller {
                         Controller.ShowDialog("EX", "Já existe consulta com esta data", null);
                         break;
                     }
-                    
-                    verificar carga das consubs após a inclusão.
-                    
                     Controller.ShowDialog("ATBS", "Registro incluido com sucesso!", null);
                     status = StatusBtn.IDLE;
                 } else {
                     manager.getTransaction().rollback();
                     Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null);
                 }   
-                olConsultasSubs.setAll(FichaMedica.getConsultasSubs(paciente));
+                listaConsubs = FichaMedica.getConsultasSubs(paciente);
+                olConsultasSubs.setAll(listaConsubs);
                 break;
             default:
                 break;
@@ -482,12 +458,9 @@ public class FichaMedicaController extends Controller {
     
     public void sairFichaMedicaFired(ActionEvent event) {
         getController().getStage().close();
-        
-//        this.getController().actionFecharCancelar(event);
     }    
 
-    
-    
+        
     private void mostraPrimeiraConsulta() {   
         dataPrimConsulta.setValue(primeiraconsulta.getData());
         qpPrimeiraCons.setText(primeiraconsulta.getQp());

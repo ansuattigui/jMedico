@@ -4,7 +4,9 @@
  */
 package com.br.ralfh.medico;
 
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -18,4 +20,5 @@ public class JPAUtil {
     public static EntityManager getEntityManager() {
         return MedicoController.getEntityManagerFactory().createEntityManager();
     }
+    
 }

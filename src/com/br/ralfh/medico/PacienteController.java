@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -217,6 +218,8 @@ public class PacienteController extends Controller {
         initComboConvenio();
         initComboStatus();
         initComboSitCadastro();
+        initComboNaturalidade();
+        initComboNacionalidade();
     }
 
     private void initComboStatus() {
@@ -258,7 +261,6 @@ public class PacienteController extends Controller {
     });
     }
     
-    
     private void initComboSexoPaciente() {       
         ObservableList<Sexo> options = 
             FXCollections.observableArrayList(
@@ -286,15 +288,28 @@ public class PacienteController extends Controller {
             FXCollections.observableArrayList(
                 Etnia.values()
             );    
-        etniaPaciente.getItems().addAll(options);        
+        etniaPaciente.getItems().addAll(options);  
     }
 
+    private void initComboNaturalidade() {
+        ObservableList<String> options = 
+            FXCollections.observableArrayList(UFs.getNaturalidades());    
+        naturPaciente.getItems().addAll(options);        
+    }
+    
+    private void initComboNacionalidade() {
+        ArrayList nacion = new ArrayList();
+        nacion.add(0, "BRASILEIRA");
+        nacionPaciente.getItems().addAll(nacion);        
+    }
+    
+    
     private void initComboConvenio() {
         ObservableList<String> options = 
             FXCollections.observableArrayList(Convenios.getListaNomes());    
         convPaciente.getItems().addAll(options);        
     }
-    
+
     /// Melhorar mascara com string 5 pos - 3 pos
     private void initFmtCep() {        
         fmtCEP.getPatternVerifiers().put("h", new IntegerRangePatternVerifier(0,99999));
@@ -384,7 +399,7 @@ public class PacienteController extends Controller {
     @FXML
     public void fichaMedicaFired(ActionEvent event){
         String fxmlGUI = "fxml/FichaMedica.fxml";
-        String titleGUI = "Ficha médica de " + paciente.getNome();
+        String titleGUI = "Ficha médica de " + paciente.getNome() + " / " + paciente.getConvenio().getNome();
         StageStyle fxmlStyle = StageStyle.DECORATED;
         GUIFactory fichamedica;   
         try {
@@ -400,7 +415,7 @@ public class PacienteController extends Controller {
     @FXML
     public void btnAtestadosFired(ActionEvent event){
         String fxmlGUI = "fxml/Atestado.fxml";
-        String titleGUI = "Atestados de " + paciente.getNome();
+        String titleGUI = "Atestados de " + paciente.getNome() + " / " + paciente.getConvenio().getNome();
         StageStyle fxmlStyle = StageStyle.DECORATED;
         GUIFactory atestados;   
         try {
@@ -416,7 +431,7 @@ public class PacienteController extends Controller {
     @FXML
     public void btnReceitasFired(ActionEvent event){
         String fxmlGUI = "fxml/Receita.fxml";
-        String titleGUI = "Receitas de " + paciente.getNome();
+        String titleGUI = "Receitas de " + paciente.getNome() + " / " + paciente.getConvenio().getNome();
         StageStyle fxmlStyle = StageStyle.DECORATED;
         GUIFactory receitas;   
         try {
@@ -432,7 +447,7 @@ public class PacienteController extends Controller {
     @FXML
     public void btnRecibosFired(ActionEvent event){
         String fxmlGUI = "fxml/Recibo.fxml";
-        String titleGUI = "Recibos de " + paciente.getNome();
+        String titleGUI = "Recibos de " + paciente.getNome() + " / " + paciente.getConvenio().getNome();
         StageStyle fxmlStyle = StageStyle.DECORATED;
         GUIFactory recibos;   
         try {

@@ -40,7 +40,6 @@ public class Medicamentos {
     
     
     public static ArrayList<Medicamento> getLista() {
-
         EntityManager manager = JPAUtil.getEntityManager();
         String jpql = "select m from Medicamento m order by m.principio";
         TypedQuery<Medicamento> query = manager.createQuery(jpql,Medicamento.class);

@@ -59,5 +59,15 @@ public class UFs {
         }
     }
     
+    public static ArrayList<String> getNaturalidades() {
+        EntityManager manager = JPAUtil.getEntityManager();
+        String jpql = "select upper(u.nome) from UF u order by u.nome";
+        TypedQuery<String> query = manager.createQuery(jpql,String.class);
+        ArrayList<String> nat = (ArrayList) query.getResultList();
+        manager.close();                
+        return nat;
+    }
+    
+    
     
 }
