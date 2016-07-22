@@ -599,31 +599,31 @@ public class FichaMedicaController extends Controller {
         primeiraconsulta.setRelmedicamentos(medicamtxtPrimeiraCons.getText());        
         primeiraconsulta.setMenarca(menarcPrimeiraCons.isSelected());   
         try {
-            primeiraconsulta.setMenarcaidade(Integer.parseInt(menarcAnosPrimeiraCons.getText()));
-        } catch (NullPointerException ex) {
+            primeiraconsulta.setMenarcaidade(Integer.parseInt(menarcAnosPrimeiraCons.getText().trim()));
+        } catch (NullPointerException | NumberFormatException ex) {
             primeiraconsulta.setMenarcaidade(0);
         }      
         primeiraconsulta.setGestacoes(gestacPrimeiraCons.isSelected());        
         try {
-            primeiraconsulta.setGestanumeros(Integer.parseInt(gestacNumPrimeiraCons.getText()));
-        } catch (NullPointerException ex) {
+            primeiraconsulta.setGestanumeros(Integer.parseInt(gestacNumPrimeiraCons.getText().trim()));
+        } catch (NullPointerException | NumberFormatException ex) {
             primeiraconsulta.setGestanumeros(0);
         }        
         primeiraconsulta.setMenopausa(menopPrimeiraCons.isSelected());
         try {
-            primeiraconsulta.setMenopidade(Integer.parseInt(menopAnosPrimeiraCons.getText()));
-        } catch (NullPointerException ex) {
+            primeiraconsulta.setMenopidade(Integer.parseInt(menopAnosPrimeiraCons.getText().trim()));
+        } catch (NullPointerException | NumberFormatException ex) {
             primeiraconsulta.setMenopidade(0);
         }
         primeiraconsulta.setOutros(outinfoPrimeiraCons.getText());     
         try {
-        primeiraconsulta.setAltura(Integer.parseInt(alturaPrimeiraCons.getText()));
-        } catch (NullPointerException ex) {
+        primeiraconsulta.setAltura(Integer.parseInt(alturaPrimeiraCons.getText().trim()));
+        } catch (NullPointerException | NumberFormatException ex) {
             primeiraconsulta.setAltura(0);
         }
         try {
-        primeiraconsulta.setPeso(Integer.parseInt(pesoPrimeiraCons.getText()));
-        } catch (NullPointerException ex) {
+        primeiraconsulta.setPeso(Integer.parseInt(pesoPrimeiraCons.getText().trim()));
+        } catch (NullPointerException | NumberFormatException ex) {
             primeiraconsulta.setPeso(0);
         }
         primeiraconsulta.setEctoscopia(ectosPrimeiraCons.getText());
@@ -634,31 +634,29 @@ public class FichaMedicaController extends Controller {
         primeiraconsulta.setAparcircul(comboapcircPrimeiraCons.getEditor().getText());
 //        primeiraconsulta.setAparcircul(apcircPrimeiraCons.getText());
         try {
-            primeiraconsulta.setPa_sist(Integer.parseInt(psistoPrimeiraCons.getText()));
-        } catch (NullPointerException ex) {
+            primeiraconsulta.setPa_sist(Integer.parseInt(psistoPrimeiraCons.getText().trim()));
+        } catch (NullPointerException | NumberFormatException ex) {
             primeiraconsulta.setPa_sist(0);
         }
         try {
-            primeiraconsulta.setPa_diast(Integer.parseInt(pdiastPrimeiraCons.getText()));
-        } catch (NullPointerException ex) {
+            primeiraconsulta.setPa_diast(Integer.parseInt(pdiastPrimeiraCons.getText().trim()));
+        } catch (NullPointerException | NumberFormatException ex) {
             primeiraconsulta.setPa_diast(0);
         }
         try {
-            primeiraconsulta.setFreqcard(Integer.parseInt(frcardPrimeiraCons.getText()));
-        } catch (NullPointerException ex) {
+            primeiraconsulta.setFreqcard(Integer.parseInt(frcardPrimeiraCons.getText().trim()));
+        } catch (NullPointerException | NumberFormatException ex) {
             primeiraconsulta.setFreqcard(0);
-        } catch (NumberFormatException ex1) {
-            throw new Exception("Verifique o campo Frequência Cardíaca");
         }
         try {
-            primeiraconsulta.setPulso(Integer.parseInt(pulsoPrimeiraCons.getText()));
-        } catch (NullPointerException ex) {
+            primeiraconsulta.setPulso(Integer.parseInt(pulsoPrimeiraCons.getText().trim()));
+        } catch (NullPointerException | NumberFormatException ex) {
             primeiraconsulta.setPulso(0);
         }
         primeiraconsulta.setApar_resp(aprespPrimeiraCons.getText());
         try {
             primeiraconsulta.setFreq_resp(Integer.parseInt(frrespPrimeiraCons.getText()));
-        } catch (NullPointerException ex) {
+        } catch (NullPointerException | NumberFormatException ex) {
             primeiraconsulta.setFreq_resp(0);
         }
         primeiraconsulta.setAbdome(abdoPrimeiraCons.getText());
