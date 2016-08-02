@@ -5,6 +5,9 @@ import com.br.ralfh.medico.dlg.AutorizaDlgController;
 import com.br.ralfh.medico.dlg.ExceptionDialogController;
 import com.br.ralfh.medico.modelos.HorarioAgenda;
 import java.io.IOException;
+import java.time.Duration;
+import java.util.Timer;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,6 +31,7 @@ public class DialogGUI {
     private final Controller controller;
     private String mensagem;
     private Object o;
+    private Timer timer;
 
     public DialogGUI(String tipoDlg, String msg, Object obj) throws IOException {
         this.mensagem = msg;
@@ -99,7 +103,8 @@ public class DialogGUI {
                 break;
             case "ATBS":
                 guiFile = "fxml/InformDialog.fxml";    
-                guiTitle = "Atualização de registro";                
+                guiTitle = "Atualização de registro";  
+                addTime();
                 break;
             case "EMRC":
                 guiFile = "dlg/AlertDlg.fxml";
@@ -119,14 +124,21 @@ public class DialogGUI {
         this.stage.setScene(scene);  
         
         this.stage.sizeToScene();        
-        this.stage.initModality(Modality.APPLICATION_MODAL);
+        
+        this.stage.initModality(Modality.WINDOW_MODAL);
         this.stage.initStyle(StageStyle.UTILITY);
         
         this.controller.setStage(stage); 
         
         addListeners(tipoDlg);
     }
-               
+    
+    public void addTime() {
+        PauseTransition delay = new PauseTransition(javafx.util.Duration.millis(3000));
+        delay.setOnFinished( event -> this.stage.close() );
+        delay.play();    
+    }
+
     private void addListeners(String tipoDlg) {
         switch (tipoDlg) {
             case "EX":
