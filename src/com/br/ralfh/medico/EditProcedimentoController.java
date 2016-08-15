@@ -112,7 +112,7 @@ public class EditProcedimentoController extends Controller {
     }
     
     public void btnCancelaFired(ActionEvent event) {
-        ShowDialog("INFO", "Operação cancelada pelo usuário", null);       
+        ShowDialog("INFO", "Operação cancelada pelo usuário", null,this.getStage());       
         this.getStage().close();
     }    
     

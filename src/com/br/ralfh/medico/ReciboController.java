@@ -129,7 +129,7 @@ public class ReciboController extends Controller {
         GUIFactory recibos;   
         SelecModeloReciboController controller = null;
         try {
-            recibos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+            recibos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
             controller = (SelecModeloReciboController) recibos.getController();
             recibos.showAndWait(); 
 
@@ -158,7 +158,7 @@ public class ReciboController extends Controller {
     
     @FXML
     public void btnExcluiReciboFired(ActionEvent event) {        
-        if (ExcluiRegistroDlg("EAT", "", null)) {
+        if (ExcluiRegistroDlg("EAT", "", null,this.getStage())) {
             limpaRecibo();
             Recibos.excluiRecibo(recibo);
             setRecibos(Recibos.getObsLista(this.sopPaciente.get()));
@@ -354,7 +354,7 @@ public class ReciboController extends Controller {
             }
             resultado = Boolean.TRUE;
         } catch (CampoEmBrancoException ex) {
-            ShowDialog("EX", ex.getMessage(), null);
+            ShowDialog("EX", ex.getMessage(), null,this.getStage());
         }
         return resultado;
     }

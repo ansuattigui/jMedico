@@ -109,7 +109,7 @@ public class ModeloAtestadoController extends Controller {
     
     @FXML
     public void btnExcluiModeloFired(ActionEvent event) {
-        if (ExcluiRegistroDlg("EMAT", "", null)) {
+        if (ExcluiRegistroDlg("EMAT", "", null,this.getStage())) {
             if (ModelosAtestados.excluiModeloAtestado(modelo)) {
                 limpaModelo();
                 setModelos();
@@ -123,18 +123,18 @@ public class ModeloAtestadoController extends Controller {
             this.modelo = new ModeloAtestado();
             if (preencheModelo()) {        
                 if (!ModelosAtestados.novoModeloAtestado(modelo)) {
-                     ShowDialog("EX", "Não foi possível salvar o modelo desejado.", null);
+                     ShowDialog("EX", "Não foi possível salvar o modelo desejado.", null,this.getStage());
                      return;
                 } else {
-                    ShowDialog("EX", "O modelo de atestado foi criado com sucesso.", null);
+                    ShowDialog("EX", "O modelo de atestado foi criado com sucesso.", null,this.getStage());
                 }
             } else return;
         } else {
             if (preencheModelo()) {
                 if (!ModelosAtestados.atualizaModeloAtestado(modelo)) {
-                    ShowDialog("EX", "Não foi possível atualizar o modelo desejado.", null);
+                    ShowDialog("EX", "Não foi possível atualizar o modelo desejado.", null,this.getStage());
                 } else {
-                    ShowDialog("EX", "O modelo de atestado foi atualizado com sucesso.", null);
+                    ShowDialog("EX", "O modelo de atestado foi atualizado com sucesso.", null,this.getStage());
                 }
             } else return;
         }
@@ -253,7 +253,7 @@ public class ModeloAtestadoController extends Controller {
             }
             resultado = Boolean.TRUE;
         } catch (CampoEmBrancoException ex) {
-            ShowDialog("EX", ex.getMessage(), null);
+            ShowDialog("EX", ex.getMessage(), null,this.getStage());
         }
         return resultado;
     }

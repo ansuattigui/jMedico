@@ -52,7 +52,7 @@ public class PosologiasController extends Controller {
         String fxmlGUI = "fxml/EditPosologias.fxml";
         String titleGUI = "Nova posologia";
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        eposologias = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        eposologias = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         EditPosologiasController controller = (EditPosologiasController) eposologias.getController();
         controller.setAcao(TipoOper.INCLUSÃO);
         eposologias.showAndWait();
@@ -61,12 +61,12 @@ public class PosologiasController extends Controller {
         
     public void btnExcluirFired(ActionEvent event) throws Exception {
         if (posologia.get()!=null) {
-            if (ExcluiRegistroDlg("EPO", "", null)) {
+            if (ExcluiRegistroDlg("EPO", "", null,this.getStage())) {
                 if (Posologias.excluiPosologia(posologia.get())) {
                     initPosologiasData();
                 }
             }        
-        } else ShowDialog("INFO", "Selecione uma Posologia", null);
+        } else ShowDialog("INFO", "Selecione uma Posologia", null,this.getStage());
     }
 
     
@@ -75,14 +75,14 @@ public class PosologiasController extends Controller {
             String fxmlGUI = "fxml/EditPosologias.fxml";
             String titleGUI = "Alterar uma posologia";
             StageStyle fxmlStyle = StageStyle.UTILITY;
-            eposologias = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+            eposologias = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
             EditPosologiasController controller = (EditPosologiasController) eposologias.getController();
             controller.setAcao(TipoOper.ALTERAÇÃO);
             controller.setPosologia(posologia.get());
             eposologias.showAndWait(); 
             initPosologiasData();
         } else {
-            ShowDialog("INFO", "Selecione uma Posologia", null);
+            ShowDialog("INFO", "Selecione uma Posologia", null,this.getStage());
         }
     }
     

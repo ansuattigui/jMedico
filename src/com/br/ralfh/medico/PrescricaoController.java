@@ -164,7 +164,7 @@ public class PrescricaoController extends Controller {
             getPrescricao().setViaAdmin(editViaAdmin.getText());
             resultado = Boolean.TRUE;
         } catch (CampoEmBrancoException ex) {
-            ShowDialog("EX", ex.getMessage(), null);
+            ShowDialog("EX", ex.getMessage(), null,this.getStage());
         }
         return resultado;
     }

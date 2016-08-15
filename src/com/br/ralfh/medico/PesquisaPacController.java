@@ -69,7 +69,7 @@ public class PesquisaPacController extends Controller {
             nome = "%" + nome.replace(" ", "%");            
             sopPacientes.setAll(FXCollections.observableArrayList(Pacientes.getObsListaWithNome(nome)));
         } else {
-            ShowDialog("INFO", "Informe uma chave para pesquisa", null);
+            ShowDialog("INFO", "Informe uma chave para pesquisa", null,this.getStage());
         }
     }
 

@@ -121,7 +121,7 @@ public class LoginController extends Controller {
             this.initialize(null, null);
             
         } catch (CampoEmBrancoException ceb) {
-            Controller.ShowDialog("EX", ceb.getMessage(), null);
+            Controller.ShowDialog("EX", ceb.getMessage(), null,this.getStage());
         }
     }
     
@@ -135,12 +135,12 @@ public class LoginController extends Controller {
                         break;
                     } else {
                         count++;
-                        ShowDialog("EX", "Dados incorretos!", null);
+                        ShowDialog("EX", "Dados incorretos!", null,this.getStage());
                         return;
                     }
                 } else {
                     count++;
-                    ShowDialog("EX", "Dados incorretos!", null);
+                    ShowDialog("EX", "Dados incorretos!", null,this.getStage());
                     return;
                 }
             }            

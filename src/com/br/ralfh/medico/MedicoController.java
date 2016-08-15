@@ -112,7 +112,7 @@ public class MedicoController extends Controller {
             manager.persist(conexao);        
             manager.getTransaction().commit();
         } catch (Exception ex) {
-            ShowDialog("EX",ex.getMessage(), null);
+            ShowDialog("EX",ex.getMessage(), null,this.getStage());
         } finally {
             manager.close();     
         }
@@ -174,7 +174,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/Login.fxml";
         String titleGUI = "Autenticação";
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        GUIFactory login = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle);
+        GUIFactory login = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle,this.getStage());
         LoginController controller = (LoginController) login.getController();
         login.showAndWait();
         perfilUsuario = controller.getUser();
@@ -186,7 +186,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/Pacientes.fxml";
         String titleGUI = "Cadastro do Paciente";
         StageStyle fxmlStyle = StageStyle.DECORATED;
-        GUIFactory pacientes = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle);
+        GUIFactory pacientes = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle,this.getStage());
         Controller controller = pacientes.getController();
 
         controller = (PacienteController) controller;
@@ -198,7 +198,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/Posologias.fxml";
         String titleGUI = "Posologias";
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        GUIFactory posologia = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        GUIFactory posologia = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         posologia.showAndWait();
     }
     
@@ -207,7 +207,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/Grupos.fxml";
         String titleGUI = "Grupo de Medicamentos";
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        GUIFactory grupos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        GUIFactory grupos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         grupos.showAndWait();
     }
             
@@ -215,7 +215,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/Medicamentos.fxml";
         String titleGUI = "Medicamentos";
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        GUIFactory medicamentos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        GUIFactory medicamentos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         medicamentos.showAndWait();
     }
     
@@ -223,7 +223,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/Receita.fxml";
         String titleGUI = "Receitas do Paciente";
         StageStyle fxmlStyle = StageStyle.DECORATED;
-        GUIFactory receita = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        GUIFactory receita = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         receita.showAndWait();
     }
 
@@ -231,7 +231,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/Agenda.fxml";
         String titleGUI = "Agenda de Consultas";
         StageStyle fxmlStyle = StageStyle.DECORATED;
-        GUIFactory agenda = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        GUIFactory agenda = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         agenda.showAndWait();
     }
 
@@ -239,7 +239,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/ModeloAtestado.fxml";
         String titleGUI = "Modelos de Atestados Médicos";
         StageStyle fxmlStyle = StageStyle.DECORATED;
-        GUIFactory modelo = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        GUIFactory modelo = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         modelo.showAndWait();
     }
 
@@ -247,7 +247,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/ModeloRecibo.fxml";
         String titleGUI = "Modelos de Recibos";
         StageStyle fxmlStyle = StageStyle.DECORATED;
-        GUIFactory modelo = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        GUIFactory modelo = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         modelo.showAndWait();
     }
     
@@ -255,7 +255,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/Convenio.fxml";
         String titleGUI = "Cadastro de Convenios";
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        GUIFactory convenio = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        GUIFactory convenio = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         convenio.showAndWait(); 
     }
 
@@ -264,7 +264,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/FaturConvenio.fxml";
         String titleGUI = "Faturamento de Convenios";
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        GUIFactory faturconvenio = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        GUIFactory faturconvenio = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         faturconvenio.showAndWait();        
     }
     
@@ -273,7 +273,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/FaturRecibos.fxml";
         String titleGUI = "Recibos Emitidos";
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        GUIFactory recibos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        GUIFactory recibos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         recibos.showAndWait();        
     }
 
@@ -282,7 +282,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/Usuarios.fxml";
         String titleGUI = "Cadastro de Usuarios";
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        GUIFactory usuario = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        GUIFactory usuario = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         usuario.showAndWait(); 
        
     }
@@ -291,7 +291,7 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/Medicos.fxml";
         String titleGUI = "Cadastro de Medicos";
         StageStyle fxmlStyle = StageStyle.UNIFIED;
-        GUIFactory medico = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+        GUIFactory medico = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         medico.showAndWait();        
     }
     

@@ -143,7 +143,7 @@ public class Util {
             String ano = data.substring(4,8);
             datas = dia+"/"+mes+"/"+ano;
         } else {
-            Controller.ShowDialog("EX", "Data inválida", null);
+            Controller.ShowDialog("EX", "Data inválida", null,JDocplus.getMainStage());
         }
         return datas;
     }   

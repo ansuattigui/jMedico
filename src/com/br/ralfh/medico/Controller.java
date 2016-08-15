@@ -46,20 +46,20 @@ public class Controller implements Initializable {
         this.caller = controller;
     }
     
-    public static void ShowDialog(String tipoDlg, String msg, Object obj) {        
+    public static void ShowDialog(String tipoDlg, String msg, Object obj, Stage owner) {        
         DialogGUI dialog;
         try {
-            dialog = new DialogGUI(tipoDlg,msg, obj);
+            dialog = new DialogGUI(tipoDlg,msg,obj,owner);
             dialog.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public Boolean ExcluiRegistroDlg(String tipoDlg, String msg, Object obj) {    
+    public Boolean ExcluiRegistroDlg(String tipoDlg, String msg, Object obj, Stage owner) {    
         DialogGUI dialog = null;
         try {
-            dialog = new DialogGUI(tipoDlg,msg, obj);
+            dialog = new DialogGUI(tipoDlg,msg,obj,owner);
             dialog.showAndWait();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

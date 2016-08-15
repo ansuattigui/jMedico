@@ -136,7 +136,7 @@ public class UsuarioController extends Controller {
                         String fxmlGUI = "fxml/SelecUsuario.fxml";
                         String titleGUI = "Selecionar Usuario";
                         StageStyle fxmlStyle = StageStyle.UTILITY;
-                        GUIFactory selecUsuario = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+                        GUIFactory selecUsuario = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,getStage());
                         selecUsuario.getController().getStage().initStyle(StageStyle.UNDECORATED);
                         SelecUsuarioController controller = (SelecUsuarioController) selecUsuario.getController();
                         controller.setUsuario(sopUsuarios);
@@ -205,7 +205,7 @@ public class UsuarioController extends Controller {
         String fxmlTitle = "JHTC - Cadastro de Usuarios";
         StageStyle fxmlStyle = StageStyle.UTILITY;
         try {             
-            GUIFactory dlg = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+            GUIFactory dlg = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
             ((AlertDlgController) dlg.getController()).configProperties(TipoDialogo.EXCLUSÃO);
             
 //           xxxxxxxxx ver retorno de boolean atribuindo tela a variável.

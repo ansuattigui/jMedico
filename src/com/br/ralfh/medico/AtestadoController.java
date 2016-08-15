@@ -24,6 +24,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -59,6 +60,8 @@ public class AtestadoController extends Controller {
     @FXML public Button btnDuplicar;
     @FXML public SplitMenuButton btnPrintAtestado;
     @FXML public Button btnSair;
+    
+    @FXML public TabPane tpAtestado;
     
     @FXML public MenuItem miNovoAtestado;
     @FXML public MenuItem miEditaAtestado;
@@ -116,12 +119,13 @@ public class AtestadoController extends Controller {
     }
     
     public void setAtestados(ObservableList<Atestado> atestados) {
-        limpaAtestado();
+//        limpaAtestado();
         this.sopAtestados.setAll(atestados);
     }
     
     @FXML
     public void btnNovoAtestadoFired(ActionEvent event) {        
+        tpAtestado.getSelectionModel().select(1);
         limpaAtestado();
         String fxmlGUI = "fxml/SelecModeloAtestado.fxml";
         String titleGUI = "Selecione um modelo de atestados";
@@ -129,7 +133,7 @@ public class AtestadoController extends Controller {
         GUIFactory atestados;   
         SelecModeloController controller = null;
         try {
-            atestados = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+            atestados = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
             controller = (SelecModeloController) atestados.getController();
             atestados.showAndWait(); 
 
@@ -155,11 +159,12 @@ public class AtestadoController extends Controller {
         status = StatusBtn.UPDATING;
         setButtons();
         habilEdicaoFired();
+        tpAtestado.getSelectionModel().select(1);
     }
     
     @FXML
     public void btnExcluiAtestadoFired(ActionEvent event) {        
-        if (ExcluiRegistroDlg("EAT", "", null)) {
+        if (ExcluiRegistroDlg("EAT", "", null,this.getStage())) {
             limpaAtestado();
             Atestados.excluiAtestado(atestado);
             setAtestados(Atestados.getObsLista(this.sopPaciente.get()));
@@ -224,20 +229,20 @@ public class AtestadoController extends Controller {
             this.atestado.setData(Util.dHoje());
             if (preencheAtestado(this.atestado)) {                        
                 if (Atestados.novoAtestado(atestado)) {
-                    ShowDialog("S", "Atestado criado com sucesso", null);                    
+                    ShowDialog("S", "Atestado criado com sucesso", null,this.getStage());                    
                     status = StatusBtn.SHOWING;
                 } else {
-                    ShowDialog("EX", "Não foi possível criar o atestado", null);
+                    ShowDialog("EX", "Não foi possível criar o atestado", null,this.getStage());
 //                    status = StatusBtn.INSERTING;
                 }    
             } else return;
         } else {
             if (preencheAtestado(this.atestado)) {
                 if (Atestados.atualizaAtestado(this.atestado)) {
-                    ShowDialog("S", "Atestado atualizado com sucesso", null);                    
+                    ShowDialog("S", "Atestado atualizado com sucesso", null,this.getStage());                    
                     status = StatusBtn.SHOWING;
                   } else {
-                        ShowDialog("EX", "Não foi possível atualizar o atestado", null);
+                        ShowDialog("EX", "Não foi possível atualizar o atestado", null,this.getStage());
                 }
             } else return;
         }
@@ -370,7 +375,7 @@ public class AtestadoController extends Controller {
             }
             resultado = Boolean.TRUE;
         } catch (CampoEmBrancoException ex) {
-            ShowDialog("EX", ex.getMessage(), null);
+            ShowDialog("EX", ex.getMessage(), null,this.getStage());
         }
         return resultado;
     }

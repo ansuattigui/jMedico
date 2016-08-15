@@ -70,7 +70,7 @@ public class GruposController extends Controller {
         String fxmlGUI = "fxml/EditGrupos.fxml";
         String fxmlTitle = "Novo Grupo";
         StageStyle fxmlStyle = StageStyle.UTILITY;        
-        egrupos = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+        egrupos = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         EditGruposController controller = (EditGruposController) egrupos.getController();
         controller.setAcao(TipoOper.INCLUSÃO);
         egrupos.showAndWait();
@@ -80,12 +80,12 @@ public class GruposController extends Controller {
     
     public void btnExcluirFired(ActionEvent event) throws Exception {
         if (grupo.get()!=null) {
-            if (ExcluiRegistroDlg("EGR", "", null)) {
+            if (ExcluiRegistroDlg("EGR", "", null,this.getStage())) {
                 if (Grupos.excluiGrupo(grupo.get())) {
                     initGruposData();
                 }            
             }        
-        } else ShowDialog("INFO", "Selecione um Grupo", null);   
+        } else ShowDialog("INFO", "Selecione um Grupo", null,this.getStage());   
     }
  
     //Altera um medicamento/modo de uso no cadastro
@@ -95,14 +95,14 @@ public class GruposController extends Controller {
             String fxmlGUI = "fxml/EditGrupos.fxml";
             String fxmlTitle = "Alterar um Grupo";
             StageStyle fxmlStyle = StageStyle.UTILITY;        
-            egrupos = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+            egrupos = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
             EditGruposController controller = (EditGruposController) egrupos.getController();
             controller.setAcao(TipoOper.ALTERAÇÃO);
             controller.setGrupo(grupo.get());
             egrupos.showAndWait();
             initGruposData();
         } else {
-            ShowDialog("INFO", "Selecione um Grupo", null);
+            ShowDialog("INFO", "Selecione um Grupo", null,this.getStage());
         } 
     }
     

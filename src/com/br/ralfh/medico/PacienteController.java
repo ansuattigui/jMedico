@@ -190,7 +190,7 @@ public class PacienteController extends Controller {
                         String fxmlGUI = "fxml/SelecPaciente.fxml";
                         String titleGUI = "Selecionar Paciente";
                         StageStyle fxmlStyle = StageStyle.UTILITY;
-                        GUIFactory selecPaciente = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+                        GUIFactory selecPaciente = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,getStage());
                         selecPaciente.getController().getStage().initStyle(StageStyle.UNDECORATED);
                         SelecPacienteController controller = (SelecPacienteController) selecPaciente.getController();
                         controller.setPaciente(sopPacientes);
@@ -333,11 +333,11 @@ public class PacienteController extends Controller {
     }
     
     public void btnDelPacienteFired(ActionEvent event) {
-        if (ExcluiRegistroDlg("EPAC", "", null)) {
+        if (ExcluiRegistroDlg("EPAC", "", null,this.getStage())) {
             if (!Pacientes.excluiPaciente(paciente)) {
-                ShowDialog("EX", "Não foi possível excluir o paciente", null);
+                ShowDialog("EX", "Não foi possível excluir o paciente", null,this.getStage());
             } else {
-                ShowDialog("S", "Paciente excluido com sucesso", null);
+                ShowDialog("S", "Paciente excluido com sucesso", null,this.getStage());
                 status = StatusBtn.IDLE;
                 apagaPaciente();
                 setButtons();
@@ -354,10 +354,10 @@ public class PacienteController extends Controller {
                 if (Pacientes.novoPaciente(this.paciente,manager)) {
                     manager.getTransaction().commit();
                     manager.close();     
-                    ShowDialog("S", "Paciente incluido com sucesso", null);                    
+                    ShowDialog("S", "Paciente incluido com sucesso", null,this.getStage());                    
                     status = StatusBtn.SHOWING;
                 } else {
-                    ShowDialog("EX", "Não foi possível incluir o paciente", null);
+                    ShowDialog("EX", "Não foi possível incluir o paciente", null,this.getStage());
                     manager.getTransaction().rollback();
                     manager.close();     
                     //status = StatusBtn.INSERTING;
@@ -366,10 +366,10 @@ public class PacienteController extends Controller {
         } else {
             if (preenchePaciente()) {
                 if (Pacientes.atualizaPaciente(paciente)) {
-                    ShowDialog("S", "Paciente atualizado com sucesso", null);                    
+                    ShowDialog("S", "Paciente atualizado com sucesso", null,this.getStage());                    
                     status = StatusBtn.SHOWING;
                 } else {
-                    ShowDialog("EX", "Não foi possível atualizar o paciente", null);
+                    ShowDialog("EX", "Não foi possível atualizar o paciente", null,this.getStage());
                     //status = StatusBtn.INSERTING;
                 }
                 status = StatusBtn.SHOWING;
@@ -403,7 +403,7 @@ public class PacienteController extends Controller {
         StageStyle fxmlStyle = StageStyle.DECORATED;
         GUIFactory fichamedica;   
         try {
-            fichamedica = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+            fichamedica = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
             FichaMedicaController controller = (FichaMedicaController) fichamedica.getController();
             controller.setPaciente(paciente);
             controller.addStageCloseListener();
@@ -419,7 +419,7 @@ public class PacienteController extends Controller {
         StageStyle fxmlStyle = StageStyle.DECORATED;
         GUIFactory atestados;   
         try {
-            atestados = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+            atestados = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
             AtestadoController controller = (AtestadoController) atestados.getController();
             controller.setPaciente(paciente);
             atestados.showAndWait(); 
@@ -435,7 +435,7 @@ public class PacienteController extends Controller {
         StageStyle fxmlStyle = StageStyle.DECORATED;
         GUIFactory receitas;   
         try {
-            receitas = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+            receitas = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
             ReceitaController controller = (ReceitaController) receitas.getController();
             controller.setPaciente(paciente);
             receitas.showAndWait(); 
@@ -451,7 +451,7 @@ public class PacienteController extends Controller {
         StageStyle fxmlStyle = StageStyle.DECORATED;
         GUIFactory recibos;   
         try {
-            recibos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+            recibos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
             ReciboController controller = (ReciboController) recibos.getController();
             controller.setPaciente(paciente);
             recibos.showAndWait(); 
@@ -482,7 +482,7 @@ public class PacienteController extends Controller {
         String titleGUI = "Fotografar visitante";
 
         try {
-            camera = new GUIFactory(gui,titleGUI,fxmlStyle);
+            camera = new GUIFactory(gui,titleGUI,fxmlStyle,this.getStage());
 //            camera.initialize();
             controller = (CameraController) camera.getController();
             camera.showAndWait();
@@ -556,7 +556,7 @@ public class PacienteController extends Controller {
             resultado = Boolean.TRUE;
 //        } catch(CampoNuloException | CampoEmBrancoException cne) {
         } catch(CampoNuloException cne) {
-            ShowDialog("EX", cne.getMessage(), null);
+            ShowDialog("EX", cne.getMessage(), null,this.getStage());
         }
         paciente.setNaturalidade(naturPaciente.getEditor().getText());
         paciente.setNacionalidade(nacionPaciente.getEditor().getText());

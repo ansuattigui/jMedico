@@ -14,7 +14,7 @@ import javafx.stage.StageStyle;
  */
 public class JDocplus extends Application {
     
-    public Stage mainStage;
+    private static Stage mainStage;
     
     @Override
     public void start(Stage principalStage) throws Exception {
@@ -24,22 +24,29 @@ public class JDocplus extends Application {
         Parent root = (Parent)loader.load();
         
         MedicoController controller = (MedicoController) loader.getController();
-        controller.setStage(mainStage);
+        controller.setStage(getMainStage());
        
         controller.addStageCloseListener();
         controller.getStage().setMaxWidth(230);
         controller.getStage().setMaximized(true);
         Scene scene = new Scene(root);
         
-        mainStage.setScene(scene);        
-        mainStage.setTitle("JDocplus");
-        mainStage.getIcons().add(new Image(getClass().getResourceAsStream("imagens/icons/stethoscope_no_sh.png")));
-        mainStage.initStyle(StageStyle.UTILITY);
-        mainStage.show();
+        getMainStage().setScene(scene);        
+        getMainStage().setTitle("JDocplus");
+        getMainStage().getIcons().add(new Image(getClass().getResourceAsStream("imagens/icons/stethoscope_no_sh.png")));
+        getMainStage().initStyle(StageStyle.UTILITY);
+        getMainStage().show();
         
     }
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    /**
+     * @return the mainStage
+     */
+    public static Stage getMainStage() {
+        return mainStage;
     }
 }

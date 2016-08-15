@@ -335,7 +335,7 @@ public class AgendaConsultasController extends Controller {
     
     @FXML
     public void btnExcluirFired(ActionEvent ae) {
-        if (ExcluiRegistroDlg("EAG", "", null)) {
+        if (ExcluiRegistroDlg("EAG", "", null,this.getStage())) {
             if (HorariosAgenda.excluiAgendamento(horario.get())) {
                 apagaPaciente();
                 initAgendaDados(Util.udate(calendAgenda.calendarProperty().getValue()));                
@@ -368,7 +368,7 @@ public class AgendaConsultasController extends Controller {
         } 
 
         if (tvAgendaConsultas.getSelectionModel().getSelectedItem()==null) {
-             ShowDialog("EX", "Selecione um horário", null);
+             ShowDialog("EX", "Selecione um horário", null,this.getStage());
              return;
         }
         
@@ -382,7 +382,7 @@ public class AgendaConsultasController extends Controller {
                 break;
         }
         
-        agendamentoGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+        agendamentoGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         AgendamentoController controller = (AgendamentoController) agendamentoGUI.getController();
         controller.setTarefa(tt);
         controller.setHorario(horario.get());        
@@ -393,9 +393,9 @@ public class AgendaConsultasController extends Controller {
     
     public void btnAutorizarFired(ActionEvent e) throws Exception {
         if (tvAgendaConsultas.getSelectionModel().getSelectedItem()==null) {
-             ShowDialog("EX", "Selecione um horário", null);
+             ShowDialog("EX", "Selecione um horário", null,this.getStage());
         } else {
-            ShowDialog("AU", "Autorizar a entrada de ", horario.get());
+            ShowDialog("AU", "Autorizar a entrada de ", horario.get(),this.getStage());
         }
     }
     
@@ -410,7 +410,7 @@ public class AgendaConsultasController extends Controller {
             Paciente pac = null;
 
             fxmlStyle = StageStyle.DECORATED;
-            pacientes = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle);
+            pacientes = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle,this.getStage());
             controller = pacientes.getController();
 
             if (horario.get().getCodPaciente()==0) {
@@ -454,7 +454,7 @@ public class AgendaConsultasController extends Controller {
 //            }
 
         fxmlStyle = StageStyle.DECORATED;
-        pacientes = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle);
+        pacientes = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle,this.getStage());
         controller = pacientes.getController();
 
 //            controller.addStageCloseListener();

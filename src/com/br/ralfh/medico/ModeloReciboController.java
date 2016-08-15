@@ -102,7 +102,7 @@ public class ModeloReciboController extends Controller {
     
     @FXML
     public void btnExcluiModeloFired(ActionEvent event) {
-        if (ExcluiRegistroDlg("EMRC", "", null)) {
+        if (ExcluiRegistroDlg("EMRC", "", null,this.getStage())) {
             if (ModelosRecibo.excluiModeloRecibo(modelo)) {
                 limpaModelo();
                 setModelos();
@@ -115,20 +115,20 @@ public class ModeloReciboController extends Controller {
             this.modelo = new ModeloRecibo();
             if (preencheModelo()) {        
                 if (!ModelosRecibo.novoModeloRecibo(modelo)) {
-                     ShowDialog("EX", "Não foi possível criar o modelo desejado.", null);
+                     ShowDialog("EX", "Não foi possível criar o modelo desejado.", null,this.getStage());
                      return;
                 } else {
-                    ShowDialog("INFO", "O modelo foi criado com sucesso.", null);
+                    ShowDialog("INFO", "O modelo foi criado com sucesso.", null,this.getStage());
                     status = StatusBtn.SHOWING;
                 }
             }
         } else {
             if (preencheModelo()) {
                 if (!ModelosRecibo.atualizaModeloRecibo(modelo)) {
-                    ShowDialog("EX", "Não foi possível atualizar o modelo desejado.", null);
+                    ShowDialog("EX", "Não foi possível atualizar o modelo desejado.", null,this.getStage());
                     return;
                 } else { 
-                    ShowDialog("INFO", "O modelo foi atualizado com sucesso.", null);
+                    ShowDialog("INFO", "O modelo foi atualizado com sucesso.", null,this.getStage());
                     status = StatusBtn.SHOWING;
                 }
             }
@@ -247,7 +247,7 @@ public class ModeloReciboController extends Controller {
             }
             resultado = Boolean.TRUE;
         } catch (CampoEmBrancoException ex) {
-            ShowDialog("EX", ex.getMessage(), null);
+            ShowDialog("EX", ex.getMessage(), null,this.getStage());
         }
         return resultado;
     }

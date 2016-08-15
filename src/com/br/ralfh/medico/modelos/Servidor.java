@@ -7,6 +7,7 @@
 package com.br.ralfh.medico.modelos;
 
 import com.br.ralfh.medico.Controller;
+import com.br.ralfh.medico.JDocplus;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -45,7 +46,7 @@ public final class Servidor {
             fileout = new FileOutputStream("servidor.properties");
             propriedades.store(fileout, "Propriedades de acesso ao BD do sistema");
         } catch (IOException ioe) {
-            Controller.ShowDialog("EX", "Arquivo de configurações do sistema não localizado", null);
+            Controller.ShowDialog("EX", "Arquivo de configurações do sistema não localizado", null,JDocplus.getMainStage());
         }
     }
     
@@ -56,7 +57,7 @@ public final class Servidor {
             filein = new FileInputStream("servidor.properties");
             propriedades.load(filein);
         } catch (IOException ioe) {
-            Controller.ShowDialog("EX", "Arquivo de configurações do sistema não localizado", null);
+            Controller.ShowDialog("EX", "Arquivo de configurações do sistema não localizado", null,JDocplus.getMainStage());
         }
         
         driver = propriedades.getProperty("servidor.driver");

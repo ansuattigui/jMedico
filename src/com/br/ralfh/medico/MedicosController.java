@@ -227,7 +227,7 @@ public class MedicosController extends Controller {
                         String fxmlGUI = "fxml/SelecMedico.fxml";
                         String titleGUI = "Selecionar Medico";
                         StageStyle fxmlStyle = StageStyle.UTILITY;
-                        GUIFactory selecMedico = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+                        GUIFactory selecMedico = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,getStage());
                         selecMedico.getController().getStage().initStyle(StageStyle.UNDECORATED);
                         SelecMedicoController controller = (SelecMedicoController) selecMedico.getController();
                         controller.setMedico(sopMedicos);
@@ -285,7 +285,7 @@ public class MedicosController extends Controller {
         String fxmlTitle = "JHTC - Cadastro de Medicos";
         StageStyle fxmlStyle = StageStyle.UTILITY;
         try {             
-            GUIFactory dlg = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+            GUIFactory dlg = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
             ((AlertDlgController) dlg.getController()).configProperties(TipoDialogo.EXCLUSÃO);
             
 //           xxxxxxxxx ver retorno de boolean atribuindo tela a variável.

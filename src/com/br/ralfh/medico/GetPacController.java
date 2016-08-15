@@ -92,7 +92,7 @@ public class GetPacController extends Controller {
             String fxmlGUI = "fxml/Paciente.fxml";
             String fxmlTitle = "Cadastro do Paciente";
             StageStyle fxmlStyle = StageStyle.UTILITY;
-            GUIFactory cadPaciente = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+            GUIFactory cadPaciente = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle, this.getStage());
             PacienteController controller = (PacienteController) cadPaciente.getController();
             cadPaciente.showAndWait();
         }
@@ -103,7 +103,7 @@ public class GetPacController extends Controller {
             String fxmlGUI = "fxml/Receita.fxml";
             String fxmlTitle = "Nova Receita";
             StageStyle fxmlStyle = StageStyle.UTILITY;
-            GUIFactory novaReceita = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+            GUIFactory novaReceita = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle, this.getStage());
             ReceitaController controller = (ReceitaController) novaReceita.getController();
             controller.initListeners();
 //            controller.initVars(paciente,receita);
@@ -116,7 +116,7 @@ public class GetPacController extends Controller {
         String fxmlGUI = "fxml/Receita.fxml";
         String fxmlTitle = "Nova Receita";
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        GUIFactory novaReceita = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+        GUIFactory novaReceita = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         ReceitaController controller = (ReceitaController) novaReceita.getController();
         controller.initListeners();
 //        controller.initVars(paciente,receita);
@@ -130,7 +130,7 @@ public class GetPacController extends Controller {
             String fxmlGUI = "fxml/Receita.fxml";
             String fxmlTitle = "Copiar Receita";
             StageStyle fxmlStyle = StageStyle.UTILITY;
-            GUIFactory novaReceita = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+            GUIFactory novaReceita = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle, this.getStage());
             ReceitaController controller = (ReceitaController) novaReceita.getController();
             controller.initListeners();
 //            controller.initVars(paciente,receita);

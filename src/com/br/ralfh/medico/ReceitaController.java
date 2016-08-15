@@ -248,7 +248,7 @@ public class ReceitaController extends Controller {
     public boolean checaReceita() {
         boolean resultado = Boolean.FALSE;
         if (receita.getPrescricoes().isEmpty()) {
-            ShowDialog("EX", "Prescreva ao menos um medicamento", null);
+            ShowDialog("EX", "Prescreva ao menos um medicamento", null,this.getStage());
         } else {
             resultado = Boolean.TRUE;
         }
@@ -292,9 +292,9 @@ public class ReceitaController extends Controller {
         
         if (Receitas.novaReceita(receita)) {
             status = StatusBtn.SHOWING;
-            ShowDialog("S", "A receita foi salva com sucesso", null);
+            ShowDialog("S", "A receita foi salva com sucesso", null,this.getStage());
         } else {
-            ShowDialog("EX", "Não foi possível salvar a receita", null);
+            ShowDialog("EX", "Não foi possível salvar a receita", null,this.getStage());
         }
     }
 
@@ -306,7 +306,7 @@ public class ReceitaController extends Controller {
     
     @FXML
     public void btnExcluiReceitaFired(ActionEvent event) {        
-        if (ExcluiRegistroDlg("ER", "", null)) {
+        if (ExcluiRegistroDlg("ER", "", null,this.getStage())) {
             if (Receitas.excluiReceita(sopReceita.get())) {
                 sopReceitas.remove(sopReceita.get());
             }
@@ -319,16 +319,16 @@ public class ReceitaController extends Controller {
             if (status==StatusBtn.INSERTING) {            
                 if (Receitas.novaReceita(receita)) {
                     status = StatusBtn.SHOWING;
-                    ShowDialog("S", "A receita foi salva com sucesso", null);
+                    ShowDialog("S", "A receita foi salva com sucesso", null,this.getStage());
                 } else {
-                    ShowDialog("EX", "Não foi possível salvar a receita", null);
+                    ShowDialog("EX", "Não foi possível salvar a receita", null,this.getStage());
                 }
             } else if (status==StatusBtn.UPDATING) {
                 if (Receitas.atualizaReceita(receita)) {
                     status = StatusBtn.SHOWING;
-                    ShowDialog("S", "A receita foi atualizada com sucesso", null);
+                    ShowDialog("S", "A receita foi atualizada com sucesso", null,this.getStage());
                 } else {
-                    ShowDialog("EX", "Não foi possível atualizar a receita", null);
+                    ShowDialog("EX", "Não foi possível atualizar a receita", null,this.getStage());
                 }
             }
             setButtons();
@@ -356,7 +356,7 @@ public class ReceitaController extends Controller {
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Prescrição de medicamento";
         
-        prescricaoGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+        prescricaoGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         prescricaoGUI.initialize();
         PrescricaoController controller = (PrescricaoController) prescricaoGUI.getController();        
         prescricaoGUI.showAndWait();       
@@ -374,7 +374,7 @@ public class ReceitaController extends Controller {
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Prescrição de medicamento";
         
-        prescricaoGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+        prescricaoGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         prescricaoGUI.initialize();
         PrescricaoController controller = (PrescricaoController) prescricaoGUI.getController();        
         prescricaoGUI.showAndWait();       
@@ -388,7 +388,7 @@ public class ReceitaController extends Controller {
     }
 
     public void btnExcluiMedicamentoFired(ActionEvent ae)  throws IOException {
-        if (ExcluiRegistroDlg("EP", "", null)) { 
+        if (ExcluiRegistroDlg("EP", "", null,this.getStage())) { 
             receita.getPrescricoes().remove(prescricao);
             sopPrescricoes.remove(prescricao);
 //            status = StatusBtn.DELETINGPRESC;

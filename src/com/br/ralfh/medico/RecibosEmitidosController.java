@@ -91,7 +91,7 @@ public class RecibosEmitidosController extends Controller {
             resultado = Boolean.TRUE;
             
         } catch (CampoEmBrancoException ex) {
-           ShowDialog("EX", ex.getMessage(), null);
+           ShowDialog("EX", ex.getMessage(), null,this.getStage());
         }
         return resultado;
     }

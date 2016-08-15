@@ -92,7 +92,7 @@ public class FaturConvenioController extends Controller {
             resultado = Boolean.TRUE;
             
         } catch (CampoEmBrancoException ex) {
-           ShowDialog("EX", ex.getMessage(), null);
+           ShowDialog("EX", ex.getMessage(), null,this.getStage());
         }
         return resultado;
     }

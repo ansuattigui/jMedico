@@ -329,7 +329,7 @@ public class FichaMedicaController extends Controller {
         String fxmlGUI = "fxml/GraficoPABarra.fxml";
         String titleGUI = paciente.getNome();
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        GUIFactory graficopa = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle);
+        GUIFactory graficopa = new GUIFactory(fxmlGUI, titleGUI,fxmlStyle,this.getStage());
         GraficoPABarraController controller = (GraficoPABarraController) graficopa.getController();        
         
         Button btn = (Button) ae.getSource();
@@ -361,20 +361,20 @@ public class FichaMedicaController extends Controller {
                 habilEdicaoConsSubs();
             }
         } catch (NullPointerException ex) {
-            ShowDialog("EX", "Selecione uma consulta", null);
+            ShowDialog("EX", "Selecione uma consulta", null,this.getStage());
         }
     }
     
     public void delConsSubsFired(ActionEvent event) {
-        if (ExcluiRegistroDlg("ECS", "", null)) {
+        if (ExcluiRegistroDlg("ECS", "", null,this.getStage())) {
             EntityManager manager = JPAUtil.getEntityManager();
             manager.getTransaction().begin();  
             if (FichaMedica.excluiConsultaSubs(manager,consubs)) {
                 manager.getTransaction().commit();
-                Controller.ShowDialog("ATBS", "Registro excluído com sucesso!", null);
+                Controller.ShowDialog("ATBS", "Registro excluído com sucesso!", null,this.getStage());
             } else {
                 manager.getTransaction().rollback();
-                Controller.ShowDialog("ATBS", "Não foi possível excluir o registro selecionado!", null);
+                Controller.ShowDialog("ATBS", "Não foi possível excluir o registro selecionado!", null,this.getStage());
             }
             manager.close();
             apagaConsultaSubs();
@@ -391,30 +391,30 @@ public class FichaMedicaController extends Controller {
                 try {
                     setPrimeiraConsulta();
                 } catch (Exception ex) {
-                    Controller.ShowDialog("EX", ex.getMessage(), null);
+                    Controller.ShowDialog("EX", ex.getMessage(), null,this.getStage());
                     return;
                 }   
                 if (FichaMedica.salvaPrimeiraConsulta(manager,primeiraconsulta)) {                
                     manager.getTransaction().commit();
-                    Controller.ShowDialog("ATBS", "Registro atualizado com sucesso!", null);
+                    Controller.ShowDialog("ATBS", "Registro atualizado com sucesso!", null,this.getStage());
                     status = StatusBtn.IDLE;
                 } else {
                     manager.getTransaction().rollback();
-                    Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null);
+                    Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null,this.getStage());
                 }   break;
             case UPDATECONSSUB:
                 try {
                     setConsultaSubs();
                 } catch (FormatoNumericoInvalidoException ex) {
-                    Controller.ShowDialog("EX", ex.getMessage(), null);
+                    Controller.ShowDialog("EX", ex.getMessage(), null,this.getStage());
                     return;
                 }   if (FichaMedica.salvaConsultaSubs(manager, consubs)) {  
-                    Controller.ShowDialog("ATBS", "Registro atualizado com sucesso!", null);
+                    Controller.ShowDialog("ATBS", "Registro atualizado com sucesso!", null,this.getStage());
                     status = StatusBtn.IDLE;
                     manager.getTransaction().commit();
                 } else {
                     manager.getTransaction().rollback();
-                    Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null);
+                    Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null,this.getStage());
                 }   olConsultasSubs.setAll(FichaMedica.getConsultasSubs(paciente));
                 break;
             case INSERTCONSSUB:
@@ -424,14 +424,15 @@ public class FichaMedicaController extends Controller {
                     try {
                         manager.getTransaction().commit();
                     } catch (PersistenceException ex) {
-                        Controller.ShowDialog("EX", "Já existe consulta com esta data", null);
+                        Controller.ShowDialog("EX", "Já existe consulta com esta data", null,this.getStage()
+                        );
                         break;
                     }
-                    Controller.ShowDialog("ATBS", "Registro incluido com sucesso!", null);
+                    Controller.ShowDialog("ATBS", "Registro incluido com sucesso!", null,this.getStage());
                     status = StatusBtn.IDLE;
                 } else {
                     manager.getTransaction().rollback();
-                    Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null);
+                    Controller.ShowDialog("ATBS", "Não foi possivel atualizar o registro!", null,this.getStage());
                 }   
                 listaConsubs = FichaMedica.getConsultasSubs(paciente);
                 olConsultasSubs.setAll(listaConsubs);

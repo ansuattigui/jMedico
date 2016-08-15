@@ -5,6 +5,7 @@
 package com.br.ralfh.medico.jdbc;
 
 import com.br.ralfh.medico.Controller;
+import com.br.ralfh.medico.JDocplus;
 import com.br.ralfh.medico.MedicoController;
 import com.br.ralfh.medico.modelos.Servidor;
 import java.sql.Connection;
@@ -63,7 +64,7 @@ public class ConnectionFactory {
             
             conn.close();
         } catch (SQLException e) {
-            Controller.ShowDialog("EX", "Problemas com a conexão ao Banco de Dados", null);            
+            Controller.ShowDialog("EX", "Problemas com a conexão ao Banco de Dados", null,JDocplus.getMainStage());            
         }
         return resultado;
     }   

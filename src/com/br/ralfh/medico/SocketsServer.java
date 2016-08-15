@@ -268,7 +268,7 @@ public class SocketsServer implements Runnable{
                     HorarioAgenda ha = buscaHorario(chave);
                     DialogGUI dialog = null;
                     try {
-                        dialog = new DialogGUI("S","Autorizar a entrada de "+ha.getPaciente(), null);
+                        dialog = new DialogGUI("S","Autorizar a entrada de "+ha.getPaciente(), null,JDocplus.getMainStage());
                         dialog.showAndWait();
                     } catch (IOException ex) {
                         Logger.getLogger(AgendamentoController.class.getName()).log(Level.SEVERE, null, ex);

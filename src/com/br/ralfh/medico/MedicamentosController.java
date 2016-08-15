@@ -66,7 +66,7 @@ public class MedicamentosController extends Controller {
         String fxmlGUI = "fxml/EditMedicamentos.fxml";
         String fxmlTitle = "Novo Medicamento";
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        emedicamentos = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+        emedicamentos = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         EditMedicamentoController controller = (EditMedicamentoController) emedicamentos.getController();
         controller.setAcao(TipoOper.INCLUSÃO);
         if (cbGrupo.getSelectionModel().getSelectedItem()!=null) {
@@ -86,12 +86,12 @@ public class MedicamentosController extends Controller {
     //Excluir um medicam/modo de uso do cadastro
     public void btnExcluirFired(ActionEvent event) throws Exception {
         if (medicamento.get()!=null) {
-            if (ExcluiRegistroDlg("MED", "", null)) {
+            if (ExcluiRegistroDlg("MED", "", null,this.getStage())) {
                 if (Medicamentos.excluiMedicamento(medicamento.get())) {
                     initMedicamentosData();
                 }
             }        
-        } else ShowDialog("INFO", "Selecione um Medicamento", null);
+        } else ShowDialog("INFO", "Selecione um Medicamento", null,this.getStage());
     }
     
     //Altera um medicam/modo de uso no cadastro
@@ -100,7 +100,7 @@ public class MedicamentosController extends Controller {
             String fxmlGUI = "fxml/EditMedicamentos.fxml";
             String fxmlTitle = "Alterar um Medicamento";
             StageStyle fxmlStyle = StageStyle.UTILITY;
-            emedicamentos = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle);
+            emedicamentos = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
             EditMedicamentoController controller = (EditMedicamentoController) emedicamentos.getController();
             controller.setAcao(TipoOper.ALTERAÇÃO);
             controller.setMedicamento(medicamento.get());
@@ -114,7 +114,7 @@ public class MedicamentosController extends Controller {
                 initMedicamentosData();
             }
         } else {
-            ShowDialog("INFO", "Selecione um Medicamento", null);
+            ShowDialog("INFO", "Selecione um Medicamento", null,this.getStage());
         }
     }
     

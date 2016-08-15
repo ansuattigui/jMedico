@@ -124,7 +124,7 @@ public class ConvenioController extends Controller {
                         String fxmlGUI = "fxml/SelecConvenio.fxml";
                         String titleGUI = "Selecionar Convenio";
                         StageStyle fxmlStyle = StageStyle.UTILITY;
-                        GUIFactory selecConvenio = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+                        GUIFactory selecConvenio = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,getStage());
                         selecConvenio.getController().getStage().initStyle(StageStyle.UNDECORATED);
                         SelecConvenioController controller = (SelecConvenioController) selecConvenio.getController();
                         controller.setConvenio(sopConvenios);
@@ -170,7 +170,7 @@ public class ConvenioController extends Controller {
     
     public void btnDelConvenioFired(ActionEvent event) {
 
-        if (ExcluiRegistroDlg("ECON", "", null)) {
+        if (ExcluiRegistroDlg("ECON", "", null,this.getStage())) {
             apagaConvenio();
             Convenios.excluiConvenio(convenio);
         }
@@ -299,7 +299,7 @@ public class ConvenioController extends Controller {
             convenio.setFimEntrega(diaFimEntrega.getText());
             resultado = Boolean.TRUE;
         } catch (CampoNuloException | CampoEmBrancoException cne) {
-            ShowDialog("EX", cne.getMessage(), null);
+            ShowDialog("EX", cne.getMessage(), null,this.getStage());
         }
         return resultado;
 

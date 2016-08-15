@@ -29,15 +29,16 @@ public final class GUIFactory {
     private final StageStyle style;
     private Controller controller;    
     
-    public GUIFactory(String gui, String title, StageStyle sty) throws IOException {         
+    public GUIFactory(String gui,String title,StageStyle sty,Stage owner) throws IOException {         
         this.guiFile = gui;
         this.style = sty;
 //        GUIFactory guifact = MedicoController.getMapaJanelas(gui);
 //        if (guifact!=null) {
 //            guifact.getStage().toFront();            
 //        } else {
-            this.stage = new Stage();
-            this.stage.initModality(Modality.APPLICATION_MODAL);      
+            this.stage = new Stage();            
+            this.stage.initOwner(owner);            
+            this.stage.initModality(Modality.WINDOW_MODAL);   
             this.stage.initStyle(this.style);
             this.stage.setTitle("JDocplus - "+title);  
             
@@ -54,11 +55,10 @@ public final class GUIFactory {
         }
         this.controller = loader.getController(); 
         this.scene = new Scene(root);
-        
         this.stage.setScene(scene);                  
         this.controller.setStage(stage);             
         addWindowCloseListener();
-        MedicoController.setEntradaMapaJanelas(guiFile, this);
+//        MedicoController.setEntradaMapaJanelas(guiFile, this);
 //        this.showAndWait();
     }
     

@@ -155,7 +155,7 @@ public class AgendamentoController extends Controller {
                         String fxmlGUI = "fxml/SelecPaciente.fxml";
                         String titleGUI = "Selecionar Paciente";
                         StageStyle fxmlStyle = StageStyle.UTILITY;
-                        GUIFactory selecPaciente = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle);
+                        GUIFactory selecPaciente = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,getStage());
                         selecPaciente.getController().getStage().initStyle(StageStyle.UNDECORATED);
                         SelecPacienteController controller = (SelecPacienteController) selecPaciente.getController();
                         controller.setPaciente(sopPacientes);
@@ -182,7 +182,7 @@ public class AgendamentoController extends Controller {
             if (comboEvento.getSelectionModel().getSelectedItem()=="Primeira Vez") {
                 if (Objects.equals(AgendaConsultasController.horarios.estatistica.pvez, 
                         AgendaConsultasController.medico.getLimDiaPrimvez())) {
-                    ShowDialog("S", "Atingido limite de agendamentos para Primeira Vez!", null);
+                    ShowDialog("S", "Atingido limite de agendamentos para Primeira Vez!", null,getStage());
                     btnAgendar.setDisable(true);
                 }
             } else if (comboEvento.getSelectionModel().getSelectedItem()=="Emergência") {
@@ -311,7 +311,7 @@ public class AgendamentoController extends Controller {
             
             resultado = Boolean.TRUE;
         } catch (CampoEmBrancoException ceb) {
-            ShowDialog("EX", ceb.getMessage(), null);
+            ShowDialog("EX", ceb.getMessage(), null,this.getStage());
         }
         return resultado;
     }

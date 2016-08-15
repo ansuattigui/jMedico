@@ -33,7 +33,7 @@ public class DialogGUI {
     private Object o;
     private Timer timer;
 
-    public DialogGUI(String tipoDlg, String msg, Object obj) throws IOException {
+    public DialogGUI(String tipoDlg, String msg, Object obj, Stage owner) throws IOException {
         this.mensagem = msg;
         this.o = obj;
         switch (tipoDlg) {
@@ -104,27 +104,23 @@ public class DialogGUI {
             case "ATBS":
                 guiFile = "fxml/InformDialog.fxml";    
                 guiTitle = "Atualização de registro";  
-                addTime();
                 break;
             case "EMRC":
                 guiFile = "dlg/AlertDlg.fxml";
                 guiTitle = "Exclusão de Modelo de Recibo";
                 break;
-
         }
-        
+        addTime();
+
         this.stage = new Stage();
         this.stage.setTitle(this.guiTitle);
         this.loader = new FXMLLoader(getClass().getResource(guiFile));
         this.root = (Parent)loader.load();
-        
-        
         this.controller = loader.getController(); 
         this.scene = new Scene(root);
         this.stage.setScene(scene);  
-        
         this.stage.sizeToScene();        
-        
+        this.stage.initOwner(owner);
         this.stage.initModality(Modality.WINDOW_MODAL);
         this.stage.initStyle(StageStyle.UTILITY);
         
