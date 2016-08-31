@@ -390,6 +390,7 @@ public class FichaMedicaController extends Controller {
             case UPDATING:
                 try {
                     setPrimeiraConsulta();
+                    manager.merge(primeiraconsulta);
                 } catch (Exception ex) {
                     Controller.ShowDialog("EX", ex.getMessage(), null,this.getStage());
                     return;

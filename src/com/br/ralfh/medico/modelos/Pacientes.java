@@ -47,8 +47,7 @@ public class Pacientes {
             
             PrimeiraConsulta pc = new PrimeiraConsulta();
             pc.setId(pac);
-            pc.setData(Util.dHoje());
-            
+            pc.setData(Util.dHoje());            
             manager.persist(pc);
             
 //            manager.getTransaction().commit();
