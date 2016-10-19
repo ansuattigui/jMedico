@@ -3,8 +3,6 @@ package com.br.ralfh.medico;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -56,8 +54,9 @@ public final class GUIFactory {
         this.controller = loader.getController(); 
         this.scene = new Scene(root);
         this.stage.setScene(scene);                  
-        this.controller.setStage(stage);             
-        addWindowCloseListener();
+        this.controller.setStage(stage);    
+        
+//        addWindowCloseListener();
 //        MedicoController.setEntradaMapaJanelas(guiFile, this);
 //        this.showAndWait();
     }
@@ -82,6 +81,7 @@ public final class GUIFactory {
         this.stage.close();
     }
     
+/*    
     private void addWindowCloseListener() {
         this.stage.onHidingProperty().addListener(new ChangeListener() {
         @Override
@@ -90,5 +90,6 @@ public final class GUIFactory {
         }
     });
     }
-
+*/
+    
 }
