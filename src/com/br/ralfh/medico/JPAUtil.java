@@ -4,9 +4,7 @@
  */
 package com.br.ralfh.medico;
 
-import java.util.ArrayList;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 /**
  *
