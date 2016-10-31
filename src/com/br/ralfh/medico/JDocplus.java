@@ -20,6 +20,7 @@ public class JDocplus extends Application {
     public void start(Stage principalStage) throws Exception {
         setUserAgentStylesheet(STYLESHEET_MODENA);
         mainStage = principalStage;
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Medico.fxml"));        
         Parent root = (Parent)loader.load();
         

@@ -180,8 +180,7 @@ public class ReceitaController extends Controller {
     private void addReceitasListener() { 
         sopReceitas.addListener(new ListChangeListener() {
             @Override
-            public void onChanged(ListChangeListener.Change change) {
-                
+            public void onChanged(ListChangeListener.Change change) {                
                 if (sopReceitas.size()>0) {
                     tabelaReceitas.getItems().setAll(sopReceitas);
                 } else {
@@ -309,6 +308,7 @@ public class ReceitaController extends Controller {
         if (ExcluiRegistroDlg("ER", "", null,this.getStage())) {
             if (Receitas.excluiReceita(sopReceita.get())) {
                 sopReceitas.remove(sopReceita.get());
+                tablePrescricoes.getItems().clear();
             }
         }
     }    
@@ -352,7 +352,7 @@ public class ReceitaController extends Controller {
     
     @FXML
     public void btnNovoMedicamentoFired(ActionEvent ae) throws IOException {        
-        String fxmlGUI = "fxml/Prescricao.fxml";
+        String fxmlGUI = "fxml/PrescricaoNova.fxml";
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Prescrição de medicamento";
         
@@ -370,7 +370,7 @@ public class ReceitaController extends Controller {
     }
     
     public void btnAtualizaMedicamentoFired(ActionEvent ae)  throws IOException {
-        String fxmlGUI = "fxml/Prescricao.fxml";
+        String fxmlGUI = "fxml/PrescricaoNova.fxml";
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Prescrição de medicamento";
         

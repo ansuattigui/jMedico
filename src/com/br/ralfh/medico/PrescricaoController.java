@@ -3,24 +3,34 @@ package com.br.ralfh.medico;
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.modelos.Grupo;
 import com.br.ralfh.medico.modelos.Grupos;
+import com.br.ralfh.medico.modelos.Medicamento;
 import com.br.ralfh.medico.modelos.Medicamentos;
+import com.br.ralfh.medico.modelos.MedicamentoAux;
 import com.br.ralfh.medico.modelos.Posologias;
 import com.br.ralfh.medico.modelos.Prescricao;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Tooltip;
 /**
  * FXML Controller class
  *
@@ -32,9 +42,13 @@ public class PrescricaoController extends Controller {
      * Initializes the controller class.
      */
         
-    @FXML ListView<String> listaPrincipio;    
-    @FXML ListView<String> listaNomeComercial;    
+    @FXML TableView<MedicamentoAux> tabelaMedicamentos;
+    @FXML TableColumn<MedicamentoAux,String> colunaMedicamento;
+    @FXML TableView<MedicamentoAux> tabelaPrincipios;
+    @FXML TableColumn<MedicamentoAux,String> colunaPrincipio;
+    
     @FXML TextField editMedicamento;    
+    @FXML TextField editPrincipio;    
     @FXML ListView<String> listaPosologias;    
     @FXML TextField editPosologia;
     @FXML TextField editViaAdmin;
@@ -48,15 +62,21 @@ public class PrescricaoController extends Controller {
     @FXML RadioButton rbUsoOutros;
     @FXML ToggleGroup tgViaAdmin;
     
+    @FXML TabPane tPaneMedicamento;
+    @FXML Tab tabPrincipio;
+    @FXML Tab tabMedicamento;
+    
     @FXML Button btnConfirma;
     @FXML Button btnCancela;
-//    @FXML Button btnApagaChavePosologia;
-//    @FXML Button btnApagaChaveViaAdmin;
+    @FXML Button btnApagaPrincipio;
+    @FXML Button btnApagaMedicamento;
 //    @FXML Button btnApagaChaveQuantidade;
 
     @FXML ComboBox<String> cbGrupo;
     
     private Prescricao prescricao;
+    private ObservableList<MedicamentoAux> masterMedicamentos = FXCollections.observableArrayList();
+    private ObservableList<MedicamentoAux> masterPrincipios = FXCollections.observableArrayList();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -65,13 +85,35 @@ public class PrescricaoController extends Controller {
         initTGroup();
         initListeners();
         setToolTips();
+        
+        initMedicamentos();
+        		        
     }  
     
+    private void initMedicamentos() {
+        masterMedicamentos.clear();
+        masterPrincipios.clear();
+        ArrayList<Medicamento> medicamentos = Medicamentos.getLista();
+        for (Medicamento item:medicamentos) {
+            masterMedicamentos.add(new MedicamentoAux(item.getNomecomercial(), item.getPrincipio()));
+            masterPrincipios.add(new MedicamentoAux(item.getNomecomercial(), item.getPrincipio()));
+        }
+    }
+
+    private void initMedicamentos(Grupo grupo) {
+        masterMedicamentos.clear();
+        masterPrincipios.clear();
+        ArrayList<Medicamento> medicamentos = Medicamentos.getLista(grupo);
+        for (Medicamento item:medicamentos) {
+            masterMedicamentos.add(new MedicamentoAux(item.getNomecomercial(), item.getPrincipio()));
+            masterPrincipios.add(new MedicamentoAux(item.getNomecomercial(), item.getPrincipio()));
+        }
+    }
+    
     public void initListeners() {
-        addReceitaListener();
         addTGViaAdminListener();
-        addListaPrincipioListener();
-        addListaNomeComercialListener();
+        addTabelaPrincipioListener();
+        addTabelaMedicamentosListener();
         addListaPosologiasListener();
     }
     
@@ -83,23 +125,6 @@ public class PrescricaoController extends Controller {
                     if(!"Outros".equals(((RadioButton) tgViaAdmin.getSelectedToggle()).getText())){
                         editViaAdmin.setText(((RadioButton) tgViaAdmin.getSelectedToggle()).getText());
                     }
-            }
-        });
-    }
-
-    public void addListaPrincipioListener() {
-        listaPrincipio.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue o,Object oldVal,Object newVal) {
-                editMedicamento.setText(listaPrincipio.getSelectionModel().getSelectedItem());
-            }
-        });
-    }
-    public void addListaNomeComercialListener() {
-        listaNomeComercial.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue o,Object oldVal,Object newVal) {
-                editMedicamento.setText(listaNomeComercial.getSelectionModel().getSelectedItem());
             }
         });
     }
@@ -115,9 +140,9 @@ public class PrescricaoController extends Controller {
     
     
     private void initTabelas() {
-        initListaPosologas();
-        initListaPrincipio();
-        initListaNomeComercial();
+        initTabelaMedicamentos();
+        initTabelaPrincipios();
+        initListaPosologias();
     }
     
     private void initTGroup() {
@@ -130,7 +155,10 @@ public class PrescricaoController extends Controller {
     }
     
     private void setToolTips() {
-/*        btnSalvaReceita.setTooltip(new Tooltip("Salvar receita do paciente"));
+        btnApagaPrincipio.setTooltip(new Tooltip("Apaga a caixa princípio ativo"));
+        btnApagaMedicamento.setTooltip(new Tooltip("Apaga a caixa medicamento"));
+
+        /*        btnSalvaReceita.setTooltip(new Tooltip("Salvar receita do paciente"));
         btnExcluiReceita.setTooltip(new Tooltip("Excluir receita selecionada"));
         btnPrintReceita.setTooltip(new Tooltip("Imprime a recceita selecionada"));       
         btnInsMedicamento.setTooltip(new Tooltip("Incluir este medicamento na receita"));        
@@ -158,7 +186,11 @@ public class PrescricaoController extends Controller {
     public boolean PreenchePrescricao() {
         Boolean resultado = Boolean.FALSE;
         try {            
-            getPrescricao().setMedicamento(editMedicamento.getText());
+            if (tPaneMedicamento.getSelectionModel().getSelectedIndex()==0) {
+                getPrescricao().setMedicamento(editPrincipio.getText());
+            } else {
+                getPrescricao().setMedicamento(editMedicamento.getText());
+            }
             getPrescricao().setPosologia(editPosologia.getText());
             getPrescricao().setQuantidade(editQuantidade.getText());
             getPrescricao().setViaAdmin(editViaAdmin.getText());
@@ -168,96 +200,89 @@ public class PrescricaoController extends Controller {
         }
         return resultado;
     }
-    private void addReceitaListener() { 
+
+    private void initTabelaMedicamentos() {
+        colunaMedicamento.setCellValueFactory(cellData -> cellData.getValue().nomeComercialProperty());        
+        FilteredList<MedicamentoAux> filteredMedicamento = new FilteredList<>(masterMedicamentos, p -> true);        
+        editMedicamento.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredMedicamento.setPredicate(medicamentoAux -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                }				
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (medicamentoAux.getNomeComercial().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                        return true; // Filter matches first name.
+                }
+                return false; // Does not match.
+            });
+        });
         
-/*        
-        sopReceita.addListener(new ChangeListener() {
+        // 3. Wrap the FilteredList in a SortedList. 
+        SortedList<MedicamentoAux> sortedMedicamento = new SortedList<>(filteredMedicamento);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        // 	  Otherwise, sorting the TableView would have no effect.
+        sortedMedicamento.comparatorProperty().bind(tabelaMedicamentos.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        tabelaMedicamentos.setItems(sortedMedicamento);        
+    }
+    public void addTabelaMedicamentosListener() {
+        tabelaMedicamentos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
-                initReceita();
-                configBotoes((sopReceita.get().getId() == null));                        
+                editMedicamento.setText(tabelaMedicamentos.getSelectionModel().getSelectedItem().getNomeComercial());
             }
         });
-*/        
-    }       
-    
-    private void addPrescricoesListener() { 
-/*        
-        olPrescricoes.addListener(new ListChangeListener() {
-            @Override
-            public void onChanged(ListChangeListener.Change change) {
-                if (!olPrescricoes.isEmpty()) {
-                    tablePrescricoes.setItems(null);
-                    tablePrescricoes.setItems(olPrescricoes);
-                }
-            }
-        });
-*/        
-    }
-       
-    public void addChaveMedicamentoKeyEvent(KeyEvent event) { 
-/*        
-        if (!chaveMedicamento.getText().isEmpty() && chaveMedicamento.getText() != null) {
-            try {
-                for (String medicamento : listviewMedicamentos.getItems()) {
-                    if (medicamento.startsWith(chaveMedicamento.getText())) {
-                        listviewMedicamentos.getSelectionModel().select(medicamento);
-                    }
-                }
-
-            } catch (Exception ex) {
-                Logger.getLogger(MedicoController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-*/        
-    }
-
-    public void listviewMedicamentoClicked(MouseEvent event) { 
-/*        
-        
-        if (listviewMedicamentos.getSelectionModel().getSelectedIndex() >= 0) {
-            chaveMedicamento.setText(listviewMedicamentos.getSelectionModel().getSelectedItem());
-        }
-*/        
-    }        
-    
-    public void addChaveModoDeUsoKeyEvent(KeyEvent event) { 
-/*        
-        if (!chavePosologia.getText().isEmpty() && chavePosologia.getText() != null) {
-            try {
-                for (String modo : listviewPosologia.getItems()) {
-                    if (modo.startsWith(chavePosologia.getText())) {
-                        listviewPosologia.getSelectionModel().select(modo);
-                    }
-                }
-            } catch (Exception ex) {
-                Logger.getLogger(MedicoController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
-*/        
     }    
 
-    public void initListaPosologas() {        
+    private void initTabelaPrincipios() {
+        colunaPrincipio.setCellValueFactory(cellData -> cellData.getValue().principioAtivoProperty());
+        FilteredList<MedicamentoAux> filteredPrincipio = new FilteredList<>(masterPrincipios, p -> true);        
+        editPrincipio.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredPrincipio.setPredicate(medicamentoAux -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                }				
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (medicamentoAux.getPrincipioAtivo().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                        return true; // Filter matches first name.
+                }
+                return false; // Does not match.
+            });
+        });        
+        // 3. Wrap the FilteredList in a SortedList. 
+        SortedList<MedicamentoAux> sortedPrincipio = new SortedList<>(filteredPrincipio);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        // 	  Otherwise, sorting the TableView would have no effect.
+        sortedPrincipio.comparatorProperty().bind(tabelaMedicamentos.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        tabelaPrincipios.setItems(sortedPrincipio);        
+    }
+    public void addTabelaPrincipioListener() {
+        tabelaPrincipios.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue o,Object oldVal,Object newVal) {
+                editPrincipio.setText(tabelaPrincipios.getSelectionModel().getSelectedItem().getPrincipioAtivo());
+            }
+        });
+    }
+    
+    
+    private void initListaPosologias() {        
         Posologias posologias = new Posologias();
         listaPosologias.setItems(posologias.getObsSLista());
     }
 
-    public void initListaPrincipio() {        
-        listaPrincipio.setItems(Medicamentos.getObsSListaPrincipio());
-    }
-    public void initListaPrincipio(Grupo grupo) {        
-        listaPrincipio.setItems(Medicamentos.getObsSListaPrincipio(grupo));
-    }
-
-    public void initListaNomeComercial() {        
-        listaNomeComercial.setItems(Medicamentos.getObsSListaNomeComercial());
-    }
-    public void initListaNomeComercial(Grupo grupo) {        
-        listaNomeComercial.setItems(Medicamentos.getObsSListaNomeComercial(grupo));
-    }
-    
-    public void initComboGrupo(){
+    private void initComboGrupo(){
         Grupos grupos = new Grupos();
         if (!cbGrupo.getItems().isEmpty()) {
             cbGrupo.getItems().clear();
@@ -269,44 +294,36 @@ public class PrescricaoController extends Controller {
     public void AddListenerToComboGrupo() {
         cbGrupo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
-            public void changed(ObservableValue ov, Object oldValue, Object newValue) {
-                
+            public void changed(ObservableValue ov, Object oldValue, Object newValue) {                
                 Integer index = cbGrupo.getSelectionModel().getSelectedIndex();
                 if (index > 0) {
                     Grupo grupo = Grupos.getGrupoPeloNome(cbGrupo.getSelectionModel().selectedItemProperty().get());
-                    initListaPrincipio(grupo);
-                    initListaNomeComercial(grupo);
+                    initMedicamentos(grupo);
                 } else {
-                    initListaPrincipio();
-                    initListaNomeComercial();
+                    initMedicamentos();
                 }                
             }        
         });
     }    
        
-    public void btnApagaChaveMedicamentoClicked(ActionEvent event) {
-        if (editMedicamento.getText() != null) {
-            editMedicamento.clear();
-        }
+    public void btnApagaPrincipioFired(ActionEvent event) {
+        editPrincipio.clear();
     }
 
+    public void btnApagaMedicamentoFired(ActionEvent event) {
+        editMedicamento.clear();
+    }
 
     public void btnApagaChaveModoUsoClicked(ActionEvent event) {
-        if (editPosologia.getText() != null) {
-            editPosologia.clear();
-        }
+        editPosologia.clear();
     }
 
     public void btnApagaChaveAplicacaoClicked(ActionEvent event) {
-        if (editViaAdmin.getText() != null) {
-            editViaAdmin.clear();
-        }
+        editViaAdmin.clear();
     }    
     
     public void btnApagaChaveQuantidadeClicked(ActionEvent event) {
-        if (editQuantidade.getText() != null) {
-            editQuantidade.clear();
-        }
+        editQuantidade.clear();
     }    
 
     /**

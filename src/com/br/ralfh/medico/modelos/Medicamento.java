@@ -11,7 +11,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Medicamento implements Serializable {
     
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)    
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    
     private Integer id;
     private String principio;
     @Column(unique = true)

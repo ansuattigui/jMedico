@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +33,7 @@ import javax.persistence.EntityManagerFactory;
 public class MedicoController extends Controller {
     
     private static EntityManagerFactory entityManagerFactory;
-    private static HashMap<String,GUIFactory> mapaJanelas;
+//    private static HashMap<String,GUIFactory> mapaJanelas;
 
     
     /** Dados de conexão do usuário com o Sistema **/    
@@ -80,7 +79,7 @@ public class MedicoController extends Controller {
         perfilUsuario = null;
         conexao = null;
         connFact = new ConnectionFactory();
-        MedicoController.mapaJanelas = new HashMap<>();
+//        MedicoController.mapaJanelas = new HashMap<>();
     }
     
     @Override
@@ -316,7 +315,7 @@ public class MedicoController extends Controller {
         MedicoController.entityManagerFactory = entityManagerFactory;
     }
     
-    
+/*    
     public static GUIFactory getMapaJanelas(String chave) {
         GUIFactory gui = null;
         if (mapaJanelas.containsKey(chave)) {
@@ -333,4 +332,6 @@ public class MedicoController extends Controller {
     public static void apagaEntradaMapaJanelas(String chave) {
         mapaJanelas.remove(chave);
     }    
+*/
+    
 }
