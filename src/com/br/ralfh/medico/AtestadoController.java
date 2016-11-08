@@ -25,7 +25,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -425,7 +424,7 @@ public class AtestadoController extends Controller {
     public void habilEdicaoFired() {
         nomeAtestado.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         htmlEditorCabecalho.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
-        htmlEditorCorpo.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
+//        htmlEditorCorpo.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         htmlEditorRodape.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
     }
     
@@ -446,11 +445,11 @@ public class AtestadoController extends Controller {
         miAtestadoA4.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoGaveta.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoReduzido.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoPrateleira.setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoPrateleira.setDisable(true);    //(status!=StatusBtn.SHOWING);
         miAtestadoCartaT.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoA4T.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoGavetaT.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoPrateleiraT.setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoPrateleiraT.setDisable(true);   //(status!=StatusBtn.SHOWING);
         miAtestadoReduzidoT.setDisable(status!=StatusBtn.SHOWING);
     }
     

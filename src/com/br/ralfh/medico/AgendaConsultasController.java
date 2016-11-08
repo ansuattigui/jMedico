@@ -151,6 +151,7 @@ public class AgendaConsultasController extends Controller {
             if (calendAgenda.calendarProperty().getValue() != null) {
                 initAgendaDados(Util.udate(calendAgenda.calendarProperty().getValue()));
                 tvAgendaConsultas.getSelectionModel().selectFirst();
+                tvAgendaConsultas.requestFocus();
             } 
         }
         });        

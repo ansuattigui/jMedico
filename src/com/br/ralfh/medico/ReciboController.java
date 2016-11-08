@@ -424,12 +424,12 @@ public class ReciboController extends Controller {
         miReciboCarta.setDisable(status!=StatusBtn.SHOWING);
         miReciboA4.setDisable(status!=StatusBtn.SHOWING);
         miReciboGaveta.setDisable(status!=StatusBtn.SHOWING);
-        miReciboPrateleira.setDisable(status!=StatusBtn.SHOWING);
+        miReciboPrateleira.setDisable(true);   //(status!=StatusBtn.SHOWING);
         miReciboReduzido.setDisable(status!=StatusBtn.SHOWING);
         miReciboCartaT.setDisable(status!=StatusBtn.SHOWING);
         miReciboA4T.setDisable(status!=StatusBtn.SHOWING);
         miReciboGavetaT.setDisable(status!=StatusBtn.SHOWING);
-        miReciboPrateleiraT.setDisable(status!=StatusBtn.SHOWING);
+        miReciboPrateleiraT.setDisable(true); //(status!=StatusBtn.SHOWING);
         miReciboReduzidoT.setDisable(status!=StatusBtn.SHOWING);
         
         nomepac.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
