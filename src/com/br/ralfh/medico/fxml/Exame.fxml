@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane styleClass="fundo" stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.ExameController">
+   <children>
+      <HBox layoutX="242.0" layoutY="120.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox spacing="10.0">
+               <children>
+                  <VBox spacing="4.0">
+                     <children>
+                        <Label text="1 - Exame">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <HBox alignment="CENTER_LEFT" spacing="4.0" />
+                     </children>
+                  </VBox>
+                  <TabPane prefHeight="400.0" prefWidth="450.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Nome do Exame">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="4.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0">
+                                       <children>
+                                          <TextField fx:id="editExame" prefWidth="350.0" />
+                                          <Button fx:id="btnApagaExame" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnApagaExameFired" prefHeight="25.0" prefWidth="25.0" styleClass="botaopq" textAlignment="CENTER">
+                                             <graphic>
+                                                <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" styleClass="botaopq">
+                                                   <image>
+                                                      <Image url="@../imagens/Draw-Eraser.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="tabelaExames" layoutX="7.0" layoutY="14.0" prefWidth="280.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="45.0">
+                                       <columns>
+                                          <TableColumn fx:id="colExame" prefWidth="410.0" text="Nome" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+                  <VBox spacing="4.0">
+                     <children>
+                        <Label text="Material" />
+                        <ComboBox fx:id="cbMaterial" prefWidth="280.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox layoutX="211.0" layoutY="10.0" spacing="20.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <Label text="2 - Material">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <VBox spacing="10.0">
+                           <children>
+                              <RadioButton fx:id="rbFezes" mnemonicParsing="false" text="Fezes">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="tgViaAdmin" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton fx:id="rbSangue" layoutX="10.0" layoutY="27.0" mnemonicParsing="false" text="Sangue" toggleGroup="$tgViaAdmin" />
+                              <RadioButton fx:id="rbUrina" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="Urina" toggleGroup="$tgViaAdmin" />
+                              <RadioButton fx:id="rbOutros" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" text="Outros" toggleGroup="$tgViaAdmin" />
+                              <HBox spacing="4.0">
+                                 <children>
+                                    <TextField fx:id="editMaterial" prefWidth="145.0" />
+                                    <Button fx:id="btnApagaMaterial" mnemonicParsing="false" onAction="#btnApagaMaterialFired" prefWidth="25.0" styleClass="botaopq">
+                                       <graphic>
+                                          <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" styleClass="botaopq">
+                                             <image>
+                                                <Image url="@../imagens/Draw-Eraser.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="5.0" top="5.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <Button fx:id="btnConfirma" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#actionConfirmar" prefHeight="60.0" prefWidth="92.0" styleClass="botaotool" text="Solicita">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagens/accept.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button fx:id="btnCancela" contentDisplay="BOTTOM" layoutX="89.0" layoutY="10.0" mnemonicParsing="false" onAction="#actionCancelar" prefHeight="60.0" prefWidth="92.0" styleClass="botaotool" text="Cancela">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagens/Cancel-32.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

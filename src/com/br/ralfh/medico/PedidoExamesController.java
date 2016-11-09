@@ -13,7 +13,6 @@ import com.br.ralfh.medico.modelos.Posologia;
 import com.br.ralfh.medico.modelos.Posologias;
 import com.br.ralfh.medico.modelos.Prescricao;
 import com.br.ralfh.medico.modelos.Receita;
-import com.br.ralfh.medico.modelos.Receitas;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -72,7 +71,7 @@ public class PedidoExamesController extends Controller {
     private SimpleObjectProperty<Paciente> sopPaciente;        
     private ObservableList<Exame> sopExames = FXCollections.observableArrayList() ;    
     private StatusBtn status;
-    private GUIFactory pedidoGUI;
+    private GUIFactory exameGUI;
             
     @FXML public TextField nomePaciente;
 
@@ -348,14 +347,14 @@ public class PedidoExamesController extends Controller {
     
     @FXML
     public void btnNovoExameFired(ActionEvent ae) throws IOException {        
-        String fxmlGUI = "fxml/PrescricaoNova.fxml";  pppppppppppp
+        String fxmlGUI = "fxml/Exame.fxml"; 
         StageStyle fxmlStyle = StageStyle.DECORATED;
-        String fxmlTitle = "Prescrição de medicamento";
+        String fxmlTitle = "Pedido de Exame";
         
-        pedidoGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
-        pedidoGUI.initialize();
-        PrescricaoController controller = (PrescricaoController) pedidoGUI.getController();        
-        pedidoGUI.showAndWait();       
+        exameGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
+        exameGUI.initialize();
+        ExameController controller = (ExameController) exameGUI.getController();        
+        exameGUI.showAndWait();       
         
         if (controller.getPrescricao()!=null) {            
             Prescricao prescr = controller.getPrescricao();
@@ -370,10 +369,10 @@ public class PedidoExamesController extends Controller {
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Prescrição de medicamento";
         
-        pedidoGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
-        pedidoGUI.initialize();
-        PrescricaoController controller = (PrescricaoController) pedidoGUI.getController();        
-        pedidoGUI.showAndWait();       
+        exameGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
+        exameGUI.initialize();
+        PrescricaoController controller = (PrescricaoController) exameGUI.getController();        
+        exameGUI.showAndWait();       
         
         if (controller.getPrescricao()!=null) {            
             Prescricao prescr = controller.getPrescricao();

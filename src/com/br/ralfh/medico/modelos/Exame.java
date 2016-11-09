@@ -14,8 +14,7 @@ import javax.persistence.ManyToOne;
 public class Exame implements Serializable {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
+    private Integer id;    
     @ManyToOne( fetch = FetchType.EAGER )
     @JoinColumn(name = "pedido_id", nullable = false )
     private PedidoExames pedido;
@@ -23,6 +22,11 @@ public class Exame implements Serializable {
     private String material;
     
     public Exame() {
+    }
+    
+    public Exame(String nome, String material) {
+        this.exame = nome;
+        this.material = material;
     }
 
     /**

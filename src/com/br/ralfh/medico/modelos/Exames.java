@@ -20,12 +20,12 @@ public class Exames {
     public Exames() {
     }
 
-    public static Boolean excluiPrescricao(Prescricao prescr) {
+    public static Boolean excluiExame(Exame exam) {
         Boolean resultado = Boolean.FALSE;
         try {
             EntityManager manager = JPAUtil.getEntityManager();
             manager.getTransaction().begin();  
-            manager.remove(manager.getReference(Prescricao.class, prescr.getId()));  
+            manager.remove(manager.getReference(Exame.class, exam.getId()));  
             manager.getTransaction().commit();
             manager.close();
             resultado = Boolean.TRUE;
@@ -36,30 +36,51 @@ public class Exames {
         return resultado;        
     }
     
-    
-    
-    public ArrayList<Prescricao> getLista(Receita receita) {
+    public static ArrayList<Exame> getLista() {
         EntityManager manager = JPAUtil.getEntityManager();
-        String jpql = "select p from Prescricao p where p.receita = :preceita order by p.medicamento";
-        TypedQuery<Prescricao> query = manager.createQuery(jpql,Prescricao.class);
-        query.setParameter("preceita", receita);
-        ArrayList<Prescricao> prescricoes = (ArrayList) query.getResultList();
+        String jpql = "select e from Exame e order by e.exame";
+        TypedQuery<Exame> query = manager.createQuery(jpql,Exame.class);
+        ArrayList<Exame> exames = (ArrayList) query.getResultList();
         manager.close();        
         
-        return prescricoes;
+        return exames;
+    }
+        
+    public static ArrayList<Exame> getLista(PedidoExames pedido) {
+        EntityManager manager = JPAUtil.getEntityManager();
+        String jpql = "select e from Exame e where e.PedidoExames = :ppedido order by e.exame";
+        TypedQuery<Exame> query = manager.createQuery(jpql,Exame.class);
+        query.setParameter("ppedido", pedido);
+        ArrayList<Exame> exames = (ArrayList) query.getResultList();
+        manager.close();        
+        
+        return exames;
+    }
+
+    public static ArrayList<Exame> getListaPorMaterial(String material) {
+        EntityManager manager = JPAUtil.getEntityManager();
+        String jpql = "select e from Exame e where e.material = :pmaterial order by e.exame";
+        TypedQuery<Exame> query = manager.createQuery(jpql,Exame.class);
+        query.setParameter("pmaterial", material);
+        ArrayList<Exame> exames = (ArrayList) query.getResultList();
+        manager.close();        
+        
+        return exames;
     }
     
-    public ObservableList<Prescricao> getObsLista(Receita receita) { 
-        
-        return FXCollections.observableArrayList(this.getLista(receita));
+    public static ObservableList<Exame> getObsLista(Exames pedido) {         
+        return FXCollections.observableArrayList(Exames.getLista());
     }    
 
-    public void removeLista(Receita receita) {
+    public static ObservableList<Exame> getObsLista(PedidoExames pedido) {         
+        return FXCollections.observableArrayList(Exames.getLista(pedido));
+    }    
 
+    public void removeLista(PedidoExames pedido) {
         EntityManager manager = JPAUtil.getEntityManager();
-        String jpql = "delete p from Prescricao p where p.receita = :preceita";
-        TypedQuery<Prescricao> query = manager.createQuery(jpql,Prescricao.class);
-        query.setParameter("preceita", receita);
+        String jpql = "delete e from Exame e where e.pedido = :ppedido";
+        TypedQuery<Exame> query = manager.createQuery(jpql,Exame.class);
+        query.setParameter("ppedido", pedido);
         query.executeUpdate();
         manager.close();        
     }
