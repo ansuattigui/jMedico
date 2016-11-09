@@ -71,12 +71,12 @@ public class PedidosExames {
     
     
     
-    public static Boolean excluiReceita(Receita rec) {
+    public static Boolean excluiPedido(PedidoExames ped) {
         Boolean resultado = Boolean.FALSE;
         try {
             EntityManager manager = JPAUtil.getEntityManager();
             manager.getTransaction().begin();  
-            manager.remove(manager.getReference(Receita.class, rec.getReceita_id()));  
+            manager.remove(manager.getReference(Receita.class, ped.getPedido_id()));  
             manager.getTransaction().commit();
             manager.close();
             resultado = Boolean.TRUE;
@@ -116,7 +116,7 @@ public class PedidosExames {
         
         return FXCollections.observableArrayList(PedidosExames.getLista());
     }    
-    public static ObservableList<Receita> getObsLista(Paciente paciente) {
+    public static ObservableList<PedidoExames> getObsLista(Paciente paciente) {
         
         return FXCollections.observableArrayList(PedidosExames.getLista(paciente));
     }              

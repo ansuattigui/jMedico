@@ -300,9 +300,9 @@ public class PedidoExamesController extends Controller {
     }
     
     @FXML
-    public void btnExcluiReceitaFired(ActionEvent event) {        
+    public void btnExcluiPedidoFired(ActionEvent event) {        
         if (ExcluiRegistroDlg("ER", "", null,this.getStage())) {
-            if (Receitas.excluiReceita(sopPedido.get())) {
+            if (PedidosExames.excluiPedido(sopPedido.get())) {
                 sopPedidos.remove(sopPedido.get());
                 tableExames.getItems().clear();
             }
@@ -310,21 +310,21 @@ public class PedidoExamesController extends Controller {
     }    
     
     @FXML
-    public void btnSalvaReceitaFired(ActionEvent event) {
+    public void btnSalvaPedidoFired(ActionEvent event) {
         if (checaPedido()) {
             if (status==StatusBtn.INSERTING) {            
-                if (Receitas.novaReceita(pedido)) {
+                if (PedidosExames.novoPedido(pedido)) {
                     status = StatusBtn.SHOWING;
-                    ShowDialog("S", "A receita foi salva com sucesso", null,this.getStage());
+                    ShowDialog("S", "O pedido foi salvo com sucesso", null,this.getStage());
                 } else {
-                    ShowDialog("EX", "Não foi possível salvar a receita", null,this.getStage());
+                    ShowDialog("EX", "Não foi possível salvar o pedido", null,this.getStage());
                 }
             } else if (status==StatusBtn.UPDATING) {
-                if (Receitas.atualizaReceita(pedido)) {
+                if (PedidosExames.atualizaPedido(pedido)) {
                     status = StatusBtn.SHOWING;
-                    ShowDialog("S", "A receita foi atualizada com sucesso", null,this.getStage());
+                    ShowDialog("S", "O pedido foi atualizado com sucesso", null,this.getStage());
                 } else {
-                    ShowDialog("EX", "Não foi possível atualizar a receita", null,this.getStage());
+                    ShowDialog("EX", "Não foi possível atualizar o pedido", null,this.getStage());
                 }
             }
             setButtons();
@@ -332,7 +332,7 @@ public class PedidoExamesController extends Controller {
     }   
     
     @FXML
-    public void btnCancelaReceitaFired(ActionEvent ae) {
+    public void btnCancelaPedidoFired(ActionEvent ae) {
         try {
             if (status==StatusBtn.INSERTING) {
                 sopPedidos.remove(pedido);
@@ -347,8 +347,8 @@ public class PedidoExamesController extends Controller {
     }
     
     @FXML
-    public void btnNovoMedicamentoFired(ActionEvent ae) throws IOException {        
-        String fxmlGUI = "fxml/PrescricaoNova.fxml";
+    public void btnNovoExameFired(ActionEvent ae) throws IOException {        
+        String fxmlGUI = "fxml/PrescricaoNova.fxml";  pppppppppppp
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Prescrição de medicamento";
         
@@ -365,8 +365,8 @@ public class PedidoExamesController extends Controller {
         }        
     }
     
-    public void btnAtualizaMedicamentoFired(ActionEvent ae)  throws IOException {
-        String fxmlGUI = "fxml/PrescricaoNova.fxml";
+    public void btnAtualizaExameFired(ActionEvent ae)  throws IOException {
+        String fxmlGUI = "fxml/PrescricaoNova.fxml"; ppppppppppppp
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Prescrição de medicamento";
         
@@ -383,7 +383,7 @@ public class PedidoExamesController extends Controller {
         }        
     }
 
-    public void btnExcluiMedicamentoFired(ActionEvent ae)  throws IOException {
+    public void btnExcluiExameFired(ActionEvent ae)  throws IOException {
         if (ExcluiRegistroDlg("EP", "", null,this.getStage())) { 
             pedido.getExames().remove(exame);
             sopExames.remove(exame);
