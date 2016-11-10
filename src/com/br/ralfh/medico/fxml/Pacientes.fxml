@@ -525,6 +525,19 @@
                                     </Button>
                                  </children>
                               </HBox>
+                              <HBox layoutX="10.0" layoutY="87.0" spacing="2.0">
+                                 <children>
+                                    <Button fx:id="btnPedidos" contentDisplay="TOP" layoutX="10.0" layoutY="69.0" minHeight="72.0" mnemonicParsing="false" onAction="#btnPedidosFired" prefWidth="90.0" styleClass="botaotool" text="Pedidos de Exames" textAlignment="CENTER" wrapText="true">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../imagens/ficha-medica.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
                            <HBox.margin>
                               <Insets />

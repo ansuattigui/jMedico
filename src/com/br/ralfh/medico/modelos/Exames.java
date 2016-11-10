@@ -59,7 +59,12 @@ public class Exames {
 
     public static ArrayList<Exame> getListaPorMaterial(String material) {
         EntityManager manager = JPAUtil.getEntityManager();
-        String jpql = "select e from Exame e where e.material = :pmaterial order by e.exame";
+        String jpql;
+        if (!"Outros".equals(material)) {
+            jpql = "select e from Exame e where e.material = :pmaterial order by e.exame";
+        } else {
+            jpql = "select e from Exame e where e.material not in ('Fezes','Sangue','Urina','Imagem') order by e.exame";
+        }
         TypedQuery<Exame> query = manager.createQuery(jpql,Exame.class);
         query.setParameter("pmaterial", material);
         ArrayList<Exame> exames = (ArrayList) query.getResultList();

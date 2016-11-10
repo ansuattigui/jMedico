@@ -73,6 +73,7 @@ public class PacienteController extends Controller {
     @FXML Button btnCancPaciente;                 @FXML Button btnSair;
     @FXML Button btnFichaMedica;                  @FXML Button btnAtestados;
     @FXML Button btnReceitas;                     @FXML Button btnRecibos;
+    @FXML Button btnPedidos;
     @FXML Button btnProcCodAnt;                   @FXML Button btnProcNome;
     @FXML Button btnProcurar;                     @FXML Button btnFotografar;
     @FXML ImageView imageFotografia;              @FXML TextField codPaciente;
@@ -460,6 +461,21 @@ public class PacienteController extends Controller {
         }      
     }
 
+    @FXML
+    public void btnPedidosFired(ActionEvent event){
+        String fxmlGUI = "fxml/Exame.fxml";
+        String titleGUI = "Pedidos de Exames de " + paciente.getNome() + " / " + paciente.getConvenio().getNome();
+        StageStyle fxmlStyle = StageStyle.DECORATED;
+        GUIFactory pedidos;   
+        try {
+            pedidos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
+            PedidoExamesController controller = (PedidoExamesController) pedidos.getController();
+            controller.setPaciente(paciente);
+            pedidos.showAndWait(); 
+        } catch (IOException ex) {
+            Logger.getLogger(PacienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }      
+    }
     
     public void btnProcurarFired(ActionEvent event) {
         apagaPaciente();

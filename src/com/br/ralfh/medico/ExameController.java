@@ -2,8 +2,8 @@ package com.br.ralfh.medico;
 
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.modelos.Exame;
+import com.br.ralfh.medico.modelos.ExameAux;
 import com.br.ralfh.medico.modelos.Exames;
-import com.br.ralfh.medico.modelos.MedicamentoAux;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -35,8 +35,8 @@ public class ExameController extends Controller {
      * Initializes the controller class.
      */
         
-    @FXML TableView<Exame> tabelaExames;
-    @FXML TableColumn<Exame,String> colExame;
+    @FXML TableView<ExameAux> tabelaExames;
+    @FXML TableColumn<ExameAux,String> colExame;
     
     @FXML TextField editExame;    
     @FXML TextField editPrincipio;    
@@ -45,6 +45,7 @@ public class ExameController extends Controller {
     @FXML RadioButton rbFezes;
     @FXML RadioButton rbSangue;
     @FXML RadioButton rbUrina;
+    @FXML RadioButton rbImagem;
     @FXML RadioButton rbOutros;
     @FXML ToggleGroup tgMaterial;
     
@@ -56,7 +57,14 @@ public class ExameController extends Controller {
     @FXML ComboBox<String> cbMaterial;
     
     private Exame exame;
-    private ObservableList<Exame> masterExames = FXCollections.observableArrayList();
+    private ObservableList<ExameAux> masterExames = FXCollections.observableArrayList();
+
+    /**
+     * @return the exame
+     */
+    public Exame getExame() {
+        return exame;
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -72,7 +80,7 @@ public class ExameController extends Controller {
         masterExames.clear();
         ArrayList<Exame> exames = Exames.getLista();
         for (Exame item:exames) {
-            masterExames.add(new Exame(item.getExame(), item.getMaterial()));
+            masterExames.add(new ExameAux(item.getExame()));
         }
     }
 
@@ -80,7 +88,7 @@ public class ExameController extends Controller {
         masterExames.clear();
         ArrayList<Exame> exames = Exames.getListaPorMaterial(material);
         for (Exame item:exames) {
-            masterExames.add(new Exame(item.getExame(), item.getMaterial()));
+            masterExames.add(new ExameAux(item.getExame()));
         }
     }
     
@@ -109,6 +117,7 @@ public class ExameController extends Controller {
         rbFezes.setUserData("Fezes");
         rbSangue.setUserData("Sangue");
         rbUrina.setUserData("Urina");
+        rbImagem.setUserData("Imagem");
         rbOutros.setUserData("Outros");
     }
     
@@ -144,8 +153,8 @@ public class ExameController extends Controller {
     public boolean PreencheExame() {
         Boolean resultado = Boolean.FALSE;
         try {            
-            exame.setExame(editExame.getText());
-            exame.setMaterial(editMaterial.getText());
+            getExame().setExame(editExame.getText());
+            getExame().setMaterial(editMaterial.getText());
             resultado = Boolean.TRUE;
         } catch (CampoEmBrancoException ex) {
             ShowDialog("EX", ex.getMessage(), null,this.getStage());
@@ -154,10 +163,10 @@ public class ExameController extends Controller {
     }
 
     private void initTabelaExames() {
-        colExame.setCellValueFactory(cellData -> cellData.getValue().nomeComercialProperty());        
-        FilteredList<Exame> filteredExame = new FilteredList<>(masterExames, p -> true);        
+        colExame.setCellValueFactory(cellData -> cellData.getValue().nomeExameProperty());        
+        FilteredList<ExameAux> filteredExame = new FilteredList<>(masterExames, p -> true);        
         editExame.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredExame.setPredicate(exame -> {
+            filteredExame.setPredicate(exameAux -> {
                 // If filter text is empty, display all persons.
                 if (newValue == null || newValue.isEmpty()) {
                         return true;
@@ -165,7 +174,7 @@ public class ExameController extends Controller {
                 // Compare first name and last name of every person with filter text.
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (exame.getExame().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                if (exameAux.getNomeExame().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                         return true; // Filter matches first name.
                 }
                 return false; // Does not match.
@@ -173,20 +182,20 @@ public class ExameController extends Controller {
         });
         
         // 3. Wrap the FilteredList in a SortedList. 
-        SortedList<MedicamentoAux> sortedMedicamento = new SortedList<>(filteredExame);
+        SortedList<ExameAux> sortedExame = new SortedList<>(filteredExame);
 
         // 4. Bind the SortedList comparator to the TableView comparator.
         // 	  Otherwise, sorting the TableView would have no effect.
-        sortedMedicamento.comparatorProperty().bind(tabelaMedicamentos.comparatorProperty());
+        sortedExame.comparatorProperty().bind(tabelaExames.comparatorProperty());
 
         // 5. Add sorted (and filtered) data to the table.
-        tabelaMedicamentos.setItems(sortedMedicamento);        
+        tabelaExames.setItems(sortedExame);        
     }
     public void addTabelaExamesListener() {
         tabelaExames.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
-                editExame.setText(tabelaExames.getSelectionModel().getSelectedItem().getExame());
+                editExame.setText(tabelaExames.getSelectionModel().getSelectedItem().getNomeExame());
             }
         });
     }    
@@ -196,7 +205,12 @@ public class ExameController extends Controller {
         if (!cbMaterial.getItems().isEmpty()) {
             cbMaterial.getItems().clear();
         }
-        cbMaterial.setItems(Exames.getObsSLista());  
+        cbMaterial.getItems().set(0, "");
+        cbMaterial.getItems().set(1, "Fezes");
+        cbMaterial.getItems().set(2, "Sangue");
+        cbMaterial.getItems().set(3, "Urina");
+        cbMaterial.getItems().set(4, "Imagem");
+
         AddListenerToComboGrupo();
     }
     

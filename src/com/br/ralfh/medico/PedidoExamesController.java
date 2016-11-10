@@ -3,15 +3,9 @@ package com.br.ralfh.medico;
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.jdbc.DataAccessRelatorios;
 import com.br.ralfh.medico.modelos.Exame;
-import com.br.ralfh.medico.modelos.Grupo;
-import com.br.ralfh.medico.modelos.Medicamento;
-import com.br.ralfh.medico.modelos.Medicamentos;
 import com.br.ralfh.medico.modelos.Paciente;
 import com.br.ralfh.medico.modelos.PedidoExames;
 import com.br.ralfh.medico.modelos.PedidosExames;
-import com.br.ralfh.medico.modelos.Posologia;
-import com.br.ralfh.medico.modelos.Posologias;
-import com.br.ralfh.medico.modelos.Prescricao;
 import com.br.ralfh.medico.modelos.Receita;
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,7 +44,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import javax.persistence.EntityManager;
 import javax.swing.ImageIcon;
 import net.sf.jasperreports.engine.JRException;
 /**
@@ -356,29 +349,29 @@ public class PedidoExamesController extends Controller {
         ExameController controller = (ExameController) exameGUI.getController();        
         exameGUI.showAndWait();       
         
-        if (controller.getPrescricao()!=null) {            
-            Prescricao prescr = controller.getPrescricao();
-            prescr.setReceita(pedido);
-            pedido.getExames().add(prescr);                                
-            sopExames.add(prescr);
+        if (controller.getExame()!=null) {            
+            Exame exam = controller.getExame();
+            exam.setPedidoExames(pedido);
+            pedido.getExames().add(exam);                                
+            sopExames.add(exam);
         }        
     }
     
     public void btnAtualizaExameFired(ActionEvent ae)  throws IOException {
-        String fxmlGUI = "fxml/PrescricaoNova.fxml"; ppppppppppppp
+        String fxmlGUI = "fxml/Exame.fxml"; 
         StageStyle fxmlStyle = StageStyle.DECORATED;
-        String fxmlTitle = "Prescrição de medicamento";
+        String fxmlTitle = "Atualização de exame";
         
         exameGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         exameGUI.initialize();
-        PrescricaoController controller = (PrescricaoController) exameGUI.getController();        
+        ExameController controller = (ExameController) exameGUI.getController();        
         exameGUI.showAndWait();       
         
-        if (controller.getPrescricao()!=null) {            
-            Prescricao prescr = controller.getPrescricao();
-            prescr.setReceita(pedido);
-            pedido.getExames().add(prescr);                                
-            sopExames.add(prescr);
+        if (controller.getExame()!=null) {            
+            Exame exam = controller.getExame();
+            exam.setPedidoExames(pedido);
+            pedido.getExames().add(exam);                                
+            sopExames.add(exam);
         }        
     }
 
@@ -394,34 +387,6 @@ public class PedidoExamesController extends Controller {
         this.stage.close();
     }    
     
-    
-    private void atualizaCadastros() {
-        
-        EntityManager manager = JPAUtil.getEntityManager();       
-        Grupo grupo = manager.find(Grupo.class,0);
-        Posologias posologias = new Posologias();
-        Medicamentos medicamentos = new Medicamentos();
-                
-        manager.getTransaction().begin();
-        for(Prescricao itemReceita: sopExames) {            
-            Medicamento medicamento = medicamentos.getMedicamentoPeloNome(itemReceita.getMedicamento());
-            if (medicamento == null) {
-                medicamento = new Medicamento();
-                medicamento.setPrincipio(itemReceita.getMedicamento());
-                medicamento.setGrupo(grupo);                
-                manager.persist(medicamento);
-            }
-
-            Posologia posologia = posologias.getModoPeloNome(itemReceita.getPosologia());
-            if (posologia == null) {                
-                posologia = new Posologia();                
-                posologia.setPosologia(itemReceita.getPosologia());
-                manager.persist(posologia);
-            }            
-        }
-        manager.getTransaction().commit();
-        manager.close();
-    }    
         
     @FXML
     public void miOpcaoCartaFired(ActionEvent ev) {

@@ -88,6 +88,11 @@
                                  </toggleGroup></RadioButton>
                               <RadioButton fx:id="rbSangue" layoutX="10.0" layoutY="27.0" mnemonicParsing="false" text="Sangue" toggleGroup="$tgViaAdmin" />
                               <RadioButton fx:id="rbUrina" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="Urina" toggleGroup="$tgViaAdmin" />
+                              <RadioButton fx:id="rbImagem" layoutX="10.0" layoutY="66.0" mnemonicParsing="false" text="Imagem">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="tgViaAdmin1" />
+                                 </toggleGroup>
+                              </RadioButton>
                               <RadioButton fx:id="rbOutros" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" text="Outros" toggleGroup="$tgViaAdmin" />
                               <HBox spacing="4.0">
                                  <children>
