@@ -121,7 +121,7 @@ public class PedidoExamesController extends Controller {
         AddSelecPedidoListener();
         addPedidoListener();
         addPedidosListener();
-        addPrescricoesListener();   
+        addExamesListener();   
         addSelecExameListener();
     }
 
@@ -139,7 +139,7 @@ public class PedidoExamesController extends Controller {
         btnPrintPedido.setTooltip(new Tooltip("Imprime a receita selecionada"));       
         btnNovoExame.setTooltip(new Tooltip("Prescreve um medicamento"));        
         btnExcluiExame.setTooltip(new Tooltip("Exclui o medicamento selecionado"));
-        btnAtualizaExame.setTooltip(new Tooltip("Atualiza o medicamento selecionado"));
+//        btnAtualizaExame.setTooltip(new Tooltip("Atualiza o medicamento selecionado"));
         btnSair.setTooltip(new Tooltip("Fechar esta janela"));
     }
         
@@ -194,7 +194,7 @@ public class PedidoExamesController extends Controller {
         }); 
     }
     
-    private void addPrescricoesListener() { 
+    private void addExamesListener() { 
         sopExames.addListener(new ListChangeListener() {
             @Override
             public void onChanged(ListChangeListener.Change change) {
@@ -230,8 +230,8 @@ public class PedidoExamesController extends Controller {
     }           
     
     public void initTabelaExames() {
-        exameCol.setCellValueFactory(new PropertyValueFactory<>("medicamento"));
-        materialCol.setCellValueFactory(new PropertyValueFactory<>("posologia"));
+        exameCol.setCellValueFactory(new PropertyValueFactory<>("exame"));
+        materialCol.setCellValueFactory(new PropertyValueFactory<>("material"));
     }      
     
     public boolean checaPedido() {
@@ -466,7 +466,7 @@ public class PedidoExamesController extends Controller {
         miOpcaoReduzidoT.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         
         btnNovoExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
-        btnAtualizaExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
+//        btnAtualizaExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         btnExcluiExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
     }
     

@@ -463,7 +463,7 @@ public class PacienteController extends Controller {
 
     @FXML
     public void btnPedidosFired(ActionEvent event){
-        String fxmlGUI = "fxml/Exame.fxml";
+        String fxmlGUI = "fxml/Pedidos.fxml";
         String titleGUI = "Pedidos de Exames de " + paciente.getNome() + " / " + paciente.getConvenio().getNome();
         StageStyle fxmlStyle = StageStyle.DECORATED;
         GUIFactory pedidos;   

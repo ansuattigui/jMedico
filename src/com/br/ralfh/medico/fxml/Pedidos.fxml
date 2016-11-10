@@ -26,26 +26,26 @@
          <children>
           <MenuBar id="" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
             <menus>
-              <Menu mnemonicParsing="false" text="Receita">
+              <Menu mnemonicParsing="false" text="Pedido">
                 <items>
-                        <MenuItem fx:id="miNovaReceita" mnemonicParsing="false" onAction="#btnNovaReceitaFired" text="Criar" />
-                        <MenuItem fx:id="miAtualizaReceita" mnemonicParsing="false" onAction="#btnAtualizaReceitaFired" text="Atualizar" />
-                  <MenuItem fx:id="miExcluiReceita" mnemonicParsing="false" onAction="#btnExcluiReceitaFired" text="Excluir">
+                        <MenuItem fx:id="miNovoPedido" mnemonicParsing="false" onAction="#btnNovoPedidoFired" text="Criar" />
+                        <MenuItem fx:id="miAtualizaPedido" mnemonicParsing="false" onAction="#btnAtualizaPedidoFired" text="Atualizar" />
+                  <MenuItem fx:id="miExcluiPedido" mnemonicParsing="false" onAction="#btnExcluiPedidoFired" text="Excluir">
                     <accelerator>
                       <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                     </accelerator>
                   </MenuItem>
-                  <MenuItem fx:id="miSalvaReceita" mnemonicParsing="false" onAction="#btnSalvaReceitaFired" text="Confirma">
+                  <MenuItem fx:id="miSalvaPedido" mnemonicParsing="false" onAction="#btnSalvaPedidoFired" text="Confirma">
                     <accelerator>
                       <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                     </accelerator>
                   </MenuItem>
-                        <MenuItem fx:id="miCancelaReceita" mnemonicParsing="false" onAction="#btnCancelaReceitaFired" text="Cancela">
+                        <MenuItem fx:id="miCancelaPedido" mnemonicParsing="false" onAction="#btnCancelaPedidoFired" text="Cancela">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator>
                         </MenuItem>
-                  <MenuItem fx:id="miDuplicaReceita" mnemonicParsing="false" onAction="#btnDuplicaReceitaFired" text="Duplica">
+                  <MenuItem fx:id="miDuplicaPedido" mnemonicParsing="false" onAction="#btnDuplicaPedidoFired" text="Duplica">
                     <accelerator>
                       <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                     </accelerator>
@@ -192,7 +192,7 @@
           </TableView>
             <HBox alignment="CENTER_RIGHT" spacing="5.0">
                <children>
-                  <Button id="" fx:id="btnAtualizaMedicamento" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnAtualizaMedicamentoFired" prefHeight="50.0" prefWidth="50.0" text="" visible="false">
+                  <Button id="" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="" visible="false">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>

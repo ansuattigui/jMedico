@@ -153,8 +153,8 @@ public class ExameController extends Controller {
     public boolean PreencheExame() {
         Boolean resultado = Boolean.FALSE;
         try {            
-            getExame().setExame(editExame.getText());
-            getExame().setMaterial(editMaterial.getText());
+            exame.setExame(editExame.getText());
+            exame.setMaterial(editMaterial.getText());
             resultado = Boolean.TRUE;
         } catch (CampoEmBrancoException ex) {
             ShowDialog("EX", ex.getMessage(), null,this.getStage());
@@ -205,11 +205,12 @@ public class ExameController extends Controller {
         if (!cbMaterial.getItems().isEmpty()) {
             cbMaterial.getItems().clear();
         }
-        cbMaterial.getItems().set(0, "");
-        cbMaterial.getItems().set(1, "Fezes");
-        cbMaterial.getItems().set(2, "Sangue");
-        cbMaterial.getItems().set(3, "Urina");
-        cbMaterial.getItems().set(4, "Imagem");
+        cbMaterial.getItems().add(0, "");
+        cbMaterial.getItems().add(1, "Fezes");
+        cbMaterial.getItems().add(2, "Sangue");
+        cbMaterial.getItems().add(3, "Urina");
+        cbMaterial.getItems().add(4, "Imagem");
+        cbMaterial.getItems().add(5, "Outros");
 
         AddListenerToComboGrupo();
     }
