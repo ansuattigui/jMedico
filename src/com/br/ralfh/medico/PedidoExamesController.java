@@ -390,35 +390,35 @@ public class PedidoExamesController extends Controller {
         
     @FXML
     public void miOpcaoCartaFired(ActionEvent ev) {
-        String fileName = "relatorios/receitas/JReceitaCarta.jasper";
-        PrintReceita(fileName);
+        String fileName = "relatorios/pedidos/JPedidoCarta.jasper";
+        PrintPedido(fileName);
     }
     @FXML
     public void miOpcaoA4Fired(ActionEvent ev) {
-        String fileName = "relatorios/receitas/JReceitaA4.jasper";
-        PrintReceita(fileName);
+        String fileName = "relatorios/pedidos/JPedidoA4.jasper";
+        PrintPedido(fileName);
     }
     @FXML
     public void miOpcaoGavetaFired(ActionEvent ev) {
-        String fileName = "relatorios/receitas/JReceitaG.jasper";
-        PrintReceita(fileName);
+        String fileName = "relatorios/pedidos/JPedidoG.jasper";
+        PrintPedido(fileName);
     }
     @FXML
     public void miOpcaoPrateleiraFired(ActionEvent ev) {
         String fileName = "relatorios/receitas/JReceitaP.jasper";
-        PrintReceita(fileName);
+        PrintPedido(fileName);
     }
     @FXML
     public void miOpcaoReduzidoFired(ActionEvent ev) {
-        String fileName = "relatorios/receitas/JReceitaReduz.jasper";
-        PrintReceita(fileName);
+        String fileName = "relatorios/pedidos/JPedidoReduz.jasper";
+        PrintPedido(fileName);
     }
     
-    public void PrintReceita(String file) {
+    public void PrintPedido(String file) {
         HashMap hm = new HashMap();
-        hm.put("idReceita", sopPedido.get().getPedido_id());
+        hm.put("idPedido", sopPedido.get().getPedido_id());
         hm.put("nomePaciente", sopPaciente.get().getNome());
-        hm.put("dataReceita", Util.formataDataExtenso(sopPedido.get().getDataEmissao()));    
+        hm.put("dataPedido", Util.formataDataExtenso(sopPedido.get().getDataEmissao()));    
         
         ImageIcon logoCabecalho = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_03.gif"));
         ImageIcon logoRodape = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_14.gif"));         
@@ -428,7 +428,7 @@ public class PedidoExamesController extends Controller {
         DataAccessRelatorios relat = new DataAccessRelatorios();
         try {
             InputStream inputStream = getClass().getResourceAsStream(file);
-            relat.openReport( "Receita",inputStream,hm);
+            relat.openReport( "Pedido",inputStream,hm);
         } catch (JRException e) {
             e.printStackTrace();
             System.exit(1);
