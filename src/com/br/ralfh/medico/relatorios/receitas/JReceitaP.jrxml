@@ -42,9 +42,9 @@
 	<group name="viaAdmin">
 		<groupExpression><![CDATA[$F{viaAdmin}]]></groupExpression>
 		<groupHeader>
-			<band height="29">
+			<band height="22">
 				<textField>
-					<reportElement x="0" y="5" width="218" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
+					<reportElement x="0" y="2" width="218" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isItalic="false" isUnderline="true"/>
 						<paragraph leftIndent="5"/>
@@ -70,9 +70,9 @@
 		</band>
 	</title>
 	<detail>
-		<band height="53" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="5" width="298" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
+				<reportElement x="0" y="1" width="298" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 					<paragraph leftIndent="5"/>
@@ -80,7 +80,7 @@
 				<textFieldExpression><![CDATA[$V{row_NUMBER}+") "+$F{medicamento}+" __________ "+$F{quantidade}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="27" width="298" height="20" uuid="a6fc66b2-8b0f-40e6-ac2e-12a90ce4ace1"/>
+				<reportElement x="0" y="22" width="298" height="20" uuid="a6fc66b2-8b0f-40e6-ac2e-12a90ce4ace1"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isItalic="true"/>
 					<paragraph leftIndent="12"/>
