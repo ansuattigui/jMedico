@@ -75,9 +75,9 @@ WHERE
 		</band>
 	</background>
 	<title>
-		<band height="130">
+		<band height="70">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="197" y="108" width="348" height="22" isRemoveLineWhenBlank="true" uuid="4b503a0f-ffc5-42fc-b356-8d172687689f"/>
+				<reportElement stretchType="RelativeToBandHeight" x="197" y="48" width="348" height="22" isRemoveLineWhenBlank="true" uuid="4b503a0f-ffc5-42fc-b356-8d172687689f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="Times New Roman" size="12" isBold="true"/>
 					<paragraph firstLineIndent="15"/>

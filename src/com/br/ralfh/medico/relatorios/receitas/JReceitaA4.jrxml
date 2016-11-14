@@ -53,9 +53,9 @@ ORDER BY
 	<group name="viaAdmin">
 		<groupExpression><![CDATA[$F{viaAdmin}]]></groupExpression>
 		<groupHeader>
-			<band height="29">
+			<band height="22">
 				<textField>
-					<reportElement x="197" y="5" width="100" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
+					<reportElement x="197" y="2" width="100" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isItalic="false" isUnderline="true"/>
 						<paragraph leftIndent="5"/>
@@ -105,9 +105,9 @@ ORDER BY
 		</band>
 	</background>
 	<title>
-		<band height="130">
+		<band height="70">
 			<textField>
-				<reportElement x="197" y="108" width="348" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
+				<reportElement x="197" y="48" width="348" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 					<paragraph leftIndent="5"/>
@@ -117,9 +117,9 @@ ORDER BY
 		</band>
 	</title>
 	<detail>
-		<band height="53" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<textField>
-				<reportElement x="197" y="5" width="348" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
+				<reportElement x="197" y="2" width="348" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 					<paragraph leftIndent="5"/>
@@ -127,7 +127,7 @@ ORDER BY
 				<textFieldExpression><![CDATA[$V{row_NUMBER}+") "+$F{medicamento}+" __________ "+$F{quantidade}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="197" y="27" width="348" height="20" uuid="a6fc66b2-8b0f-40e6-ac2e-12a90ce4ace1"/>
+				<reportElement x="197" y="22" width="348" height="20" uuid="a6fc66b2-8b0f-40e6-ac2e-12a90ce4ace1"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isItalic="true"/>
 					<paragraph leftIndent="12"/>
