@@ -82,9 +82,9 @@ WHERE
 		</band>
 	</background>
 	<title>
-		<band height="70">
+		<band height="130">
 			<textField>
-				<reportElement x="197" y="48" width="348" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
+				<reportElement x="197" y="108" width="348" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 					<paragraph leftIndent="5"/>
