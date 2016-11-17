@@ -8,6 +8,7 @@
 	</parameter>
 	<parameter name="nomePaciente" class="java.lang.String"/>
 	<parameter name="dataPedido" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="indicacaoClinica" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      exame.`exame` AS exame_exame,
@@ -45,12 +46,20 @@ WHERE
 	<title>
 		<band height="50">
 			<textField>
-				<reportElement x="0" y="25" width="377" height="25" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
+				<reportElement x="0" y="0" width="377" height="25" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="25" width="377" height="25" uuid="dc32fa94-e9cd-4edb-aaba-f2e8acce4d29"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

@@ -10,6 +10,7 @@
 	<parameter name="dataPedido" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="logoCabecalho" class="java.awt.Image"/>
 	<parameter name="logoRodape" class="java.awt.Image"/>
+	<parameter name="indicacaoClinica" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      exame.`exame` AS exame_exame,
@@ -84,12 +85,20 @@ WHERE
 	<title>
 		<band height="100">
 			<textField>
-				<reportElement x="198" y="78" width="364" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
+				<reportElement x="198" y="45" width="364" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="78" width="364" height="22" uuid="62329177-fc85-475e-b7b5-7102d4b01715"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

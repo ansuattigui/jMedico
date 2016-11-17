@@ -36,6 +36,7 @@ public class PedidoExames implements Serializable {
     private Paciente paciente;
     @Temporal(TemporalType.DATE)
     private Date dataEmissao;
+    private String indicacaoClinica;
     
     @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "pedido")
     @Column(nullable = false)
@@ -114,5 +115,19 @@ public class PedidoExames implements Serializable {
             throw new CampoNuloException("Prescreva ao menos um exame");
         }
     }         
+
+    /**
+     * @return the indicacaoClinica
+     */
+    public String getIndicacaoClinica() {
+        return indicacaoClinica;
+    }
+
+    /**
+     * @param indicacaoClinica the indicacaoClinica to set
+     */
+    public void setIndicacaoClinica(String indicacaoClinica) {
+        this.indicacaoClinica = indicacaoClinica;
+    }
     
 }

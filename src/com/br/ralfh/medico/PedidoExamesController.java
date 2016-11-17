@@ -71,7 +71,9 @@ public class PedidoExamesController extends Controller {
     @FXML public TableView<PedidoExames> tabelaPedidos;
     @FXML public TableColumn<PedidoExames,String> ordemCol;
     @FXML public TableColumn<PedidoExames,String> dataCol;    
+    @FXML public TableColumn<PedidoExames,String> iclinCol;    
     
+    @FXML public TextField indicacaoClinica;
     @FXML public TableView<Exame> tableExames;
     @FXML public TableColumn<Exame,String> exameCol;
     @FXML public TableColumn<Exame,String> materialCol;    
@@ -109,7 +111,8 @@ public class PedidoExamesController extends Controller {
         initListeners();
         
         status = StatusBtn.IDLE;
-        setButtons();        
+        setButtons();  
+        habilEdicaoFired();
     }    
     
     public void setPaciente(Paciente paciente) {
@@ -163,8 +166,10 @@ public class PedidoExamesController extends Controller {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
                 if (sopPedido.get()!=null) {
+                    indicacaoClinica.setText(sopPedido.get().getIndicacaoClinica());
                     sopExames.setAll(sopPedido.get().getExames());
                     setButtons();
+                    habilEdicaoFired();
                 }
             }
         });
@@ -226,7 +231,8 @@ public class PedidoExamesController extends Controller {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<PedidoExames,String> rec) {
                 return new SimpleObjectProperty<>(Util.formataDataExtenso(rec.getValue().getDataEmissao()));
             }
-        });   
+        }); 
+        iclinCol.setCellValueFactory(new PropertyValueFactory<>("indicacaoClinica"));
     }           
     
     public void initTabelaExames() {
@@ -236,8 +242,11 @@ public class PedidoExamesController extends Controller {
     
     public boolean checaPedido() {
         boolean resultado = Boolean.FALSE;
+        pedido.setIndicacaoClinica(indicacaoClinica.getText());
         if (pedido.getExames().isEmpty()) {
             ShowDialog("EX", "Prescreva ao menos um exame", null,this.getStage());
+        } else if (pedido.getIndicacaoClinica().isEmpty()) {
+            ShowDialog("EX", "Informe a Indicação Clínica", null,this.getStage());
         } else {
             resultado = Boolean.TRUE;
         }
@@ -261,6 +270,7 @@ public class PedidoExamesController extends Controller {
         pedido = new PedidoExames();
         pedido.setPaciente(sopPaciente.get());
         pedido.setDataEmissao(Util.ldHoje());
+        pedido.setIndicacaoClinica(sopPedido.get().getIndicacaoClinica());
         
         for (Exame ex : sopPedido.get().getExames()) {
             Exame p = new Exame();
@@ -289,6 +299,7 @@ public class PedidoExamesController extends Controller {
     public void btnAtualizaPedidoFired(ActionEvent ae) {
         status = StatusBtn.UPDATING;
         setButtons();
+        habilEdicaoFired();
     }
     
     @FXML
@@ -320,6 +331,7 @@ public class PedidoExamesController extends Controller {
                 }
             }
             setButtons();
+            habilEdicaoFired();
         }
     }   
     
@@ -336,6 +348,7 @@ public class PedidoExamesController extends Controller {
             status = StatusBtn.IDLE;
         }
         setButtons();      
+        habilEdicaoFired();
     }
     
     @FXML
@@ -419,6 +432,7 @@ public class PedidoExamesController extends Controller {
         hm.put("idPedido", sopPedido.get().getPedido_id());
         hm.put("nomePaciente", sopPaciente.get().getNome());
         hm.put("dataPedido", Util.formataDataExtenso(sopPedido.get().getDataEmissao()));    
+        hm.put("indicacaoClinica", sopPedido.get().getIndicacaoClinica());    
         
         ImageIcon logoCabecalho = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_03.gif"));
         ImageIcon logoRodape = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_14.gif"));         
@@ -468,6 +482,10 @@ public class PedidoExamesController extends Controller {
         btnNovoExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
 //        btnAtualizaExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         btnExcluiExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
+    }
+    
+    public void habilEdicaoFired() {
+        this.indicacaoClinica.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
     }
     
     
