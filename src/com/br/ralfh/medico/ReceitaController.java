@@ -99,7 +99,7 @@ public class ReceitaController extends Controller {
     @FXML public MenuItem miOpcaoCarta; @FXML public MenuItem miOpcaoCartaT;
     @FXML public MenuItem miOpcaoA4; @FXML public MenuItem miOpcaoA4T;
     @FXML public MenuItem miOpcaoGaveta; @FXML public MenuItem miOpcaoGavetaT;
-    @FXML public MenuItem miOpcaoPrateleira; @FXML public MenuItem miOpcaoPrateleiraT;
+    @FXML public MenuItem miOpcaoMeioA4; @FXML public MenuItem miOpcaoMeioA4T;
     @FXML public MenuItem miOpcaoReduzido; @FXML public MenuItem miOpcaoReduzidoT;
 
 
@@ -444,8 +444,8 @@ public class ReceitaController extends Controller {
         PrintReceita(fileName);
     }
     @FXML
-    public void miOpcaoPrateleiraFired(ActionEvent ev) {
-        String fileName = "relatorios/receitas/JReceitaP.jasper";
+    public void miOpcaoMeioA4Fired(ActionEvent ev) {
+        String fileName = "relatorios/receitas/JReceitaMeioA4.jasper";
         PrintReceita(fileName);
     }
     @FXML
@@ -497,12 +497,12 @@ public class ReceitaController extends Controller {
         miOpcaoCarta.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         miOpcaoA4.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         miOpcaoGaveta.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
-        miOpcaoPrateleira.setDisable(true);  //((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
+        miOpcaoMeioA4.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         miOpcaoReduzido.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         miOpcaoCartaT.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         miOpcaoA4T.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         miOpcaoGavetaT.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
-        miOpcaoPrateleiraT.setDisable(true);  //((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
+        miOpcaoMeioA4T.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         miOpcaoReduzidoT.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         
         btnNovoMedicamento.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
