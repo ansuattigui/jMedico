@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receita" pageWidth="419" pageHeight="595" columnWidth="383" leftMargin="22" rightMargin="14" topMargin="56" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receita" pageWidth="419" pageHeight="595" columnWidth="383" leftMargin="22" rightMargin="14" topMargin="42" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="544"/>
+	<property name="ireport.y" value="272"/>
 	<parameter name="idReceita" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -59,31 +59,31 @@
 	<background>
 		<band height="511" splitType="Stretch">
 			<line>
-				<reportElement x="115" y="46" width="1" height="440" uuid="295d0edd-cab3-4684-9c0a-4e7ff0eccfa9"/>
+				<reportElement x="115" y="39" width="1" height="450" uuid="295d0edd-cab3-4684-9c0a-4e7ff0eccfa9"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<image hAlign="Center" vAlign="Top">
-				<reportElement x="7" y="0" width="100" height="91" uuid="77e23b40-5490-4472-8cd4-786e7d528401"/>
+				<reportElement x="10" y="0" width="90" height="40" uuid="77e23b40-5490-4472-8cd4-786e7d528401"/>
 				<imageExpression><![CDATA[$P{logoCabecalho}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="2" y="113" width="110" height="20" uuid="3d23d98f-1346-401d-8518-3453df1a87e6"/>
+				<reportElement x="0" y="56" width="110" height="16" uuid="3d23d98f-1346-401d-8518-3453df1a87e6"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Century Gothic" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[j. horácio t. de carvalho]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="2" y="133" width="110" height="20" uuid="7e72e765-807a-4cc8-bba1-ce675863d86f"/>
+				<reportElement x="0" y="72" width="110" height="16" uuid="7e72e765-807a-4cc8-bba1-ce675863d86f"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[crm: 52.21.543-3]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="2" y="93" width="110" height="20" uuid="73b1be57-4d34-4de4-8c43-80e9d4664633"/>
+				<reportElement x="0" y="41" width="110" height="16" uuid="73b1be57-4d34-4de4-8c43-80e9d4664633"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Tw Cen MT Condensed" size="11" isBold="true"/>
 				</textElement>
