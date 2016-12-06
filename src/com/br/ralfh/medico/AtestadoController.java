@@ -73,12 +73,12 @@ public class AtestadoController extends Controller {
     @FXML public MenuItem miAtestadoCarta;
     @FXML public MenuItem miAtestadoA4;
     @FXML public MenuItem miAtestadoGaveta;
-    @FXML public MenuItem miAtestadoPrateleira;
+    @FXML public MenuItem miAtestadoMeioA4;
     @FXML public MenuItem miAtestadoReduzido;
     @FXML public MenuItem miAtestadoCartaT;
     @FXML public MenuItem miAtestadoA4T;
     @FXML public MenuItem miAtestadoGavetaT;
-    @FXML public MenuItem miAtestadoPrateleiraT;
+    @FXML public MenuItem miAtestadoMeioA4T;
     @FXML public MenuItem miAtestadoReduzidoT;
 
     
@@ -186,8 +186,8 @@ public class AtestadoController extends Controller {
         PrintAtestado(fileName);
     }
     @FXML
-    public void miAtestadoPrateleiraFired(ActionEvent ev) {
-        String fileName = "relatorios/atestados/AtestadosP.jasper";
+    public void miAtestadoMeioA4Fired(ActionEvent ev) {
+        String fileName = "relatorios/atestados/JAtestadosMeioA4.jasper";
         PrintAtestado(fileName);
     }
     @FXML
@@ -445,11 +445,11 @@ public class AtestadoController extends Controller {
         miAtestadoA4.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoGaveta.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoReduzido.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoPrateleira.setDisable(true);    //(status!=StatusBtn.SHOWING);
+        miAtestadoMeioA4.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoCartaT.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoA4T.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoGavetaT.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoPrateleiraT.setDisable(true);   //(status!=StatusBtn.SHOWING);
+        miAtestadoMeioA4T.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoReduzidoT.setDisable(status!=StatusBtn.SHOWING);
     }
     
