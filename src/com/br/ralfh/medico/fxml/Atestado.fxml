@@ -48,7 +48,7 @@
                         <MenuItem fx:id="miAtestadoCartaT" mnemonicParsing="false" onAction="#miAtestadoCartaFired" text="Papel Carta" />
                         <MenuItem fx:id="miAtestadoA4T" mnemonicParsing="false" onAction="#miAtestadoA4Fired" text="Papel A4" />
                         <MenuItem fx:id="miAtestadoGavetaT" mnemonicParsing="false" onAction="#miAtestadoGavetaFired" text="Papel Gaveta" />
-                        <MenuItem fx:id="miAtestadoPrateleiraT" mnemonicParsing="false" onAction="#miAtestadoPrateleiraFired" text="Papel Prateleira" />
+                        <MenuItem fx:id="miAtestadoMeioA4T" mnemonicParsing="false" onAction="#miAtestadoMeioA4Fired" text="Papel 1/2 A4" />
                         <MenuItem fx:id="miAtestadoReduzidoT" mnemonicParsing="false" onAction="#miAtestadoReduzidoFired" text="Papel Reduzido" />
                      </items>
                   </Menu>
@@ -132,7 +132,7 @@
                         <MenuItem fx:id="miAtestadoCarta" mnemonicParsing="false" onAction="#miAtestadoCartaFired" text="Papel Carta" />
                         <MenuItem fx:id="miAtestadoA4" mnemonicParsing="false" onAction="#miAtestadoA4Fired" text="Papel A4" />
                         <MenuItem fx:id="miAtestadoGaveta" mnemonicParsing="false" onAction="#miAtestadoGavetaFired" text="Papel Gaveta" />
-                        <MenuItem fx:id="miAtestadoPrateleira" mnemonicParsing="false" onAction="#miAtestadoPrateleiraFired" text="Papel Prateleira" />
+                        <MenuItem fx:id="miAtestadoMeioA4" mnemonicParsing="false" onAction="#miAtestadoMeioA4Fired" text="Papel 1/2 A4" />
                         <MenuItem fx:id="miAtestadoReduzido" mnemonicParsing="false" onAction="#miAtestadoReduzidoFired" text="Papel Reduzido" />
                      </items>
                   </SplitMenuButton>

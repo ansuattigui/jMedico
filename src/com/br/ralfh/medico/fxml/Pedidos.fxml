@@ -57,7 +57,7 @@
                       <MenuItem fx:id="miOpcaoCartaT" mnemonicParsing="false" onAction="#miOpcaoCartaFired" text="Papel Carta" />
                         <MenuItem fx:id="miOpcaoA4T" mnemonicParsing="false" onAction="#miOpcaoA4Fired" text="Papel A4" />
                         <MenuItem fx:id="miOpcaoGavetaT" mnemonicParsing="false" onAction="#miOpcaoGavetaFired" text="Papel Gaveta" />
-                        <MenuItem fx:id="miOpcaoPrateleiraT" mnemonicParsing="false" onAction="#miOpcaoPrateleiraFired" text="Papel Prateleira" />
+                        <MenuItem fx:id="miOpcaoMeioA4T" mnemonicParsing="false" onAction="#miOpcaoMeioA4Fired" text="Papel 1/2 A4" />
                         <MenuItem fx:id="miOpcaoReduzidoT" mnemonicParsing="false" onAction="#miOpcaoReduzidoFired" text="Papel Reduzido" />
                     </items>
                   </Menu>
@@ -141,7 +141,7 @@
                         <MenuItem fx:id="miOpcaoCarta" mnemonicParsing="false" onAction="#miOpcaoCartaFired" text="Papel Carta" />
                         <MenuItem fx:id="miOpcaoA4" mnemonicParsing="false" onAction="#miOpcaoA4Fired" text="Papel A4" />
                         <MenuItem fx:id="miOpcaoGaveta" mnemonicParsing="false" onAction="#miOpcaoGavetaFired" text="Papel Gaveta" />
-                        <MenuItem fx:id="miOpcaoPrateleira" mnemonicParsing="false" onAction="#miOpcaoPrateleiraFired" text="Papel Prateleira" />
+                        <MenuItem fx:id="miOpcaoMeioA4" mnemonicParsing="false" onAction="#miOpcaoMeioA4Fired" text="Papel 1/2 A4" />
                         <MenuItem fx:id="miOpcaoReduzido" mnemonicParsing="false" onAction="#miOpcaoReduzidoFired" text="Papel Reduzido" />
                      </items>
                   </SplitMenuButton>

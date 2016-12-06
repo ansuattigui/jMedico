@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Atestado" pageWidth="595" pageHeight="842" columnWidth="545" leftMargin="22" rightMargin="28" topMargin="56" bottomMargin="20" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Atestado" pageWidth="419" pageHeight="595" columnWidth="383" leftMargin="22" rightMargin="14" topMargin="42" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="idAtestado" class="java.lang.Integer"/>
-	<parameter name="dataAtestado" class="java.lang.String"/>
-	<parameter name="logoCabecalho" class="java.awt.Image"/>
+	<parameter name="idAtestado" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nomePaciente" class="java.lang.String"/>
+	<parameter name="dataAtestado" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="logoCabecalho" class="java.awt.Image" isForPrompting="false"/>
 	<parameter name="logoRodape" class="java.awt.Image"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -35,50 +38,50 @@ WHERE
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
 	</variable>
 	<background>
-		<band height="700" splitType="Stretch">
+		<band height="511" splitType="Stretch">
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="180" y="55" width="1" height="645" uuid="9402ee87-4dd7-47b9-8914-d1e0d4dc0c7d"/>
+				<reportElement x="115" y="39" width="1" height="450" uuid="295d0edd-cab3-4684-9c0a-4e7ff0eccfa9"/>
 				<graphicElement>
-					<pen lineWidth="1.25" lineStyle="Dotted"/>
+					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
+			<image hAlign="Center" vAlign="Top">
+				<reportElement x="10" y="0" width="90" height="40" uuid="77e23b40-5490-4472-8cd4-786e7d528401"/>
+				<imageExpression><![CDATA[$P{logoCabecalho}]]></imageExpression>
+			</image>
 			<staticText>
-				<reportElement x="9" y="93" width="160" height="20" uuid="541d9b4b-6dfd-4fec-a48b-9e3b886ef988"/>
+				<reportElement x="0" y="56" width="110" height="16" uuid="3d23d98f-1346-401d-8518-3453df1a87e6"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Tw Cen MT Condensed" size="15" isBold="true"/>
-				</textElement>
-				<text><![CDATA[clínica médica e cardiológica]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="9" y="110" width="160" height="20" uuid="b536eb2e-2bc1-426e-a01d-cca6ce3073b6"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="12" isBold="true"/>
+					<font fontName="Century Gothic" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[j. horácio t. de carvalho]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="128" width="160" height="20" uuid="601a5f34-c06d-4628-9c18-7f9395100ac5"/>
+				<reportElement x="0" y="72" width="110" height="16" uuid="7e72e765-807a-4cc8-bba1-ce675863d86f"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[crm: 52.21.543-3]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="0" y="41" width="110" height="16" uuid="73b1be57-4d34-4de4-8c43-80e9d4664633"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[clínica médica e cardiológica]]></text>
+			</staticText>
 			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="2" y="0" width="180" height="91" uuid="70472e58-9d47-4f1d-8d97-4c7c60a8fadd"/>
-				<imageExpression><![CDATA[$P{logoCabecalho}]]></imageExpression>
-			</image>
-			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="33" y="616" width="90" height="79" uuid="35e70107-d223-4e0a-955d-f184784069ae"/>
+				<reportElement x="19" y="424" width="70" height="60" uuid="5aa6c704-9eb7-40cf-84f7-442216a325bb"/>
 				<imageExpression><![CDATA[$P{logoRodape}]]></imageExpression>
 			</image>
 		</band>
 	</background>
 	<title>
-		<band height="130">
+		<band height="65">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="197" y="108" width="348" height="22" isRemoveLineWhenBlank="true" uuid="4b503a0f-ffc5-42fc-b356-8d172687689f"/>
+				<reportElement stretchType="RelativeToBandHeight" x="119" y="43" width="264" height="22" isRemoveLineWhenBlank="true" uuid="ff769faf-fa12-4880-880f-5032381d2116"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="10" isBold="true"/>
 					<paragraph firstLineIndent="15"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tab_atestados_paciente_cabecalho}]]></textFieldExpression>
@@ -86,11 +89,11 @@ WHERE
 		</band>
 	</title>
 	<detail>
-		<band height="32" splitType="Stretch">
+		<band height="26" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="">
-				<reportElement stretchType="RelativeToBandHeight" x="197" y="12" width="348" height="20" uuid="9b4f08c9-bd88-4f22-ad60-218bb97ac002"/>
+				<reportElement stretchType="RelativeToBandHeight" x="119" y="6" width="264" height="20" uuid="20d423b6-57c8-4271-962b-f0b0dca542f8"/>
 				<textElement verticalAlignment="Middle" markup="html">
-					<font fontName="Arial" size="12"/>
+					<font fontName="Arial" size="10"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tab_atestados_paciente_atestado}]]></textFieldExpression>
@@ -100,9 +103,9 @@ WHERE
 	<columnFooter>
 		<band height="20">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="197" y="0" width="348" height="20" isRemoveLineWhenBlank="true" uuid="fd5c8200-c82e-4fff-ac3d-524d2b7351ce"/>
+				<reportElement stretchType="RelativeToBandHeight" x="119" y="0" width="264" height="20" isRemoveLineWhenBlank="true" uuid="8ec04294-6150-4e66-b750-02ff3ceaff40"/>
 				<textElement verticalAlignment="Middle" markup="html">
-					<font fontName="Arial" size="12"/>
+					<font fontName="Arial" size="10"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tab_atestados_paciente_rodape}]]></textFieldExpression>
@@ -112,9 +115,9 @@ WHERE
 	<pageFooter>
 		<band height="37">
 			<staticText>
-				<reportElement x="0" y="0" width="545" height="37" uuid="52a55ac4-3023-4192-8252-3cb2d2ce588f"/>
+				<reportElement x="0" y="0" width="383" height="37" uuid="26e1350e-d142-42e6-bea4-42e1e98db40a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Arial" size="8" isBold="true"/>
 					<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
 				</textElement>
 				<text><![CDATA[Consultório: Estrada de Jacarepaguá, 7709 - Grupo 409/411
@@ -123,39 +126,42 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="132" splitType="Stretch">
-			<textField pattern="">
-				<reportElement x="227" y="23" width="288" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
+		<band height="100" splitType="Stretch">
+			<textField>
+				<reportElement x="99" y="2" width="264" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12"/>
+					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Rio de Janeiro, "+$P{dataAtestado}]]></textFieldExpression>
 			</textField>
-			<elementGroup/>
 			<elementGroup>
-				<line>
-					<reportElement x="291" y="67" width="161" height="1" uuid="8674fe38-3a76-4ee5-af1c-ceb022946128"/>
-				</line>
 				<staticText>
-					<reportElement x="291" y="106" width="161" height="20" uuid="8d1095c2-1094-4e4c-9544-59c59b64a152"/>
+					<reportElement x="187" y="83" width="100" height="14" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12" isBold="true"/>
+						<font fontName="Times New Roman" size="10" isBold="true"/>
 					</textElement>
-					<text><![CDATA[CRM 52.21.543-3]]></text>
+					<text><![CDATA[CRM 5221543-3]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="291" y="90" width="161" height="20" uuid="44029f90-c52d-452c-8f91-3ae2da8a6bdf"/>
+					<reportElement x="165" y="55" width="144" height="14" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Médico]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="291" y="73" width="161" height="20" uuid="91025c1a-92c6-422a-a1dc-80536bbb6000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="12" isBold="true"/>
+						<font fontName="Times New Roman" size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="187" y="69" width="100" height="14" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Médico]]></text>
 				</staticText>
 			</elementGroup>
 		</band>

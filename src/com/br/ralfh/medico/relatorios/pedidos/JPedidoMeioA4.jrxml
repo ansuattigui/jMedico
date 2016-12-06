@@ -1,57 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receita" pageWidth="419" pageHeight="595" columnWidth="383" leftMargin="22" rightMargin="14" topMargin="42" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pedido" pageWidth="419" pageHeight="595" columnWidth="383" leftMargin="22" rightMargin="14" topMargin="42" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="idReceita" class="java.lang.Integer">
+	<parameter name="idPedido" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="nomePaciente" class="java.lang.String"/>
-	<parameter name="dataReceita" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="dataPedido" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="logoCabecalho" class="java.awt.Image" isForPrompting="false"/>
 	<parameter name="logoRodape" class="java.awt.Image"/>
+	<parameter name="indicacaoClinica" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select * from prescricao where receita_id = $P{idReceita} order by medicamento, viaAdmin]]>
+		<![CDATA[SELECT
+     exame.`exame` AS exame_exame,
+     exame.`material` AS exame_material
+FROM
+     `exame` exame
+WHERE
+     pedido_id = $P{idPedido}
+ORDER BY
+     exame.material, exame.exame]]>
 	</queryString>
-	<field name="id" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="aplicacao" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="medicamento" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="modoUso" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="quantidade" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="receita_id" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="posologia" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="viaAdmin" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="exame_exame" class="java.lang.String"/>
+	<field name="exame_material" class="java.lang.String"/>
 	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
 	</variable>
-	<group name="viaAdmin">
-		<groupExpression><![CDATA[$F{viaAdmin}]]></groupExpression>
+	<group name="material">
+		<groupExpression><![CDATA[$F{exame_material}]]></groupExpression>
 		<groupHeader>
-			<band height="29">
+			<band height="20">
 				<textField>
-					<reportElement x="119" y="9" width="264" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
+					<reportElement x="119" y="4" width="264" height="16" uuid="894e2cb3-80f4-4057-bcde-5e2fb856539d"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isItalic="false" isUnderline="true"/>
 						<paragraph leftIndent="5"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{viaAdmin}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{exame_material}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -96,34 +83,34 @@
 		</band>
 	</background>
 	<title>
-		<band height="44">
+		<band height="65">
 			<textField>
-				<reportElement x="119" y="21" width="264" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
+				<reportElement x="119" y="21" width="264" height="16" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="119" y="49" width="264" height="16" uuid="65986df7-02e3-4e5b-9807-ee0ed08d929c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<detail>
-		<band height="40" splitType="Stretch">
+		<band height="16" splitType="Stretch">
 			<textField>
-				<reportElement x="119" y="0" width="264" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
+				<reportElement x="119" y="0" width="264" height="16" uuid="14edf13a-b0de-4cd1-9962-ca45b67974d8"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{row_NUMBER}+") "+$F{medicamento}+" __________ "+$F{quantidade}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="119" y="21" width="264" height="18" isRemoveLineWhenBlank="true" uuid="a6fc66b2-8b0f-40e6-ac2e-12a90ce4ace1"/>
-				<textElement verticalAlignment="Top">
-					<font size="10" isItalic="true"/>
-					<paragraph leftIndent="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{posologia}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{row_NUMBER}+") "+$F{exame_exame}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -147,7 +134,7 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Rio de Janeiro, "+$P{dataReceita}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Rio de Janeiro, "+$P{dataPedido}]]></textFieldExpression>
 			</textField>
 			<elementGroup>
 				<staticText>
