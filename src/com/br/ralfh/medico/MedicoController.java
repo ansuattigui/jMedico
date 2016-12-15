@@ -294,6 +294,15 @@ public class MedicoController extends Controller {
         medico.showAndWait();        
     }
     
+    @FXML
+    public void btnAtestadoNaoPacienteFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/AtestadoNaoPaciente.fxml";
+        StageStyle fxmlStyle = StageStyle.UTILITY;        
+        GUIFactory atestados = new GUIFactory(fxmlGUI,null,fxmlStyle,this.getStage());
+        atestados.showAndWait();
+    }
+    
+    
     /**
      * @return the connFact
      */

@@ -117,7 +117,7 @@
 <children>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 <children>
-                              <HBox spacing="4.0">
+                              <HBox spacing="30.0">
                                  <children>
                                     <VBox fillWidth="false" spacing="4.0">
 <children>
@@ -138,12 +138,25 @@
                                           </HBox>
 </children>
 </VBox>
-                                    <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                                                      <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                                                         <children>
+                                                            <Label text="Paciente desde" />
+                                                            <DateField fx:id="dataPrimConsulta" alignment="CENTER" prefWidth="120.0" promptText="dd/MM/yyyy" />
+                                                         </children>
+                                                      </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="60.0" spacing="4.0">
+                                 <VBox.margin>
+                                    <Insets top="2.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <VBox prefHeight="50.0" spacing="4.0">
 <children>
 <Label text="Nome" />
                                           <HBox spacing="2.0">
 <children>
-<TextField fx:id="nomePaciente" prefWidth="300.0" />
+<TextField fx:id="nomePaciente" prefWidth="410.0" />
                                                 <Button fx:id="btnProcNome" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnProcNomeFired" styleClass="botaopq" text="Button" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 <graphic>
 <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
@@ -247,19 +260,6 @@
 </VBox>
                                  </children>
                               </HBox>
-                              <HBox layoutX="10.0" layoutY="60.0" spacing="4.0">
-                                 <children>
-                                                      <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
-                                                         <children>
-                                                            <Label text="Paciente desde" />
-                                                            <DateField fx:id="dataPrimConsulta" alignment="CENTER" promptText="dd/MM/yyyy" />
-                                                         </children>
-                                                      </VBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets top="2.0" />
-                                 </VBox.margin>
-                              </HBox>
 </children>
 <HBox.margin>
 <Insets />
@@ -309,7 +309,7 @@
       <content>
         <AnchorPane>
 <children>
-<VBox alignment="TOP_CENTER" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 <children>
                                                 <HBox spacing="4.0">
                                                    <children>

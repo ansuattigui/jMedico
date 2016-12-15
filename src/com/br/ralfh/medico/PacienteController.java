@@ -33,6 +33,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -428,6 +430,7 @@ public class PacienteController extends Controller {
             Logger.getLogger(PacienteController.class.getName()).log(Level.SEVERE, null, ex);
         }      
     }
+
     
     @FXML
     public void btnReceitasFired(ActionEvent event){
@@ -707,7 +710,8 @@ public class PacienteController extends Controller {
         this.emailPaciente.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
 //        this.convPaciente.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         this.matConvPaciente.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));              
-        this.indicacao.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));              
+        this.indicacao.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));     
+        this.dataPrimConsulta.setEditable(false);
         
     }
     
@@ -721,7 +725,8 @@ public class PacienteController extends Controller {
         btnFichaMedica.setDisable((status!=StatusBtn.SHOWING) | (!perfilUsuario.getTipoUsuario().equals("Medico"))) ;
         btnAtestados.setDisable((status!=StatusBtn.SHOWING) | (!perfilUsuario.getTipoUsuario().equals("Medico")));
         btnReceitas.setDisable((status!=StatusBtn.SHOWING) | (!perfilUsuario.getTipoUsuario().equals("Medico")));
-        btnRecibos.setDisable((status!=StatusBtn.SHOWING));        
+        btnRecibos.setDisable((status!=StatusBtn.SHOWING));       
+        btnPedidos.setDisable((status!=StatusBtn.SHOWING) | (!perfilUsuario.getTipoUsuario().equals("Medico"))) ;
         
         btnProcurar.setDisable(status!=StatusBtn.SHOWING);
         btnProcCodAnt.setDisable(status!=StatusBtn.IDLE);
