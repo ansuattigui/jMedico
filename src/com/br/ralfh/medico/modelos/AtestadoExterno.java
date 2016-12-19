@@ -7,13 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity @Table(name = "tab_atestados_nao_pacientes", schema = "docplus")
-public class AtestadoNaoPaciente implements Serializable {    
+public class AtestadoExterno implements Serializable {    
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IDAtestado")
@@ -31,7 +29,7 @@ public class AtestadoNaoPaciente implements Serializable {
     @Column(name = "rodape")
     private String rodape;
     
-    public AtestadoNaoPaciente() {
+    public AtestadoExterno() {
         id = -1;
     }
 

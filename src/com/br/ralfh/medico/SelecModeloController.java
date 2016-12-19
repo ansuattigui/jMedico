@@ -4,8 +4,6 @@ import com.br.ralfh.medico.modelos.ModeloAtestado;
 import com.br.ralfh.medico.modelos.ModelosAtestados;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -14,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.web.WebView;
 
 /**
  * FXML Controller class

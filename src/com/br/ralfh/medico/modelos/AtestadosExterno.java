@@ -15,12 +15,12 @@ import javax.persistence.TypedQuery;
  *
  * @author Ralfh
  */
-public class AtestadosNaoPaciente {
+public class AtestadosExterno {
     
-    public AtestadosNaoPaciente() {
+    public AtestadosExterno() {
     }
 
-    public static Boolean novoAtestado(AtestadoNaoPaciente atestado) {
+    public static Boolean novoAtestado(AtestadoExterno atestado) {
         Boolean resultado = Boolean.FALSE;
         try {
             EntityManager manager = JPAUtil.getEntityManager();
@@ -35,7 +35,7 @@ public class AtestadosNaoPaciente {
         return resultado;
     }
 
-    public static Boolean atualizaAtestado(AtestadoNaoPaciente atestado) {
+    public static Boolean atualizaAtestado(AtestadoExterno atestado) {
         Boolean resultado = Boolean.FALSE;
         try {
             EntityManager manager = JPAUtil.getEntityManager();
@@ -52,12 +52,12 @@ public class AtestadosNaoPaciente {
     }
     
     
-    public static Boolean excluiAtestado(AtestadoNaoPaciente atestado) {
+    public static Boolean excluiAtestado(AtestadoExterno atestado) {
         Boolean resultado = Boolean.FALSE;
         try {
             EntityManager manager = JPAUtil.getEntityManager();
             manager.getTransaction().begin();  
-            manager.remove(manager.getReference(AtestadoNaoPaciente.class, atestado.getId()));  
+            manager.remove(manager.getReference(AtestadoExterno.class, atestado.getId()));  
             manager.getTransaction().commit();
             manager.close();
             resultado = Boolean.TRUE;
@@ -69,20 +69,31 @@ public class AtestadosNaoPaciente {
         }
     }    
     
-    
-    public static ArrayList<AtestadoNaoPaciente> getLista(String paciente) {
+    public static ArrayList<AtestadoExterno> getLista() {
         EntityManager manager = JPAUtil.getEntityManager();
-        String jpql = "select atnp from AtestadoNaoPaciente atnp where atnp.paciente = :parmPaciente order by at.data desc";
-        TypedQuery<AtestadoNaoPaciente> query = manager.createQuery(jpql,AtestadoNaoPaciente.class);
-        query.setParameter("parmPaciente", paciente);
+        String jpql = "select atex from AtestadoExterno atex order by atex.paciente,atex.data desc";
+        TypedQuery<AtestadoExterno> query = manager.createQuery(jpql,AtestadoExterno.class);
         ArrayList atestados = (ArrayList) query.getResultList();
         manager.close();                
         return atestados;                
     }
+    public static ObservableList<AtestadoExterno> getObsLista() {        
+        return FXCollections.observableArrayList(AtestadosExterno.getLista());
+    }    
     
+    
+    public static ArrayList<AtestadoExterno> getLista(String paciente) {
+        EntityManager manager = JPAUtil.getEntityManager();
+        String jpql = "select atnp from AtestadoNaoPaciente atnp where atnp.paciente = :parmPaciente order by at.data desc";
+        TypedQuery<AtestadoExterno> query = manager.createQuery(jpql,AtestadoExterno.class);
+        query.setParameter("parmPaciente", paciente);
+        ArrayList atestados = (ArrayList) query.getResultList();
+        manager.close();                
+        return atestados;                
+    }    
         
-    public static ObservableList<AtestadoNaoPaciente> getObsLista(String paciente) {        
-        return FXCollections.observableArrayList(AtestadosNaoPaciente.getLista(paciente));
+    public static ObservableList<AtestadoExterno> getObsLista(String paciente) {        
+        return FXCollections.observableArrayList(AtestadosExterno.getLista(paciente));
     }    
     
 }

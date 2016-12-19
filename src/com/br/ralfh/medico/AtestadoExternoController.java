@@ -3,8 +3,8 @@ package com.br.ralfh.medico;
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.jdbc.DataAccessRelatorios;
 import com.br.ralfh.medico.modelos.Atestado;
-import com.br.ralfh.medico.modelos.AtestadoNaoPaciente;
-import com.br.ralfh.medico.modelos.AtestadosNaoPaciente;
+import com.br.ralfh.medico.modelos.AtestadoExterno;
+import com.br.ralfh.medico.modelos.AtestadosExterno;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -35,18 +35,19 @@ import net.sf.jasperreports.engine.JRException;
  *
  * @author ralfh
  */
-public class AtestadoNaoPacienteController extends Controller {
+public class AtestadoExternoController extends Controller {
     
     private StatusBtn status;
 
-    private AtestadoNaoPaciente atestado;
-    private final SimpleObjectProperty<Atestado> sopAtestado;
+    private AtestadoExterno atestado;
+    private final SimpleObjectProperty<AtestadoExterno> sopAtestado;
 //    private final ObservableList<Atestado> sopAtestados;
     private final SimpleObjectProperty<String> sopPaciente;
 //    private Boolean getCloseModal;
     
     @FXML public Button btnNovoAtestado;
     @FXML public Button btnEditaAtestado;
+    @FXML public Button btnSelecTipoAtest;
 //    @FXML public Button btnExcluiAtestado;
     @FXML public Button btnConfirma;
     @FXML public Button btnCancela;
@@ -86,7 +87,7 @@ public class AtestadoNaoPacienteController extends Controller {
     @FXML public HTMLEditor htmlEditorCorpo;
     @FXML public HTMLEditor htmlEditorRodape;
     
-    public AtestadoNaoPacienteController() {   
+    public AtestadoExternoController() {   
         this.status = StatusBtn.IDLE;
         sopPaciente = new SimpleObjectProperty<>();
 //        sopAtestados = FXCollections.observableArrayList(); 
@@ -111,45 +112,68 @@ public class AtestadoNaoPacienteController extends Controller {
         this.sopPaciente.set(paciente);
 //        setAtestados(Atestados.getObsLista(paciente));
     }
-
-/*    
-    public void setAtestados(ObservableList<Atestado> atestados) {
-//        limpaAtestado();
-        this.sopAtestados.setAll(atestados);
-    }
-*/
-
+    
     @FXML
-    public void btnNovoAtestadoFired(ActionEvent event) {        
-//        tpAtestado.getSelectionModel().select(1);
-        limpaAtestado();
-        String fxmlGUI = "fxml/SelecModeloAtestado.fxml";
-        String titleGUI = "Selecione um modelo de atestados";
+    public void btnProcurarFired(ActionEvent event) {
+        String fxmlGUI = "fxml/SelecAtestadoExterno.fxml";
+        String titleGUI = "Selecione um atestados de paciente externo";
         StageStyle fxmlStyle = StageStyle.UTILITY;
         GUIFactory atestados;   
-        SelecModeloController controller = null;
+        SelecAtestadoExternoController controller = null;
         try {
             atestados = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
-            controller = (SelecModeloController) atestados.getController();
+            controller = (SelecAtestadoExternoController) atestados.getController();
             atestados.showAndWait(); 
 
             if (controller.getCloseModal()) {  
-                dataAtestado.setValue(Util.dHoje());
-                nomeAtestado.setText(controller.getNomeModelo());
-                htmlEditorCabecalho.setHtmlText(controller.getCabecalhoModelo());
-//                htmlEditorCorpo.setHtmlText(trataTagsAtestado(controller.getCorpoModelo()));
-                htmlEditorCorpo.setHtmlText(controller.getCorpoModelo());
-                htmlEditorRodape.setHtmlText(controller.getRodapeModelo());
+                atestado = controller.getAtestado();
+                sopAtestado.set(atestado);
             } else {
             }
         } catch (IOException ex) {
             Logger.getLogger(PacienteController.class.getName()).log(Level.SEVERE, null, ex);
         }      
-        
+    }
+    
+    
+    @FXML
+    public void btnNovoAtestadoFired(ActionEvent event) {                
         status = StatusBtn.INSERTING;
         setButtons();
-        habilEdicaoFired();        
+        habilEdicaoFired();    
+//        limpaAtestado();
     }
+    
+    @FXML 
+    public void btnSelecTipoAtestFired(ActionEvent event) {
+        if (nomePaciente.getText().isEmpty()) {
+            ShowDialog("EX", "Preencha o nome do paciente", null,this.getStage());
+        } else {
+            String fxmlGUI = "fxml/SelecModeloAtestado.fxml";
+            String titleGUI = "Selecione um modelo de atestados";
+            StageStyle fxmlStyle = StageStyle.UTILITY;
+            GUIFactory atestados;   
+            SelecModeloController controller = null;
+            try {
+                atestados = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
+                controller = (SelecModeloController) atestados.getController();
+                atestados.showAndWait(); 
+
+                if (controller.getCloseModal()) {  
+                    dataAtestado.setValue(Util.dHoje());
+                    nomeAtestado.setText(controller.getNomeModelo());
+                    htmlEditorCabecalho.setHtmlText(controller.getCabecalhoModelo());
+                    htmlEditorCorpo.setHtmlText(trataTagsAtestado(controller.getCorpoModelo()));
+//                    htmlEditorCorpo.setHtmlText(controller.getCorpoModelo());
+                    htmlEditorRodape.setHtmlText(controller.getRodapeModelo());
+                } else {
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(PacienteController.class.getName()).log(Level.SEVERE, null, ex);
+            }      
+        }
+    }
+    
     
     @FXML
     public void btnEditaAtestadoFired(ActionEvent event) {
@@ -177,7 +201,7 @@ public class AtestadoNaoPacienteController extends Controller {
     }
     @FXML
     public void miAtestadoA4Fired(ActionEvent ev) {
-        String fileName = "relatorios/atestados/AtestadosA4.jasper";
+        String fileName = "relatorios/atestados/AtestadosExternosA4.jasper";
         PrintAtestado(fileName);
     }
     @FXML
@@ -224,10 +248,10 @@ public class AtestadoNaoPacienteController extends Controller {
     
     public void btnConfirmaFired(ActionEvent event) {
         if (status==StatusBtn.INSERTING) {
-            this.atestado = new AtestadoNaoPaciente();
+            this.atestado = new AtestadoExterno();
             this.atestado.setData(Util.dHoje());
             if (preencheAtestado(this.atestado)) {                        
-                if (AtestadosNaoPaciente.novoAtestado(atestado)) {
+                if (AtestadosExterno.novoAtestado(atestado)) {
                     ShowDialog("S", "Atestado criado com sucesso", null,this.getStage());                    
                     status = StatusBtn.SHOWING;
                 } else {
@@ -237,7 +261,7 @@ public class AtestadoNaoPacienteController extends Controller {
             } else return;
         } else {
             if (preencheAtestado(this.atestado)) {
-                if (AtestadosNaoPaciente.atualizaAtestado(this.atestado)) {
+                if (AtestadosExterno.atualizaAtestado(this.atestado)) {
                     ShowDialog("S", "Atestado atualizado com sucesso", null,this.getStage());                    
                     status = StatusBtn.SHOWING;
                   } else {
@@ -246,7 +270,7 @@ public class AtestadoNaoPacienteController extends Controller {
             } else return;
         }
 //        status = StatusBtn.SHOWING;
-//        setAtestados(AtestadosNaoPaciente.getObsLista(this.sopPaciente.get()));
+//        setAtestados(AtestadosExterno.getObsLista(this.sopPaciente.get()));
         setButtons();
         habilEdicaoFired();
     }
@@ -267,12 +291,12 @@ public class AtestadoNaoPacienteController extends Controller {
     }
     
     public void btnDuplicarFired(ActionEvent ae) {
-        AtestadoNaoPaciente clone = new AtestadoNaoPaciente();
+        AtestadoExterno clone = new AtestadoExterno();
         clone.setData(Util.dHoje());
         if (preencheAtestado(clone)) {        
-            AtestadosNaoPaciente.novoAtestado(clone);
+            AtestadosExterno.novoAtestado(clone);
         } else return;
-//        setAtestados(AtestadosNaoPaciente.getObsLista(this.sopPaciente.get()));
+//        setAtestados(AtestadosExterno.getObsLista(this.sopPaciente.get()));
         setButtons();
         habilEdicaoFired();
     }
@@ -339,7 +363,8 @@ public class AtestadoNaoPacienteController extends Controller {
     
     private void mostraAtestado() {
         dataAtestado.setValue(atestado.getData());
-        nomeAtestado.setText(atestado.getTipo());
+        nomePaciente.setText(atestado.getPaciente());
+        nomeAtestado.setText(atestado.getTipo());        
         htmlEditorCabecalho.setHtmlText(atestado.getCabecalho());
         htmlEditorCorpo.setHtmlText(atestado.getCorpo());
         htmlEditorRodape.setHtmlText(atestado.getRodape());
@@ -355,7 +380,7 @@ public class AtestadoNaoPacienteController extends Controller {
     }
     
     
-    private Boolean preencheAtestado(AtestadoNaoPaciente atest) {        
+    private Boolean preencheAtestado(AtestadoExterno atest) {        
         Boolean resultado = Boolean.FALSE;
         atest.setData(dataAtestado.getValue());
         atest.setTipo(nomeAtestado.getText());
@@ -389,48 +414,6 @@ public class AtestadoNaoPacienteController extends Controller {
         }
         return resultado;
     }
-    
-/*    
-    public void nomepacFired(ActionEvent ae) {
-        String html = htmlEditorCorpo.getHtmlText();
-        String texto = new HtmlToPlainText().getPlainText(Jsoup.parse(html));
-        texto = texto.concat("@@nomePaciente@@");
-//        String htmlNew = Jsoup.parse(texto).html();
-        htmlEditorCorpo.setHtmlText(texto);
-    }
-    
-    public void nascpacFired(ActionEvent ae) {
-        String html = htmlEditorCorpo.getHtmlText();
-        String texto = new HtmlToPlainText().getPlainText(Jsoup.parse(html));
-        texto = texto.concat("@@nascimentoPaciente@@");
-        String htmlNew = Jsoup.parse(texto).html();
-        htmlEditorCorpo.setHtmlText(htmlNew);
-    }
-
-    public void identpacFired(ActionEvent ae) {
-        String html = htmlEditorCorpo.getHtmlText();
-        String texto = new HtmlToPlainText().getPlainText(Jsoup.parse(html));
-        texto = texto.concat("@@identidadePaciente@@");
-        String htmlNew = Jsoup.parse(texto).html();
-        htmlEditorCorpo.setHtmlText(htmlNew);
-    }
-
-    public void cpfpacFired(ActionEvent ae) {
-        String html = htmlEditorCorpo.getHtmlText();
-        String texto = new HtmlToPlainText().getPlainText(Jsoup.parse(html));
-        texto = texto.concat("@@cpfPaciente@@");
-        String htmlNew = Jsoup.parse(texto).html();
-        htmlEditorCorpo.setHtmlText(htmlNew);
-    }
-
-    public void datapacFired(ActionEvent ae) {
-        String html = htmlEditorCorpo.getHtmlText();
-        String texto = new HtmlToPlainText().getPlainText(Jsoup.parse(html));
-        texto = texto.concat("@@datadodiaPaciente@@");
-        String htmlNew = Jsoup.parse(texto).html();
-        htmlEditorCorpo.setHtmlText(htmlNew);
-    }
-*/
 
     public void habilEdicaoFired() {
         nomePaciente.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
@@ -443,7 +426,8 @@ public class AtestadoNaoPacienteController extends Controller {
     private void setButtons() {
         btnNovoAtestado.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
         btnEditaAtestado.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
-        btnProcurar.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
+        btnProcurar.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
+        btnSelecTipoAtest.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
 //        btnExcluiAtestado.setDisable(status!=StatusBtn.SHOWING);
         btnConfirma.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         btnCancela.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
@@ -453,23 +437,23 @@ public class AtestadoNaoPacienteController extends Controller {
 //        miExcluiAtestado.setDisable(status!=StatusBtn.SHOWING);
         miConfirma.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         miCancela.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
-        miAtestadoCarta.setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoCarta.setDisable(true);//   (status!=StatusBtn.SHOWING);
         miAtestadoA4.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoGaveta.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoReduzido.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoMeioA4.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoCartaT.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoA4T.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoGavetaT.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoMeioA4T.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoReduzidoT.setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoGaveta.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoReduzido.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoMeioA4.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoCartaT.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoA4T.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoGavetaT.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoMeioA4T.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoReduzidoT.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
     }
     
     @SuppressWarnings("empty-statement")
     private String trataTagsAtestado(String html) {
         
         if (html.contains("@@nomePaciente@@")) {
-            html = html.replace("@@nomePaciente@@", sopPaciente.get());
+            html = html.replace("@@nomePaciente@@", nomePaciente.getText());
         };
 
 /*        

@@ -71,6 +71,7 @@ public class MedicoController extends Controller {
     @FXML Button btnRecibos;
     @FXML Button btnUsuario;
     @FXML Button btnMedico;
+    @FXML Button btnAtestadoNaoPaciente;
     @FXML ImageView ivFundo;
     @FXML Line lineFundo;    
     @FXML StackPane spTitle;
@@ -95,6 +96,7 @@ public class MedicoController extends Controller {
         } 
         menuPrincipal.setExpandedPane(tpaneAgenda);
         configToolTips();
+        configBtns();
     }   
     
     
@@ -154,7 +156,7 @@ public class MedicoController extends Controller {
     }
     
     /** Configura os ToolTips dos botões da tela principal do sistema **/
-    public void configToolTips() {
+    private void configToolTips() {
         btnAgenda.setTooltip(new Tooltip("Acessar a Agenda do Médico"));
         btnModelosAtestado.setTooltip(new Tooltip("Configurar Modelos de Atestado Médico"));
         btnModelosRecibo.setTooltip(new Tooltip("Configurar Modelos de Recibo de Pagamento"));
@@ -167,6 +169,12 @@ public class MedicoController extends Controller {
         btnModos.setTooltip(new Tooltip("Cadastro de posologias"));
         btnPacientes.setTooltip(new Tooltip("Cadastro de Pacientes"));
     }
+    
+    private void configBtns() {
+        btnAtestadoNaoPaciente.setDisable((!perfilUsuario.getTipoUsuario().equals("Medico")));
+        
+    }
+
 
     /** Apresenta a tela de Login do Sistema **/
     private Usuario loginShow() throws IOException {
