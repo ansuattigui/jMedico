@@ -196,7 +196,7 @@ public class AtestadoExternoController extends Controller {
     
     @FXML
     public void miAtestadoCartaFired(ActionEvent ev) {
-        String fileName = "relatorios/atestados/AtestadosCarta.jasper";
+        String fileName = "relatorios/atestados/AtestadosExternosCarta.jasper";
         PrintAtestado(fileName);
     }
     @FXML
@@ -206,17 +206,17 @@ public class AtestadoExternoController extends Controller {
     }
     @FXML
     public void miAtestadoGavetaFired(ActionEvent ev) {
-        String fileName = "relatorios/atestados/AtestadosG.jasper";
+        String fileName = "relatorios/atestados/AtestadosExternosG.jasper";
         PrintAtestado(fileName);
     }
     @FXML
     public void miAtestadoMeioA4Fired(ActionEvent ev) {
-        String fileName = "relatorios/atestados/JAtestadosMeioA4.jasper";
+        String fileName = "relatorios/atestados/JAtestadosExternosMeioA4.jasper";
         PrintAtestado(fileName);
     }
     @FXML
     public void miAtestadoReduzidoFired(ActionEvent ev) {
-        String fileName = "relatorios/atestados/AtestadosReduz.jasper";
+        String fileName = "relatorios/atestados/AtestadosExternosReduz.jasper";
         PrintAtestado(fileName);
     }
     
@@ -437,16 +437,16 @@ public class AtestadoExternoController extends Controller {
 //        miExcluiAtestado.setDisable(status!=StatusBtn.SHOWING);
         miConfirma.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         miCancela.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
-        miAtestadoCarta.setDisable(true);//   (status!=StatusBtn.SHOWING);
+        miAtestadoCarta.setDisable(status!=StatusBtn.SHOWING);
         miAtestadoA4.setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoGaveta.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoReduzido.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoMeioA4.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoCartaT.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoA4T.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoGavetaT.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoMeioA4T.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
-        miAtestadoReduzidoT.setDisable(true);//setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoGaveta.setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoReduzido.setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoMeioA4.setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoCartaT.setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoA4T.setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoGavetaT.setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoMeioA4T.setDisable(status!=StatusBtn.SHOWING);
+        miAtestadoReduzidoT.setDisable(status!=StatusBtn.SHOWING);
     }
     
     @SuppressWarnings("empty-statement")
