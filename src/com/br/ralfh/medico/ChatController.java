@@ -2,58 +2,23 @@ package com.br.ralfh.medico;
 
 import com.br.ralfh.medico.chat.ChatClient;
 import com.br.ralfh.medico.chat.ChatServer;
-import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
-import com.br.ralfh.medico.jdbc.DataAccessRelatorios;
-import com.br.ralfh.medico.modelos.Grupo;
-import com.br.ralfh.medico.modelos.Medicamento;
-import com.br.ralfh.medico.modelos.Medicamentos;
-import com.br.ralfh.medico.modelos.Paciente;
-import com.br.ralfh.medico.modelos.Posologia;
-import com.br.ralfh.medico.modelos.Posologias;
-import com.br.ralfh.medico.modelos.Prescricao;
-import com.br.ralfh.medico.modelos.Receita;
-import com.br.ralfh.medico.modelos.Receitas;
-import java.io.IOException;
-import java.io.InputStream;
+import com.br.ralfh.medico.modelos.Conexao;
+import com.br.ralfh.medico.modelos.Conexoes;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.StageStyle;
-import javafx.util.Callback;
-import javax.persistence.EntityManager;
-import javax.swing.ImageIcon;
-import net.sf.jasperreports.engine.JRException;
 /**
  * FXML Controller class
  *
@@ -66,13 +31,14 @@ public class ChatController extends Controller {
      */
     
     @FXML Label lblCliente;
-    @FXML TextArea cxEntrada;
-    @FXML TextArea cxSaida;
-    @FXML TextField textoSaida;
+    @FXML TextField cxSaida;
+    @FXML TextArea cxConversa;
+    @FXML ChoiceBox<String> cbDestino;
     @FXML Button btnEnviar; 
     
     private ChatServer server;
     private ChatClient client;
+    private String host;
 
     public ChatController() {
         server = new ChatServer();        
@@ -80,7 +46,10 @@ public class ChatController extends Controller {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        initConexoes();
+        setToolTips();
+        setButtons(false);        
+        initListeners();
     }    
         
     public void initListeners() {
@@ -123,7 +92,57 @@ public class ChatController extends Controller {
     }    
     
     
-    private void setButtons() {
-        btnEnviar.setDisable(true);    
+    private void setButtons(Boolean chave) {
+        btnEnviar.setDisable(chave);    
     }
+    
+    private void initConexoes() {        
+        ArrayList<Conexao> conexoes = Conexoes.getListaOutros(MedicoController.getConexao());
+        ArrayList<String> strConexoes = new ArrayList<>();
+        
+        for (Conexao item : conexoes) {
+            String s = item.getIp()+ " - " + item.getUsuario().getNomeCompleto()+" em " + "("+item.getMachine()+")";
+            boolean add = strConexoes.add(s);
+        }        
+                
+        if (strConexoes.isEmpty()) {
+            strConexoes.add("Não há outros usuários conectados");
+        }
+        ObservableList<String> options = FXCollections.observableArrayList(strConexoes);    
+        cbDestino.getItems().setAll(options);
+        cbDestino.getSelectionModel().selectFirst();
+    }
+    
+    public void btnEnviarFired(ActionEvent event) {
+    
+/*        
+        InetAddress target = null;
+        try {
+            target = InetAddress.getByName(host);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(AutorizaDlgController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        sc = new SocketsClient(0, hor.getId(),target);
+        tSC = new Thread(sc);
+        tSC.start();       
+        autorizarButton.setDisable(Boolean.TRUE);    
+*/
+    }
+    
+    public void ListenerCbDestino() {
+        cbDestino.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue ov, Object oldValue, Object newValue) {                
+                Integer at = cbDestino.getSelectionModel().getSelectedItem().indexOf("-");
+                byte[] ip = cbDestino.getSelectionModel().getSelectedItem().substring(0,at).trim().getBytes();
+
+                Integer att1 = cbDestino.getSelectionModel().getSelectedItem().indexOf("(");
+                Integer att2 = cbDestino.getSelectionModel().getSelectedItem().indexOf(")");
+                host = cbDestino.getSelectionModel().getSelectedItem().substring(att1+1,att2).trim();
+            }        
+        });
+    }    
+    
+    
 }

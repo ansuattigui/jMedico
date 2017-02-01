@@ -121,7 +121,6 @@ public class MedicoController extends Controller {
         ss = new SocketsServer();
         tSS = new Thread(ss);
         tSS.start();
-
     }
     
     
@@ -238,9 +237,18 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/Agenda.fxml";
         String titleGUI = "Agenda de Consultas";
         StageStyle fxmlStyle = StageStyle.DECORATED;
+        GUIFactory agenda = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,null);//  this.getStage());
+        agenda.showAndWait();
+    }
+    
+    public void btnChatFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/Chat.fxml";
+        String titleGUI = "Bate Papo";
+        StageStyle fxmlStyle = StageStyle.DECORATED;
         GUIFactory agenda = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         agenda.showAndWait();
     }
+    
 
     public void btnModelosAtestadoFired(ActionEvent event) throws Exception {
         String fxmlGUI = "fxml/ModeloAtestado.fxml";
