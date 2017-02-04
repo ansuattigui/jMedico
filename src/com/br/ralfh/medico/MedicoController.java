@@ -245,8 +245,8 @@ public class MedicoController extends Controller {
         String fxmlGUI = "fxml/Chat.fxml";
         String titleGUI = "Bate Papo";
         StageStyle fxmlStyle = StageStyle.DECORATED;
-        GUIFactory agenda = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
-        agenda.showAndWait();
+        GUIFactory chat = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
+        chat.showAndWait();
     }
     
 

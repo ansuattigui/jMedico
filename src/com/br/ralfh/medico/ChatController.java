@@ -4,9 +4,13 @@ import com.br.ralfh.medico.chat.ChatClient;
 import com.br.ralfh.medico.chat.ChatServer;
 import com.br.ralfh.medico.modelos.Conexao;
 import com.br.ralfh.medico.modelos.Conexoes;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -39,6 +43,10 @@ public class ChatController extends Controller {
     private ChatServer server;
     private ChatClient client;
     private String host;
+    
+    private SocketsClient sc;
+    private Thread tSC;
+    
 
     public ChatController() {
         server = new ChatServer();        
@@ -115,19 +123,18 @@ public class ChatController extends Controller {
     
     public void btnEnviarFired(ActionEvent event) {
     
-/*        
         InetAddress target = null;
         try {
             target = InetAddress.getByName(host);
         } catch (UnknownHostException ex) {
-            Logger.getLogger(AutorizaDlgController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        sc = new SocketsClient(0, hor.getId(),target);
+        sc = new SocketsClient(1, 0,target);
         tSC = new Thread(sc);
         tSC.start();       
-        autorizarButton.setDisable(Boolean.TRUE);    
-*/
+//        autorizarButton.setDisable(Boolean.TRUE);    
+
     }
     
     public void ListenerCbDestino() {

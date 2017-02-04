@@ -254,8 +254,10 @@ public class SocketsServer implements Runnable{
             // chave --> id agenda de horários
             case 0: 
                 autorizaEntradaPaciente(chave);
-                System.out.println("Eureka!!");
                 break;
+            case 1:
+                chat(leitura);
+                break;            
         }
         //key.interestOps(SelectionKey.OP_WRITE);
     }
@@ -288,5 +290,19 @@ public class SocketsServer implements Runnable{
         return ha;
     }
     
+    private void chat(String msg) {
+        Platform.runLater(new Runnable() {
+		@Override
+		public void run() {
+                    DialogGUI dialog = null;
+                    try {
+                        dialog = new DialogGUI("CT","Testando Chat", null,JDocplus.getMainStage());
+                        dialog.showAndWait();
+                    } catch (IOException ex) {
+                        Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+                    }                    
+                }
+        });
+    }
  
 }      

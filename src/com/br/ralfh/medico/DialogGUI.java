@@ -5,7 +5,6 @@ import com.br.ralfh.medico.dlg.AutorizaDlgController;
 import com.br.ralfh.medico.dlg.ExceptionDialogController;
 import com.br.ralfh.medico.modelos.HorarioAgenda;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Timer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXMLLoader;
@@ -108,6 +107,10 @@ public class DialogGUI {
             case "EMRC":
                 guiFile = "dlg/AlertDlg.fxml";
                 guiTitle = "Exclusão de Modelo de Recibo";
+                break;
+            case "CT":
+                guiFile="chat/Chat.fxml";
+                guiTitle="Bate papo";
                 break;
         }
         addTime();
