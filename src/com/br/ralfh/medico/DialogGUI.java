@@ -113,7 +113,7 @@ public class DialogGUI {
                 guiTitle="Bate papo";
                 break;
         }
-        addTime();
+        //addTime();
 
         this.stage = new Stage();
         this.stage.setTitle(this.guiTitle);
