@@ -109,7 +109,7 @@ public class DialogGUI {
                 guiTitle = "Exclusão de Modelo de Recibo";
                 break;
             case "CT":
-                guiFile="chat/Chat.fxml";
+                guiFile="fxml/Chat.fxml";
                 guiTitle="Bate papo";
                 break;
         }
