@@ -232,7 +232,7 @@ public class SocketsServer implements Runnable{
         readBuffer.flip();
         byte[] data = new byte[1024];
         readBuffer.get(data, 0, read);    
-//        System.out.println("Received: "+new String(data));
+        System.out.println("Received: "+new String(data));
         
         processaLeitura(key, new String(data));
         

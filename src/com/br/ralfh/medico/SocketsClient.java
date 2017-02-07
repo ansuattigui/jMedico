@@ -32,6 +32,11 @@ public class SocketsClient implements Runnable {
         message = String.valueOf(action)+String.valueOf(chave);
         this.target = destino;
     }
+
+    public SocketsClient(int action, String chave, InetAddress destino){
+        message = String.valueOf(action)+chave;
+        this.target = destino;
+    }
     
     public SocketsClient(Object obj) {
         object = obj;
