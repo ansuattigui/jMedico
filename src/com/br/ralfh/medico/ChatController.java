@@ -54,14 +54,15 @@ public class ChatController extends Controller {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        initListeners();
         initConexoes();
         setToolTips();
         setButtons(false);        
-        initListeners();
     }    
         
     public void initListeners() {
         addPacienteListener();
+        addListenerCbDestino();
     }
 
     private void setToolTips() {
@@ -137,7 +138,7 @@ public class ChatController extends Controller {
 
     }
     
-    public void ListenerCbDestino() {
+    public void addListenerCbDestino() {
         cbDestino.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue ov, Object oldValue, Object newValue) {                
