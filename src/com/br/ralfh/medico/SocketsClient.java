@@ -54,17 +54,12 @@ public class SocketsClient implements Runnable {
             channel.connect(new InetSocketAddress(this.target, 8511));
 
             while (!Thread.interrupted()){
-
                 selector.select(1000);
-
                 Iterator<SelectionKey> keys = selector.selectedKeys().iterator();
-
                 while (keys.hasNext()){
                     SelectionKey key = keys.next();
                     keys.remove();
-
                     if (!key.isValid()) continue;
-
                     if (key.isConnectable()){
                         System.out.println("I am connected to the server");
                         connect(key);

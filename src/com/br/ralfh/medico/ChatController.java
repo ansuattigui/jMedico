@@ -84,7 +84,7 @@ public class ChatController extends Controller {
         }
         }); */
     }   
-        
+/*        
     public boolean checaReceita() {
         boolean resultado = Boolean.FALSE;
         if (true) {
@@ -94,7 +94,7 @@ public class ChatController extends Controller {
         }
         return resultado;
     }
-    
+*/    
         
     public void sairFired(ActionEvent event) {
         this.stage.close();
@@ -122,8 +122,7 @@ public class ChatController extends Controller {
         cbDestino.getSelectionModel().selectFirst();
     }
     
-    public void btnEnviarFired(ActionEvent event) {
-    
+    public void btnEnviarFired(ActionEvent event) {    
         InetAddress target = null;
         try {
             target = InetAddress.getByName(host);
@@ -135,7 +134,6 @@ public class ChatController extends Controller {
         tSC = new Thread(sc);
         tSC.start();       
 //        autorizarButton.setDisable(Boolean.TRUE);    
-
     }
     
     public void addListenerCbDestino() {

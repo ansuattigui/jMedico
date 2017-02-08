@@ -97,7 +97,6 @@ public class ChatClient {
      * Connects to the server then enters the processing loop.
      */
     private void run() throws IOException {
-
         // Make connection and initialize streams
         String serverAddress = getServerAddress();
         Socket socket = new Socket(serverAddress, 9001);

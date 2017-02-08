@@ -236,7 +236,7 @@ public class SocketsServer implements Runnable{
         
         processaLeitura(key, new String(data));
         
-        echo(key,data);
+//        echo(key,data);
     }
  
     private void echo(SelectionKey key, byte[] data){
@@ -249,6 +249,7 @@ public class SocketsServer implements Runnable{
     private void processaLeitura(SelectionKey key, String leitura) {
         short action = Short.valueOf(leitura.substring(0,1));
         Integer chave = Integer.parseInt(leitura.substring(1).trim());
+        String texto = leitura.substring(1,leitura.length()).trim();  
         switch (action) {
             // action = 0 --> Autorização de entrada de paciente
             // chave --> id agenda de horários
@@ -256,7 +257,7 @@ public class SocketsServer implements Runnable{
                 autorizaEntradaPaciente(chave);
                 break;
             case 1:
-                chat(leitura);
+                chat(texto);
                 break;            
         }
         //key.interestOps(SelectionKey.OP_WRITE);
@@ -265,17 +266,17 @@ public class SocketsServer implements Runnable{
     
     private void autorizaEntradaPaciente(Integer chave) {
         Platform.runLater(new Runnable() {
-		@Override
-		public void run() {
-                    HorarioAgenda ha = buscaHorario(chave);
-                    DialogGUI dialog = null;
-                    try {
-                        dialog = new DialogGUI("S","Autorizar a entrada de "+ha.getPaciente(), null,JDocplus.getMainStage());
-                        dialog.showAndWait();
-                    } catch (IOException ex) {
-                        Logger.getLogger(AgendamentoController.class.getName()).log(Level.SEVERE, null, ex);
-                    }                    
-                }
+            @Override
+            public void run() {
+                HorarioAgenda ha = buscaHorario(chave);
+                DialogGUI dialog = null;
+                try {
+                    dialog = new DialogGUI("S","Autorizar a entrada de "+ha.getPaciente(), null,JDocplus.getMainStage());
+                    dialog.showAndWait();
+                } catch (IOException ex) {
+                    Logger.getLogger(AgendamentoController.class.getName()).log(Level.SEVERE, null, ex);
+                }                    
+            }
         });
     }
     
@@ -292,16 +293,16 @@ public class SocketsServer implements Runnable{
     
     private void chat(String msg) {
         Platform.runLater(new Runnable() {
-		@Override
-		public void run() {
-                    DialogGUI dialog = null;
-                    try {
-                        dialog = new DialogGUI("CT","Testando Chat", null,JDocplus.getMainStage());
-                        dialog.showAndWait();
-                    } catch (IOException ex) {
-                        Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
-                    }                    
-                }
+            @Override
+            public void run() {
+                DialogGUI dialog = null;
+                try {
+                    dialog = new DialogGUI("CT",msg, null,JDocplus.getMainStage());
+                    dialog.showAndWait();
+                } catch (IOException ex) {
+                    Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+                }                    
+            }
         });
     }
  
