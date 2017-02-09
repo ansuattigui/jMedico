@@ -80,7 +80,6 @@ public class MedicoController extends Controller {
         perfilUsuario = null;
         conexao = null;
         connFact = new ConnectionFactory();
-//        MedicoController.mapaJanelas = new HashMap<>();
     }
     
     @Override
