@@ -130,7 +130,7 @@ public class ChatController extends Controller {
             Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        sc = new SocketsClient(0, cxSaida.getText(), target);
+        sc = new SocketsClient(1, cxSaida.getText(), target);
         tSC = new Thread(sc);
         tSC.start();       
 //        autorizarButton.setDisable(Boolean.TRUE);    

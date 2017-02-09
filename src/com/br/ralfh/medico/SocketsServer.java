@@ -248,15 +248,15 @@ public class SocketsServer implements Runnable{
     
     private void processaLeitura(SelectionKey key, String leitura) {
         short action = Short.valueOf(leitura.substring(0,1));
-        Integer chave = Integer.parseInt(leitura.substring(1).trim());
-        String texto = leitura.substring(1,leitura.length()).trim();  
         switch (action) {
             // action = 0 --> Autorização de entrada de paciente
             // chave --> id agenda de horários
             case 0: 
+                Integer chave = Integer.parseInt(leitura.substring(1,leitura.length()).trim());
                 autorizaEntradaPaciente(chave);
                 break;
             case 1:
+                String texto = leitura.substring(1,leitura.length()).trim();  
                 chat(texto);
                 break;            
         }
