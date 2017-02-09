@@ -8,6 +8,7 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,16 +41,15 @@ public class ChatController extends Controller {
     @FXML ChoiceBox<String> cbDestino;
     @FXML Button btnEnviar; 
     
-    private ChatServer server;
-    private ChatClient client;
     private String host;
     
     private SocketsClient sc;
     private Thread tSC;
     
-
+    private HashMap<String,String> hmInChat;
+    
     public ChatController() {
-        server = new ChatServer();        
+        hmInChat = new HashMap<>();
     }
     
     @Override
