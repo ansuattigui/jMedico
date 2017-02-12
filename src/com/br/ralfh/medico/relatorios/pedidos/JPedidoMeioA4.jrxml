@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pedido" pageWidth="419" pageHeight="595" columnWidth="383" leftMargin="22" rightMargin="14" topMargin="42" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="816"/>
+	<property name="ireport.y" value="144"/>
 	<parameter name="idPedido" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -92,14 +92,11 @@ ORDER BY
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="119" y="68" width="264" height="16" uuid="65986df7-02e3-4e5b-9807-ee0ed08d929c"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="10" isBold="false"/>
-					<paragraph leftIndent="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
-			</textField>
+			<staticText>
+				<reportElement x="122" y="68" width="194" height="16" uuid="827428a1-67c3-4423-a81b-6ee31a76d2ba"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Solicito os seguintes exames:]]></text>
+			</staticText>
 		</band>
 	</title>
 	<detail>
@@ -128,9 +125,9 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="100" splitType="Stretch">
+		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="99" y="2" width="264" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
+				<reportElement x="103" y="45" width="264" height="16" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10"/>
 				</textElement>
@@ -138,14 +135,14 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 			</textField>
 			<elementGroup>
 				<staticText>
-					<reportElement x="187" y="83" width="100" height="14" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
+					<reportElement x="191" y="109" width="100" height="14" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[CRM 5221543-3]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="165" y="55" width="144" height="14" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
+					<reportElement x="169" y="81" width="144" height="14" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
 					<box>
 						<pen lineWidth="0.0"/>
 						<topPen lineWidth="1.0"/>
@@ -159,13 +156,21 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="187" y="69" width="100" height="14" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
+					<reportElement x="191" y="95" width="100" height="14" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Médico]]></text>
 				</staticText>
 			</elementGroup>
+			<textField>
+				<reportElement x="119" y="16" width="264" height="16" uuid="813a05de-dd09-4a75-a525-f4a152e4218d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
