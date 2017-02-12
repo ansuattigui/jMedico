@@ -83,9 +83,9 @@ WHERE
 		</band>
 	</background>
 	<title>
-		<band height="100">
+		<band height="130">
 			<textField>
-				<reportElement x="198" y="45" width="364" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
+				<reportElement x="198" y="75" width="364" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 					<paragraph leftIndent="5"/>
@@ -93,7 +93,7 @@ WHERE
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="198" y="78" width="364" height="22" uuid="62329177-fc85-475e-b7b5-7102d4b01715"/>
+				<reportElement x="198" y="108" width="364" height="22" uuid="62329177-fc85-475e-b7b5-7102d4b01715"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="false"/>
 					<paragraph leftIndent="5"/>

@@ -96,9 +96,9 @@
 		</band>
 	</background>
 	<title>
-		<band height="44">
+		<band height="60">
 			<textField>
-				<reportElement x="119" y="21" width="264" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
+				<reportElement x="119" y="43" width="264" height="16" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 					<paragraph leftIndent="5"/>

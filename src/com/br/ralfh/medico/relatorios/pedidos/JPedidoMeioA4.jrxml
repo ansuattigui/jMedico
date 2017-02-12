@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pedido" pageWidth="419" pageHeight="595" columnWidth="383" leftMargin="22" rightMargin="14" topMargin="42" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="816"/>
 	<parameter name="idPedido" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -83,9 +83,9 @@ ORDER BY
 		</band>
 	</background>
 	<title>
-		<band height="65">
+		<band height="85">
 			<textField>
-				<reportElement x="119" y="21" width="264" height="16" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
+				<reportElement x="119" y="40" width="264" height="16" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 					<paragraph leftIndent="5"/>
@@ -93,7 +93,7 @@ ORDER BY
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="119" y="49" width="264" height="16" uuid="65986df7-02e3-4e5b-9807-ee0ed08d929c"/>
+				<reportElement x="119" y="68" width="264" height="16" uuid="65986df7-02e3-4e5b-9807-ee0ed08d929c"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="false"/>
 					<paragraph leftIndent="5"/>
