@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package com.br.ralfh.medico;
+package com.br.ralfh.medico.chat;
 
+import com.br.ralfh.medico.*;
 import com.br.ralfh.medico.modelos.Conexoes;
 import com.br.ralfh.medico.modelos.HorarioAgenda;
 import java.io.IOException;
@@ -28,10 +29,10 @@ import javax.persistence.EntityManager;
  *
  * @author Ralfh
  */
-public class SocketsServer implements Runnable{
+public class ChatSocketsServer implements Runnable{
      
     public final static InetAddress ADDRESS = Conexoes.getLocalHostIP();
-    public final static int PORT = 8511;
+    public final static int PORT = 8521;
     public final static long TIMEOUT = 10000;
      
     private ServerSocketChannel serverChannel;
@@ -44,7 +45,7 @@ public class SocketsServer implements Runnable{
      */
     private final Map<SocketChannel,byte[]> dataTracking = new HashMap<>();
  
-    public SocketsServer(){
+    public ChatSocketsServer(){
         init();
     }
  
