@@ -83,23 +83,22 @@ WHERE
 		</band>
 	</background>
 	<title>
-		<band height="130">
+		<band height="140">
 			<textField>
-				<reportElement x="197" y="70" width="348" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
+				<reportElement x="197" y="79" width="348" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="197" y="108" width="348" height="22" uuid="d99be1a9-a91e-4f33-98f0-fce3adce9a5e"/>
+			<staticText>
+				<reportElement x="197" y="118" width="177" height="20" uuid="3195f5ce-c09c-4f0d-95e5-a9700cc23c98"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="false"/>
-					<paragraph leftIndent="5"/>
+					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[Solicito os seguintes exames:]]></text>
+			</staticText>
 		</band>
 	</title>
 	<detail>
@@ -130,7 +129,7 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 	<summary>
 		<band height="137" splitType="Stretch">
 			<textField>
-				<reportElement x="237" y="12" width="268" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
+				<reportElement x="237" y="53" width="268" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
@@ -138,14 +137,14 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 			</textField>
 			<elementGroup>
 				<staticText>
-					<reportElement x="331" y="116" width="100" height="20" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
+					<reportElement x="331" y="121" width="100" height="16" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[CRM 5221543-3]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="309" y="81" width="144" height="20" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
+					<reportElement x="309" y="90" width="144" height="16" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
 					<box>
 						<pen lineWidth="0.0"/>
 						<topPen lineWidth="1.0"/>
@@ -159,13 +158,21 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="331" y="99" width="100" height="20" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
+					<reportElement x="331" y="106" width="100" height="16" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Médico]]></text>
 				</staticText>
 			</elementGroup>
+			<textField>
+				<reportElement x="197" y="20" width="348" height="22" uuid="d99be1a9-a91e-4f33-98f0-fce3adce9a5e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
