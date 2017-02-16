@@ -40,7 +40,8 @@ public class ChatController extends Controller {
     @FXML ChoiceBox<String> cbDestino;
     @FXML Button btnEnviar; 
     
-    private String target;
+    private String destino;
+    private InetAddress target;
     
     private ChatSocketsServer ss;
     private ChatSocketsClient sc;
@@ -48,9 +49,7 @@ public class ChatController extends Controller {
     
     public ChatController() {
         ss = new ChatSocketsServer();
-        sc = new ChatSocketsClient(target);
-//        tSS = new Thread(ss);
-//        tSS.start();        
+        tSC = new Thread(ss);
     }
     
     @Override
@@ -96,19 +95,21 @@ public class ChatController extends Controller {
     }
     
     public void btnEnviarFired(ActionEvent event) {    
-        InetAddress target = null;
+        target =  null;
         try {
-            target = InetAddress.getByName(this.target);
+            target = InetAddress.getByName(destino);
         } catch (UnknownHostException ex) {
             Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        sc.  implementar send and receive...
+        if (!tSC.isAlive()) {
+            sc = new ChatSocketsClient(destino);
+            tSC = new Thread(sc);
+            tSC.start();       
+        }
         
-        sc = new SocketsClient(1, cxSaida.getText(), target);
-        tSC = new Thread(sc);
-        tSC.start();       
-//        autorizarButton.setDisable(Boolean.TRUE);    
+        
+        
     }
     
     public void addListenerCbDestino() {
@@ -120,7 +121,7 @@ public class ChatController extends Controller {
 
                 Integer att1 = cbDestino.getSelectionModel().getSelectedItem().indexOf("(");
                 Integer att2 = cbDestino.getSelectionModel().getSelectedItem().indexOf(")");
-                target = cbDestino.getSelectionModel().getSelectedItem().substring(att1+1,att2).trim();
+                destino = cbDestino.getSelectionModel().getSelectedItem().substring(att1+1,att2).trim();
             }        
         });
     }    
