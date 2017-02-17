@@ -48,8 +48,11 @@ public class ChatController extends Controller {
     private Thread tSC;
     
     public ChatController() {
-        ss = new ChatSocketsServer();
-        tSC = new Thread(ss);
+/*        ss = new ChatSocketsServer();
+        tSC = new Thread(ss); */
+
+
+
     }
     
     @Override
