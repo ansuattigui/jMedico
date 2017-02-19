@@ -37,14 +37,15 @@ public class ChatController extends Controller implements Observer {
     @FXML TextArea cxConversa;
     @FXML ChoiceBox<String> cbDestino;
     @FXML Button btnEnviar; 
-        
+    
+    private ArrayList<Conexao> conexoes;
     private final int PORT = 8521;
     private String ip;
     private String destino;
     private ChatConexao conexao = null;
         
     public ChatController() {
-        cxSaida.requestFocus();
+//        cxSaida.requestFocus();
     }
     
     @Override
@@ -72,7 +73,7 @@ public class ChatController extends Controller implements Observer {
     }
     
     private void getDestinos() {        
-        ArrayList<Conexao> conexoes = Conexoes.getListaOutros(MedicoController.getConexao());
+        conexoes = Conexoes.getListaOutros(MedicoController.getConexao());
         ArrayList<String> strConexoes = new ArrayList<>();
         
         for (Conexao item : conexoes) {
@@ -97,13 +98,17 @@ public class ChatController extends Controller implements Observer {
     public void addListenerCbDestino() {
         cbDestino.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
-            public void changed(ObservableValue ov, Object oldValue, Object newValue) {                
-                Integer at = cbDestino.getSelectionModel().getSelectedItem().indexOf("-");
-                ip = cbDestino.getSelectionModel().getSelectedItem().substring(0,at).trim();
+            public void changed(ObservableValue ov, Object oldValue, Object newValue) {  
+                if (!conexoes.isEmpty()) {
+                    Integer at = cbDestino.getSelectionModel().getSelectedItem().indexOf("-");
+                    ip = cbDestino.getSelectionModel().getSelectedItem().substring(0,at).trim();
 
-                Integer att1 = cbDestino.getSelectionModel().getSelectedItem().indexOf("(");
-                Integer att2 = cbDestino.getSelectionModel().getSelectedItem().indexOf(")");
-                destino = cbDestino.getSelectionModel().getSelectedItem().substring(att1+1,att2).trim();
+                    Integer att1 = cbDestino.getSelectionModel().getSelectedItem().indexOf("(");
+                    Integer att2 = cbDestino.getSelectionModel().getSelectedItem().indexOf(")");
+                    destino = cbDestino.getSelectionModel().getSelectedItem().substring(att1+1,att2).trim();
+                } else {
+                    setButtons(true);
+                }
             }        
         });
     }    
