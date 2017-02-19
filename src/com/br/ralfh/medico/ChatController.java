@@ -1,22 +1,15 @@
 package com.br.ralfh.medico;
 
-import com.br.ralfh.medico.chat.ChatSocketsClient;
-import com.br.ralfh.medico.chat.ChatSocketsServer;
+import com.br.ralfh.medico.chat.ChatConexao;
 import com.br.ralfh.medico.modelos.Conexao;
 import com.br.ralfh.medico.modelos.Conexoes;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -34,7 +27,7 @@ import javafx.scene.control.Tooltip;
  *
  * @author ralfh
  */
-public class ChatController extends Controller {
+public class ChatController extends Controller implements Observer {
 
     /**
      * Initializes the controller class.
@@ -45,29 +38,19 @@ public class ChatController extends Controller {
     @FXML TextArea cxConversa;
     @FXML ChoiceBox<String> cbDestino;
     @FXML Button btnEnviar; 
-    
+        
+    private final int PORT = 8521;
+    private String ip;
     private String destino;
-    private InetAddress target;
-    
-//    private ChatSocketsServer ss;
-//    private ChatSocketsClient sc;
-//    private Thread tSC;
-    
-    
-    private Socket socket;
-    private OutputStream ou ;
-    private Writer ouw; 
-    private BufferedWriter bfw;    
-    
-    public final static int PORT = 8521;
-    
-    
+    private ChatConexao conexao;
         
     public ChatController() {
-        
-        
-/*        ss = new ChatSocketsServer();
-        tSC = new Thread(ss); */
+        //super("Chat Simples em Java by @pcollares");
+        this.conexao = new ChatConexao(ip, PORT);
+        //initComponents();
+        conexao.addObserver(this);
+        escreve("Chat iniciado com " + conexao.getIp() + ":" + conexao.getPorta());
+        cxSaida.requestFocus();
     }
     
     @Override
@@ -75,7 +58,7 @@ public class ChatController extends Controller {
         initListeners();
         getDestinos();
         setToolTips();
-        setButtons(false);        
+//        setButtons(false);        
     }    
         
     public void initListeners() {
@@ -89,8 +72,7 @@ public class ChatController extends Controller {
     public void sairFired(ActionEvent event) {
         this.stage.close();
     }    
-    
-    
+        
     private void setButtons(Boolean chave) {
         btnEnviar.setDisable(chave);    
     }
@@ -113,51 +95,14 @@ public class ChatController extends Controller {
     }
     
     public void conectar() throws IOException {
-      socket = new Socket(txtIP.getText(),PORT);
-      ou = socket.getOutputStream();
-      ouw = new OutputStreamWriter(ou);
-      bfw = new BufferedWriter(ouw);
-      bfw.write(txtNome.getText()+"\r\n");
-      bfw.flush();
     }    
-    
-    
-    
-    
-    
-    public void btnEnviarFired(ActionEvent event) {    
-  
-        bfw.write(msg+"\r\n");
-        texto.append(txtNome.getText() + " diz -> " +         txtMsg.getText()+"\r\n");
-       
-        bfw.flush();
-        txtMsg.setText("");        
-        
-        
-        
-/*        target =  null;
-        try {
-            target = InetAddress.getByName(destino);
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        if (!tSC.isAlive()) {
-            sc = new ChatSocketsClient(destino);
-            tSC = new Thread(sc);
-            tSC.start();       
-        }
-*/        
-       
-        
-    }
     
     public void addListenerCbDestino() {
         cbDestino.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue ov, Object oldValue, Object newValue) {                
                 Integer at = cbDestino.getSelectionModel().getSelectedItem().indexOf("-");
-                byte[] ip = cbDestino.getSelectionModel().getSelectedItem().substring(0,at).trim().getBytes();
+                ip = cbDestino.getSelectionModel().getSelectedItem().substring(0,at).trim();
 
                 Integer att1 = cbDestino.getSelectionModel().getSelectedItem().indexOf("(");
                 Integer att2 = cbDestino.getSelectionModel().getSelectedItem().indexOf(")");
@@ -165,6 +110,28 @@ public class ChatController extends Controller {
             }        
         });
     }    
+    
+    
+     public void btnEnviarFired(ActionEvent event) {    
+       if (!cxSaida.getText().isEmpty()) {
+            conexao.envia(cxSaida.getText());
+            escreve("Você disse: "+cxSaida.getText());
+            cxSaida.setText("");
+        }
+    }
+
+    private void escreve(String texto){
+        cxConversa.appendText(texto+"\n");
+         if (!cxConversa.getText().isEmpty() && !cxConversa.isFocused()) {
+//                cxConversa.setCaretPosition(cxConversa.getText().length() - 1);
+            }
+        
+    }    
+
+    @Override
+    public void update(Observable o, Object arg) {
+        escreve(conexao.getMensagem());
+    }
     
     
 }
