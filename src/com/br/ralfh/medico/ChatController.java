@@ -4,7 +4,13 @@ import com.br.ralfh.medico.chat.ChatSocketsClient;
 import com.br.ralfh.medico.chat.ChatSocketsServer;
 import com.br.ralfh.medico.modelos.Conexao;
 import com.br.ralfh.medico.modelos.Conexoes;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -43,16 +49,25 @@ public class ChatController extends Controller {
     private String destino;
     private InetAddress target;
     
-    private ChatSocketsServer ss;
-    private ChatSocketsClient sc;
-    private Thread tSC;
+//    private ChatSocketsServer ss;
+//    private ChatSocketsClient sc;
+//    private Thread tSC;
     
+    
+    private Socket socket;
+    private OutputStream ou ;
+    private Writer ouw; 
+    private BufferedWriter bfw;    
+    
+    public final static int PORT = 8521;
+    
+    
+        
     public ChatController() {
+        
+        
 /*        ss = new ChatSocketsServer();
         tSC = new Thread(ss); */
-
-
-
     }
     
     @Override
@@ -97,8 +112,30 @@ public class ChatController extends Controller {
         cbDestino.getSelectionModel().selectFirst();
     }
     
+    public void conectar() throws IOException {
+      socket = new Socket(txtIP.getText(),PORT);
+      ou = socket.getOutputStream();
+      ouw = new OutputStreamWriter(ou);
+      bfw = new BufferedWriter(ouw);
+      bfw.write(txtNome.getText()+"\r\n");
+      bfw.flush();
+    }    
+    
+    
+    
+    
+    
     public void btnEnviarFired(ActionEvent event) {    
-        target =  null;
+  
+        bfw.write(msg+"\r\n");
+        texto.append(txtNome.getText() + " diz -> " +         txtMsg.getText()+"\r\n");
+       
+        bfw.flush();
+        txtMsg.setText("");        
+        
+        
+        
+/*        target =  null;
         try {
             target = InetAddress.getByName(destino);
         } catch (UnknownHostException ex) {
@@ -110,7 +147,7 @@ public class ChatController extends Controller {
             tSC = new Thread(sc);
             tSC.start();       
         }
-        
+*/        
        
         
     }

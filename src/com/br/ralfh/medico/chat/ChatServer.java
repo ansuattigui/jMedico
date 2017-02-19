@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author ralfh
  */
-public class ChatServer extends Thread {
+public class ChatServer implements Runnable {
     
     private static ArrayList<BufferedWriter> clients;           
     private static ServerSocket server; 
