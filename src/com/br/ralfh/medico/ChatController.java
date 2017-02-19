@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
-import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -42,14 +41,9 @@ public class ChatController extends Controller implements Observer {
     private final int PORT = 8521;
     private String ip;
     private String destino;
-    private ChatConexao conexao;
+    private ChatConexao conexao = null;
         
     public ChatController() {
-        //super("Chat Simples em Java by @pcollares");
-        this.conexao = new ChatConexao(ip, PORT);
-        //initComponents();
-        conexao.addObserver(this);
-        escreve("Chat iniciado com " + conexao.getIp() + ":" + conexao.getPorta());
         cxSaida.requestFocus();
     }
     
@@ -95,6 +89,9 @@ public class ChatController extends Controller implements Observer {
     }
     
     public void conectar() throws IOException {
+        this.conexao = new ChatConexao(ip, PORT);
+        conexao.addObserver(this);
+        escreve("Chat iniciado com " + conexao.getIp() + ":" + conexao.getPorta());
     }    
     
     public void addListenerCbDestino() {
@@ -112,7 +109,11 @@ public class ChatController extends Controller implements Observer {
     }    
     
     
-     public void btnEnviarFired(ActionEvent event) {    
+     public void btnEnviarFired(ActionEvent event) throws IOException {   
+        if (conexao == null) {
+            conectar();
+        }
+         
        if (!cxSaida.getText().isEmpty()) {
             conexao.envia(cxSaida.getText());
             escreve("Você disse: "+cxSaida.getText());
