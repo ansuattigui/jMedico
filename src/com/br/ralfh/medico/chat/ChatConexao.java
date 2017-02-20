@@ -5,6 +5,8 @@
  */
 package com.br.ralfh.medico.chat;
 
+import com.br.ralfh.medico.DialogGUI;
+import com.br.ralfh.medico.JDocplus;
 import com.br.ralfh.medico.modelos.Conexao;
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -15,6 +17,7 @@ import java.net.UnknownHostException;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 
 /**
  *
@@ -25,6 +28,8 @@ public class ChatConexao extends Observable {
     private String ip;
     private int porta;
     private String mensagem;
+    
+    private DialogGUI dialog;
 
     public ChatConexao(String ip, int porta) {
         this.ip = ip;
@@ -45,6 +50,10 @@ public class ChatConexao extends Observable {
     }
 
     public void envia(String texto, String ipAddr) {
+        if (dialog == null) {
+            chat("");
+        }
+                
         new Thread(new Envia(texto,ipAddr)).start();
     }
 
@@ -62,6 +71,7 @@ public class ChatConexao extends Observable {
 
         @Override
         public void run() {
+                        
             while (true) {
                 try {
                     socket = new DatagramSocket(getPorta());
@@ -127,4 +137,20 @@ public class ChatConexao extends Observable {
             }
         }
     }
+    
+    private void chat(String msg) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                dialog = null;
+                try {
+                    dialog = new DialogGUI("CT",msg, null,JDocplus.getMainStage());
+                    dialog.showAndWait();
+                } catch (IOException ex) {
+                    Logger.getLogger(ChatConexao.class.getName()).log(Level.SEVERE, null, ex);
+                }                    
+            }
+        });
+    }
+    
 }    

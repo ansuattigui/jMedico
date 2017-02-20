@@ -345,23 +345,4 @@ public class MedicoController extends Controller {
         MedicoController.entityManagerFactory = entityManagerFactory;
     }
     
-/*    
-    public static GUIFactory getMapaJanelas(String chave) {
-        GUIFactory gui = null;
-        if (mapaJanelas.containsKey(chave)) {
-            gui = mapaJanelas.get(chave);
-        }        
-        
-        return gui;
-    }
-
-    public static void setEntradaMapaJanelas(String chave,GUIFactory valor) {
-        mapaJanelas.put(chave, valor);
-    }
-    
-    public static void apagaEntradaMapaJanelas(String chave) {
-        mapaJanelas.remove(chave);
-    }    
-*/
-    
 }

@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -42,9 +45,11 @@ public class ChatController extends Controller implements Observer {
     private final int PORT = 8521;
     private String ip;
     private String destino;
-    private ChatConexao conexao = null;
+    private ChatConexao conexao;
         
     public ChatController() {
+        this.conexao = null;
+        this.conexoes = new ArrayList<>();
 //        cxSaida.requestFocus();
     }
     
@@ -138,6 +143,5 @@ public class ChatController extends Controller implements Observer {
     public void update(Observable o, Object arg) {
         escreve(conexao.getMensagem());
     }
-    
     
 }
