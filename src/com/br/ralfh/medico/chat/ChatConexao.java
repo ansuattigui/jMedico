@@ -50,10 +50,6 @@ public class ChatConexao extends Observable {
     }
 
     public void envia(String texto, String ipAddr) {
-        if (dialog == null) {
-            chat("");
-        }
-                
         new Thread(new Envia(texto,ipAddr)).start();
     }
 
@@ -152,5 +148,12 @@ public class ChatConexao extends Observable {
             }
         });
     }
+    
+/*            if (dialog == null) {
+            chat("");
+        }
+*/                
+
+    
     
 }    
