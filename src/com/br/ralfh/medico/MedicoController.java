@@ -1,5 +1,6 @@
 package com.br.ralfh.medico;
 
+import com.br.ralfh.medico.chat.ChatConexao;
 import com.br.ralfh.medico.jdbc.ConnectionFactory;
 import com.br.ralfh.medico.modelos.Conexao;
 import com.br.ralfh.medico.modelos.Conexoes;
@@ -53,6 +54,8 @@ public class MedicoController extends Controller {
     private SocketsServer ss;
     private Thread tSS;
     private static ConnectionFactory connFact;
+    
+    public static ChatConexao conexaoChat;
     
     @FXML Accordion menuPrincipal;
     @FXML TitledPane tpaneAgenda;
@@ -120,6 +123,9 @@ public class MedicoController extends Controller {
         ss = new SocketsServer();
         tSS = new Thread(ss);
         tSS.start();
+        
+        conexaoChat = new ChatConexao(conexao.getIp(), 8521);
+        
     }
     
     

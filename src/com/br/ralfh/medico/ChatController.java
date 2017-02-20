@@ -90,9 +90,9 @@ public class ChatController extends Controller implements Observer {
     }
     
     public void conectar() throws IOException {
-        this.conexao = new ChatConexao(ip, PORT);
+        conexao = MedicoController.conexaoChat;
         conexao.addObserver(this);
-        escreve("Chat iniciado com " + conexao.getIp() + ":" + conexao.getPorta());
+        //escreve("Chat iniciado com " + conexao.getIp() + ":" + conexao.getPorta());
     }    
     
     public void addListenerCbDestino() {
@@ -121,7 +121,7 @@ public class ChatController extends Controller implements Observer {
          
        if (!cxSaida.getText().isEmpty()) {
             conexao.envia(cxSaida.getText());
-            escreve("Você disse: "+cxSaida.getText());
+            escreve(destino+": "+cxSaida.getText());
             cxSaida.setText("");
         }
     }
@@ -129,7 +129,7 @@ public class ChatController extends Controller implements Observer {
     private void escreve(String texto){
         cxConversa.appendText(texto+"\n");
          if (!cxConversa.getText().isEmpty() && !cxConversa.isFocused()) {
-//                cxConversa.setCaretPosition(cxConversa.getText().length() - 1);
+//                cxConversa.set   .setCaretPosition(cxConversa.getText().length() - 1);
             }
         
     }    
