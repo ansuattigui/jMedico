@@ -120,7 +120,7 @@ public class ChatController extends Controller implements Observer {
         }
          
        if (!cxSaida.getText().isEmpty()) {
-            conexao.envia(cxSaida.getText());
+            conexao.envia(cxSaida.getText(),ip);
             escreve(destino+": "+cxSaida.getText());
             cxSaida.setText("");
         }

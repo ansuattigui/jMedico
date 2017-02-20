@@ -44,8 +44,8 @@ public class ChatConexao extends Observable {
         return porta;
     }
 
-    public void envia(String texto) {
-        new Thread(new Envia(texto)).start();
+    public void envia(String texto, String ipAddr) {
+        new Thread(new Envia(texto,ipAddr)).start();
     }
 
     public void notifica(String mensagem) {
@@ -100,9 +100,11 @@ public class ChatConexao extends Observable {
     class Envia implements Runnable {
 
         String texto;
+        String ipAddr;
 
-        public Envia(String texto) {
+        public Envia(String texto, String ipAddr) {
             this.texto = texto;
+            this.ipAddr = ipAddr;
         }
 
         @Override
@@ -112,7 +114,7 @@ public class ChatConexao extends Observable {
 
             try {
                 DatagramSocket clientSocket = new DatagramSocket();
-                InetAddress addr = InetAddress.getByName(getIp());
+                InetAddress addr = InetAddress.getByName(ipAddr);
                 DatagramPacket pacote = new DatagramPacket(dados, dados.length, addr, getPorta());
                 clientSocket.send(pacote);
                 clientSocket.close();
