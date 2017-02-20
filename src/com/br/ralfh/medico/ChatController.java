@@ -97,7 +97,7 @@ public class ChatController extends Controller implements Observer {
     public void conectar() throws IOException {
         conexao = MedicoController.conexaoChat;
         conexao.addObserver(this);
-        escreve("Chat iniciado com " + conexao.getIp() + ":" + conexao.getPorta());
+        escreve("Chat iniciado com " + ip + ":" + conexao.getPorta());
     }    
     
     public void addListenerCbDestino() {
