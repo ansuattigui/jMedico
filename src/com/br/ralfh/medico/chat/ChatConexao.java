@@ -5,8 +5,6 @@
  */
 package com.br.ralfh.medico.chat;
 
-import com.br.ralfh.medico.DialogGUI;
-import com.br.ralfh.medico.JDocplus;
 import com.br.ralfh.medico.modelos.Conexao;
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -17,7 +15,6 @@ import java.net.UnknownHostException;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 
 /**
  *

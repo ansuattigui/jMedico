@@ -89,7 +89,6 @@ public class MedicoController extends Controller implements Observer {
         perfilUsuario = null;
         conexao = null;
         connFact = new ConnectionFactory();
-//        dialog = null;
     }
     
     @Override
@@ -260,6 +259,7 @@ public class MedicoController extends Controller implements Observer {
         StageStyle fxmlStyle = StageStyle.DECORATED;
         chat = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         chat.showAndWait();
+        chat = null;
     }
     
 
@@ -356,7 +356,7 @@ public class MedicoController extends Controller implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if (chat == null) {
-            chat("");
+            chat(conexaoChat.getMensagem());
         }
     }
     
@@ -370,21 +370,13 @@ public class MedicoController extends Controller implements Observer {
                 StageStyle fxmlStyle = StageStyle.DECORATED;
                 try {
                     chat = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,JDocplus.getMainStage());
+                    ChatController cont = (ChatController) chat.getController();
+                    cont.escreve(msg);
                     chat.showAndWait();
                     chat = null;
                 } catch (IOException ex) {
                     Logger.getLogger(MedicoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-/*
-                try {
-                    dialog = new DialogGUI("CT",msg, null,JDocplus.getMainStage());
-                    dialog.showAndWait();
-                    dialog = null;
-                } catch (IOException ex) {
-                    Logger.getLogger(ChatConexao.class.getName()).log(Level.SEVERE, null, ex);
-                }                    
-*/
             }
         });
     }

@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -94,12 +91,6 @@ public class ChatController extends Controller implements Observer {
         cbDestino.getSelectionModel().selectFirst();
     }
     
-    public void conectar() throws IOException {
-        conexao = MedicoController.conexaoChat;
-        conexao.addObserver(this);
-        escreve("Chat iniciado com " + ip + ":" + conexao.getPorta());
-    }    
-    
     public void addListenerCbDestino() {
         cbDestino.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
@@ -130,13 +121,19 @@ public class ChatController extends Controller implements Observer {
             cxSaida.setText("");
         }
     }
+     
+    public void conectar() throws IOException {
+        conexao = MedicoController.conexaoChat;
+        conexao.addObserver(this);
+        escreve("Chat iniciado com " + ip + ":" + conexao.getPorta());
+    }    
+         
 
-    private void escreve(String texto){
+    public void escreve(String texto){
         cxConversa.appendText(texto+"\n");
          if (!cxConversa.getText().isEmpty() && !cxConversa.isFocused()) {
 //                cxConversa.set   .setCaretPosition(cxConversa.getText().length() - 1);
-            }
-        
+        }        
     }    
 
     @Override
