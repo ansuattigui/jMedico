@@ -360,10 +360,10 @@ public class MedicoController extends Controller implements Observer {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                dialog = null;
                 try {
                     dialog = new DialogGUI("CT",msg, null,JDocplus.getMainStage());
                     dialog.showAndWait();
+                    dialog = null;
                 } catch (IOException ex) {
                     Logger.getLogger(ChatConexao.class.getName()).log(Level.SEVERE, null, ex);
                 }                    
