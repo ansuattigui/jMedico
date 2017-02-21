@@ -9,9 +9,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -31,7 +34,7 @@ import javax.persistence.EntityManagerFactory;
  *
  * @author ralfh
  */
-public class MedicoController extends Controller {
+public class MedicoController extends Controller implements Observer {
     
     private static EntityManagerFactory entityManagerFactory;
 //    private static HashMap<String,GUIFactory> mapaJanelas;
@@ -54,7 +57,7 @@ public class MedicoController extends Controller {
     private SocketsServer ss;
     private Thread tSS;
     private static ConnectionFactory connFact;
-    
+    private DialogGUI dialog;
     public static ChatConexao conexaoChat;
     
     @FXML Accordion menuPrincipal;
@@ -83,6 +86,7 @@ public class MedicoController extends Controller {
         perfilUsuario = null;
         conexao = null;
         connFact = new ConnectionFactory();
+        dialog = null;
     }
     
     @Override
@@ -344,5 +348,28 @@ public class MedicoController extends Controller {
     public static void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
         MedicoController.entityManagerFactory = entityManagerFactory;
     }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (dialog == null) {
+            chat("");
+        }
+    }
+    
+    private void chat(String msg) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                dialog = null;
+                try {
+                    dialog = new DialogGUI("CT",msg, null,JDocplus.getMainStage());
+                    dialog.showAndWait();
+                } catch (IOException ex) {
+                    Logger.getLogger(ChatConexao.class.getName()).log(Level.SEVERE, null, ex);
+                }                    
+            }
+        });
+    }
+    
     
 }

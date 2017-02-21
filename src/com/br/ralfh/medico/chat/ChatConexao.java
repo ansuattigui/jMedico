@@ -29,8 +29,6 @@ public class ChatConexao extends Observable {
     private int porta;
     private String mensagem;
     
-    private DialogGUI dialog;
-
     public ChatConexao(String ip, int porta) {
         this.ip = ip;
         this.porta = porta;
@@ -64,6 +62,7 @@ public class ChatConexao extends Observable {
         byte[] dadosReceber = new byte[255];
         boolean erro = false;
         DatagramSocket socket = null;
+        boolean isConnected = false;
 
         @Override
         public void run() {
@@ -78,6 +77,7 @@ public class ChatConexao extends Observable {
                 while (!erro) {
                     DatagramPacket pacoteRecebido = new DatagramPacket(dadosReceber, dadosReceber.length);
                     try {
+                        isConnected = true;
                         socket.receive(pacoteRecebido);
                         byte[] b = pacoteRecebido.getData();
                         String s = "";
@@ -133,27 +133,5 @@ public class ChatConexao extends Observable {
             }
         }
     }
-    
-    private void chat(String msg) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                dialog = null;
-                try {
-                    dialog = new DialogGUI("CT",msg, null,JDocplus.getMainStage());
-                    dialog.showAndWait();
-                } catch (IOException ex) {
-                    Logger.getLogger(ChatConexao.class.getName()).log(Level.SEVERE, null, ex);
-                }                    
-            }
-        });
-    }
-    
-/*            if (dialog == null) {
-            chat("");
-        }
-*/                
-
-    
     
 }    
