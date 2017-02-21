@@ -57,7 +57,9 @@ public class MedicoController extends Controller implements Observer {
     private SocketsServer ss;
     private Thread tSS;
     private static ConnectionFactory connFact;
-    private DialogGUI dialog;
+    //private DialogGUI dialog;
+    private GUIFactory chat;
+
     public static ChatConexao conexaoChat;
     
     @FXML Accordion menuPrincipal;
@@ -83,10 +85,11 @@ public class MedicoController extends Controller implements Observer {
     @FXML StackPane spTitle;
     
     public MedicoController() {
+        chat = null;
         perfilUsuario = null;
         conexao = null;
         connFact = new ConnectionFactory();
-        dialog = null;
+//        dialog = null;
     }
     
     @Override
@@ -255,7 +258,7 @@ public class MedicoController extends Controller implements Observer {
         String fxmlGUI = "fxml/Chat.fxml";
         String titleGUI = "Bate Papo";
         StageStyle fxmlStyle = StageStyle.DECORATED;
-        GUIFactory chat = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
+        chat = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         chat.showAndWait();
     }
     
@@ -352,7 +355,7 @@ public class MedicoController extends Controller implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (dialog == null) {
+        if (chat == null) {
             chat("");
         }
     }
@@ -361,6 +364,19 @@ public class MedicoController extends Controller implements Observer {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+
+                String fxmlGUI = "fxml/Chat.fxml";
+                String titleGUI = "Bate Papo";
+                StageStyle fxmlStyle = StageStyle.DECORATED;
+                try {
+                    chat = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,JDocplus.getMainStage());
+                    chat.showAndWait();
+                    chat = null;
+                } catch (IOException ex) {
+                    Logger.getLogger(MedicoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+/*
                 try {
                     dialog = new DialogGUI("CT",msg, null,JDocplus.getMainStage());
                     dialog.showAndWait();
@@ -368,6 +384,7 @@ public class MedicoController extends Controller implements Observer {
                 } catch (IOException ex) {
                     Logger.getLogger(ChatConexao.class.getName()).log(Level.SEVERE, null, ex);
                 }                    
+*/
             }
         });
     }

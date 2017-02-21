@@ -30,17 +30,13 @@ public final class GUIFactory {
     public GUIFactory(String gui,String title,StageStyle sty,Stage owner) throws IOException {         
         this.guiFile = gui;
         this.style = sty;
-//        GUIFactory guifact = MedicoController.getMapaJanelas(gui);
-//        if (guifact!=null) {
-//            guifact.getStage().toFront();            
-//        } else {
-            this.stage = new Stage();            
-            this.stage.initOwner(owner);            
-            this.stage.initModality(Modality.WINDOW_MODAL);   
-            this.stage.initStyle(this.style);
-            this.stage.setTitle("JDocplus - "+title);  
-            
-            this.initialize();
+        this.stage = new Stage();            
+        this.stage.initOwner(owner);            
+        this.stage.initModality(Modality.WINDOW_MODAL);   
+        this.stage.initStyle(this.style);
+        this.stage.setTitle("JDocplus - "+title);  
+
+        this.initialize();
         //}
     }
 
@@ -80,16 +76,5 @@ public final class GUIFactory {
     public void close() {
         this.stage.close();
     }
-    
-/*    
-    private void addWindowCloseListener() {
-        this.stage.onHidingProperty().addListener(new ChangeListener() {
-        @Override
-        public void changed(ObservableValue o,Object oldVal,Object newVal) {
-            MedicoController.apagaEntradaMapaJanelas(guiFile);
-        }
-    });
-    }
-*/
     
 }
