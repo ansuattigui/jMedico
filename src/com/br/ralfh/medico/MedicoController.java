@@ -129,6 +129,7 @@ public class MedicoController extends Controller implements Observer {
         tSS.start();
         
         conexaoChat = new ChatConexao(conexao.getIp(), 8521);
+        conexaoChat.addObserver(this);
         
     }
     
