@@ -98,6 +98,9 @@ public class ChatController extends Controller implements Observer {
                 if (!conexoes.isEmpty()) {
                     Integer at = cbDestino.getSelectionModel().getSelectedItem().indexOf("-");
                     ip = cbDestino.getSelectionModel().getSelectedItem().substring(0,at).trim();
+                    
+                    
+                    
 
                     Integer att1 = cbDestino.getSelectionModel().getSelectedItem().indexOf("(");
                     Integer att2 = cbDestino.getSelectionModel().getSelectedItem().indexOf(")");

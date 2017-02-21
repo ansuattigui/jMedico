@@ -39,7 +39,14 @@ public class Conexoes {
         
         return conexoes;                
     }
-   
+
+/*     
+    public static Conexao(Conexao conexao) {
+        EntityManager manager = JPAUtil.getEntityManager();
+        String jpql = "select c from Conexao c where c.ip = :ip";
+        TypedQuery<Conexao>
+    }
+*/   
 
 }
 
