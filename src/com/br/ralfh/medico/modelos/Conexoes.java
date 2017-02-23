@@ -40,13 +40,16 @@ public class Conexoes {
         return conexoes;                
     }
 
-/*     
-    public static Conexao(Conexao conexao) {
+     
+    public static Conexao getConexao(String ip) {
         EntityManager manager = JPAUtil.getEntityManager();
         String jpql = "select c from Conexao c where c.ip = :ip";
-        TypedQuery<Conexao>
+        TypedQuery<Conexao> query = manager.createQuery(jpql,Conexao.class);
+        query.setParameter("ip", ip);
+        Conexao conexao = query.getSingleResult();
+        return conexao;
     }
-*/   
+   
 
 }
 

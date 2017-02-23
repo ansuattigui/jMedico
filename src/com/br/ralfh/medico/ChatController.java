@@ -42,10 +42,11 @@ public class ChatController extends Controller implements Observer {
     private final int PORT = 8521;
     private String ip;
     private String destino;
-    private ChatConexao conexao;
+    private ChatConexao chatConexao;
+    private Conexao conexao;
         
     public ChatController() {
-        this.conexao = null;
+        this.chatConexao = null;
         this.conexoes = new ArrayList<>();
 //        cxSaida.requestFocus();
     }
@@ -99,8 +100,7 @@ public class ChatController extends Controller implements Observer {
                     Integer at = cbDestino.getSelectionModel().getSelectedItem().indexOf("-");
                     ip = cbDestino.getSelectionModel().getSelectedItem().substring(0,at).trim();
                     
-                    
-                    
+                    conexao = Conexoes.getConexao(ip);
 
                     Integer att1 = cbDestino.getSelectionModel().getSelectedItem().indexOf("(");
                     Integer att2 = cbDestino.getSelectionModel().getSelectedItem().indexOf(")");
@@ -114,21 +114,21 @@ public class ChatController extends Controller implements Observer {
     
     
      public void btnEnviarFired(ActionEvent event) throws IOException {   
-        if (conexao == null) {
+        if (chatConexao == null) {
             conectar();
         }
          
        if (!cxSaida.getText().isEmpty()) {
-            conexao.envia(cxSaida.getText(),ip);
-            escreve(destino+": "+cxSaida.getText());
+            chatConexao.envia(cxSaida.getText(),ip);
+            escreve(conexao.getUsuario().getUsuario()+": "+cxSaida.getText());
             cxSaida.setText("");
         }
     }
      
     public void conectar() throws IOException {
-        conexao = MedicoController.conexaoChat;
-        conexao.addObserver(this);
-        escreve("Chat iniciado com " + ip + ":" + conexao.getPorta());
+        chatConexao = MedicoController.conexaoChat;
+        chatConexao.addObserver(this);
+        escreve("Chat iniciado com " + conexao.getUsuario().getUsuario());
     }    
          
 
@@ -141,7 +141,7 @@ public class ChatController extends Controller implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        escreve(conexao.getMensagem());
+        escreve(chatConexao.getMensagem());
     }
     
 }
