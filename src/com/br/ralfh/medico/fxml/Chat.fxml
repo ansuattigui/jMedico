@@ -10,10 +10,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.ChatController">
    <children>
-      <TitledPane animated="false" collapsible="false" layoutX="66.0" layoutY="53.0" text="Bate papo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TitledPane alignment="CENTER" animated="false" collapsible="false" layoutX="66.0" layoutY="53.0" text="Bate papo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0">
                <children>
@@ -21,7 +22,10 @@
                      <children>
                         <VBox alignment="TOP_CENTER" spacing="5.0">
                            <children>
-                              <Label fx:id="lblCliente" text="Bate-papo com" />
+                              <Label fx:id="lblCliente" text="Bate-papo com">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font></Label>
                               <ChoiceBox fx:id="cbDestino" prefWidth="300.0" />
                            </children>
                            <padding>
@@ -30,11 +34,20 @@
                         </VBox>
                         <HBox>
                            <children>
-                              <TextField fx:id="cxSaida" prefWidth="380.0" />
-                              <Button fx:id="btnEnviar" mnemonicParsing="false" onAction="#btnEnviarFired" text="Enviar" />
+                              <TextField fx:id="cxSaida" prefWidth="380.0">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font></TextField>
+                              <Button fx:id="btnEnviar" mnemonicParsing="false" onAction="#btnEnviarFired" text="Enviar">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font></Button>
                            </children>
                         </HBox>
-                        <TextArea fx:id="cxConversa" editable="false" minHeight="220.0" />
+                        <TextArea fx:id="cxConversa" editable="false" minHeight="220.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></TextArea>
                      </children>
                      <padding>
                         <Insets top="10.0" />
@@ -43,6 +56,9 @@
                </children>
             </AnchorPane>
         </content>
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
       </TitledPane>
    </children>
 </AnchorPane>
