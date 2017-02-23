@@ -55,7 +55,6 @@ public class ChatController extends Controller implements Observer {
         initListeners();
         getDestinos();
         setToolTips();
-//        setButtons(false);        
     }    
         
     public void initListeners() {
