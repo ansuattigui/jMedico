@@ -6,6 +6,7 @@
 package com.br.ralfh.medico.chat;
 
 import com.br.ralfh.medico.modelos.Conexao;
+import com.br.ralfh.medico.modelos.Conexoes;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -83,7 +84,7 @@ public class ChatConexao extends Observable {
                                 s += (char) b[i];
                             }
                         }
-                        String nome = pacoteRecebido.getAddress().toString() + " disse:";
+                        String nome = Conexoes.getConexao(pacoteRecebido.getAddress().toString()).getUsuario().getNomeCompleto() + ": ";
                         notifica(nome + s);
                     } catch (Exception e) {
                         System.out.println("erro");
