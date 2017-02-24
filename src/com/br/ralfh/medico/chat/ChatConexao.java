@@ -85,8 +85,8 @@ public class ChatConexao extends Observable {
                                 s += (char) b[i];
                             }
                         }
-                        String ip = pacoteRecebido.getAddress().toString();
-                        String nome = Conexoes.getConexao(ip).getUsuario().getNomeCompleto() + ": ";
+                        String nome = pacoteRecebido.getAddress().toString() + ": ";
+//                        String nome = Conexoes.getConexao(ip).getUsuario().getNomeCompleto() + ": ";
                         notifica(nome + s);
                     } catch (Exception e) {
                         System.out.println("erro");
