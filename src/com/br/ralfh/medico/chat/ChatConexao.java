@@ -62,10 +62,12 @@ public class ChatConexao extends Observable {
         boolean erro = false;
         DatagramSocket socket = null;
         boolean isConnected = false;
+        
+        
+        
 
         @Override
-        public void run() {
-                        
+        public void run() {                        
             while (true) {
                 try {
                     socket = new DatagramSocket(getPorta());
@@ -87,7 +89,8 @@ public class ChatConexao extends Observable {
                         }
                         String nome = pacoteRecebido.getAddress().toString() + ": ";
 //                        String nome = Conexoes.getConexao(ip).getUsuario().getNomeCompleto() + ": ";
-                        notifica(nome + s);
+//                        notifica(nome + s);
+                        notifica(s);
                     } catch (Exception e) {
                         System.out.println("erro");
                         try {

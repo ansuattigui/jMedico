@@ -119,7 +119,7 @@ public class ChatController extends Controller implements Observer {
          
        if (!cxSaida.getText().isEmpty()) {
             chatConexao.envia(cxSaida.getText(),ip);
-            escreve(conexao.getUsuario().getUsuario()+": "+cxSaida.getText());
+            escreve(MedicoController.conexao.getUsuario().getNomeCompleto()+": "+cxSaida.getText());
             cxSaida.setText("");
         }
     }
@@ -127,7 +127,7 @@ public class ChatController extends Controller implements Observer {
     public void conectar() throws IOException {
         chatConexao = MedicoController.conexaoChat;
         chatConexao.addObserver(this);
-        escreve("Chat iniciado com " + conexao.getUsuario().getUsuario());
+//        escreve("Chat iniciado com " + conexao.getUsuario().getUsuario());
     }    
          
 
@@ -140,7 +140,8 @@ public class ChatController extends Controller implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        escreve(chatConexao.getMensagem());
+        String msg = conexao.getUsuario().getNomeCompleto() + ": " + chatConexao.getMensagem();
+        escreve(msg);
     }
     
 }
