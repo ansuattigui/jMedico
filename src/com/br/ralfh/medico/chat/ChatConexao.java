@@ -16,6 +16,7 @@ import java.net.UnknownHostException;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 
 /**
  *
@@ -84,8 +85,8 @@ public class ChatConexao extends Observable {
                                 s += (char) b[i];
                             }
                         }
-                        String nome = pacoteRecebido.getAddress().toString() + " disse:";
-//                        String nome = Conexoes.getConexao(pacoteRecebido.getAddress().toString()).getUsuario().getNomeCompleto() + ": ";
+                        String ip = pacoteRecebido.getAddress().toString();
+                        String nome = Conexoes.getConexao(ip).getUsuario().getNomeCompleto() + ": ";
                         notifica(nome + s);
                     } catch (Exception e) {
                         System.out.println("erro");
