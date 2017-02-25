@@ -6,7 +6,6 @@
 package com.br.ralfh.medico.chat;
 
 import com.br.ralfh.medico.modelos.Conexao;
-import com.br.ralfh.medico.modelos.Conexoes;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -16,7 +15,6 @@ import java.net.UnknownHostException;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 
 /**
  *
@@ -62,9 +60,6 @@ public class ChatConexao extends Observable {
         boolean erro = false;
         DatagramSocket socket = null;
         boolean isConnected = false;
-        
-        
-        
 
         @Override
         public void run() {                        
@@ -87,10 +82,9 @@ public class ChatConexao extends Observable {
                                 s += (char) b[i];
                             }
                         }
-                        String nome = pacoteRecebido.getAddress().toString() + ": ";
-//                        String nome = Conexoes.getConexao(ip).getUsuario().getNomeCompleto() + ": ";
-//                        notifica(nome + s);
-                        notifica(s);
+                        String nome = pacoteRecebido.getAddress().toString() + ":";
+                        notifica(nome + s);
+//                        notifica(s);
                     } catch (Exception e) {
                         System.out.println("erro");
                         try {

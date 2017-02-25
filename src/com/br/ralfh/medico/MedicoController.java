@@ -364,7 +364,6 @@ public class MedicoController extends Controller implements Observer {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-
                 String fxmlGUI = "fxml/Chat.fxml";
                 String titleGUI = "Bate Papo";
                 StageStyle fxmlStyle = StageStyle.DECORATED;
