@@ -149,7 +149,7 @@ public class ChatController extends Controller implements Observer {
     
     @Override
     public void addStageCloseListener() {        
-        getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+        getController().getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
           @Override
           public void handle(WindowEvent we) {
               chatConexao.envia("SAIR", ip);
