@@ -14,6 +14,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -21,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.stage.WindowEvent;
 /**
  * FXML Controller class
  *
@@ -60,6 +62,7 @@ public class ChatController extends Controller implements Observer {
         
     public void initListeners() {
         addListenerCbDestino();
+        addStageCloseListener();
     }
 
     private void setToolTips() {
@@ -143,5 +146,15 @@ public class ChatController extends Controller implements Observer {
         String msg = conexao.getUsuario().getNomeCompleto() + ": " + chatConexao.getMensagem();
         escreve(msg);
     }
+    
+    @Override
+    public void addStageCloseListener() {        
+        getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+          @Override
+          public void handle(WindowEvent we) {
+              chatConexao.envia("SAIR", ip);
+          }
+        });
+    }    
     
 }

@@ -357,6 +357,10 @@ public class MedicoController extends Controller implements Observer {
     public void update(Observable o, Object arg) {
         if (chat == null) {
             chat(conexaoChat.getMensagem());
+        } else {
+            if (conexaoChat.getMensagem().toUpperCase()=="SAIR") {
+                chat.close();
+            }
         }
     }
     
