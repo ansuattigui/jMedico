@@ -56,7 +56,6 @@ public class ChatConexao extends Observable {
 
     class Recebe implements Runnable {
 
-        byte[] dadosReceber = new byte[255];
         boolean erro = false;
         DatagramSocket socket = null;
         boolean isConnected = false;
@@ -71,6 +70,7 @@ public class ChatConexao extends Observable {
                 }
                 erro = false;
                 while (!erro) {
+                    byte[] dadosReceber = new byte[255];
                     DatagramPacket pacoteRecebido = new DatagramPacket(dadosReceber, dadosReceber.length);
                     try {
                         isConnected = true;
