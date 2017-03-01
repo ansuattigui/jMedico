@@ -83,8 +83,8 @@ public class ChatConexao extends Observable {
                             }
                         }
                         String nome = pacoteRecebido.getAddress().toString() + ":";
-                        notifica(nome + s);
-//                        notifica(s);
+                        notifica(s);
+//                        notifica(nome + s);
                     } catch (Exception e) {
                         System.out.println("erro");
                         try {

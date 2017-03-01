@@ -258,7 +258,7 @@ public class MedicoController extends Controller implements Observer {
         StageStyle fxmlStyle = StageStyle.DECORATED;
         chat = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         ChatController controller = (ChatController) chat.getController();
-        controller.addStageCloseListener();
+//        controller.addStageCloseListener();
         chat.showAndWait();
         chat = null;
     }
@@ -358,12 +358,15 @@ public class MedicoController extends Controller implements Observer {
     public void update(Observable o, Object arg) {
         if (chat == null) {
             chat(conexaoChat.getMensagem());
-        } else {
+        }
+    }
+
+/*        } else {
             if (conexaoChat.getMensagem().toUpperCase()=="SAIR") {
                 chat.close();
             }
-        }
-    }
+*/
+    
     
     private void chat(String msg) {
         Platform.runLater(new Runnable() {
@@ -375,7 +378,7 @@ public class MedicoController extends Controller implements Observer {
                 try {
                     chat = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,JDocplus.getMainStage());
                     ChatController cont = (ChatController) chat.getController();
-                    cont.addStageCloseListener();                    
+//                    cont.addStageCloseListener();                    
                     cont.escreve(msg);
                     chat.showAndWait();
                     chat = null;

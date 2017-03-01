@@ -14,7 +14,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -22,7 +21,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.stage.WindowEvent;
 /**
  * FXML Controller class
  *
@@ -81,7 +79,8 @@ public class ChatController extends Controller implements Observer {
         ArrayList<String> strConexoes = new ArrayList<>();
         
         for (Conexao item : conexoes) {
-            String s = item.getIp()+ " - " + item.getUsuario().getNomeCompleto()+" em " + "("+item.getMachine()+")";
+//            String s = item.getIp()+ " - " + item.getUsuario().getNomeCompleto()+" em " + "("+item.getMachine()+")";
+            String s = item.getUsuario().getNomeCompleto() + " em " + "(" + item.getMachine() + " - " + item.getIp() + ")";
             boolean add = strConexoes.add(s);
         }        
                 
@@ -99,13 +98,15 @@ public class ChatController extends Controller implements Observer {
             public void changed(ObservableValue ov, Object oldValue, Object newValue) {  
                 if (!conexoes.isEmpty()) {
                     Integer at = cbDestino.getSelectionModel().getSelectedItem().indexOf("-");
-                    ip = cbDestino.getSelectionModel().getSelectedItem().substring(0,at).trim();
+                    Integer at1 = cbDestino.getSelectionModel().getSelectedItem().indexOf(")");
+                    ip = cbDestino.getSelectionModel().getSelectedItem().substring(at+1,at1).trim();
                     
                     conexao = Conexoes.getConexao(ip);
 
                     Integer att1 = cbDestino.getSelectionModel().getSelectedItem().indexOf("(");
                     Integer att2 = cbDestino.getSelectionModel().getSelectedItem().indexOf(")");
                     destino = cbDestino.getSelectionModel().getSelectedItem().substring(att1+1,att2).trim();
+                    
                 } else {
                     setButtons(true);
                 }
@@ -145,7 +146,8 @@ public class ChatController extends Controller implements Observer {
         String msg = conexao.getUsuario().getNomeCompleto() + ": " + chatConexao.getMensagem();
         escreve(msg);
     }
-    
+
+/*    
     @Override
     public void addStageCloseListener() {        
         getController().getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -157,5 +159,5 @@ public class ChatController extends Controller implements Observer {
           }
         });
     }    
-    
+*/    
 }
