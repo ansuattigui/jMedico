@@ -121,8 +121,9 @@ public class ChatController extends Controller implements Observer {
         }
          
        if (!cxSaida.getText().isEmpty()) {
-            chatConexao.envia(cxSaida.getText(),ip);
-            escreve(MedicoController.conexao.getUsuario().getNomeCompleto()+": "+cxSaida.getText());
+           String texto = MedicoController.conexao.getUsuario().getNomeCompleto()+": "+cxSaida.getText();
+            chatConexao.envia(texto,ip);
+            escreve(texto);
             cxSaida.setText("");
         }
     }
