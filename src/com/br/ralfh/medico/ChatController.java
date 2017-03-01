@@ -97,8 +97,8 @@ public class ChatController extends Controller implements Observer {
             @Override
             public void changed(ObservableValue ov, Object oldValue, Object newValue) {  
                 if (!conexoes.isEmpty()) {
-                    Integer at = cbDestino.getSelectionModel().getSelectedItem().indexOf("-");
-                    Integer at1 = cbDestino.getSelectionModel().getSelectedItem().indexOf(")");
+                    Integer at = cbDestino.getSelectionModel().getSelectedItem().lastIndexOf("-");
+                    Integer at1 = cbDestino.getSelectionModel().getSelectedItem().lastIndexOf(")");
                     ip = cbDestino.getSelectionModel().getSelectedItem().substring(at+1,at1).trim();
                     
                     conexao = Conexoes.getConexao(ip);
