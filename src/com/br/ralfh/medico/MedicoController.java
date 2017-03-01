@@ -258,6 +258,9 @@ public class MedicoController extends Controller implements Observer {
         String titleGUI = "Bate Papo";
         StageStyle fxmlStyle = StageStyle.DECORATED;
         chat = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
+        
+        ChatController controller = (ChatController) chat.getController();
+        controller.addStageCloseListener();
         chat.showAndWait();
         chat = null;
     }

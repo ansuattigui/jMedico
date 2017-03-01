@@ -62,7 +62,6 @@ public class ChatController extends Controller implements Observer {
         
     public void initListeners() {
         addListenerCbDestino();
-        addStageCloseListener();
     }
 
     private void setToolTips() {
@@ -152,7 +151,9 @@ public class ChatController extends Controller implements Observer {
         getController().getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
           @Override
           public void handle(WindowEvent we) {
-              chatConexao.envia("SAIR", ip);
+              if (ip!=null) {
+                chatConexao.envia("SAIR", ip);
+              }
           }
         });
     }    

@@ -37,7 +37,7 @@ public final class GUIFactory {
         this.stage.setTitle("JDocplus - "+title);  
 
         this.initialize();
-        //}
+        
     }
 
     public void initialize() {
