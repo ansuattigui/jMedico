@@ -144,7 +144,8 @@ public class ChatController extends Controller implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        String msg = conexao.getUsuario().getNomeCompleto() + ": " + chatConexao.getMensagem();
+//        String msg = conexao.getUsuario().getNomeCompleto() + ": " + chatConexao.getMensagem();
+        String msg = chatConexao.getMensagem();
         escreve(msg);
     }
 
