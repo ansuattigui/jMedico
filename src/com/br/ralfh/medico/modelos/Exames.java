@@ -6,6 +6,7 @@ package com.br.ralfh.medico.modelos;
 
 import com.br.ralfh.medico.JPAUtil;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javax.persistence.EntityManager;
@@ -42,8 +43,15 @@ public class Exames {
         TypedQuery<Exame> query = manager.createQuery(jpql,Exame.class);
         ArrayList<Exame> exames = (ArrayList) query.getResultList();
         manager.close();        
+
+        ArrayList<Exame> uniques = new ArrayList<Exame>();
+        for (Exame element : exames) {
+          if (!uniques.contains(element)) {
+            uniques.add(element);
+          }
+        }        
         
-        return exames;
+        return uniques;
     }
         
     public static ArrayList<Exame> getLista(PedidoExames pedido) {
@@ -68,9 +76,16 @@ public class Exames {
         TypedQuery<Exame> query = manager.createQuery(jpql,Exame.class);
         query.setParameter("pmaterial", material);
         ArrayList<Exame> exames = (ArrayList) query.getResultList();
-        manager.close();        
+        manager.close();    
+
+        ArrayList<Exame> uniques = new ArrayList<Exame>();
+        for (Exame element : exames) {
+          if (!uniques.contains(element)) {
+            uniques.add(element);
+          }
+        }        
         
-        return exames;
+        return uniques;
     }
     
     public static ObservableList<Exame> getObsLista(Exames pedido) {         

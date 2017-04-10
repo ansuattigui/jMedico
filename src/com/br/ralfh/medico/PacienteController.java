@@ -466,13 +466,13 @@ public class PacienteController extends Controller {
 
     @FXML
     public void btnPedidosFired(ActionEvent event){
-        String fxmlGUI = "fxml/Pedidos.fxml";
+        String fxmlGUI = "fxml/PedidosNovo.fxml";
         String titleGUI = "Pedidos de Exames de " + paciente.getNome() + " / " + paciente.getConvenio().getNome();
         StageStyle fxmlStyle = StageStyle.DECORATED;
         GUIFactory pedidos;   
         try {
             pedidos = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
-            PedidoExamesController controller = (PedidoExamesController) pedidos.getController();
+            PedidoExamesNovoController controller = (PedidoExamesNovoController) pedidos.getController();
             controller.setPaciente(paciente);
             pedidos.showAndWait(); 
         } catch (IOException ex) {

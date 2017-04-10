@@ -359,7 +359,7 @@ public class PedidoExamesNovoController extends Controller {
         
         exameGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         exameGUI.initialize();
-        ExameController controller = (ExameController) exameGUI.getController();        
+        NovoExameController controller = (NovoExameController) exameGUI.getController();        
         exameGUI.showAndWait();       
         
         if (controller.getExame()!=null) {            
@@ -377,7 +377,7 @@ public class PedidoExamesNovoController extends Controller {
         
         exameGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         exameGUI.initialize();
-        ExameController controller = (ExameController) exameGUI.getController();        
+        NovoExameController controller = (NovoExameController) exameGUI.getController();        
         exameGUI.showAndWait();       
         
         if (controller.getExame()!=null) {            

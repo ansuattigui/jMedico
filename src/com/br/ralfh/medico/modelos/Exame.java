@@ -95,4 +95,17 @@ public class Exame implements Serializable {
         }
     }
     
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Exame)) {
+            return false;
+        }
+        Exame other = (Exame) object;
+        if ((this.exame == null && other.exame != null) || (this.exame != null && !this.exame.equals(other.exame))) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
