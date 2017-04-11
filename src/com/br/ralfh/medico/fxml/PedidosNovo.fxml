@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.PedidoExamesNovoController">
+<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.PedidoExamesNovoController">
       <children>
       <VBox AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -200,20 +200,20 @@
           </TableView>
             <HBox alignment="CENTER_RIGHT" spacing="5.0">
                <children>
-                  <Button id="" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="" visible="false">
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../imagens/montagens/Pill%20Blue-edit.fw.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                   <Button id="btnSaveReceita" fx:id="btnNovoExame" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnNovoExameFired" prefWidth="70.0" styleClass="botaotool" text="Incluir">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../imagens/Medical%20Invoice%203D%20Add.png" />
+                              <Image url="@../imagens/Medical%20Invoice%20Flat%20Add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="" fx:id="btnAlteraExame" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnAlteraExameFired" prefWidth="70.0" styleClass="botaotool" text="Alterar">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/Medical%20Invoice%20Flat%20Edit%202.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -222,7 +222,7 @@
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../imagens/Medical%20Invoice%203D%20Delete.png" />
+                              <Image url="@../imagens/Medical%20Invoice%20Flat%20Delete.png" />
                            </image>
                         </ImageView>
                      </graphic>

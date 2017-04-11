@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,7 +81,7 @@ public class PedidoExamesNovoController extends Controller {
     
     @FXML public Button btnSair;
     @FXML public Button btnNovoExame;
-    @FXML public Button btnAtualizaExame;
+    @FXML public Button btnAlteraExame;
     @FXML public Button btnExcluiExame;
     
     @FXML Button btnNovoPedido; @FXML public MenuItem miNovoPedido;
@@ -142,7 +143,7 @@ public class PedidoExamesNovoController extends Controller {
         btnPrintPedido.setTooltip(new Tooltip("Imprime a receita selecionada"));       
         btnNovoExame.setTooltip(new Tooltip("Prescreve um medicamento"));        
         btnExcluiExame.setTooltip(new Tooltip("Exclui o medicamento selecionado"));
-//        btnAtualizaExame.setTooltip(new Tooltip("Atualiza o medicamento selecionado"));
+//        btnAlteraExame.setTooltip(new Tooltip("Atualiza o medicamento selecionado"));
         btnSair.setTooltip(new Tooltip("Fechar esta janela"));
     }
         
@@ -204,7 +205,7 @@ public class PedidoExamesNovoController extends Controller {
             @Override
             public void onChanged(ListChangeListener.Change change) {
                 if (!sopExames.isEmpty()) {
-                    tableExames.setItems(sopExames);
+                    tableExames.setItems(sopExames);   não está atualizando a tela
                 }
             }
         });
@@ -243,9 +244,9 @@ public class PedidoExamesNovoController extends Controller {
     public boolean checaPedido() {
         boolean resultado = Boolean.FALSE;
         pedido.setIndicacaoClinica(indicacaoClinica.getText());
-        if (pedido.getExames().isEmpty()) {
+        if ((pedido.getExames()==null)||(pedido.getExames().isEmpty())) {
             ShowDialog("EX", "Prescreva ao menos um exame", null,this.getStage());
-        } else if (pedido.getIndicacaoClinica().isEmpty()) {
+        } else if ((pedido.getIndicacaoClinica()==null)||(pedido.getIndicacaoClinica().isEmpty())) {
             ShowDialog("EX", "Informe a Indicação Clínica", null,this.getStage());
         } else {
             resultado = Boolean.TRUE;
@@ -362,28 +363,33 @@ public class PedidoExamesNovoController extends Controller {
         NovoExameController controller = (NovoExameController) exameGUI.getController();        
         exameGUI.showAndWait();       
         
-        if (controller.getExame()!=null) {            
-            Exame exam = controller.getExame();
-            exam.setPedidoExames(pedido);
-            pedido.getExames().add(exam);                                
-            sopExames.add(exam);
+        if (controller.getExames()!=null) {            
+            List<Exame> exames = controller.getExames();
+            
+            for(Exame exam :exames) {
+                exam.setPedidoExames(pedido);
+                pedido.getExames().add(exam);
+                sopExames.add(exam);
+            }
+            
         }        
     }
     
-    public void btnAtualizaExameFired(ActionEvent ae)  throws IOException {
-        String fxmlGUI = "fxml/Exame.fxml"; 
+    public void btnAlteraExameFired(ActionEvent ae)  throws IOException {
+        String fxmlGUI = "fxml/NovoExame.fxml"; 
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Atualização de exame";
         
         exameGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         exameGUI.initialize();
         NovoExameController controller = (NovoExameController) exameGUI.getController();        
+        controller.initExame(exame);
+        pedido.getExames().remove(exame);
         exameGUI.showAndWait();       
         
         if (controller.getExame()!=null) {            
-            Exame exam = controller.getExame();
-            exam.setPedidoExames(pedido);
-            pedido.getExames().add(exam);                                
+            Exame exam = controller.getExames().get(0);
+            pedido.getExames().add(exam);
             sopExames.add(exam);
         }        
     }
@@ -480,7 +486,7 @@ public class PedidoExamesNovoController extends Controller {
         miOpcaoReduzidoT.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         
         btnNovoExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
-//        btnAtualizaExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
+        btnAlteraExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         btnExcluiExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
     }
     

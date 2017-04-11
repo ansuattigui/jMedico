@@ -2,17 +2,15 @@ package com.br.ralfh.medico;
 
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.modelos.Exame;
-import com.br.ralfh.medico.modelos.ExameAux;
 import com.br.ralfh.medico.modelos.Exames;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -41,7 +39,6 @@ public class NovoExameController extends Controller {
     @FXML TableColumn<Exame,String> colMaterial;
     
     @FXML TextField editExame;    
-    @FXML TextField editPrincipio;    
     @FXML TextField editMaterial;    
     
     @FXML RadioButton rbFezes;
@@ -59,7 +56,9 @@ public class NovoExameController extends Controller {
     @FXML ComboBox<String> cbMaterial;
     
     private Exame exame;
+    private List<Exame> exames;
     private ObservableList<Exame> masterExames = FXCollections.observableArrayList();
+    private String oper;
 
     /**
      * @return the exame
@@ -70,6 +69,8 @@ public class NovoExameController extends Controller {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        oper = "";
+        exames = new ArrayList<>();
         initTabelas();
         initComboMaterial(); 
         initTGroup();
@@ -83,6 +84,21 @@ public class NovoExameController extends Controller {
         masterExames.setAll(exames);
     }
 
+    public void initExame(Exame exame) {
+        oper = "EDIT";
+        this.exame = exame;
+        editExame.setText(exame.getExame());                
+        for(Toggle t :tgMaterial.getToggles()) {
+            if (t.getUserData().equals(exame.getMaterial())) {
+                t.setSelected(true);
+                if (t.getUserData().equals("Outros")) {
+                    editMaterial.setText(exame.getMaterial());
+                }
+            }
+        }        
+    }
+    
+    
     private void initExames(String material) {
         ArrayList<Exame> exames = Exames.getListaPorMaterial(material);
         masterExames.setAll(exames);
@@ -90,7 +106,7 @@ public class NovoExameController extends Controller {
     
     public void initListeners() {
         addTGMaterialListener();
-        //addTabelaExamesListener();
+        addTabelaExamesListener();
     }
 
     
@@ -121,24 +137,17 @@ public class NovoExameController extends Controller {
     private void setToolTips() {
         btnApagaExame.setTooltip(new Tooltip("Apaga a caixa exame"));
         btnApagaMaterial.setTooltip(new Tooltip("Apaga a caixa material"));
-
-        /*        btnSalvaReceita.setTooltip(new Tooltip("Salvar receita do paciente"));
-        btnExcluiReceita.setTooltip(new Tooltip("Excluir receita selecionada"));
-        btnPrintReceita.setTooltip(new Tooltip("Imprime a recceita selecionada"));       
-        btnInsMedicamento.setTooltip(new Tooltip("Incluir este medicamento na receita"));        
-        btnApagaChaveMedicamento.setTooltip(new Tooltip("Apaga a caixa medicamento"));
-        btnApagaChavePosologia.setTooltip(new Tooltip("Apaga a caixa modo de uso"));
-        btnApagaChaveViaAdmin.setTooltip(new Tooltip("Apaga a caixa aplicação"));
-        btnApagaChaveQuantidade.setTooltip(new Tooltip("Apaga a caixa quantidade "));
-        
-        cbMaterial.setTooltip(new Tooltip("Filtrar medicamentos e modo de uso por grupo"));
-*/        
     }
 
-    public void actionConfirmar(ActionEvent ae) {       
-        exame = new Exame();
+    public void actionConfirmar(ActionEvent ae) {    
+        if (!"EDIT".equals(oper)) {
+            exame = new Exame();
+        } 
+        
         if (PreencheExame()) {
-            this.getStage().close();
+            exames.add(exame);
+            editExame.clear();
+            editMaterial.clear();
         }
     }
     
@@ -165,16 +174,21 @@ public class NovoExameController extends Controller {
         tabelaExames.setItems(masterExames);        
     }
 
-    /*
+    
     public void addTabelaExamesListener() {
         tabelaExames.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
-                editExame.setText(tabelaExames.getSelectionModel().getSelectedItem().getNomeExame());
+                editExame.setText(tabelaExames.getSelectionModel().getSelectedItem().getExame());                
+                for(Toggle t :tgMaterial.getToggles()) {
+                    if (t.getUserData().equals(tabelaExames.getSelectionModel().getSelectedItem().getMaterial())) {
+                        t.setSelected(true);
+                        return;
+                    }
+                }
             }
         });
     }    
-*/
     
     private void initComboMaterial(){
         ArrayList<String> materiais = new ArrayList<>();
@@ -212,6 +226,34 @@ public class NovoExameController extends Controller {
 
     public void btnApagaMaterialFired(ActionEvent event) {
         editMaterial.clear();
+    }
+
+    /**
+     * @return the exames
+     */
+    public List<Exame> getExames() {
+        return exames;
+    }
+
+    /**
+     * @param exames the exames to set
+     */
+    public void setExames(List<Exame> exames) {
+        this.exames = exames;
+    }
+
+    /**
+     * @return the oper
+     */
+    public String getOper() {
+        return oper;
+    }
+
+    /**
+     * @param oper the oper to set
+     */
+    public void setOper(String oper) {
+        this.oper = oper;
     }
 
 }

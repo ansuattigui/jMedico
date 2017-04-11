@@ -6,7 +6,6 @@ package com.br.ralfh.medico.modelos;
 
 import com.br.ralfh.medico.JPAUtil;
 import java.util.ArrayList;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javax.persistence.EntityManager;
@@ -27,6 +26,21 @@ public class Exames {
             EntityManager manager = JPAUtil.getEntityManager();
             manager.getTransaction().begin();  
             manager.remove(manager.getReference(Exame.class, exam.getId()));  
+            manager.getTransaction().commit();
+            manager.close();
+            resultado = Boolean.TRUE;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            resultado = Boolean.FALSE;
+        }
+        return resultado;        
+    }
+    public static Boolean atualizaExame(Exame exam) {
+        Boolean resultado = Boolean.FALSE;
+        try {
+            EntityManager manager = JPAUtil.getEntityManager();
+            manager.getTransaction().begin();  
+            manager.merge(exam);  
             manager.getTransaction().commit();
             manager.close();
             resultado = Boolean.TRUE;

@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane styleClass="fundo" stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.NovoExameController">
+<AnchorPane styleClass="fundo" stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.NovoExameController">
    <children>
       <HBox layoutX="242.0" layoutY="120.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -30,7 +30,6 @@
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
-                        <HBox alignment="CENTER_LEFT" spacing="4.0" />
                      </children>
                   </VBox>
                   <TabPane prefHeight="400.0" prefWidth="450.0" tabClosingPolicy="UNAVAILABLE">
