@@ -205,7 +205,7 @@ public class PedidoExamesNovoController extends Controller {
             @Override
             public void onChanged(ListChangeListener.Change change) {
                 if (!sopExames.isEmpty()) {
-                    tableExames.setItems(sopExames);   não está atualizando a tela
+                    tableExames.getItems().setAll(sopExames); 
                 }
             }
         });
@@ -363,15 +363,13 @@ public class PedidoExamesNovoController extends Controller {
         NovoExameController controller = (NovoExameController) exameGUI.getController();        
         exameGUI.showAndWait();       
         
-        if (controller.getExames()!=null) {            
-            List<Exame> exames = controller.getExames();
-            
+        if (controller.getExames()!=null) {    
+            List<Exame> exames = controller.getExames();            
             for(Exame exam :exames) {
                 exam.setPedidoExames(pedido);
                 pedido.getExames().add(exam);
-                sopExames.add(exam);
-            }
-            
+                sopExames.addAll(exam);
+            }            
         }        
     }
     
@@ -385,12 +383,13 @@ public class PedidoExamesNovoController extends Controller {
         NovoExameController controller = (NovoExameController) exameGUI.getController();        
         controller.initExame(exame);
         pedido.getExames().remove(exame);
+        List<Exame> exames = pedido.getExames();
         exameGUI.showAndWait();       
         
         if (controller.getExame()!=null) {            
             Exame exam = controller.getExames().get(0);
-            pedido.getExames().add(exam);
-            sopExames.add(exam);
+            exames.add(exam);
+            sopExames.setAll(exames);
         }        
     }
 
