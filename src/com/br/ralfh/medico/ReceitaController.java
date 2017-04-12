@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -358,15 +359,17 @@ public class ReceitaController extends Controller {
         
         prescricaoGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         prescricaoGUI.initialize();
-        PrescricaoController controller = (PrescricaoController) prescricaoGUI.getController();        
+        PrescricaoNovaController controller = (PrescricaoNovaController) prescricaoGUI.getController();        
         prescricaoGUI.showAndWait();       
         
-        if (controller.getPrescricao()!=null) {            
-            Prescricao prescr = controller.getPrescricao();
-            prescr.setReceita(receita);
-            receita.getPrescricoes().add(prescr);                                
-            sopPrescricoes.add(prescr);
-        }        
+        if (controller.getPrescricao()!=null) {   
+            List<Prescricao> prescricoes = controller.getPrescricoes();
+            for(Prescricao prescr :prescricoes) {
+                prescr.setReceita(receita);
+                receita.getPrescricoes().add(prescr);
+                sopPrescricoes.addAll(prescr);
+            }        
+        }
     }
     
     public void btnAtualizaMedicamentoFired(ActionEvent ae)  throws IOException {
@@ -376,14 +379,16 @@ public class ReceitaController extends Controller {
         
         prescricaoGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         prescricaoGUI.initialize();
-        PrescricaoController controller = (PrescricaoController) prescricaoGUI.getController();        
+        PrescricaoNovaController controller = (PrescricaoNovaController) prescricaoGUI.getController();        
+        controller.initExame(prescricao);
+        receita.getPrescricoes().remove(prescricao);
+        List<Prescricao> prescricoes = receita.getPrescricoes();
         prescricaoGUI.showAndWait();       
         
         if (controller.getPrescricao()!=null) {            
-            Prescricao prescr = controller.getPrescricao();
-            prescr.setReceita(receita);
+            Prescricao prescr = controller.getPrescricoes().get(0);
             receita.getPrescricoes().add(prescr);                                
-            sopPrescricoes.add(prescr);
+            sopPrescricoes.addAll(prescricoes);
         }        
     }
 

@@ -80,8 +80,8 @@ public class NovoExameController extends Controller {
     }  
     
     private void initExames() {
-        ArrayList<Exame> exames = Exames.getLista();
-        masterExames.setAll(exames);
+        ArrayList<Exame> listaExames = Exames.getLista();
+        masterExames.setAll(listaExames);
     }
 
     public void initExame(Exame exame) {
@@ -96,12 +96,11 @@ public class NovoExameController extends Controller {
                 }
             }
         }        
-    }
-    
+    }    
     
     private void initExames(String material) {
-        ArrayList<Exame> exames = Exames.getListaPorMaterial(material);
-        masterExames.setAll(exames);
+        ArrayList<Exame> listaExames = Exames.getListaPorMaterial(material);
+        masterExames.setAll(listaExames);
     }
     
     public void initListeners() {

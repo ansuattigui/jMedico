@@ -4,19 +4,18 @@ import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.modelos.Grupo;
 import com.br.ralfh.medico.modelos.Grupos;
 import com.br.ralfh.medico.modelos.Medicamento;
-import com.br.ralfh.medico.modelos.Medicamentos;
 import com.br.ralfh.medico.modelos.MedicamentoAux;
+import com.br.ralfh.medico.modelos.Medicamentos;
 import com.br.ralfh.medico.modelos.Posologias;
 import com.br.ralfh.medico.modelos.Prescricao;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.PropertyValueFactory;
 /**
  * FXML Controller class
  *
@@ -48,7 +48,6 @@ public class PrescricaoNovaController extends Controller {
     @FXML TableColumn<MedicamentoAux,String> colunaPrincipio;
     
     @FXML TextField editMedicamento;    
-    @FXML TextField editPrincipio;    
     @FXML ListView<String> listaPosologias;    
     @FXML TextField editPosologia;
     @FXML TextField editViaAdmin;
@@ -68,26 +67,28 @@ public class PrescricaoNovaController extends Controller {
     
     @FXML Button btnConfirma;
     @FXML Button btnCancela;
-    @FXML Button btnApagaPrincipio;
     @FXML Button btnApagaMedicamento;
 //    @FXML Button btnApagaChaveQuantidade;
 
     @FXML ComboBox<String> cbGrupo;
     
     private Prescricao prescricao;
+    private List<Prescricao> prescricoes;
     private ObservableList<MedicamentoAux> masterMedicamentos = FXCollections.observableArrayList();
     private ObservableList<MedicamentoAux> masterPrincipios = FXCollections.observableArrayList();
+    private String oper;
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        oper = "";
+        setPrescricoes(new ArrayList<>());
         initTabelas();
         initComboGrupo(); 
         initTGroup();
         initListeners();
-        setToolTips();
-        
-        initMedicamentos();
-        		        
+        setToolTips();        
+        initMedicamentos();        		        
     }  
     
     private void initMedicamentos() {
@@ -109,6 +110,23 @@ public class PrescricaoNovaController extends Controller {
             masterPrincipios.add(new MedicamentoAux(item.getNomecomercial(), item.getPrincipio()));
         }
     }
+    
+    public void initExame(Prescricao prescricao) {
+        oper = "EDIT";
+        this.prescricao = prescricao;
+        editMedicamento.setText(prescricao.getMedicamento());                
+        editPosologia.setText(prescricao.getPosologia());                
+        editQuantidade.setText(prescricao.getQuantidade());                
+        for(Toggle t :tgViaAdmin.getToggles()) {
+            if (t.getUserData().equals(prescricao.getViaAdmin())) {
+                t.setSelected(true);
+                if (t.getUserData().equals("Outros")) {
+                    editViaAdmin.setText(prescricao.getViaAdmin());
+                }
+            }
+        }        
+    }
+    
     
     public void initListeners() {
         addTGViaAdminListener();
@@ -155,7 +173,6 @@ public class PrescricaoNovaController extends Controller {
     }
     
     private void setToolTips() {
-        btnApagaPrincipio.setTooltip(new Tooltip("Apaga a caixa princípio ativo"));
         btnApagaMedicamento.setTooltip(new Tooltip("Apaga a caixa medicamento"));
 
         /*        btnSalvaReceita.setTooltip(new Tooltip("Salvar receita do paciente"));
@@ -172,9 +189,15 @@ public class PrescricaoNovaController extends Controller {
     }
 
     public void actionConfirmar(ActionEvent ae) {       
-        prescricao = new Prescricao();
+        if (!"EDIT".equals(oper)) {
+            prescricao = new Prescricao();
+        } 
+        
         if (PreenchePrescricao()) {
-            this.getStage().close();
+            getPrescricoes().add(prescricao);
+            editMedicamento.clear();
+            editPosologia.clear();
+            editQuantidade.clear();
         }
     }
     
@@ -186,11 +209,7 @@ public class PrescricaoNovaController extends Controller {
     public boolean PreenchePrescricao() {
         Boolean resultado = Boolean.FALSE;
         try {            
-            if (tPaneMedicamento.getSelectionModel().getSelectedIndex()==0) {
-                getPrescricao().setMedicamento(editPrincipio.getText());
-            } else {
-                getPrescricao().setMedicamento(editMedicamento.getText());
-            }
+            getPrescricao().setMedicamento(editMedicamento.getText());
             getPrescricao().setPosologia(editPosologia.getText());
             getPrescricao().setQuantidade(editQuantidade.getText());
             getPrescricao().setViaAdmin(editViaAdmin.getText());
@@ -202,33 +221,8 @@ public class PrescricaoNovaController extends Controller {
     }
 
     private void initTabelaMedicamentos() {
-        colunaMedicamento.setCellValueFactory(cellData -> cellData.getValue().nomeComercialProperty());        
-        FilteredList<MedicamentoAux> filteredMedicamento = new FilteredList<>(masterMedicamentos, p -> true);        
-        editMedicamento.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredMedicamento.setPredicate(medicamentoAux -> {
-                // If filter text is empty, display all persons.
-                if (newValue == null || newValue.isEmpty()) {
-                        return true;
-                }				
-                // Compare first name and last name of every person with filter text.
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (medicamentoAux.getNomeComercial().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true; // Filter matches first name.
-                }
-                return false; // Does not match.
-            });
-        });
-        
-        // 3. Wrap the FilteredList in a SortedList. 
-        SortedList<MedicamentoAux> sortedMedicamento = new SortedList<>(filteredMedicamento);
-
-        // 4. Bind the SortedList comparator to the TableView comparator.
-        // 	  Otherwise, sorting the TableView would have no effect.
-        sortedMedicamento.comparatorProperty().bind(tabelaMedicamentos.comparatorProperty());
-
-        // 5. Add sorted (and filtered) data to the table.
-        tabelaMedicamentos.setItems(sortedMedicamento);        
+        colunaMedicamento.setCellValueFactory(new PropertyValueFactory<>("nomeComercial"));        
+        tabelaMedicamentos.setItems(masterMedicamentos);        
     }
     public void addTabelaMedicamentosListener() {
         tabelaMedicamentos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
@@ -240,38 +234,14 @@ public class PrescricaoNovaController extends Controller {
     }    
 
     private void initTabelaPrincipios() {
-        colunaPrincipio.setCellValueFactory(cellData -> cellData.getValue().principioAtivoProperty());
-        FilteredList<MedicamentoAux> filteredPrincipio = new FilteredList<>(masterPrincipios, p -> true);        
-        editPrincipio.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredPrincipio.setPredicate(medicamentoAux -> {
-                // If filter text is empty, display all persons.
-                if (newValue == null || newValue.isEmpty()) {
-                        return true;
-                }				
-                // Compare first name and last name of every person with filter text.
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (medicamentoAux.getPrincipioAtivo().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true; // Filter matches first name.
-                }
-                return false; // Does not match.
-            });
-        });        
-        // 3. Wrap the FilteredList in a SortedList. 
-        SortedList<MedicamentoAux> sortedPrincipio = new SortedList<>(filteredPrincipio);
-
-        // 4. Bind the SortedList comparator to the TableView comparator.
-        // 	  Otherwise, sorting the TableView would have no effect.
-        sortedPrincipio.comparatorProperty().bind(tabelaMedicamentos.comparatorProperty());
-
-        // 5. Add sorted (and filtered) data to the table.
-        tabelaPrincipios.setItems(sortedPrincipio);        
+        colunaPrincipio.setCellValueFactory(new PropertyValueFactory<>("principioAtivo"));
+        tabelaPrincipios.setItems(masterPrincipios);        
     }
     public void addTabelaPrincipioListener() {
         tabelaPrincipios.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
-                editPrincipio.setText(tabelaPrincipios.getSelectionModel().getSelectedItem().getPrincipioAtivo());
+                editMedicamento.setText(tabelaPrincipios.getSelectionModel().getSelectedItem().getPrincipioAtivo());
             }
         });
     }
@@ -305,10 +275,6 @@ public class PrescricaoNovaController extends Controller {
             }        
         });
     }    
-       
-    public void btnApagaPrincipioFired(ActionEvent event) {
-        editPrincipio.clear();
-    }
 
     public void btnApagaMedicamentoFired(ActionEvent event) {
         editMedicamento.clear();
@@ -331,5 +297,19 @@ public class PrescricaoNovaController extends Controller {
      */
     public Prescricao getPrescricao() {
         return prescricao;
+    }
+
+    /**
+     * @return the prescricoes
+     */
+    public List<Prescricao> getPrescricoes() {
+        return prescricoes;
+    }
+
+    /**
+     * @param prescricoes the prescricoes to set
+     */
+    public void setPrescricoes(List<Prescricao> prescricoes) {
+        this.prescricoes = prescricoes;
     }
 }
