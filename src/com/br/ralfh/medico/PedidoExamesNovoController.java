@@ -205,7 +205,7 @@ public class PedidoExamesNovoController extends Controller {
             @Override
             public void onChanged(ListChangeListener.Change change) {
                 if (!sopExames.isEmpty()) {
-                    tableExames.setItems(sopExames);   não está atualizando a tela
+                    tableExames.setItems(sopExames); 
                 }
             }
         });
