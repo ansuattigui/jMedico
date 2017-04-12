@@ -194,20 +194,20 @@
           </TableView>
             <HBox alignment="CENTER_RIGHT" spacing="5.0">
                <children>
+                  <Button id="" fx:id="btnAtualizaMedicamento" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnAtualizaMedicamentoFired" prefHeight="50.0" prefWidth="50.0" text="" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/montagens/Pill%20Blue-edit.fw.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button id="btnSaveReceita" fx:id="btnNovoMedicamento" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnNovoMedicamentoFired" prefWidth="70.0" styleClass="botaotool" text="Incluir">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../imagens/montagens/Pill%20Blue-add.fw.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button id="" fx:id="btnAtualizaMedicamento" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnAtualizaMedicamentoFired" prefWidth="70.0" styleClass="botaotool" text="Alterar">
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../imagens/montagens/Pill%20Blue-edit.fw.png" />
                            </image>
                         </ImageView>
                      </graphic>
