@@ -388,7 +388,7 @@ public class ReceitaController extends Controller {
         if (controller.getPrescricao()!=null) {            
             Prescricao prescr = controller.getPrescricoes().get(0);
             receita.getPrescricoes().add(prescr);                                
-            sopPrescricoes.addAll(prescricoes);
+            sopPrescricoes.setAll(prescricoes);
         }        
     }
 

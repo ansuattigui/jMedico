@@ -19,13 +19,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane styleClass="fundo" stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.PrescricaoController">
+<AnchorPane styleClass="fundo" stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.PrescricaoNovaController">
    <children>
       <HBox layoutX="242.0" layoutY="120.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox spacing="10.0">
                <children>
-                  <VBox spacing="4.0">
+                  <VBox>
                      <children>
                         <Label text="1 - Medicamento:">
                            <font>
@@ -34,64 +34,54 @@
                         <HBox alignment="CENTER_LEFT" spacing="4.0" />
                      </children>
                   </VBox>
-                  <TabPane fx:id="tPaneMedicamento" prefHeight="400.0" prefWidth="300.0" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                        <Tab fx:id="tabPrincipio" text="Principio Ativo">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0">
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" spacing="4.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0">
+                  <VBox spacing="5.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="4.0">
+                           <children>
+                              <TextField fx:id="editMedicamento" prefWidth="245.0" />
+                              <Button fx:id="btnApagaMedicamento" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnApagaMedicamentoFired" prefHeight="25.0" prefWidth="25.0" styleClass="botaopq" textAlignment="CENTER">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" styleClass="botaopq">
+                                       <image>
+                                          <Image url="@../imagens/Draw-Eraser.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <TabPane fx:id="tPaneMedicamento" prefHeight="400.0" prefWidth="300.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                              <Tab fx:id="tabPrincipio" text="Principio Ativo">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0">
                                        <children>
-                                          <TextField fx:id="editPrincipio" prefWidth="245.0" />
-                                          <Button fx:id="btnApagaPrincipio" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnApagaPrincipioFired" prefHeight="25.0" prefWidth="25.0" styleClass="botaopq" textAlignment="CENTER">
-                                             <graphic>
-                                                <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" styleClass="botaopq">
-                                                   <image>
-                                                      <Image url="@../imagens/Draw-Eraser.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </Button>
+                                          <TableView fx:id="tabelaPrincipios" layoutX="7.0" layoutY="14.0" prefWidth="280.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                             <columns>
+                                                <TableColumn fx:id="colunaPrincipio" prefWidth="280.0" text="Nome" />
+                                             </columns>
+                                          </TableView>
                                        </children>
-                                    </HBox>
-                                    <TableView fx:id="tabelaPrincipios" layoutX="7.0" layoutY="14.0" prefWidth="280.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="45.0">
-                                       <columns>
-                                          <TableColumn fx:id="colunaPrincipio" prefWidth="280.0" text="Nome" />
-                                       </columns>
-                                    </TableView>
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                        <Tab fx:id="tabMedicamento" text="Nome Comercial">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" spacing="4.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0">
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab fx:id="tabMedicamento" text="Nome Comercial">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <TextField fx:id="editMedicamento" prefWidth="245.0" />
-                                          <Button fx:id="btnApagaMedicamento" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnApagaMedicamentoFired" prefHeight="25.0" prefWidth="25.0" styleClass="botaopq" textAlignment="CENTER">
-                                             <graphic>
-                                                <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" styleClass="botaopq">
-                                                   <image>
-                                                      <Image url="@../imagens/Draw-Eraser.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </Button>
+                                          <TableView fx:id="tabelaMedicamentos" layoutX="7.0" layoutY="14.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                            <columns>
+                                              <TableColumn fx:id="colunaMedicamento" editable="false" prefWidth="280.0" sortable="false" text="Nome" />
+                                            </columns>
+                                          </TableView>
                                        </children>
-                                    </HBox>
-                                    <TableView fx:id="tabelaMedicamentos" layoutX="7.0" layoutY="14.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="45.0">
-                                      <columns>
-                                        <TableColumn fx:id="colunaMedicamento" editable="false" prefWidth="280.0" sortable="false" text="Nome" />
-                                      </columns>
-                                    </TableView>
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </Tab>
-                    </tabs>
-                  </TabPane>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </VBox>
                   <VBox spacing="4.0">
                      <children>
                         <Label text="Grupo" />
