@@ -2,6 +2,7 @@ package com.br.ralfh.medico.modelos;
 
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -131,5 +132,19 @@ public class Prescricao implements Serializable {
         }
     }
     
-    
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Prescricao)) {
+            return false;
+        }
+        Prescricao other = (Prescricao) object;
+        return !((this.medicamento == null && other.medicamento != null) || (this.medicamento != null && !this.medicamento.equals(other.medicamento)));
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.medicamento);
+        return hash;
+    }
 }

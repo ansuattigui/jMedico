@@ -2,6 +2,7 @@ package com.br.ralfh.medico.modelos;
 
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -101,11 +102,13 @@ public class Exame implements Serializable {
             return false;
         }
         Exame other = (Exame) object;
-        if ((this.exame == null && other.exame != null) || (this.exame != null && !this.exame.equals(other.exame))) {
-            return false;
-        }
-        return true;
+        return !((this.exame == null && other.exame != null) || (this.exame != null && !this.exame.equals(other.exame)));
+    }        
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.exame);
+        return hash;
     }
-    
-    
 }
