@@ -296,6 +296,7 @@ public class ReceitaController extends Controller {
         } else {
             ShowDialog("EX", "Não foi possível salvar a receita", null,this.getStage());
         }
+        setButtons();
     }
 
     @FXML
