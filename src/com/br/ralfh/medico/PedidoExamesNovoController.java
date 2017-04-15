@@ -396,7 +396,7 @@ public class PedidoExamesNovoController extends Controller {
     public void btnExcluiExameFired(ActionEvent ae)  throws IOException {
         if (ExcluiRegistroDlg("EP", "", null,this.getStage())) { 
             pedido.getExames().remove(exame);
-            sopExames.remove(exame);
+            sopExames.setAll(pedido.getExames());
 //            status = StatusBtn.DELETINGPRESC;
         }
     }

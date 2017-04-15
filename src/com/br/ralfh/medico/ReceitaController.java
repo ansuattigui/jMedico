@@ -396,7 +396,7 @@ public class ReceitaController extends Controller {
     public void btnExcluiMedicamentoFired(ActionEvent ae)  throws IOException {
         if (ExcluiRegistroDlg("EP", "", null,this.getStage())) { 
             receita.getPrescricoes().remove(prescricao);
-            sopPrescricoes.remove(prescricao);
+            sopPrescricoes.setAll(receita.getPrescricoes());
 //            status = StatusBtn.DELETINGPRESC;
         }
     }
