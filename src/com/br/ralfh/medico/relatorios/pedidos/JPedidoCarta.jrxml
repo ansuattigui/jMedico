@@ -11,6 +11,7 @@
 	<parameter name="logoCabecalho" class="java.awt.Image"/>
 	<parameter name="logoRodape" class="java.awt.Image"/>
 	<parameter name="indicacaoClinica" class="java.lang.String"/>
+	<parameter name="comData" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[SELECT
      exame.`exame` AS exame_exame,
@@ -129,7 +130,9 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 	<summary>
 		<band height="137" splitType="Stretch">
 			<textField>
-				<reportElement x="236" y="48" width="288" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
+				<reportElement x="236" y="48" width="288" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc">
+					<printWhenExpression><![CDATA[$P{comData}.equals( true )]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>

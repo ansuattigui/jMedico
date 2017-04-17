@@ -36,6 +36,8 @@ public class PedidoExames implements Serializable {
     private Paciente paciente;
     @Temporal(TemporalType.DATE)
     private Date dataEmissao;
+    @Column(nullable = false)
+    private Boolean comData;
     private String indicacaoClinica;
     
     @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "pedido")
@@ -44,6 +46,7 @@ public class PedidoExames implements Serializable {
     
     public PedidoExames() {
         this.exames = new ArrayList<>();
+        comData = Boolean.FALSE;
     }
 
     /**
@@ -128,6 +131,20 @@ public class PedidoExames implements Serializable {
      */
     public void setIndicacaoClinica(String indicacaoClinica) {
         this.indicacaoClinica = indicacaoClinica;
+    }
+
+    /**
+     * @return the comData
+     */
+    public Boolean getComData() {
+        return comData;
+    }
+
+    /**
+     * @param comData the comData to set
+     */
+    public void setComData(Boolean comData) {
+        this.comData = comData;
     }
     
 }

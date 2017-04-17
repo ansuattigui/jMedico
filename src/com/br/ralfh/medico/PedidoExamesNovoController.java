@@ -26,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
@@ -75,6 +76,7 @@ public class PedidoExamesNovoController extends Controller {
     @FXML public TableColumn<PedidoExames,String> iclinCol;    
     
     @FXML public TextField indicacaoClinica;
+    @FXML public CheckBox cbxComData;
     @FXML public TableView<Exame> tableExames;
     @FXML public TableColumn<Exame,String> exameCol;
     @FXML public TableColumn<Exame,String> materialCol;    
@@ -168,6 +170,7 @@ public class PedidoExamesNovoController extends Controller {
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
                 if (sopPedido.get()!=null) {
                     indicacaoClinica.setText(sopPedido.get().getIndicacaoClinica());
+                    cbxComData.setSelected(sopPedido.get().getComData());
                     sopExames.setAll(sopPedido.get().getExames());
                     setButtons();
                     habilEdicaoFired();
@@ -244,6 +247,7 @@ public class PedidoExamesNovoController extends Controller {
     public boolean checaPedido() {
         boolean resultado = Boolean.FALSE;
         pedido.setIndicacaoClinica(indicacaoClinica.getText());
+        pedido.setComData(cbxComData.isSelected());
         if ((pedido.getExames()==null)||(pedido.getExames().isEmpty())) {
             ShowDialog("EX", "Prescreva ao menos um exame", null,this.getStage());
         } else if ((pedido.getIndicacaoClinica()==null)||(pedido.getIndicacaoClinica().isEmpty())) {
@@ -272,6 +276,7 @@ public class PedidoExamesNovoController extends Controller {
         pedido.setPaciente(sopPaciente.get());
         pedido.setDataEmissao(Util.ldHoje());
         pedido.setIndicacaoClinica(sopPedido.get().getIndicacaoClinica());
+        pedido.setComData(sopPedido.get().getComData());
         
         for (Exame ex : sopPedido.get().getExames()) {
             Exame p = new Exame();
@@ -438,6 +443,7 @@ public class PedidoExamesNovoController extends Controller {
         hm.put("nomePaciente", sopPaciente.get().getNome());
         hm.put("dataPedido", Util.formataDataExtenso(sopPedido.get().getDataEmissao()));    
         hm.put("indicacaoClinica", sopPedido.get().getIndicacaoClinica());    
+        hm.put("comData", sopPedido.get().getComData());    
         
         ImageIcon logoCabecalho = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_03.gif"));
         ImageIcon logoRodape = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_14.gif"));         

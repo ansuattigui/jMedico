@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -185,12 +186,17 @@
       </VBox>
       <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="355.0">
          <children>
-            <VBox fillWidth="false" spacing="5.0">
+            <HBox alignment="CENTER_LEFT" spacing="35.0">
                <children>
-                  <Label text="Indicação Clínica" />
-                  <TextField fx:id="indicacaoClinica" editable="false" prefHeight="25.0" prefWidth="415.0" />
+                  <VBox fillWidth="false" spacing="5.0">
+                     <children>
+                        <Label text="Indicação Clínica" />
+                        <TextField fx:id="indicacaoClinica" editable="false" prefHeight="25.0" prefWidth="415.0" />
+                     </children>
+                  </VBox>
+                  <CheckBox fx:id="cbxComData" mnemonicParsing="false" text="Pedido com data" />
                </children>
-            </VBox>
+            </HBox>
           <TableView fx:id="tableExames" editable="true" prefHeight="200.0">
             <columns>
               <TableColumn fx:id="materialCol" editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="157.0" text="Material" />

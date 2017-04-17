@@ -232,8 +232,9 @@ public class FichaMedicaController extends Controller {
     
     private void initComboAparCircPrCons() {
         comboapcircPrimeiraCons.getItems().clear();
-        comboapcircPrimeiraCons.getItems().add("RCI");
-        comboapcircPrimeiraCons.getItems().add("RCR, 2T");
+        comboapcircPrimeiraCons.getItems().add("rci");
+        comboapcircPrimeiraCons.getItems().add("rcr, 2t");
+        comboapcircPrimeiraCons.getItems().add("rcr, 2t, bnf");
     }
         
     private void addFreqCardPrimConsListener() {
