@@ -140,15 +140,19 @@ public class NovoExameController extends Controller {
     }
 
     public void actionConfirmar(ActionEvent ae) {    
+        
         if (!"EDIT".equals(oper)) {
             exame = new Exame();
         } 
-        
+
+        ShowDialog("S", "Exame solicitado com sucesso", null,this.getStage());
+
         if (PreencheExame()) {
             exames.add(exame);
             editExame.clear();
             editMaterial.clear();
         }
+        
     }
     
     public void actionCancelar(ActionEvent ae) {       

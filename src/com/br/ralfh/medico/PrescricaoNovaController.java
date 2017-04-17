@@ -193,12 +193,15 @@ public class PrescricaoNovaController extends Controller {
             prescricao = new Prescricao();
         } 
         
+        ShowDialog("S", "Medicamento prescrito com sucesso", null,this.getStage());
+        
         if (PreenchePrescricao()) {
-            getPrescricoes().add(prescricao);
+            prescricoes.add(prescricao);
             editMedicamento.clear();
             editPosologia.clear();
             editQuantidade.clear();
         }
+        
     }
     
     public void actionCancelar(ActionEvent ae) {       

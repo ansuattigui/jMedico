@@ -387,13 +387,13 @@ public class PedidoExamesNovoController extends Controller {
         exameGUI.initialize();
         NovoExameController controller = (NovoExameController) exameGUI.getController();        
         controller.initExame(exame);
-        pedido.getExames().remove(exame);
+        int pos = pedido.getExames().indexOf(exame);
         List<Exame> exames = pedido.getExames();
         exameGUI.showAndWait();       
         
         if (controller.getExame()!=null) {            
             Exame exam = controller.getExames().get(0);
-            exames.add(exam);
+            exames.set(pos, exam);
             sopExames.setAll(exames);
         }        
     }

@@ -382,13 +382,13 @@ public class ReceitaController extends Controller {
         prescricaoGUI.initialize();
         PrescricaoNovaController controller = (PrescricaoNovaController) prescricaoGUI.getController();        
         controller.initExame(prescricao);
-        receita.getPrescricoes().remove(prescricao);
+        int pos = receita.getPrescricoes().indexOf(prescricao);
         List<Prescricao> prescricoes = receita.getPrescricoes();
         prescricaoGUI.showAndWait();       
         
         if (controller.getPrescricao()!=null) {            
             Prescricao prescr = controller.getPrescricoes().get(0);
-            receita.getPrescricoes().add(prescr);                                
+            prescricoes.set(pos, prescr);
             sopPrescricoes.setAll(prescricoes);
         }        
     }
