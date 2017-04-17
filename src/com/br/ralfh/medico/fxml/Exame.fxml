@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
@@ -18,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane styleClass="fundo" stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.ExameController">
+<AnchorPane styleClass="fundo" stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.ExameController">
    <children>
       <HBox layoutX="242.0" layoutY="120.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -39,25 +40,29 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0">
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" spacing="4.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0">
+                                    <VBox spacing="4.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <children>
-                                          <TextField fx:id="editExame" prefWidth="350.0" />
-                                          <Button fx:id="btnApagaExame" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnApagaExameFired" prefHeight="25.0" prefWidth="25.0" styleClass="botaopq" textAlignment="CENTER">
-                                             <graphic>
-                                                <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" styleClass="botaopq">
-                                                   <image>
-                                                      <Image url="@../imagens/Draw-Eraser.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </Button>
+                                          <HBox spacing="2.0">
+                                             <children>
+                                                <TextArea fx:id="editExame" prefHeight="200.0" />
+                                                <Button fx:id="btnApagaExame" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnApagaExameFired" prefHeight="25.0" prefWidth="25.0" styleClass="botaopq" textAlignment="CENTER">
+                                                   <graphic>
+                                                      <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" styleClass="botaopq">
+                                                         <image>
+                                                            <Image url="@../imagens/Draw-Eraser.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <TableView fx:id="tabelaExames" prefWidth="280.0">
+                                             <columns>
+                                                <TableColumn fx:id="colExame" editable="false" prefWidth="410.0" text="Nome" />
+                                             </columns>
+                                          </TableView>
                                        </children>
-                                    </HBox>
-                                    <TableView fx:id="tabelaExames" layoutX="7.0" layoutY="14.0" prefWidth="280.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="45.0">
-                                       <columns>
-                                          <TableColumn fx:id="colExame" prefWidth="410.0" text="Nome" />
-                                       </columns>
-                                    </TableView>
+                                    </VBox>
                                  </children>
                               </AnchorPane>
                            </content>

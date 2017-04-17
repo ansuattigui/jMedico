@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pedido" pageWidth="419" pageHeight="595" columnWidth="264" leftMargin="141" rightMargin="14" topMargin="85" bottomMargin="28" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="51"/>
+	<property name="ireport.y" value="21"/>
 	<parameter name="idPedido" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -29,9 +29,9 @@ WHERE
 	<group name="material">
 		<groupExpression><![CDATA[$F{exame_material}]]></groupExpression>
 		<groupHeader>
-			<band height="29">
+			<band height="20">
 				<textField>
-					<reportElement x="0" y="5" width="264" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
+					<reportElement x="0" y="3" width="264" height="16" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isItalic="false" isUnderline="true"/>
 						<paragraph leftIndent="5"/>
@@ -62,9 +62,9 @@ WHERE
 		</band>
 	</title>
 	<detail>
-		<band height="29" splitType="Stretch">
+		<band height="18" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="5" width="264" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
+				<reportElement x="0" y="1" width="264" height="16" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 					<paragraph leftIndent="5"/>
@@ -113,7 +113,7 @@ WHERE
 				</staticText>
 			</elementGroup>
 			<textField>
-				<reportElement x="-1" y="12" width="264" height="19" uuid="34b2fda4-47c5-4d58-8a18-a11cfc9d9514"/>
+				<reportElement x="-1" y="7" width="264" height="19" uuid="34b2fda4-47c5-4d58-8a18-a11cfc9d9514"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="false"/>
 					<paragraph leftIndent="5"/>

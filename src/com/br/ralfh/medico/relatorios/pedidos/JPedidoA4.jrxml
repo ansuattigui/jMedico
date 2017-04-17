@@ -103,9 +103,9 @@ WHERE
 	</title>
 	<detail>
 		<band height="29" splitType="Stretch">
-			<textField>
-				<reportElement x="197" y="5" width="348" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
-				<textElement verticalAlignment="Middle">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="197" y="5" width="348" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
+				<textElement verticalAlignment="Top">
 					<font size="12"/>
 					<paragraph leftIndent="5"/>
 				</textElement>

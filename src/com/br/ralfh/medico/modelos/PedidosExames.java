@@ -52,31 +52,12 @@ public class PedidosExames {
         return resultado;
     }
 
-    public static Boolean excluiPrescricao(Receita rec) {
-        Boolean resultado = Boolean.FALSE;
-        try {
-            EntityManager manager = JPAUtil.getEntityManager();
-            manager.getTransaction().begin();  
-            //manager.merge(rec);  
-            manager.merge(manager.getReference(Receita.class, rec.getReceita_id()));  
-            manager.getTransaction().commit();
-            manager.close();
-            resultado = Boolean.TRUE;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            resultado = Boolean.FALSE;
-        }
-        return resultado;
-    }
-    
-    
-    
     public static Boolean excluiPedido(PedidoExames ped) {
         Boolean resultado = Boolean.FALSE;
         try {
             EntityManager manager = JPAUtil.getEntityManager();
             manager.getTransaction().begin();  
-            manager.remove(manager.getReference(Receita.class, ped.getPedido_id()));  
+            manager.remove(manager.getReference(PedidoExames.class, ped.getPedido_id()));  
             manager.getTransaction().commit();
             manager.close();
             resultado = Boolean.TRUE;

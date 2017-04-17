@@ -18,6 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
@@ -38,7 +39,7 @@ public class NovoExameController extends Controller {
     @FXML TableColumn<Exame,String> colExame;
     @FXML TableColumn<Exame,String> colMaterial;
     
-    @FXML TextField editExame;    
+    @FXML TextArea editExame;    
     @FXML TextField editMaterial;    
     
     @FXML RadioButton rbFezes;

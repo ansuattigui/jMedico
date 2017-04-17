@@ -2,7 +2,6 @@ package com.br.ralfh.medico;
 
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.modelos.Exame;
-import com.br.ralfh.medico.modelos.ExameAux;
 import com.br.ralfh.medico.modelos.Exames;
 import java.net.URL;
 import java.util.ArrayList;
@@ -11,8 +10,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -24,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.PropertyValueFactory;
 /**
  * FXML Controller class
  *
@@ -35,8 +33,8 @@ public class ExameController extends Controller {
      * Initializes the controller class.
      */
         
-    @FXML TableView<ExameAux> tabelaExames;
-    @FXML TableColumn<ExameAux,String> colExame;
+    @FXML TableView<Exame> tabelaExames;
+    @FXML TableColumn<Exame,String> colExame;
     
     @FXML TextField editExame;    
     @FXML TextField editPrincipio;    
@@ -57,7 +55,7 @@ public class ExameController extends Controller {
     @FXML ComboBox<String> cbMaterial;
     
     private Exame exame;
-    private ObservableList<ExameAux> masterExames = FXCollections.observableArrayList();
+    private ObservableList<Exame> masterExames = FXCollections.observableArrayList();
 
     /**
      * @return the exame
@@ -78,18 +76,12 @@ public class ExameController extends Controller {
     
     private void initExames() {
         masterExames.clear();
-        ArrayList<Exame> exames = Exames.getLista();
-        for (Exame item:exames) {
-            masterExames.add(new ExameAux(item.getExame()));
-        }
+        masterExames = (ObservableList<Exame>) Exames.getLista();
     }
 
     private void initExames(String material) {
         masterExames.clear();
-        ArrayList<Exame> exames = Exames.getListaPorMaterial(material);
-        for (Exame item:exames) {
-            masterExames.add(new ExameAux(item.getExame()));
-        }
+        masterExames = (ObservableList<Exame>) Exames.getListaPorMaterial(material);
     }
     
     public void initListeners() {
@@ -163,7 +155,11 @@ public class ExameController extends Controller {
     }
 
     private void initTabelaExames() {
-        colExame.setCellValueFactory(cellData -> cellData.getValue().nomeExameProperty());        
+
+        colExame.setCellValueFactory(new PropertyValueFactory<>("exame"));
+        tabelaExames.setItems(masterExames);
+/*        
+        colExame.setCellValueFactory(cellData -> cellData.getValue().nomeExameProperty());          
         FilteredList<ExameAux> filteredExame = new FilteredList<>(masterExames, p -> true);        
         editExame.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredExame.setPredicate(exameAux -> {
@@ -189,13 +185,14 @@ public class ExameController extends Controller {
         sortedExame.comparatorProperty().bind(tabelaExames.comparatorProperty());
 
         // 5. Add sorted (and filtered) data to the table.
-        tabelaExames.setItems(sortedExame);        
+        tabelaExames.setItems(sortedExame);      
+        */
     }
     public void addTabelaExamesListener() {
         tabelaExames.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
-                editExame.setText(tabelaExames.getSelectionModel().getSelectedItem().getNomeExame());
+                editExame.setText(tabelaExames.getSelectionModel().getSelectedItem().getExame());
             }
         });
     }    
