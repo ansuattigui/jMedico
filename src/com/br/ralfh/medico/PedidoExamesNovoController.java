@@ -291,10 +291,14 @@ public class PedidoExamesNovoController extends Controller {
         }
 //        pedido=recnew;   detached ex;
         sopPedido.set(pedido);
-        sopPedidos.add(pedido);
         
         if (PedidosExames.novoPedido(pedido)) {
             status = StatusBtn.SHOWING;
+
+            sopPedidos.setAll(PedidosExames.getLista(sopPaciente.get()));
+            
+            //sopPedidos.add(pedido);
+
             ShowDialog("S", "O pedido foi salvo com sucesso", null,this.getStage());
         } else {
             ShowDialog("EX", "Não foi possível salvar o pedido", null,this.getStage());

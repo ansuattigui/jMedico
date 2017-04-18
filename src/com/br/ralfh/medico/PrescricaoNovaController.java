@@ -164,12 +164,12 @@ public class PrescricaoNovaController extends Controller {
     }
     
     private void initTGroup() {
-        rbUsoInterno.setUserData("Uso Interno");
-        rbUsoExterno.setUserData("Uso Externo");
-        rbUsoTopico.setUserData("Uso Topico");
-        rbUsoViaOral.setUserData("Uso Via Oral");
-        rbUsoInjetavel.setUserData("Uso Injetavel");
-        rbUsoOutros.setUserData("Uso Outros");
+        rbUsoInterno.setUserData("Uso interno");
+        rbUsoExterno.setUserData("Uso externo");
+        rbUsoTopico.setUserData("Uso tópico");
+        rbUsoViaOral.setUserData("Uso via oral");
+        rbUsoInjetavel.setUserData("Uso injetável");
+        rbUsoOutros.setUserData("Outros");
     }
     
     private void setToolTips() {
@@ -205,7 +205,7 @@ public class PrescricaoNovaController extends Controller {
     }
     
     public void actionCancelar(ActionEvent ae) {       
-        prescricao = null;
+        //prescricao = null;
         this.getStage().close();
     }
     

@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane styleClass="fundo" stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.ExameController">
+<AnchorPane styleClass="fundo" stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.ExameController">
    <children>
       <HBox layoutX="242.0" layoutY="120.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -117,7 +117,7 @@
                   </VBox>
                   <HBox alignment="CENTER" spacing="5.0">
                      <children>
-                        <Button fx:id="btnConfirma" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#actionConfirmar" prefHeight="60.0" prefWidth="92.0" styleClass="botaotool" text="Solicita">
+                        <Button fx:id="btnConfirma" mnemonicParsing="false" onAction="#actionConfirmar" prefHeight="30.0" prefWidth="92.0" styleClass="botaotool" text="Solicitar">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -125,11 +125,11 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button fx:id="btnCancela" contentDisplay="BOTTOM" layoutX="89.0" layoutY="10.0" mnemonicParsing="false" onAction="#actionCancelar" prefHeight="60.0" prefWidth="92.0" styleClass="botaotool" text="Cancela">
+                        <Button fx:id="btnCancela" layoutX="89.0" layoutY="10.0" mnemonicParsing="false" onAction="#actionCancelar" prefHeight="30.0" prefWidth="92.0" styleClass="botaotool" text="Fechar">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../imagens/Cancel-32.png" />
+                                    <Image url="@../imagens/Door-Out.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
