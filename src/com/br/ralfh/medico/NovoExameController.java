@@ -156,7 +156,7 @@ public class NovoExameController extends Controller {
     }
     
     public void actionCancelar(ActionEvent ae) {       
-        exame = null;
+        //exame = null;
         this.getStage().close();
     }
     

@@ -138,7 +138,7 @@ public class ExameController extends Controller {
     }
     
     public void actionCancelar(ActionEvent ae) {       
-        exame = null;
+        //exame = null;
         this.getStage().close();
     }
     
