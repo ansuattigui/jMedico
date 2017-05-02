@@ -3,171 +3,140 @@
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="idReceita" class="java.lang.Integer">
+	<parameter name="idPaciente" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="nomePaciente" class="java.lang.String"/>
 	<parameter name="dataReceita" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="logoCabecalho" class="java.awt.Image" isForPrompting="false"/>
 	<parameter name="logoRodape" class="java.awt.Image"/>
+	<parameter name="prescricao" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select * from prescricao where receita_id = $P{idReceita} order by medicamento, viaAdmin]]>
+		<![CDATA[SELECT
+     tab_cliente.`nome_paciente` AS tab_cliente_nome_paciente,
+     tab_cliente.`end_paciente` AS tab_cliente_end_paciente,
+     tab_cliente.`bairro_paciente` AS tab_cliente_bairro_paciente,
+     tab_cliente.`cidade_paciente` AS tab_cliente_cidade_paciente,
+     tab_cliente.`cep_paciente` AS tab_cliente_cep_paciente,
+     tab_cliente.`uf_paciente` AS tab_cliente_uf_paciente
+FROM
+     `tab_cliente` tab_cliente
+WHERE
+     cod_paciente = $P{idPaciente}]]>
 	</queryString>
-	<field name="id" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="aplicacao" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="medicamento" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="modoUso" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="quantidade" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="receita_id" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="posologia" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="viaAdmin" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="tab_cliente_nome_paciente" class="java.lang.String"/>
+	<field name="tab_cliente_end_paciente" class="java.lang.String"/>
+	<field name="tab_cliente_bairro_paciente" class="java.lang.String"/>
+	<field name="tab_cliente_cidade_paciente" class="java.lang.String"/>
+	<field name="tab_cliente_cep_paciente" class="java.lang.String"/>
+	<field name="tab_cliente_uf_paciente" class="java.lang.String"/>
 	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
 	</variable>
-	<group name="viaAdmin">
-		<groupExpression><![CDATA[$F{viaAdmin}]]></groupExpression>
-		<groupHeader>
-			<band height="29">
-				<textField>
-					<reportElement x="119" y="9" width="264" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="10" isItalic="false" isUnderline="true"/>
-						<paragraph leftIndent="5"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{viaAdmin}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupHeader>
-	</group>
-	<background>
-		<band height="511" splitType="Stretch">
-			<line>
-				<reportElement x="115" y="39" width="1" height="450" uuid="295d0edd-cab3-4684-9c0a-4e7ff0eccfa9"/>
-				<graphicElement>
-					<pen lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
-			<image hAlign="Center" vAlign="Top">
-				<reportElement x="10" y="0" width="90" height="40" uuid="77e23b40-5490-4472-8cd4-786e7d528401"/>
-				<imageExpression><![CDATA[$P{logoCabecalho}]]></imageExpression>
-			</image>
-			<staticText>
-				<reportElement x="0" y="56" width="110" height="16" uuid="3d23d98f-1346-401d-8518-3453df1a87e6"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="9" isBold="true"/>
-				</textElement>
-				<text><![CDATA[j. horácio t. de carvalho]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="72" width="110" height="16" uuid="7e72e765-807a-4cc8-bba1-ce675863d86f"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="9" isBold="false"/>
-				</textElement>
-				<text><![CDATA[crm: 52.21.543-3]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="41" width="110" height="16" uuid="73b1be57-4d34-4de4-8c43-80e9d4664633"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Tw Cen MT Condensed" size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[clínica médica e cardiológica]]></text>
-			</staticText>
-			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="19" y="424" width="70" height="60" uuid="5aa6c704-9eb7-40cf-84f7-442216a325bb"/>
-				<imageExpression><![CDATA[$P{logoRodape}]]></imageExpression>
-			</image>
-		</band>
-	</background>
 	<title>
-		<band height="168">
+		<band height="136">
+			<rectangle>
+				<reportElement x="11" y="17" width="360" height="115" uuid="679166be-b44c-4b31-a4b6-8d1dfe16ea4c"/>
+			</rectangle>
 			<staticText>
 				<reportElement x="0" y="0" width="383" height="16" uuid="e74aa231-65a3-434e-a607-cc0c21cb1190"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[RECEITUÁRIO DE CONTROLE ESPECIAL]]></text>
+				<text><![CDATA[RECEITUÁRIO CONTROLE ESPECIAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="97" y="24" width="171" height="16" uuid="05b86396-8c12-4341-80d5-1065d1bf0b0f"/>
+				<reportElement x="106" y="24" width="171" height="16" uuid="05b86396-8c12-4341-80d5-1065d1bf0b0f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
 				<text><![CDATA[Identificaçao do Emitente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="106" y="49" width="151" height="16" uuid="93396d88-28cf-4ac4-ac3b-6e7894ae0a98"/>
+				<reportElement x="116" y="46" width="151" height="16" uuid="93396d88-28cf-4ac4-ac3b-6e7894ae0a98"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11"/>
+					<font size="10"/>
 				</textElement>
 				<text><![CDATA[J. Horácio T. de Carvalho]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="131" y="65" width="100" height="16" uuid="ed713963-d599-4b6b-b36c-6357fb6c0b41"/>
+				<reportElement x="141" y="76" width="100" height="16" uuid="ed713963-d599-4b6b-b36c-6357fb6c0b41"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[CRM 5221543-3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="96" width="300" height="30" uuid="26e1350e-d142-42e6-bea4-42e1e98db40a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
+				</textElement>
+				<text><![CDATA[Consultório: Estrada de Jacarepaguá, 7709 - Grupo 409/411
+Freguesia - Rio de Janeiro - RJ  CEP: 22.753-045 Telefone: (21) 2447-1290]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="62" width="100" height="14" uuid="f33376be-da77-4331-99cf-64a071a3e359"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Médico]]></text>
 			</staticText>
 		</band>
 	</title>
 	<detail>
-		<band height="40" splitType="Stretch">
+		<band height="103" splitType="Stretch">
 			<textField>
-				<reportElement x="119" y="0" width="264" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
+				<reportElement x="0" y="7" width="383" height="16" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
 				<textElement verticalAlignment="Middle">
-					<font size="10"/>
+					<font size="10" isBold="false"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{row_NUMBER}+") "+$F{medicamento}+" __________ "+$F{quantidade}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Paciente: "+$F{tab_cliente_nome_paciente}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="119" y="21" width="264" height="18" isRemoveLineWhenBlank="true" uuid="a6fc66b2-8b0f-40e6-ac2e-12a90ce4ace1"/>
-				<textElement verticalAlignment="Top">
-					<font size="10" isItalic="true"/>
-					<paragraph leftIndent="12"/>
+			<textField>
+				<reportElement x="0" y="26" width="383" height="16" uuid="5f24c8e4-3cba-45e5-8f02-b90c3cb84291"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{posologia}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Endereço: "+$F{tab_cliente_end_paciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="45" width="383" height="16" uuid="a531ec3c-5a21-41fd-a729-278744f6abbb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Prescrição: "+$P{prescricao}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="37">
-			<staticText>
-				<reportElement x="0" y="0" width="383" height="37" uuid="26e1350e-d142-42e6-bea4-42e1e98db40a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="8" isBold="true"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
-				</textElement>
-				<text><![CDATA[Consultório: Estrada de Jacarepaguá, 7709 - Grupo 409/411
-Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
-			</staticText>
-		</band>
-	</pageFooter>
-	<summary>
-		<band height="100" splitType="Stretch">
+		<band height="158">
 			<textField>
-				<reportElement x="99" y="2" width="264" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
+				<reportElement x="27" y="26" width="156" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Rio de Janeiro, "+$P{dataReceita}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{dataReceita}]]></textFieldExpression>
 			</textField>
-			<elementGroup/>
+			<rectangle>
+				<reportElement x="5" y="5" width="185" height="148" uuid="3f90604a-21bd-460c-baae-db5222386e20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="193" y="5" width="185" height="148" uuid="2d2a1cfa-3fcf-4bee-89ce-d4e76b99eeb1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="25" y="9" width="150" height="14" uuid="5ae5910b-14c8-4dd2-9150-1231bc77d37f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Identificação do Comprador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="209" y="12" width="150" height="14" uuid="b7e6ff40-ca20-4d7c-931b-85c2d84e034c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Identificação do Comprador]]></text>
+			</staticText>
 		</band>
-	</summary>
+	</pageFooter>
 </jasperReport>
