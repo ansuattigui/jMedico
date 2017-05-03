@@ -40,7 +40,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -409,7 +408,7 @@ public class ReceitaController extends Controller {
     public void btnReceitaControladaFired(ActionEvent ae) {
         
         String fileName = "relatorios/controladas/JControladaMeioA4.jasper";
-        PrintReceita(fileName);
+        PrintReceitaControlada(fileName);
         
     }
     
@@ -495,7 +494,7 @@ public class ReceitaController extends Controller {
         HashMap hm = new HashMap();
         hm.put("idPaciente", sopPaciente.get().getId());
         hm.put("dataReceita", Util.formataDataExtenso(sopReceita.get().getDataEmissao()));    
-        hm.put("prescricao", tablePrescricoes.getSelectionModel()nhouho9);
+        hm.put("prescricao", tablePrescricoes.getSelectionModel().getSelectedItem().getMedicamento());
         
         ImageIcon logoCabecalho = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_03.gif"));
         ImageIcon logoRodape = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_14.gif"));         
