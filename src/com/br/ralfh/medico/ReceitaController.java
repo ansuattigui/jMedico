@@ -40,6 +40,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -404,7 +405,13 @@ public class ReceitaController extends Controller {
     public void sairFired(ActionEvent event) {
         this.stage.close();
     }    
-    
+
+    public void btnReceitaControladaFired(ActionEvent ae) {
+        
+        String fileName = "relatorios/controladas/JControladaMeioA4.jasper";
+        PrintReceita(fileName);
+        
+    }
     
     private void atualizaCadastros() {
         
@@ -484,6 +491,30 @@ public class ReceitaController extends Controller {
         }
     }
      
+    public void PrintReceitaControlada(String file) {
+        HashMap hm = new HashMap();
+        hm.put("idPaciente", sopPaciente.get().getId());
+        hm.put("dataReceita", Util.formataDataExtenso(sopReceita.get().getDataEmissao()));    
+        hm.put("prescricao", tablePrescricoes.getSelectionModel()nhouho9);
+        
+        ImageIcon logoCabecalho = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_03.gif"));
+        ImageIcon logoRodape = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_14.gif"));         
+        hm.put("logoCabecalho",logoCabecalho.getImage());
+        hm.put("logoRodape", logoRodape.getImage());
+        
+        DataAccessRelatorios relat = new DataAccessRelatorios();
+        try {
+            InputStream inputStream = getClass().getResourceAsStream(file);
+            relat.openReport( "Receita",inputStream,hm);
+        } catch (JRException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
     private void setButtons() {
         btnNovaReceita.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
         btnAtualizaReceita.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
