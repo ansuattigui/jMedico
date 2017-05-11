@@ -67,6 +67,16 @@ public class Controller implements Initializable {
         return dialog.getController().getCloseModal();
     }
 
+    public Boolean ControladaDlg(String tipoDlg, String msg, Object obj, Stage owner) {    
+        DialogGUI dialog = null;
+        try {
+            dialog = new DialogGUI(tipoDlg,msg,obj,owner);
+            dialog.showAndWait();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }        
+        return dialog.getController().getCloseModal();
+    }
         
 /*        if (((AlertDlgController) dialog.getController()).optChoosen) {
             

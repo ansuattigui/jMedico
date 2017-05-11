@@ -24,6 +24,7 @@ public class Prescricao implements Serializable {
     private String quantidade;
     private String posologia;
     private String viaAdmin;
+    private String controlada;
     
     public Prescricao() {
     }
@@ -146,5 +147,19 @@ public class Prescricao implements Serializable {
         int hash = 5;
         hash = 29 * hash + Objects.hashCode(this.medicamento);
         return hash;
+    }
+
+    /**
+     * @return the controlada
+     */
+    public String getControlada() {
+        return controlada;
+    }
+
+    /**
+     * @param controlada the controlada to set
+     */
+    public void setControlada(String controlada) {
+        this.controlada = controlada;
     }
 }

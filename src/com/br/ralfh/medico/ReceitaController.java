@@ -1,5 +1,6 @@
 package com.br.ralfh.medico;
 
+import com.br.ralfh.medico.dlg.ControladaDlgController;
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.jdbc.DataAccessRelatorios;
 import com.br.ralfh.medico.modelos.Grupo;
@@ -9,6 +10,7 @@ import com.br.ralfh.medico.modelos.Paciente;
 import com.br.ralfh.medico.modelos.Posologia;
 import com.br.ralfh.medico.modelos.Posologias;
 import com.br.ralfh.medico.modelos.Prescricao;
+import com.br.ralfh.medico.modelos.Prescricoes;
 import com.br.ralfh.medico.modelos.Receita;
 import com.br.ralfh.medico.modelos.Receitas;
 import java.io.IOException;
@@ -71,6 +73,7 @@ public class ReceitaController extends Controller {
     private ObservableList<Prescricao> sopPrescricoes = FXCollections.observableArrayList() ;    
     private StatusBtn status;
     private GUIFactory prescricaoGUI;
+    private GUIFactory controladaGUI;
             
     @FXML TextField nomePaciente;
 
@@ -405,11 +408,27 @@ public class ReceitaController extends Controller {
         this.stage.close();
     }    
 
-    public void btnReceitaControladaFired(ActionEvent ae) {
+    public void btnReceitaControladaFired(ActionEvent ae) throws IOException {
         
-        String fileName = "relatorios/controladas/JControladaMeioA4.jasper";
-        PrintReceitaControlada(fileName);
+        String fxmlGUI = "dlg/ControladaDlg.fxml";
+        StageStyle fxmlStyle = StageStyle.DECORATED;
+        String fxmlTitle = "RECEITUARIO CONTROLE ESPECIAL";
         
+        controladaGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
+        controladaGUI.initialize();
+        ControladaDlgController controller = (ControladaDlgController) controladaGUI.getController();        
+        controller.setMedicamento(prescricao.getMedicamento());
+        
+        controladaGUI.showAndWait();               
+        
+        if (controller.getPrescricao()!="") {                        
+            prescricao.setControlada(controller.getPrescricao());
+            if (Prescricoes.atualizaPrescricao(prescricao)) {
+                String fileName = "relatorios/controladas/JControladaMeioA4.jasper";
+                PrintReceitaControlada(fileName);
+            }
+        }        
+                
     }
     
     private void atualizaCadastros() {
