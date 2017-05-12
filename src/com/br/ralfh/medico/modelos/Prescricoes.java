@@ -36,6 +36,21 @@ public class Prescricoes {
         return resultado;        
     }
     
+    public static Boolean atualizaPrescricao(Prescricao prescr) {
+        Boolean resultado = Boolean.FALSE;
+        try {
+            EntityManager manager = JPAUtil.getEntityManager();
+            manager.getTransaction().begin();  
+            manager.merge(manager.getReference(Prescricao.class, prescr.getId()));  
+            manager.getTransaction().commit();
+            manager.close();
+            resultado = Boolean.TRUE;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            resultado = Boolean.FALSE;
+        }
+        return resultado;        
+    }
     
     
     public ArrayList<Prescricao> getLista(Receita receita) {

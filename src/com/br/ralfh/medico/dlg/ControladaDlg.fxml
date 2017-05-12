@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?scenebuilder-preview-i18n-resource AlertDialog_en.properties?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.dlg.ControladaDlgController">
+<children>
+  <GridPane hgap="14.0" vgap="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+  <children>
+    <ImageView fx:id="imDlg" blendMode="MULTIPLY" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+      <image>
+        <Image url="@../imagens/Autorizacao.jpg" />
+      </image>
+    </ImageView>
+    <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefWidth="400.0" spacing="7.0" GridPane.columnIndex="1">
+      <children>
+        <Label fx:id="tituloLabel" text="Prescrição de Medicamento Controlado" textAlignment="LEFT" wrapText="true">
+<font>
+<Font name="Arial Bold" size="13.0" />
+</font></Label>
+        <Label fx:id="medicamentoLabel" text="details.label" textAlignment="LEFT" wrapText="true">
+<font>
+<Font name="Arial" size="13.0" />
+</font></Label>
+      </children>
+    </VBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Prescrição">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="textoPrescricao" prefHeight="300.0" prefWidth="360.0" wrapText="true" />
+               </children>
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+            </HBox>
+    <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <children>
+        <Button fx:id="salvarButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" onAction="#btnSalvarFired" text="Salvar" HBox.hgrow="NEVER">
+          <HBox.margin>
+            <Insets />
+          </HBox.margin>
+<font>
+<Font name="Arial" size="12.0" />
+</font>
+        </Button>
+      <Button fx:id="cancelarButton" minWidth="80.0" mnemonicParsing="false" onAction="#btnCancelFired" text="Cancelar" HBox.hgrow="NEVER">
+        <HBox.margin>
+          <Insets />
+        </HBox.margin>
+      </Button>
+      </children>
+    </HBox>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="NEVER" />
+    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="+Infinity" minWidth="-Infinity" />
+  </columnConstraints>
+  <padding>
+    <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+  </padding>
+  <rowConstraints>
+    <RowConstraints maxHeight="Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="ALWAYS" />
+    <RowConstraints vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" vgrow="NEVER" />
+  </rowConstraints>
+  <stylesheets>
+    <URL value="@AlertDialog.css" />
+  </stylesheets>
+</GridPane>
+</children>
+</AnchorPane>
