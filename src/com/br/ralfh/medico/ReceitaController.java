@@ -513,7 +513,7 @@ public class ReceitaController extends Controller {
         HashMap hm = new HashMap();
         hm.put("idPaciente", sopPaciente.get().getId());
         hm.put("dataReceita", Util.formataDataExtenso(sopReceita.get().getDataEmissao()));    
-        hm.put("prescricao", tablePrescricoes.getSelectionModel().getSelectedItem().getMedicamento());
+        hm.put("prescricao", tablePrescricoes.getSelectionModel().getSelectedItem().getControlada());
         
         ImageIcon logoCabecalho = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_03.gif"));
         ImageIcon logoRodape = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_14.gif"));         

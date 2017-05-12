@@ -17,7 +17,9 @@
      tab_cliente.`bairro_paciente` AS tab_cliente_bairro_paciente,
      tab_cliente.`cidade_paciente` AS tab_cliente_cidade_paciente,
      tab_cliente.`cep_paciente` AS tab_cliente_cep_paciente,
-     tab_cliente.`uf_paciente` AS tab_cliente_uf_paciente
+     tab_cliente.`uf_paciente` AS tab_cliente_uf_paciente,
+     tab_cliente.`numero_rua` AS tab_cliente_numero_rua,
+     tab_cliente.`complemento_endereco` AS tab_cliente_complemento_endereco
 FROM
      `tab_cliente` tab_cliente
 WHERE
@@ -29,6 +31,8 @@ WHERE
 	<field name="tab_cliente_cidade_paciente" class="java.lang.String"/>
 	<field name="tab_cliente_cep_paciente" class="java.lang.String"/>
 	<field name="tab_cliente_uf_paciente" class="java.lang.String"/>
+	<field name="tab_cliente_numero_rua" class="java.lang.String"/>
+	<field name="tab_cliente_complemento_endereco" class="java.lang.String"/>
 	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
@@ -55,7 +59,7 @@ WHERE
 			<staticText>
 				<reportElement x="93" y="32" width="197" height="14" uuid="05b86396-8c12-4341-80d5-1065d1bf0b0f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="10"/>
+					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[IDENTIFICAÇÃO DO EMITENTE]]></text>
 			</staticText>
@@ -106,11 +110,11 @@ Freguesia - Rio de Janeiro - RJ  CEP: 22.753-045 Telefone: (21) 2447-1290]]></te
 					<font size="10" isBold="false"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Endereço: "+$F{tab_cliente_end_paciente}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Endereço: "+$F{tab_cliente_end_paciente}+", "+$F{tab_cliente_numero_rua}+" - "+$F{tab_cliente_complemento_endereco}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="6" y="45" width="370" height="16" uuid="a531ec3c-5a21-41fd-a729-278744f6abbb"/>
-				<textElement verticalAlignment="Middle">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="6" y="45" width="370" height="70" uuid="a531ec3c-5a21-41fd-a729-278744f6abbb"/>
+				<textElement verticalAlignment="Top">
 					<font size="10" isBold="false"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
@@ -146,18 +150,11 @@ Freguesia - Rio de Janeiro - RJ  CEP: 22.753-045 Telefone: (21) 2447-1290]]></te
 			<line>
 				<reportElement x="193" y="67" width="185" height="1" uuid="ce84628a-72d3-480a-8ae1-d54246175495"/>
 			</line>
-			<textField>
-				<reportElement x="12" y="6" width="129" height="14" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{dataReceita}]]></textFieldExpression>
-			</textField>
 			<line>
-				<reportElement x="192" y="12" width="170" height="1" uuid="07dfe7a3-8016-4eb1-bdad-e64788ddbaca"/>
+				<reportElement x="192" y="16" width="170" height="1" uuid="07dfe7a3-8016-4eb1-bdad-e64788ddbaca"/>
 			</line>
 			<staticText>
-				<reportElement x="193" y="16" width="169" height="14" uuid="a90d0158-af35-4e50-a5ed-9ec1417aadd2"/>
+				<reportElement x="193" y="20" width="169" height="14" uuid="a90d0158-af35-4e50-a5ed-9ec1417aadd2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
@@ -263,6 +260,16 @@ Freguesia - Rio de Janeiro - RJ  CEP: 22.753-045 Telefone: (21) 2447-1290]]></te
 				<reportElement x="324" y="163" width="45" height="14" uuid="241bc7d3-ad63-4b3b-b918-a2f2e1f546c6"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[    /    /        ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="20" width="100" height="14" uuid="e4f14ba6-8a43-4d9f-a34d-d29c7e4c2b18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="6" width="100" height="14" uuid="df2e74c8-c54e-4f11-abf3-dc0e12317a17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[___ /___/_____]]></text>
 			</staticText>
 		</band>
 	</summary>
