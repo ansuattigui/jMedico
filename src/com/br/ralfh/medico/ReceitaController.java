@@ -418,6 +418,7 @@ public class ReceitaController extends Controller {
         controladaGUI.initialize();
         ControladaDlgController controller = (ControladaDlgController) controladaGUI.getController();        
         controller.setMedicamento(prescricao.getMedicamento());
+        controller.setPrescricao(prescricao.getControlada());
         
         controladaGUI.showAndWait();               
         

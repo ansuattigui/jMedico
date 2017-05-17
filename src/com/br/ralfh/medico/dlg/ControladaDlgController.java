@@ -88,6 +88,7 @@ public class ControladaDlgController extends Controller {
      */
     public void setPrescricao(String prescricao) {
         this.prescricao = prescricao;
+        textoPrescricao.setText(prescricao);
     }
 
 }

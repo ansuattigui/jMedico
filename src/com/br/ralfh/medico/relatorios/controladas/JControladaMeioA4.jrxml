@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receita" pageWidth="419" pageHeight="595" columnWidth="385" leftMargin="17" rightMargin="17" topMargin="42" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="105"/>
 	<parameter name="idPaciente" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -95,7 +95,15 @@ Freguesia - Rio de Janeiro - RJ  CEP: 22.753-045 Telefone: (21) 2447-1290]]></te
 		</band>
 	</title>
 	<detail>
-		<band height="119" splitType="Stretch">
+		<band height="149" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="6" y="45" width="370" height="100" uuid="a531ec3c-5a21-41fd-a729-278744f6abbb"/>
+				<textElement verticalAlignment="Top">
+					<font size="10" isBold="false" isUnderline="false"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Prescrição: "+$P{prescricao}]]></textFieldExpression>
+			</textField>
 			<textField>
 				<reportElement x="6" y="7" width="370" height="16" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
 				<textElement verticalAlignment="Middle">
@@ -112,18 +120,28 @@ Freguesia - Rio de Janeiro - RJ  CEP: 22.753-045 Telefone: (21) 2447-1290]]></te
 				</textElement>
 				<textFieldExpression><![CDATA["Endereço: "+$F{tab_cliente_end_paciente}+", "+$F{tab_cliente_numero_rua}+" - "+$F{tab_cliente_complemento_endereco}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToBandHeight" x="6" y="45" width="370" height="70" uuid="a531ec3c-5a21-41fd-a729-278744f6abbb"/>
-				<textElement verticalAlignment="Top">
-					<font size="10" isBold="false"/>
-					<paragraph leftIndent="5"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Prescrição: "+$P{prescricao}]]></textFieldExpression>
-			</textField>
+			<line>
+				<reportElement x="67" y="58" width="300" height="1" uuid="e02746ca-8bbd-474a-a6eb-73345ce5fa21"/>
+			</line>
+			<line>
+				<reportElement x="13" y="71" width="355" height="1" uuid="f4a13dab-9a03-47c6-a1e9-c166f04a7227"/>
+			</line>
+			<line>
+				<reportElement x="13" y="84" width="355" height="1" uuid="a6746131-a26f-46d6-ab0c-f58320fb2b70"/>
+			</line>
+			<line>
+				<reportElement x="13" y="97" width="355" height="1" uuid="eb5a7d0d-648d-43cf-a60e-6a145e5cb578"/>
+			</line>
+			<line>
+				<reportElement x="13" y="111" width="355" height="1" uuid="ce61bfff-2ca1-4404-85c0-54ef2c5f0653"/>
+			</line>
+			<line>
+				<reportElement x="13" y="126" width="355" height="1" uuid="1751e040-4dbe-4a11-8385-4438983b6645"/>
+			</line>
 		</band>
 	</detail>
 	<summary>
-		<band height="248">
+		<band height="223">
 			<rectangle>
 				<reportElement x="4" y="47" width="185" height="165" uuid="3f90604a-21bd-460c-baae-db5222386e20"/>
 			</rectangle>
