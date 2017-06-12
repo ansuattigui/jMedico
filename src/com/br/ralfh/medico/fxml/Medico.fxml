@@ -212,6 +212,11 @@
                                           <Font name="Arial" size="11.0" />
                                        </font>
                                     </Button>
+                                    <Button fx:id="btnReceitaControlada" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="32.0" layoutY="54.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnReceitaControladaFired" prefHeight="30.0" styleClass="botaomd" text="Receita Controlada">
+                                       <font>
+                                          <Font name="Arial" size="11.0" />
+                                       </font>
+                                    </Button>
                                  </children>
                               </VBox>
                            </children>

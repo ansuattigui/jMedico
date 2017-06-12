@@ -2,13 +2,16 @@ package com.br.ralfh.medico;
 
 import com.br.ralfh.medico.chat.ChatConexao;
 import com.br.ralfh.medico.jdbc.ConnectionFactory;
+import com.br.ralfh.medico.jdbc.DataAccessRelatorios;
 import com.br.ralfh.medico.modelos.Conexao;
 import com.br.ralfh.medico.modelos.Conexoes;
 import com.br.ralfh.medico.modelos.Usuario;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.time.Instant;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -29,6 +32,8 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.swing.ImageIcon;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  *
@@ -332,6 +337,32 @@ public class MedicoController extends Controller implements Observer {
         atestados.showAndWait();
     }
     
+    @FXML
+    public void btnReceitaControladaFired(ActionEvent event) throws Exception {
+        String fileName = "relatorios/controladas/JControladaMeioA4EmBranco.jasper";
+        HashMap hm = new HashMap();
+        hm.put("idPaciente", null);
+        hm.put("dataReceita", null);    
+        hm.put("prescricao", null);
+        
+        ImageIcon logoCabecalho = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_03.gif"));
+        ImageIcon logoRodape = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_14.gif"));         
+        hm.put("logoCabecalho",logoCabecalho.getImage());
+        hm.put("logoRodape", logoRodape.getImage());
+        
+        DataAccessRelatorios relat = new DataAccessRelatorios();
+        try {
+            InputStream inputStream = getClass().getResourceAsStream(fileName);
+            relat.openReport( "Receita",inputStream,hm);
+        } catch (JRException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
     
     /**
      * @return the connFact
