@@ -358,19 +358,19 @@ public class AtestadoController extends Controller {
             if (htmlEditorCabecalho.getHtmlText().isEmpty()) {
                 throw new CampoEmBrancoException("Informe o cabeçalho do atestado");
             } else {
-                atest.setCabecalho(htmlEditorCabecalho.getHtmlText());
+                atest.setCabecalho(htmlEditorCabecalho.getHtmlText().trim());
             }
 
             if (htmlEditorCorpo.getHtmlText().isEmpty()) {
                 throw new CampoEmBrancoException("Informe o corpo do atestado");
             } else {
-                atest.setCorpo(htmlEditorCorpo.getHtmlText());
+                atest.setCorpo(htmlEditorCorpo.getHtmlText().trim());
             }
             
             if (htmlEditorRodape.getHtmlText().isEmpty()) {
                 throw new CampoEmBrancoException("Informe o rodapé do atestado");
             } else {
-                atest.setRodape(htmlEditorRodape.getHtmlText());
+                atest.setRodape(htmlEditorRodape.getHtmlText().trim());
             }
             resultado = Boolean.TRUE;
         } catch (CampoEmBrancoException ex) {

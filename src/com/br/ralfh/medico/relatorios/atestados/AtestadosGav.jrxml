@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Atestado" pageWidth="595" pageHeight="833" columnWidth="377" leftMargin="204" rightMargin="14" topMargin="155" bottomMargin="21" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Atestado" pageWidth="595" pageHeight="833" columnWidth="377" leftMargin="204" rightMargin="14" topMargin="155" bottomMargin="28" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -57,7 +57,7 @@ WHERE
 			</textField>
 		</band>
 	</detail>
-	<pageFooter>
+	<columnFooter>
 		<band height="21">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="377" height="21" isRemoveLineWhenBlank="true" uuid="fd5c8200-c82e-4fff-ac3d-524d2b7351ce"/>
@@ -68,36 +68,36 @@ WHERE
 				<textFieldExpression><![CDATA[$F{tab_atestados_paciente_rodape}]]></textFieldExpression>
 			</textField>
 		</band>
-	</pageFooter>
+	</columnFooter>
 	<summary>
-		<band height="130" splitType="Stretch">
-			<elementGroup/>
+		<band height="115" splitType="Stretch">
 			<textField pattern="">
-				<reportElement x="33" y="25" width="288" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
+				<reportElement x="44" y="12" width="288" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Rio de Janeiro, "+$P{dataAtestado}]]></textFieldExpression>
 			</textField>
+			<elementGroup/>
 			<staticText>
-				<reportElement x="97" y="91" width="161" height="20" uuid="4d95ae19-159c-4355-a45f-6ecda0a9c49f"/>
+				<reportElement x="108" y="78" width="161" height="20" uuid="4d95ae19-159c-4355-a45f-6ecda0a9c49f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Médico]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="97" y="74" width="161" height="20" uuid="1064ad19-696d-443f-983a-53085f678c91"/>
+				<reportElement x="108" y="61" width="161" height="20" uuid="1064ad19-696d-443f-983a-53085f678c91"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[J. Horácio T. de Carvalho]]></text>
 			</staticText>
 			<line>
-				<reportElement x="97" y="68" width="161" height="1" uuid="53c5e4a4-c2af-46f6-a424-a57485147959"/>
+				<reportElement x="108" y="55" width="161" height="1" uuid="53c5e4a4-c2af-46f6-a424-a57485147959"/>
 			</line>
 			<staticText>
-				<reportElement x="97" y="107" width="161" height="20" uuid="df9a09d3-b727-4c08-8dd2-684ef831bdb0"/>
+				<reportElement x="108" y="94" width="161" height="20" uuid="df9a09d3-b727-4c08-8dd2-684ef831bdb0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
