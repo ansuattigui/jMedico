@@ -11,7 +11,7 @@
 	<parameter name="logoCabecalho" class="java.awt.Image"/>
 	<parameter name="logoRodape" class="java.awt.Image"/>
 	<queryString>
-		<![CDATA[select * from prescricao where receita_id = $P{idReceita} order by medicamento, viaAdmin]]>
+		<![CDATA[select * from prescricao where receita_id = $P{idReceita}]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -37,6 +37,11 @@
 	<field name="viaAdmin" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="controlada" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<sortField name="viaAdmin"/>
+	<sortField name="medicamento"/>
 	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>

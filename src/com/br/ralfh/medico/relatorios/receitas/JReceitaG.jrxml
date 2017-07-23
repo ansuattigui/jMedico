@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receita" pageWidth="595" pageHeight="833" columnWidth="377" leftMargin="204" rightMargin="14" topMargin="155" bottomMargin="90" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receita" pageWidth="595" pageHeight="833" columnWidth="377" leftMargin="204" rightMargin="14" topMargin="155" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -9,7 +9,7 @@
 	<parameter name="nomePaciente" class="java.lang.String"/>
 	<parameter name="dataReceita" class="java.lang.String" isForPrompting="false"/>
 	<queryString>
-		<![CDATA[select * from prescricao where receita_id = $P{idReceita} order by medicamento, viaAdmin]]>
+		<![CDATA[select * from prescricao where receita_id = $P{idReceita}]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -35,6 +35,11 @@
 	<field name="viaAdmin" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="controlada" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<sortField name="viaAdmin"/>
+	<sortField name="medicamento"/>
 	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>

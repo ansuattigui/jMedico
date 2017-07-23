@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="210.0" prefHeight="550.0" prefWidth="210.0" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.MedicoController">
+<AnchorPane focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="210.0" prefHeight="550.0" prefWidth="210.0" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.MedicoController">
   <children>
       <VBox alignment="CENTER" layoutX="-18.0" layoutY="-18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -212,7 +212,17 @@
                                           <Font name="Arial" size="11.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="btnReceitaControlada" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="32.0" layoutY="54.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnReceitaControladaFired" prefHeight="30.0" styleClass="botaomd" text="Receita Controlada">
+                                    <Button fx:id="btnReceitaControlada" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="32.0" layoutY="54.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnReceitaEmBrancoFired" prefHeight="30.0" styleClass="botaomd" text="Receita Controlada">
+                                       <font>
+                                          <Font name="Arial" size="11.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnReceitaA4" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="24.0" layoutY="114.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnReceitaEmBrancoFired" prefHeight="30.0" styleClass="botaomd" text="Receita Regular A4">
+                                       <font>
+                                          <Font name="Arial" size="11.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnReceitaMeioA4" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="23.0" layoutY="134.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnReceitaEmBrancoFired" prefHeight="30.0" styleClass="botaomd" text="Receita Regular 1/2 A4">
                                        <font>
                                           <Font name="Arial" size="11.0" />
                                        </font>

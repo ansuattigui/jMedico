@@ -85,6 +85,9 @@ public class MedicoController extends Controller implements Observer {
     @FXML Button btnUsuario;
     @FXML Button btnMedico;
     @FXML Button btnAtestadoNaoPaciente;
+    @FXML Button btnReceitaControlada;
+    @FXML Button btnReceitaA4;
+    @FXML Button btnReceitaMeioA4;
     @FXML ImageView ivFundo;
     @FXML Line lineFundo;    
     @FXML StackPane spTitle;
@@ -338,8 +341,15 @@ public class MedicoController extends Controller implements Observer {
     }
     
     @FXML
-    public void btnReceitaControladaFired(ActionEvent event) throws Exception {
-        String fileName = "relatorios/controladas/JControladaMeioA4EmBranco.jasper";
+    public void btnReceitaEmBrancoFired(ActionEvent event) throws Exception {
+        String fileName = "";
+        if (event.getSource().equals(btnReceitaControlada)) {
+            fileName = "relatorios/controladas/JControladaMeioA4EmBranco.jasper";
+        } else if (event.getSource().equals(btnReceitaA4)) {
+            fileName = "relatorios/receitas/JReceitaA4EmBranco.jasper";
+        } else if (event.getSource().equals(btnReceitaMeioA4)) {
+            fileName = "relatorios/receitas/JReceitaMeioA4EmBranco.jasper";
+        }
         HashMap hm = new HashMap();
         hm.put("idPaciente", null);
         hm.put("dataReceita", null);    
