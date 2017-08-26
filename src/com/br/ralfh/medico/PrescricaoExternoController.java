@@ -8,6 +8,7 @@ import com.br.ralfh.medico.modelos.MedicamentoAux;
 import com.br.ralfh.medico.modelos.Medicamentos;
 import com.br.ralfh.medico.modelos.Posologias;
 import com.br.ralfh.medico.modelos.Prescricao;
+import com.br.ralfh.medico.modelos.PrescricaoExterno;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ import javafx.stage.WindowEvent;
  *
  * @author ralfh
  */
-public class PrescricaoNovaController extends Controller {
+public class PrescricaoExternoController extends Controller {
 
     /**
      * Initializes the controller class.
@@ -74,8 +75,8 @@ public class PrescricaoNovaController extends Controller {
 
     @FXML ComboBox<String> cbGrupo;
     
-    private Prescricao prescricao;
-    private List<Prescricao> prescricoes;
+    private PrescricaoExterno prescricao;
+    private List<PrescricaoExterno> prescricoes;
     private ObservableList<MedicamentoAux> masterMedicamentos = FXCollections.observableArrayList();
     private ObservableList<MedicamentoAux> masterPrincipios = FXCollections.observableArrayList();
     private String oper;
@@ -113,7 +114,7 @@ public class PrescricaoNovaController extends Controller {
         }
     }
     
-    public void initExame(Prescricao prescricao) {
+    public void initExame(PrescricaoExterno prescricao) {
         oper = "EDIT";
         this.prescricao = prescricao;
         editMedicamento.setText(prescricao.getMedicamento());                
@@ -193,7 +194,7 @@ public class PrescricaoNovaController extends Controller {
     @FXML
     public void actionConfirmar(ActionEvent ae) {       
         if (!"EDIT".equals(oper)) {
-            prescricao = new Prescricao();
+            prescricao = new PrescricaoExterno();
         } 
         
         if (PreenchePrescricao()) {
@@ -299,21 +300,21 @@ public class PrescricaoNovaController extends Controller {
     /**
      * @return the prescricao
      */
-    public Prescricao getPrescricao() {
+    public PrescricaoExterno getPrescricao() {
         return prescricao;
     }
 
     /**
      * @return the prescricoes
      */
-    public List<Prescricao> getPrescricoes() {
+    public List<PrescricaoExterno> getPrescricoes() {
         return prescricoes;
     }
 
     /**
      * @param prescricoes the prescricoes to set
      */
-    public void setPrescricoes(List<Prescricao> prescricoes) {
+    public void setPrescricoes(List<PrescricaoExterno> prescricoes) {
         this.prescricoes = prescricoes;
     }
     

@@ -33,8 +33,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -442,6 +440,7 @@ public class PacienteController extends Controller {
             receitas = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
             ReceitaController controller = (ReceitaController) receitas.getController();
             controller.setPaciente(paciente);
+            controller.addStageCloseListener();
             receitas.showAndWait(); 
         } catch (IOException ex) {
             Logger.getLogger(PacienteController.class.getName()).log(Level.SEVERE, null, ex);

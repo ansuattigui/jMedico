@@ -10,9 +10,12 @@ import com.br.ralfh.medico.modelos.Paciente;
 import com.br.ralfh.medico.modelos.Posologia;
 import com.br.ralfh.medico.modelos.Posologias;
 import com.br.ralfh.medico.modelos.Prescricao;
+import com.br.ralfh.medico.modelos.PrescricaoExterno;
 import com.br.ralfh.medico.modelos.Prescricoes;
 import com.br.ralfh.medico.modelos.Receita;
+import com.br.ralfh.medico.modelos.ReceitaExterno;
 import com.br.ralfh.medico.modelos.Receitas;
+import com.br.ralfh.medico.modelos.ReceitasExterno;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -61,34 +64,33 @@ import net.sf.jasperreports.engine.JRException;
  *
  * @author ralfh
  */
-public class ReceitaController extends Controller {
+public class ReceitaExternoController extends Controller {
 
     /**
      * Initializes the controller class.
      */
     
-    private Receita receita;
-    private Prescricao prescricao;
-    private SimpleObjectProperty<Receita> sopReceita;
-    private ObservableList<Receita> sopReceitas ;    
-    private SimpleObjectProperty<Paciente> sopPaciente;        
-    private ObservableList<Prescricao> sopPrescricoes = FXCollections.observableArrayList() ;    
+    private ReceitaExterno receita;
+    private PrescricaoExterno prescricao;
+    private SimpleObjectProperty<ReceitaExterno> sopReceita;
+    private ObservableList<ReceitaExterno> sopReceitas ;    
+    private ObservableList<PrescricaoExterno> sopPrescricoes = FXCollections.observableArrayList() ;    
     private StatusBtn status;
     private GUIFactory prescricaoGUI;
     private GUIFactory controladaGUI;
             
     @FXML TextField nomePaciente;
 
-    @FXML TableView<Receita> tabelaReceitas;
-    @FXML TableColumn<Receita,String> ordemCol;
-    @FXML TableColumn<Receita,String> dataCol;    
+    @FXML TableView<ReceitaExterno> tabelaReceitas;
+    @FXML TableColumn<ReceitaExterno,String> ordemCol;
+    @FXML TableColumn<ReceitaExterno,String> dataCol;    
     
-    @FXML TableView<Prescricao> tablePrescricoes;
-    @FXML TableColumn<Prescricao,String> medicamentoCol;
-    @FXML TableColumn<Prescricao,String> posologiaCol;    
-    @FXML TableColumn<Prescricao,String> viaAdminCol;
-    @FXML TableColumn<Prescricao,String> quantidadeCol;
-    @FXML TableColumn<Prescricao,Boolean>  excluiPrescricaoCol;   
+    @FXML TableView<PrescricaoExterno> tablePrescricoes;
+    @FXML TableColumn<PrescricaoExterno,String> medicamentoCol;
+    @FXML TableColumn<PrescricaoExterno,String> posologiaCol;    
+    @FXML TableColumn<PrescricaoExterno,String> viaAdminCol;
+    @FXML TableColumn<PrescricaoExterno,String> quantidadeCol;
+    @FXML TableColumn<PrescricaoExterno,Boolean>  excluiPrescricaoCol;   
     
     @FXML public Button btnSair;
     @FXML Button btnNovoMedicamento;
@@ -109,14 +111,14 @@ public class ReceitaController extends Controller {
     @FXML public MenuItem miOpcaoReduzido; @FXML public MenuItem miOpcaoReduzidoT;
 
 
-    public ReceitaController() {
+    public ReceitaExternoController() {
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initTabelas();
         setToolTips();
-        sopPaciente = new SimpleObjectProperty<>();
+//        sopPaciente = new SimpleObjectProperty<>();
         sopReceita = new SimpleObjectProperty<>();
         sopReceitas = FXCollections.observableArrayList();
         sopPrescricoes = FXCollections.observableArrayList();
@@ -127,7 +129,7 @@ public class ReceitaController extends Controller {
     }    
     
     public void setPaciente(Paciente paciente) {
-        this.sopPaciente.set(paciente);  
+//        this.sopPaciente.set(paciente);  
     }    
         
     public void initListeners() {
@@ -158,7 +160,7 @@ public class ReceitaController extends Controller {
     }
         
     private void addPacienteListener() { 
-        sopPaciente.addListener(new ChangeListener() {
+        /*        sopPaciente.addListener(new ChangeListener() {
         @Override
         public void changed(ObservableValue o,Object oldVal,Object newVal) {
             if (sopPaciente.get() != null) {
@@ -170,7 +172,7 @@ public class ReceitaController extends Controller {
                 }
             }
         }
-        });
+        });*/
     }   
     private void addReceitaListener() { 
         sopReceita.addListener(new ChangeListener() {
@@ -230,14 +232,14 @@ public class ReceitaController extends Controller {
 
     
     public void initTabelaReceitas() {
-        ordemCol.setCellValueFactory(new Callback<CellDataFeatures<Receita, String>, ObservableValue<String>>() {
-          @Override public ObservableValue<String> call(CellDataFeatures<Receita, String> p) {
+        ordemCol.setCellValueFactory(new Callback<CellDataFeatures<ReceitaExterno, String>, ObservableValue<String>>() {
+          @Override public ObservableValue<String> call(CellDataFeatures<ReceitaExterno, String> p) {
             return new ReadOnlyObjectWrapper(tabelaReceitas.getItems().indexOf(p.getValue())+1 + "");
           }
         });           
-        dataCol.setCellValueFactory(new Callback<CellDataFeatures<Receita,String>, ObservableValue<String>>() {
+        dataCol.setCellValueFactory(new Callback<CellDataFeatures<ReceitaExterno,String>, ObservableValue<String>>() {
             @Override 
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Receita,String> rec) {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<ReceitaExterno,String> rec) {
                 return new SimpleObjectProperty<>(Util.formataDataExtenso(rec.getValue().getDataEmissao()));
             }
         });   
@@ -263,8 +265,8 @@ public class ReceitaController extends Controller {
     @FXML
     public void btnNovaReceitaFired(ActionEvent ae) {
         status = StatusBtn.INSERTING;
-        receita = new Receita();
-        receita.setPaciente(sopPaciente.get());
+        receita = new ReceitaExterno();
+//        receita.setPaciente(sopPaciente.get());
         receita.setDataEmissao(Util.ldHoje());
         sopReceita.set(receita);
         sopReceitas.add(receita);
@@ -272,14 +274,13 @@ public class ReceitaController extends Controller {
     
     @FXML
     public void btnDuplicaReceitaFired(ActionEvent event) {
-        status = StatusBtn.INSERTING;
-        
-        receita = new Receita();
-        receita.setPaciente(sopPaciente.get());
+        status = StatusBtn.INSERTING;        
+        receita = new ReceitaExterno();
+//        receita.setPaciente(sopPaciente.get());
         receita.setDataEmissao(Util.ldHoje());
         
-        for (Prescricao prescr : sopReceita.get().getPrescricoes()) {
-            Prescricao p = new Prescricao();
+        for (PrescricaoExterno prescr : sopReceita.get().getPrescricoes()) {
+            PrescricaoExterno p = new PrescricaoExterno();
             try {
                 p.setMedicamento(prescr.getMedicamento());
                 p.setPosologia(prescr.getPosologia());
@@ -288,14 +289,14 @@ public class ReceitaController extends Controller {
                 p.setReceita(receita);
                 receita.getPrescricoes().add(p);
             } catch (CampoEmBrancoException ex) {
-                Logger.getLogger(ReceitaController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ReceitaExternoController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 //        receita=recnew;   detached prescricao;
         sopReceita.set(receita);
         sopReceitas.add(receita);
         
-        if (Receitas.novaReceita(receita)) {
+        if (ReceitasExterno.novaReceita(receita)) {
             status = StatusBtn.SHOWING;
             ShowDialog("S", "A receita foi salva com sucesso", null,this.getStage());
         } else {
@@ -313,7 +314,7 @@ public class ReceitaController extends Controller {
     @FXML
     public void btnExcluiReceitaFired(ActionEvent event) {        
         if (ExcluiRegistroDlg("ER", "", null,this.getStage())) {
-            if (Receitas.excluiReceita(sopReceita.get())) {
+            if (ReceitasExterno.excluiReceita(sopReceita.get())) {
                 sopReceitas.remove(sopReceita.get());
                 tablePrescricoes.getItems().clear();
             }
@@ -324,14 +325,14 @@ public class ReceitaController extends Controller {
     public void btnSalvaReceitaFired(ActionEvent event) {
         if (checaReceita()) {
             if (status==StatusBtn.INSERTING) {            
-                if (Receitas.novaReceita(receita)) {
+                if (ReceitasExterno.novaReceita(receita)) {
                     status = StatusBtn.SHOWING;
                     ShowDialog("S", "A receita foi salva com sucesso", null,this.getStage());
                 } else {
                     ShowDialog("EX", "Não foi possível salvar a receita", null,this.getStage());
                 }
             } else if (status==StatusBtn.UPDATING) {
-                if (Receitas.atualizaReceita(receita)) {
+                if (ReceitasExterno.atualizaReceita(receita)) {
                     status = StatusBtn.SHOWING;
                     ShowDialog("S", "A receita foi atualizada com sucesso", null,this.getStage());
                 } else {
@@ -359,19 +360,19 @@ public class ReceitaController extends Controller {
     
     @FXML
     public void btnNovoMedicamentoFired(ActionEvent ae) throws IOException {        
-        String fxmlGUI = "fxml/PrescricaoNova.fxml";
+        String fxmlGUI = "fxml/PrescricaoExterno.fxml";
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Prescrição de medicamento";
         
         prescricaoGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         prescricaoGUI.initialize();
-        PrescricaoNovaController controller = (PrescricaoNovaController) prescricaoGUI.getController(); 
+        PrescricaoExternoController controller = (PrescricaoExternoController) prescricaoGUI.getController(); 
         controller.addStageCloseListener();
         prescricaoGUI.showAndWait();       
         
         if (controller.getPrescricao()!=null) {   
-            List<Prescricao> prescricoes = controller.getPrescricoes();
-            for(Prescricao prescr :prescricoes) {
+            List<PrescricaoExterno> prescricoes = controller.getPrescricoes();
+            for(PrescricaoExterno prescr :prescricoes) {
                 prescr.setReceita(receita);
                 receita.getPrescricoes().add(prescr);
                 sopPrescricoes.addAll(prescr);
@@ -380,21 +381,21 @@ public class ReceitaController extends Controller {
     }
     
     public void btnAtualizaMedicamentoFired(ActionEvent ae)  throws IOException {
-        String fxmlGUI = "fxml/PrescricaoNova.fxml";
+        String fxmlGUI = "fxml/PrescricaoExterno.fxml";
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Prescrição de medicamento";
         
         prescricaoGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         prescricaoGUI.initialize();
-        PrescricaoNovaController controller = (PrescricaoNovaController) prescricaoGUI.getController();        
+        PrescricaoExternoController controller = (PrescricaoExternoController) prescricaoGUI.getController();        
         controller.initExame(prescricao);
         controller.addStageCloseListener();
         int pos = receita.getPrescricoes().indexOf(prescricao);
-        List<Prescricao> prescricoes = receita.getPrescricoes();
+        List<PrescricaoExterno> prescricoes = receita.getPrescricoes();
         prescricaoGUI.showAndWait();       
         
         if (controller.getPrescricao()!=null) {            
-            Prescricao prescr = controller.getPrescricoes().get(0);
+            PrescricaoExterno prescr = controller.getPrescricoes().get(0);
             prescricoes.set(pos, prescr);
             sopPrescricoes.setAll(prescricoes);
         }        
