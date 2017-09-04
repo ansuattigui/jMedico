@@ -3,18 +3,10 @@ package com.br.ralfh.medico;
 import com.br.ralfh.medico.dlg.ControladaDlgController;
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.jdbc.DataAccessRelatorios;
-import com.br.ralfh.medico.modelos.Grupo;
-import com.br.ralfh.medico.modelos.Medicamento;
-import com.br.ralfh.medico.modelos.Medicamentos;
-import com.br.ralfh.medico.modelos.Paciente;
-import com.br.ralfh.medico.modelos.Posologia;
-import com.br.ralfh.medico.modelos.Posologias;
-import com.br.ralfh.medico.modelos.Prescricao;
 import com.br.ralfh.medico.modelos.PrescricaoExterno;
-import com.br.ralfh.medico.modelos.Prescricoes;
+import com.br.ralfh.medico.modelos.PrescricoesExterno;
 import com.br.ralfh.medico.modelos.Receita;
 import com.br.ralfh.medico.modelos.ReceitaExterno;
-import com.br.ralfh.medico.modelos.Receitas;
 import com.br.ralfh.medico.modelos.ReceitasExterno;
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,7 +48,6 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
-import javax.persistence.EntityManager;
 import javax.swing.ImageIcon;
 import net.sf.jasperreports.engine.JRException;
 /**
@@ -83,8 +74,7 @@ public class ReceitaExternoController extends Controller {
 
     @FXML TableView<ReceitaExterno> tabelaReceitas;
     @FXML TableColumn<ReceitaExterno,String> ordemCol;
-    @FXML TableColumn<ReceitaExterno,String> dataCol;    
-    
+    @FXML TableColumn<ReceitaExterno,String> dataCol;        
     @FXML TableView<PrescricaoExterno> tablePrescricoes;
     @FXML TableColumn<PrescricaoExterno,String> medicamentoCol;
     @FXML TableColumn<PrescricaoExterno,String> posologiaCol;    
@@ -124,16 +114,24 @@ public class ReceitaExternoController extends Controller {
         sopPrescricoes = FXCollections.observableArrayList();
         initListeners();
         
-        status = StatusBtn.IDLE;
+        status = StatusBtn.SHOWING;
         setButtons();        
     }    
     
-    public void setPaciente(Paciente paciente) {
-//        this.sopPaciente.set(paciente);  
-    }    
+    @FXML            
+    public void btnProcNomeFired(ActionEvent ae) {
+        if (!nomePaciente.getText().isEmpty()) {
+            try {
+                sopReceitas.setAll(ReceitasExterno.getLista(nomePaciente.getText()));
+                nomePaciente.setText(nomePaciente.getText().toUpperCase());
+            } catch (Exception ex) {
+                Logger.getLogger(MedicoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
         
     public void initListeners() {
-        addPacienteListener();
         AddSelecReceitaListener();
         addReceitaListener();
         addReceitasListener();
@@ -159,21 +157,6 @@ public class ReceitaExternoController extends Controller {
         btnSair.setTooltip(new Tooltip("Fechar esta janela"));
     }
         
-    private void addPacienteListener() { 
-        /*        sopPaciente.addListener(new ChangeListener() {
-        @Override
-        public void changed(ObservableValue o,Object oldVal,Object newVal) {
-            if (sopPaciente.get() != null) {
-                try {
-                    nomePaciente.setText(sopPaciente.get().getNome());
-                    sopReceitas.setAll(Receitas.getLista(sopPaciente.get()));
-                } catch (Exception ex) {
-                    Logger.getLogger(MedicoController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        });*/
-    }   
     private void addReceitaListener() { 
         sopReceita.addListener(new ChangeListener() {
             @Override
@@ -254,6 +237,12 @@ public class ReceitaExternoController extends Controller {
     
     public boolean checaReceita() {
         boolean resultado = Boolean.FALSE;
+        if (nomePaciente.getText().isEmpty()) {
+            ShowDialog("EX", "Informe o nome do paciente", null,this.getStage());
+        } else {
+            resultado = Boolean.TRUE;
+        }
+        receita.setPaciente(nomePaciente.getText());
         if (receita.getPrescricoes().isEmpty()) {
             ShowDialog("EX", "Prescreva ao menos um medicamento", null,this.getStage());
         } else {
@@ -264,19 +253,24 @@ public class ReceitaExternoController extends Controller {
     
     @FXML
     public void btnNovaReceitaFired(ActionEvent ae) {
-        status = StatusBtn.INSERTING;
-        receita = new ReceitaExterno();
-//        receita.setPaciente(sopPaciente.get());
-        receita.setDataEmissao(Util.ldHoje());
-        sopReceita.set(receita);
-        sopReceitas.add(receita);
+        if (nomePaciente.getText().isEmpty()) {
+            ShowDialog("EX", "Informe o nome do paciente", null,this.getStage());
+        } else {
+            status = StatusBtn.INSERTING;
+            receita = new ReceitaExterno();
+            receita.setPaciente(nomePaciente.getText());
+            receita.setDataEmissao(Util.ldHoje());
+            sopReceita.set(receita);
+            sopReceitas.add(receita);
+            setButtons();
+        }
     }
     
     @FXML
     public void btnDuplicaReceitaFired(ActionEvent event) {
         status = StatusBtn.INSERTING;        
         receita = new ReceitaExterno();
-//        receita.setPaciente(sopPaciente.get());
+        receita.setPaciente(nomePaciente.getText());
         receita.setDataEmissao(Util.ldHoje());
         
         for (PrescricaoExterno prescr : sopReceita.get().getPrescricoes()) {
@@ -422,8 +416,7 @@ public class ReceitaExternoController extends Controller {
         controladaGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         controladaGUI.initialize();
         ControladaDlgController controller = (ControladaDlgController) controladaGUI.getController();        
-        controller.setMedicamento(prescricao.getMedicamento());
-        
+        controller.setMedicamento(prescricao.getMedicamento());        
         controller.setPrescricao(prescricao.getPosologia()+" - "+prescricao.getQuantidade());
 //        controller.setPrescricao(prescricao.getControlada());
         
@@ -431,72 +424,45 @@ public class ReceitaExternoController extends Controller {
         
         if (controller.getPrescricao()!="") {                        
             prescricao.setControlada(controller.getPrescricao());
-            if (Prescricoes.atualizaPrescricao(prescricao)) {
+            if (PrescricoesExterno.atualizaPrescricao(prescricao)) {
                 String fileName = "relatorios/controladas/JControladaMeioA4.jasper";
                 PrintReceitaControlada(fileName);
             }
         }        
                 
     }
-    
-    private void atualizaCadastros() {
-        
-        EntityManager manager = JPAUtil.getEntityManager();       
-        Grupo grupo = manager.find(Grupo.class,0);
-        Posologias posologias = new Posologias();
-        Medicamentos medicamentos = new Medicamentos();
-                
-        manager.getTransaction().begin();
-        for(Prescricao itemReceita: sopPrescricoes) {            
-            Medicamento medicamento = medicamentos.getMedicamentoPeloNome(itemReceita.getMedicamento());
-            if (medicamento == null) {
-                medicamento = new Medicamento();
-                medicamento.setPrincipio(itemReceita.getMedicamento());
-                medicamento.setGrupo(grupo);                
-                manager.persist(medicamento);
-            }
 
-            Posologia posologia = posologias.getModoPeloNome(itemReceita.getPosologia());
-            if (posologia == null) {                
-                posologia = new Posologia();                
-                posologia.setPosologia(itemReceita.getPosologia());
-                manager.persist(posologia);
-            }            
-        }
-        manager.getTransaction().commit();
-        manager.close();
-    }    
-        
+    
     @FXML
     public void miOpcaoCartaFired(ActionEvent ev) {
-        String fileName = "relatorios/receitas/JReceitaCarta.jasper";
+        String fileName = "relatorios/receitas/JReceitaExternoCarta.jasper";
         PrintReceita(fileName);
     }
     @FXML
     public void miOpcaoA4Fired(ActionEvent ev) {
-        String fileName = "relatorios/receitas/JReceitaA4.jasper";
+        String fileName = "relatorios/receitas/JReceitaExternoA4.jasper";
         PrintReceita(fileName);
     }
     @FXML
     public void miOpcaoGavetaFired(ActionEvent ev) {
-        String fileName = "relatorios/receitas/JReceitaG.jasper";
+        String fileName = "relatorios/receitas/JReceitaExternoG.jasper";
         PrintReceita(fileName);
     }
     @FXML
     public void miOpcaoMeioA4Fired(ActionEvent ev) {
-        String fileName = "relatorios/receitas/JReceitaMeioA4.jasper";
+        String fileName = "relatorios/receitas/JReceitaExternoMeioA4.jasper";
         PrintReceita(fileName);
     }
     @FXML
     public void miOpcaoReduzidoFired(ActionEvent ev) {
-        String fileName = "relatorios/receitas/JReceitaReduz.jasper";
+        String fileName = "relatorios/receitas/JReceitaExternoReduz.jasper";
         PrintReceita(fileName);
     }
     
     public void PrintReceita(String file) {
         HashMap hm = new HashMap();
         hm.put("idReceita", sopReceita.get().getReceita_id());
-        hm.put("nomePaciente", sopPaciente.get().getNome());
+        hm.put("nomePaciente", nomePaciente.getText());
         hm.put("dataReceita", Util.formataDataExtenso(sopReceita.get().getDataEmissao()));    
         
         ImageIcon logoCabecalho = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_03.gif"));
@@ -519,7 +485,8 @@ public class ReceitaExternoController extends Controller {
      
     public void PrintReceitaControlada(String file) {
         HashMap hm = new HashMap();
-        hm.put("idPaciente", sopPaciente.get().getId());
+        hm.put("idReceita", sopReceita.get().getReceita_id());
+        hm.put("nomePaciente", sopReceita.get().getPaciente());
         hm.put("dataReceita", Util.formataDataExtenso(sopReceita.get().getDataEmissao()));    
         hm.put("prescricao", tablePrescricoes.getSelectionModel().getSelectedItem().getControlada());
         
@@ -550,6 +517,8 @@ public class ReceitaExternoController extends Controller {
         btnPrintReceita.setDisable(status!=StatusBtn.SHOWING);
         btnDuplicaReceita.setDisable(status!=StatusBtn.SHOWING);
         btnSair.setDisable(status!=StatusBtn.SHOWING);
+        
+//        nomePaciente.setEditable(status!=StatusBtn.IDLE);
         
         miNovaReceita.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
         miAtualizaReceita.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));

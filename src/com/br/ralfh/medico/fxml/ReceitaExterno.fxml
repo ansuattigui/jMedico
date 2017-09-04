@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.ReceitaExternoController">
+<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.ReceitaExternoController">
       <children>
       <VBox AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -164,7 +164,20 @@
             <VBox fillWidth="false" spacing="5.0">
                <children>
                   <Label text="Paciente" />
-                  <TextField fx:id="nomePaciente" editable="false" prefHeight="25.0" prefWidth="415.0" />
+                  <HBox spacing="3.0">
+                     <children>
+                        <TextField fx:id="nomePaciente" prefHeight="25.0" prefWidth="415.0" />
+                        <Button fx:id="btnProcNome" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnProcNomeFired" styleClass="botaopq" text="Button">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagens/find.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
             <HBox spacing="20.0">

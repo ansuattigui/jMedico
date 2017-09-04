@@ -13,8 +13,10 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +35,7 @@ public class ReceitaExterno implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataEmissao;
     private String paciente;
-    @OneToMany
+    @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "receita")
     @Column(nullable = false)
     private List<PrescricaoExterno> prescricoes;
     

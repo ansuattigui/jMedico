@@ -85,6 +85,7 @@ public class MedicoController extends Controller implements Observer {
     @FXML Button btnUsuario;
     @FXML Button btnMedico;
     @FXML Button btnAtestadoNaoPaciente;
+    @FXML Button btnReceitaNaoPaciente;    
     @FXML Button btnReceitaControlada;
     @FXML Button btnReceitaA4;
     @FXML Button btnReceitaMeioA4;
@@ -339,6 +340,15 @@ public class MedicoController extends Controller implements Observer {
         GUIFactory atestados = new GUIFactory(fxmlGUI,null,fxmlStyle,this.getStage());
         atestados.showAndWait();
     }
+    
+    @FXML
+    public void btnReceitaNaoPacienteFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/ReceitaExterno.fxml";
+        StageStyle fxmlStyle = StageStyle.UTILITY;        
+        GUIFactory receitas = new GUIFactory(fxmlGUI,null,fxmlStyle,this.getStage());
+        receitas.showAndWait();
+    }
+    
     
     @FXML
     public void btnReceitaEmBrancoFired(ActionEvent event) throws Exception {
