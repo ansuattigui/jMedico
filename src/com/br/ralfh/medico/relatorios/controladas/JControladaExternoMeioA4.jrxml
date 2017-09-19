@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receita" pageWidth="419" pageHeight="595" columnWidth="385" leftMargin="17" rightMargin="17" topMargin="42" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="105"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="idPaciente" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -11,19 +11,7 @@
 	<parameter name="logoRodape" class="java.awt.Image"/>
 	<parameter name="prescricao" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT
-     tab_cliente.`nome_paciente` AS tab_cliente_nome_paciente,
-     tab_cliente.`end_paciente` AS tab_cliente_end_paciente,
-     tab_cliente.`bairro_paciente` AS tab_cliente_bairro_paciente,
-     tab_cliente.`cidade_paciente` AS tab_cliente_cidade_paciente,
-     tab_cliente.`cep_paciente` AS tab_cliente_cep_paciente,
-     tab_cliente.`uf_paciente` AS tab_cliente_uf_paciente,
-     tab_cliente.`numero_rua` AS tab_cliente_numero_rua,
-     tab_cliente.`complemento_endereco` AS tab_cliente_complemento_endereco
-FROM
-     `tab_cliente` tab_cliente
-WHERE
-     cod_paciente = $P{idPaciente}]]>
+		<![CDATA[]]>
 	</queryString>
 	<field name="tab_cliente_nome_paciente" class="java.lang.String"/>
 	<field name="tab_cliente_end_paciente" class="java.lang.String"/>
@@ -118,7 +106,7 @@ Freguesia - Rio de Janeiro - RJ  CEP: 22.753-045 Telefone: (21) 2447-1290]]></te
 					<font size="10" isBold="false"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Endereço: "+$F{tab_cliente_end_paciente}+", "+$F{tab_cliente_numero_rua}+" - "+$F{tab_cliente_complemento_endereco}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Endereço: "]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="67" y="58" width="300" height="1" uuid="e02746ca-8bbd-474a-a6eb-73345ce5fa21"/>

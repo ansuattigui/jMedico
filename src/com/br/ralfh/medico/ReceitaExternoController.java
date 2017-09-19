@@ -418,14 +418,13 @@ public class ReceitaExternoController extends Controller {
         ControladaDlgController controller = (ControladaDlgController) controladaGUI.getController();        
         controller.setMedicamento(prescricao.getMedicamento());        
         controller.setPrescricao(prescricao.getPosologia()+" - "+prescricao.getQuantidade());
-//        controller.setPrescricao(prescricao.getControlada());
         
         controladaGUI.showAndWait();               
         
         if (controller.getPrescricao()!="") {                        
             prescricao.setControlada(controller.getPrescricao());
             if (PrescricoesExterno.atualizaPrescricao(prescricao)) {
-                String fileName = "relatorios/controladas/JControladaMeioA4.jasper";
+                String fileName = "relatorios/controladas/JControladaExternoMeioA4.jasper";
                 PrintReceitaControlada(fileName);
             }
         }        
@@ -485,7 +484,6 @@ public class ReceitaExternoController extends Controller {
      
     public void PrintReceitaControlada(String file) {
         HashMap hm = new HashMap();
-        hm.put("idReceita", sopReceita.get().getReceita_id());
         hm.put("nomePaciente", sopReceita.get().getPaciente());
         hm.put("dataReceita", Util.formataDataExtenso(sopReceita.get().getDataEmissao()));    
         hm.put("prescricao", tablePrescricoes.getSelectionModel().getSelectedItem().getControlada());
