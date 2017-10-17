@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recibo" pageWidth="419" pageHeight="595" columnWidth="264" leftMargin="141" rightMargin="14" topMargin="85" bottomMargin="28" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="78"/>
 	<parameter name="idRecibo" class="java.lang.Integer"/>
 	<parameter name="dataRecibo" class="java.lang.String"/>
 	<parameter name="imagemAssinatura" class="java.awt.Image"/>
@@ -78,14 +78,14 @@ WHERE
 			</textField>
 			<elementGroup/>
 			<staticText>
-				<reportElement x="53" y="72" width="161" height="14" uuid="4d95ae19-159c-4355-a45f-6ecda0a9c49f"/>
+				<reportElement x="53" y="70" width="161" height="12" uuid="4d95ae19-159c-4355-a45f-6ecda0a9c49f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Médico]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="53" y="58" width="161" height="14" uuid="1064ad19-696d-443f-983a-53085f678c91"/>
+				<reportElement x="53" y="58" width="161" height="12" uuid="1064ad19-696d-443f-983a-53085f678c91"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10" isBold="true"/>
 				</textElement>
@@ -95,11 +95,18 @@ WHERE
 				<reportElement x="53" y="55" width="161" height="1" uuid="53c5e4a4-c2af-46f6-a424-a57485147959"/>
 			</line>
 			<staticText>
-				<reportElement x="53" y="86" width="161" height="14" uuid="df9a09d3-b727-4c08-8dd2-684ef831bdb0"/>
+				<reportElement x="53" y="82" width="161" height="12" uuid="df9a09d3-b727-4c08-8dd2-684ef831bdb0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CRM 52.21.543-3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="53" y="94" width="161" height="12" uuid="bd613c1e-d625-49ff-9954-c0e6481a4488"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF 240.425.797-87]]></text>
 			</staticText>
 		</band>
 	</summary>
