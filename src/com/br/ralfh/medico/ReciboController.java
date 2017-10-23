@@ -60,7 +60,7 @@ public class ReciboController extends Controller {
     @FXML public MenuItem miReciboCarta;
     @FXML public MenuItem miReciboA4;
     @FXML public MenuItem miReciboGaveta;
-    @FXML public MenuItem miReciboPrateleira;
+    @FXML public MenuItem miReciboMeioA4;
 //    @FXML public MenuItem miReciboEnvelope;
     @FXML public MenuItem miReciboReduzido;
     
@@ -68,7 +68,7 @@ public class ReciboController extends Controller {
     @FXML public MenuItem miReciboCartaT;
     @FXML public MenuItem miReciboA4T;
     @FXML public MenuItem miReciboGavetaT;
-    @FXML public MenuItem miReciboPrateleiraT;
+    @FXML public MenuItem miReciboMeioA4T;
 //    @FXML public MenuItem miReciboEnvelopeT;
     @FXML public MenuItem miReciboReduzidoT;
     
@@ -181,8 +181,8 @@ public class ReciboController extends Controller {
         PrintRecibo(fileName);
     }
     @FXML
-    public void miReciboPrateleiraFired(ActionEvent ev) {
-        String fileName = "relatorios/recibos/RecibosP.jasper";
+    public void miReciboMeioA4Fired(ActionEvent ev) {
+        String fileName = "relatorios/recibos/RecibosMeioA4.jasper";
         PrintRecibo(fileName);
     }
     @FXML
@@ -424,12 +424,12 @@ public class ReciboController extends Controller {
         miReciboCarta.setDisable(status!=StatusBtn.SHOWING);
         miReciboA4.setDisable(status!=StatusBtn.SHOWING);
         miReciboGaveta.setDisable(status!=StatusBtn.SHOWING);
-        miReciboPrateleira.setDisable(true);   //(status!=StatusBtn.SHOWING);
+        miReciboMeioA4.setDisable(status!=StatusBtn.SHOWING);
         miReciboReduzido.setDisable(status!=StatusBtn.SHOWING);
         miReciboCartaT.setDisable(status!=StatusBtn.SHOWING);
         miReciboA4T.setDisable(status!=StatusBtn.SHOWING);
         miReciboGavetaT.setDisable(status!=StatusBtn.SHOWING);
-        miReciboPrateleiraT.setDisable(true); //(status!=StatusBtn.SHOWING);
+        miReciboMeioA4T.setDisable(status!=StatusBtn.SHOWING);
         miReciboReduzidoT.setDisable(status!=StatusBtn.SHOWING);
         
         nomepac.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));

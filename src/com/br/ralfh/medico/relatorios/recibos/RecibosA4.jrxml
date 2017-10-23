@@ -7,7 +7,6 @@
 	<parameter name="dataRecibo" class="java.lang.String"/>
 	<parameter name="logoCabecalho" class="java.awt.Image"/>
 	<parameter name="logoRodape" class="java.awt.Image"/>
-	<parameter name="imagemAssinatura" class="java.awt.Image"/>
 	<queryString>
 		<![CDATA[SELECT
      tab_recibos_paciente.`IDRecibo` AS tab_recibos_paciente_IDRecibo,
