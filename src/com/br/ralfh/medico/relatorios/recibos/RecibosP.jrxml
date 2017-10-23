@@ -68,7 +68,7 @@ WHERE
 		</band>
 	</columnFooter>
 	<summary>
-		<band height="115" splitType="Stretch">
+		<band height="136" splitType="Stretch">
 			<textField pattern="">
 				<reportElement x="5" y="12" width="288" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -78,14 +78,14 @@ WHERE
 			</textField>
 			<elementGroup/>
 			<staticText>
-				<reportElement x="69" y="78" width="161" height="20" uuid="4d95ae19-159c-4355-a45f-6ecda0a9c49f"/>
+				<reportElement x="69" y="78" width="161" height="18" uuid="4d95ae19-159c-4355-a45f-6ecda0a9c49f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Médico]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="69" y="61" width="161" height="20" uuid="1064ad19-696d-443f-983a-53085f678c91"/>
+				<reportElement x="69" y="61" width="161" height="18" uuid="1064ad19-696d-443f-983a-53085f678c91"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
@@ -95,11 +95,18 @@ WHERE
 				<reportElement x="69" y="55" width="161" height="1" uuid="53c5e4a4-c2af-46f6-a424-a57485147959"/>
 			</line>
 			<staticText>
-				<reportElement x="69" y="94" width="161" height="20" uuid="df9a09d3-b727-4c08-8dd2-684ef831bdb0"/>
+				<reportElement x="69" y="95" width="161" height="18" uuid="df9a09d3-b727-4c08-8dd2-684ef831bdb0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CRM 52.21.543-3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="112" width="161" height="18" uuid="9b11fb46-0c8a-44ae-bedf-fa132c2c2052"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF 240.425.797-87]]></text>
 			</staticText>
 		</band>
 	</summary>
