@@ -110,6 +110,11 @@
                                     <Font name="Arial" size="11.0" fx:id="x211" />
                                  </font>
                               </Button>
+                              <Button fx:id="btnGruposExames" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="44.0" layoutY="115.0" maxWidth="135.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnGruposExamesFired" styleClass="botaomd" text="Grupos de Exames" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="Arial" size="11.0" fx:id="x2111" />
+                                 </font>
+                              </Button>
                            </children>
                         </VBox>
                      </content>

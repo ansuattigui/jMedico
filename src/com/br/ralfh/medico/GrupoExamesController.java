@@ -1,21 +1,13 @@
 package com.br.ralfh.medico;
 
-import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
-import com.br.ralfh.medico.jdbc.DataAccessRelatorios;
-import com.br.ralfh.medico.modelos.Exame;
 import com.br.ralfh.medico.modelos.ExamesGrupo;
 import com.br.ralfh.medico.modelos.GrupoExames;
-import com.br.ralfh.medico.modelos.PedidoExames;
-import com.br.ralfh.medico.modelos.PedidosExames;
+import com.br.ralfh.medico.modelos.GruposExames;
 import com.br.ralfh.medico.modelos.Receita;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
@@ -45,8 +37,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import javax.swing.ImageIcon;
-import net.sf.jasperreports.engine.JRException;
 /**
  * FXML Controller class
  *
@@ -86,7 +76,7 @@ public class GrupoExamesController extends Controller {
     @FXML Button btnCancelaGrupo; @FXML public MenuItem miCancelaGrupo;
     @FXML Button btnExcluiGrupo; @FXML public MenuItem miExcluiGrupo;
     @FXML Button btnDuplicaGrupo; @FXML public MenuItem miDuplicaGrupo;
-    @FXML SplitMenuButton btnPrintGrupo;    
+    @FXML SplitMenuButton btnPrintGrupos;    
     @FXML public MenuItem miOpcaoCarta; @FXML public MenuItem miOpcaoCartaT;
     @FXML public MenuItem miOpcaoA4; @FXML public MenuItem miOpcaoA4T;
     @FXML public MenuItem miOpcaoGaveta; @FXML public MenuItem miOpcaoGavetaT;
@@ -104,6 +94,7 @@ public class GrupoExamesController extends Controller {
         //sopPaciente = new SimpleObjectProperty<>();
         sopGrupo = new SimpleObjectProperty<>();
         sopGrupos = FXCollections.observableArrayList();
+        sopGrupos.setAll(GruposExames.getLista());
         sopExames = FXCollections.observableArrayList();
         initListeners();
         
@@ -132,14 +123,14 @@ public class GrupoExamesController extends Controller {
     }
     
     private void setToolTips() {
-        btnNovoGrupo.setTooltip(new Tooltip("Criar nova receita"));
-        btnAtualizaGrupo.setTooltip(new Tooltip("Atualizar a Receita selecionada"));        
+        btnNovoGrupo.setTooltip(new Tooltip("Criar novo grupo"));
+        btnAtualizaGrupo.setTooltip(new Tooltip("Atualizar o Grupo selecionado"));        
         btnSalvaGrupo.setTooltip(new Tooltip("Gravar receita"));
-        btnExcluiGrupo.setTooltip(new Tooltip("Excluir receita selecionada"));
-        btnDuplicaGrupo.setTooltip(new Tooltip("Duplicar a receita selecionada"));
-        btnPrintGrupo.setTooltip(new Tooltip("Imprime a receita selecionada"));       
-        btnNovoExame.setTooltip(new Tooltip("Prescreve um medicamento"));        
-        btnExcluiExame.setTooltip(new Tooltip("Exclui o medicamento selecionado"));
+        btnExcluiGrupo.setTooltip(new Tooltip("Excluir o grupo selecionado"));
+        btnDuplicaGrupo.setTooltip(new Tooltip("Duplicar o grupo selecionado"));
+        btnPrintGrupos.setTooltip(new Tooltip("Imprime a receita selecionada"));       
+        btnNovoExame.setTooltip(new Tooltip("Inclui um exame"));        
+        btnExcluiExame.setTooltip(new Tooltip("Exclui o exame selecionado"));
 //        btnAlteraExame.setTooltip(new Tooltip("Atualiza o medicamento selecionado"));
         btnSair.setTooltip(new Tooltip("Fechar esta janela"));
     }
@@ -178,16 +169,16 @@ public class GrupoExamesController extends Controller {
         sopGrupos.addListener(new ListChangeListener() {
             @Override
             public void onChanged(ListChangeListener.Change change) {                
-                if (sopGrupos.size()>0) {
+//                if (sopGrupos.size()>0) {
                     tabelaGrupos.getItems().setAll(sopGrupos);
-                } else {
-                    tabelaGrupos.getItems().clear();
-                }
+//                } else {
+//                    tabelaGrupos.getItems().clear();
+//                }
             }
         });        
     }        
     public void AddSelecGrupoListener() {
-        tabelaGrupos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+/*        tabelaGrupos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
                 if (status==StatusBtn.IDLE | status==StatusBtn.SHOWING) {
@@ -196,7 +187,7 @@ public class GrupoExamesController extends Controller {
                     sopGrupo.set(grupoExames); 
                 }
             }
-        }); 
+        }); */
     }
     
     private void addExamesListener() { 
@@ -211,12 +202,12 @@ public class GrupoExamesController extends Controller {
     }
        
     private void addSelecExameListener() { 
-        tabelaExames.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+/*        tabelaExames.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {                
                 exame = tabelaExames.getSelectionModel().getSelectedItem();
             }
-        });
+        }); */
     }
 
     
@@ -226,12 +217,13 @@ public class GrupoExamesController extends Controller {
             return new ReadOnlyObjectWrapper(tabelaGrupos.getItems().indexOf(p.getValue())+1 + "");
           }
         });           
-        nomeGrupo.setCellValueFactory(new Callback<CellDataFeatures<GrupoExames,String>, ObservableValue<String>>() {
+
+/*        nomeGrupo.setCellValueFactory(new Callback<CellDataFeatures<GrupoExames,String>, ObservableValue<String>>() {
             @Override 
             public ObservableValue<String> call(TableColumn.CellDataFeatures<GrupoExames,String> rec) {
                 return new SimpleObjectProperty<>(rec.getValue().getNome());
             }
-        }); 
+        });  */
         nomeGrupo.setCellValueFactory(new PropertyValueFactory<>("nome"));
     }           
     
@@ -240,7 +232,7 @@ public class GrupoExamesController extends Controller {
         materialCol.setCellValueFactory(new PropertyValueFactory<>("material"));
     }      
     
-    public boolean checaPedido() {
+    public boolean checaGrupo() {
         boolean resultado = Boolean.FALSE;
         //grupoExames.setIndicacaoClinica(indicacaoClinica.getText());
         if ((grupoExames.getExames()==null)||(grupoExames.getExames().isEmpty())) {
@@ -254,19 +246,17 @@ public class GrupoExamesController extends Controller {
     }
     
     @FXML
-    public void btnNovoPedidoFired(ActionEvent ae) {
+    public void btnNovoGrupoFired(ActionEvent ae) {
         status = StatusBtn.INSERTING;
-        grupoExames = new PedidoExames();
-        grupoExames.setPaciente(sopPaciente.get());
-        grupoExames.setDataEmissao(Util.ldHoje());
-        sopGrupo.set(grupoExames);
-        sopGrupos.add(grupoExames);
+        grupoExames = new GrupoExames();
+//        sopGrupo.set(grupoExames);
+//        sopGrupos.add(grupoExames);
     }
     
     @FXML
-    public void btnDuplicaPedidoFired(ActionEvent event) {
+    public void btnDuplicaGrupoFired(ActionEvent event) {
         status = StatusBtn.INSERTING;
-        
+/*        
         grupoExames = new PedidoExames();
         grupoExames.setPaciente(sopPaciente.get());
         grupoExames.setDataEmissao(Util.ldHoje());
@@ -298,19 +288,20 @@ public class GrupoExamesController extends Controller {
         } else {
             ShowDialog("EX", "Não foi possível salvar o pedido", null,this.getStage());
         }
+*/
     }
 
     @FXML
-    public void btnAtualizaPedidoFired(ActionEvent ae) {
+    public void btnAtualizaGrupoFired(ActionEvent ae) {
         status = StatusBtn.UPDATING;
         setButtons();
         habilEdicaoFired();
     }
     
     @FXML
-    public void btnExcluiPedidoFired(ActionEvent event) {        
+    public void btnExcluiGrupoFired(ActionEvent event) {        
         if (ExcluiRegistroDlg("ER", "", null,this.getStage())) {
-            if (PedidosExames.excluiPedido(sopGrupo.get())) {
+            if (GruposExames.excluiGrupo(sopGrupo.get())) {
                 sopGrupos.remove(sopGrupo.get());
                 tabelaExames.getItems().clear();
             }
@@ -318,21 +309,21 @@ public class GrupoExamesController extends Controller {
     }    
     
     @FXML
-    public void btnSalvaPedidoFired(ActionEvent event) {
-        if (checaPedido()) {
+    public void btnSalvaGrupoFired(ActionEvent event) {
+        if (checaGrupo()) {
             if (status==StatusBtn.INSERTING) {            
-                if (PedidosExames.novoPedido(grupoExames)) {
+                if (GruposExames.novoGrupo(grupoExames)) {
                     status = StatusBtn.SHOWING;
-                    ShowDialog("S", "O pedido foi salvo com sucesso", null,this.getStage());
+                    ShowDialog("S", "O grupo foi salvo com sucesso", null,this.getStage());
                 } else {
-                    ShowDialog("EX", "Não foi possível salvar o pedido", null,this.getStage());
+                    ShowDialog("EX", "Não foi possível salvar o grupo", null,this.getStage());
                 }
             } else if (status==StatusBtn.UPDATING) {
-                if (PedidosExames.atualizaPedido(grupoExames)) {
+                if (GruposExames.atualizaGrupo(grupoExames)) {
                     status = StatusBtn.SHOWING;
-                    ShowDialog("S", "O pedido foi atualizado com sucesso", null,this.getStage());
+                    ShowDialog("S", "O grupo foi atualizado com sucesso", null,this.getStage());
                 } else {
-                    ShowDialog("EX", "Não foi possível atualizar o pedido", null,this.getStage());
+                    ShowDialog("EX", "Não foi possível atualizar o grupo", null,this.getStage());
                 }
             }
             setButtons();
@@ -341,7 +332,7 @@ public class GrupoExamesController extends Controller {
     }   
     
     @FXML
-    public void btnCancelaPedidoFired(ActionEvent ae) {
+    public void btnCancelaGrupoFired(ActionEvent ae) {
         try {
             if (status==StatusBtn.INSERTING) {
                 sopGrupos.remove(grupoExames);
@@ -358,19 +349,19 @@ public class GrupoExamesController extends Controller {
     
     @FXML
     public void btnNovoExameFired(ActionEvent ae) throws IOException {        
-        String fxmlGUI = "fxml/NovoExame.fxml"; 
+        String fxmlGUI = "fxml/ExameGrupo.fxml"; 
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Pedido de Exame";
         
         exameGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         exameGUI.initialize();
-        NovoExameController controller = (NovoExameController) exameGUI.getController();        
+        ExameGrupoController controller = (ExameGrupoController) exameGUI.getController();        
         exameGUI.showAndWait();       
         
         if (controller.getExames()!=null) {    
-            List<Exame> exames = controller.getExames();            
-            for(Exame exam :exames) {
-                exam.setPedidoExames(grupoExames);
+            List<ExamesGrupo> exames = controller.getExames();            
+            for(ExamesGrupo exam :exames) {
+                exam.setGrupoExames(grupoExames);
                 grupoExames.getExames().add(exam);
                 sopExames.addAll(exam);
             }            
@@ -378,20 +369,20 @@ public class GrupoExamesController extends Controller {
     }
     
     public void btnAlteraExameFired(ActionEvent ae)  throws IOException {
-        String fxmlGUI = "fxml/NovoExame.fxml"; 
+        String fxmlGUI = "fxml/ExameGrupo.fxml"; 
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Atualização de exame";
         
         exameGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         exameGUI.initialize();
-        NovoExameController controller = (NovoExameController) exameGUI.getController();        
+        ExameGrupoController controller = (ExameGrupoController) exameGUI.getController();        
         controller.initExame(exame);
         int pos = grupoExames.getExames().indexOf(exame);
-        List<Exame> exames = grupoExames.getExames();
+        List<ExamesGrupo> exames = grupoExames.getExames();
         exameGUI.showAndWait();       
         
         if (controller.getExame()!=null) {            
-            Exame exam = controller.getExames().get(0);
+            ExamesGrupo exam = controller.getExames().get(0);
             exames.set(pos, exam);
             sopExames.setAll(exames);
         }        
@@ -437,6 +428,7 @@ public class GrupoExamesController extends Controller {
     }
     
     public void PrintPedido(String file) {
+/*  
         HashMap hm = new HashMap();
         hm.put("idPedido", sopGrupo.get().getPedido_id());
         hm.put("nomePaciente", sopPaciente.get().getNome());
@@ -460,6 +452,7 @@ public class GrupoExamesController extends Controller {
             e.printStackTrace();
             System.exit(1);
         }
+*/
     }
      
     private void setButtons() {
@@ -468,15 +461,15 @@ public class GrupoExamesController extends Controller {
         btnSalvaGrupo.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         btnCancelaGrupo.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         btnExcluiGrupo.setDisable(status!=StatusBtn.SHOWING);
-        btnPrintGrupo.setDisable(status!=StatusBtn.SHOWING);
+        btnPrintGrupos.setDisable(status!=StatusBtn.SHOWING);
         btnDuplicaGrupo.setDisable(status!=StatusBtn.SHOWING);
         
-        miNovoPedido.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
-        miAtualizaPedido.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
-        miSalvaPedido.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
-        miCancelaPedido.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
-        miExcluiPedido.setDisable(status!=StatusBtn.SHOWING);
-        miDuplicaPedido.setDisable(status!=StatusBtn.SHOWING);
+        miNovoGrupo.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
+        miAtualizaGrupo.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
+        miSalvaGrupo.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
+        miCancelaGrupo.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
+        miExcluiGrupo.setDisable(status!=StatusBtn.SHOWING);
+        miDuplicaGrupo.setDisable(status!=StatusBtn.SHOWING);
 
         miOpcaoCarta.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         miOpcaoA4.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
@@ -495,7 +488,7 @@ public class GrupoExamesController extends Controller {
     }
     
     public void habilEdicaoFired() {
-        this.indicacaoClinica.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
+//        this.indicacaoClinica.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
     }
     
     

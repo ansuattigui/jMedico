@@ -24,6 +24,8 @@
     <class>com.br.ralfh.medico.modelos.AtestadoExterno</class>
     <class>com.br.ralfh.medico.modelos.PrescricaoExterno</class>
     <class>com.br.ralfh.medico.modelos.ReceitaExterno</class>
+    <class>com.br.ralfh.medico.modelos.ExamesGrupo</class>
+    <class>com.br.ralfh.medico.modelos.GrupoExames</class>
     <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
     <properties>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>

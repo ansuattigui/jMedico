@@ -73,6 +73,7 @@ public class MedicoController extends Controller implements Observer {
     @FXML Button btnAgenda;
     @FXML Button btnModelosAtestado;
     @FXML Button btnModelosRecibo;
+    @FXML Button btnGruposExames;
     @FXML Button btnGrupos;
     @FXML Button btnModos;
     @FXML Button btnMedicamentos;
@@ -180,6 +181,7 @@ public class MedicoController extends Controller implements Observer {
         btnAgenda.setTooltip(new Tooltip("Acessar a Agenda do Médico"));
         btnModelosAtestado.setTooltip(new Tooltip("Configurar Modelos de Atestado Médico"));
         btnModelosRecibo.setTooltip(new Tooltip("Configurar Modelos de Recibo de Pagamento"));
+        btnGruposExames.setTooltip(new Tooltip("Criar Grupos de Exames"));
         btnConvenio.setTooltip(new Tooltip("Acessar o Cadastro de Convênios"));
         btnFaturConvenio.setTooltip(new Tooltip("Acessar o Faturamento de Convênios"));
         btnUsuario.setTooltip(new Tooltip("Acessar o Cadastro de Usuários do Sistema"));
@@ -288,6 +290,14 @@ public class MedicoController extends Controller implements Observer {
         GUIFactory modelo = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
         modelo.showAndWait();
     }
+    
+    public void btnGruposExamesFired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/GrupoExames.fxml";
+        String titleGUI = "Grupos de Exames";
+        StageStyle fxmlStyle = StageStyle.DECORATED;
+        GUIFactory modelo = new GUIFactory(fxmlGUI,titleGUI,fxmlStyle,this.getStage());
+        modelo.showAndWait();
+    }    
     
     public void btnConvenioFired(ActionEvent event) throws Exception {
         String fxmlGUI = "fxml/Convenio.fxml";
