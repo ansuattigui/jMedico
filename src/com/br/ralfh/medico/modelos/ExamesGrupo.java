@@ -20,6 +20,7 @@ public class ExamesGrupo implements Serializable {
     @JoinColumn(name = "id", nullable = false )
     private GrupoExames grupo;
     private String exame;
+    private String material;
     
     public ExamesGrupo() {
     }
@@ -71,6 +72,25 @@ public class ExamesGrupo implements Serializable {
         }
     }
 
+    /**
+     * @return the material
+     */
+    public String getMaterial() {
+        return material;
+    }
+
+    /**
+     * @param material the material to set
+     * @throws com.br.ralfh.medico.exceptions.CampoEmBrancoException
+     */
+    public void setMaterial(String material) throws CampoEmBrancoException {
+        if (material.trim().isEmpty()) {
+            throw new CampoEmBrancoException("Informe o material do exame");
+        } else {
+            this.material = material;
+        }
+    }
+    
     
     @Override
     public boolean equals(Object object) {

@@ -7,12 +7,7 @@ package com.br.ralfh.medico.modelos;
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.exceptions.CampoNuloException;
 import java.io.Serializable;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -31,7 +26,6 @@ public class GrupoExames implements Serializable {
     private Integer id;    
     private String nome;
     private String indicacaoClinica;    
-    private String material;
     @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "grupo")
     @Column(nullable = false)
     private List<ExamesGrupo> exames;
@@ -108,25 +102,5 @@ public class GrupoExames implements Serializable {
             this.indicacaoClinica = indicacaoClinica;
         }
     }
-    
-    
-    /**
-     * @return the material
-     */
-    public String getMaterial() {
-        return material;
-    }
-
-    /**
-     * @param material the material to set
-     * @throws com.br.ralfh.medico.exceptions.CampoEmBrancoException
-     */
-    public void setMaterial(String material) throws CampoEmBrancoException {
-        if (material.trim().isEmpty()) {
-            throw new CampoEmBrancoException("Informe o material do exame");
-        } else {
-            this.material = material;
-        }
-    }
-    
+        
 }
