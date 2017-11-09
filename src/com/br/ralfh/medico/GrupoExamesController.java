@@ -26,6 +26,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Background;
@@ -56,7 +57,14 @@ public class GrupoExamesController extends Controller {
     private ObservableList<ExamesGrupo> sopExames = FXCollections.observableArrayList() ;    
     private StatusBtn status;
     private GUIFactory exameGUI;
+    
 
+    @FXML public TextField nomeGrupoExames;
+    @FXML public Button btnConfirmaNome;
+    @FXML public Button btnCancelaNome;
+    
+    
+    
     @FXML public TableView<GrupoExames> tabelaGrupos;
     @FXML public TableColumn<GrupoExames,String> ordemCol;
     @FXML public TableColumn<GrupoExames,String> nomeGrupo;    
@@ -246,13 +254,44 @@ public class GrupoExamesController extends Controller {
     }
     
     @FXML
-    public void btnNovoGrupoFired(ActionEvent ae) {
+    public void btnNovoGrupoFired(ActionEvent ae) throws IOException {
         status = StatusBtn.INSERTING;
         grupoExames = new GrupoExames();
-//        sopGrupo.set(grupoExames);
-//        sopGrupos.add(grupoExames);
+        
+        String fxmlGUI = "fxml/NomeGrupo.fxml"; 
+        StageStyle fxmlStyle = StageStyle.DECORATED;
+        String fxmlTitle = "Nome dd Grupo de Exames";
+        
+        GUIFactory nomeGUI;
+        
+        nomeGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
+        nomeGUI.initialze();
+        GrupoExamesController controller = (GrupoExamesController) nomeGUI.getController();        
+        nomeGUI.showAndWait();       
+        
+        if (!controller.nomeGrupoExames.getText().isEmpty()) {    
+            grupoExames.setNome(controller.nomeGrupoExames.getText());
+        }        
+        
+        sopGrupo.set(grupoExames);
+        sopGrupos.add(grupoExames);
     }
     
+    @FXML
+    public void btnApagaNomeFired(ActionEvent ae) {
+        nomeGrupoExames.clear();
+    }
+    
+    @FXML 
+    public void btnConfirmaNomeFired(ActionEvent ae) {
+        nomeGrupoExames.clear();
+    }
+
+    @FXML 
+    public void btnCancelaNomeFired(ActionEvent ae) {
+        nomeGrupoExames.clear();
+    }
+
     @FXML
     public void btnDuplicaGrupoFired(ActionEvent event) {
         status = StatusBtn.INSERTING;
@@ -514,5 +553,4 @@ public class GrupoExamesController extends Controller {
             }
         }
     }
-    
 }

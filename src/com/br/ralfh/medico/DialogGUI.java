@@ -112,6 +112,10 @@ public class DialogGUI {
                 guiFile="fxml/Chat.fxml";
                 guiTitle="Bate papo";
                 break;
+            case "NG":
+                guiFile="fxml/NomeGrupo.fxml";
+                guiTitle="Informe o nome do Grupo";
+                break;
         }
         //addTime();
 
