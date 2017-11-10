@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -22,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TabPane;
@@ -83,7 +85,7 @@ public class AtestadoController extends Controller {
 
     
     @FXML public TextField nomeAtestado;
-    @FXML public DateField dataAtestado;
+    @FXML public DatePicker dataAtestado;
     @FXML public TableView<Atestado> tabelaAtestados;
     @FXML public TableColumn<Atestado,String> dataCol;
     @FXML public TableColumn<Atestado,String> atestadoCol;
@@ -108,6 +110,7 @@ public class AtestadoController extends Controller {
         addAtestadosListener();
         addListenerAtestado();
         AddListenerSelecModelo();
+        AddListenerTabPage();
         setButtons();
         habilEdicaoFired();
     }    
@@ -118,7 +121,6 @@ public class AtestadoController extends Controller {
     }
     
     public void setAtestados(ObservableList<Atestado> atestados) {
-//        limpaAtestado();
         this.sopAtestados.setAll(atestados);
     }
     
@@ -137,7 +139,7 @@ public class AtestadoController extends Controller {
             atestados.showAndWait(); 
 
             if (controller.getCloseModal()) {  
-                dataAtestado.setValue(Util.dHoje());
+                dataAtestado.setValue(LocalDate.now());
                 nomeAtestado.setText(controller.getNomeModelo());
                 htmlEditorCabecalho.setHtmlText(controller.getCabecalhoModelo());
                 htmlEditorCorpo.setHtmlText(trataTagsAtestado(controller.getCorpoModelo()));
@@ -225,7 +227,7 @@ public class AtestadoController extends Controller {
     public void btnConfirmaFired(ActionEvent event) {
         if (status==StatusBtn.INSERTING) {
             this.atestado = new Atestado();
-            this.atestado.setData(Util.dHoje());
+            //this.atestado.setData(Util.udate(dataAtestado.getValue()));
             if (preencheAtestado(this.atestado)) {                        
                 if (Atestados.novoAtestado(atestado)) {
                     ShowDialog("S", "Atestado criado com sucesso", null,this.getStage());                    
@@ -246,7 +248,7 @@ public class AtestadoController extends Controller {
             } else return;
         }
 //        status = StatusBtn.SHOWING;
-        setAtestados(Atestados.getObsLista(this.sopPaciente.get()));
+        //setAtestados(Atestados.getObsLista(this.sopPaciente.get()));
         setButtons();
         habilEdicaoFired();
     }
@@ -331,9 +333,19 @@ public class AtestadoController extends Controller {
         }); 
     }
     
+    public void AddListenerTabPage() {
+        tpAtestado.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener() {
+        @Override
+        public void changed(ObservableValue o,Object oldVal,Object newVal) {
+            if (tpAtestado.getSelectionModel().getSelectedIndex()==0) {
+                setAtestados(Atestados.getObsLista(sopPaciente.get()));
+            }
+        }
+        });
+    }
     
     private void mostraAtestado() {
-        dataAtestado.setValue(atestado.getData());
+        dataAtestado.setValue(Util.ld(atestado.getData()));
         nomeAtestado.setText(atestado.getTipo());
         htmlEditorCabecalho.setHtmlText(atestado.getCabecalho());
         htmlEditorCorpo.setHtmlText(atestado.getCorpo());
@@ -341,7 +353,7 @@ public class AtestadoController extends Controller {
     }
     
     private void limpaAtestado() {
-        dataAtestado.clear();
+        dataAtestado.setValue(null);
         nomeAtestado.clear();
         htmlEditorCabecalho.setHtmlText("");
         htmlEditorCorpo.setHtmlText("");
@@ -351,7 +363,7 @@ public class AtestadoController extends Controller {
     
     private Boolean preencheAtestado(Atestado atest) {        
         Boolean resultado = Boolean.FALSE;
-        atest.setData(dataAtestado.getValue());
+        atest.setData(Util.udate(dataAtestado.getValue()));
         atest.setTipo(nomeAtestado.getText());
         atest.setPaciente(sopPaciente.get());
         try {            

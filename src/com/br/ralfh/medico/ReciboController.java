@@ -10,6 +10,8 @@ import com.br.ralfh.medico.modelos.Recibos;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -23,6 +25,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
@@ -31,6 +34,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import javax.swing.ImageIcon;
 import net.sf.jasperreports.engine.JRException;
 import org.jsoup.Jsoup;
@@ -74,6 +78,7 @@ public class ReciboController extends Controller {
     
     @FXML public Button btnClonar;
     @FXML public Button btnSair;
+    @FXML public DatePicker dataRecibo;
     @FXML public TextField nomeRecibo;
     @FXML public TextField valorRecibo;
     @FXML public TableView<Recibo> tabelaRecibos;
@@ -134,6 +139,7 @@ public class ReciboController extends Controller {
             recibos.showAndWait(); 
 
             if (controller.getCloseModal()) {  
+                dataRecibo.setValue(LocalDate.now());
                 nomeRecibo.setText(controller.getNomeModelo());
                 htmlEditorCabecalho.setHtmlText(controller.getCabecalhoModelo());
                 htmlEditorCorpo.setHtmlText(trataTagsAtestado(controller.getCorpoModelo()));
@@ -219,8 +225,7 @@ public class ReciboController extends Controller {
     
     public void btnConfirmaFired(ActionEvent event) {
         if (status==StatusBtn.INSERTING) {
-            this.recibo = new Recibo();
-            this.recibo.setData(Util.dHoje());
+            this.recibo = new Recibo();            
             if (preencheRecibo(this.recibo)) {        
                 Recibos.novoRecibo(recibo);
             } else return;
@@ -266,7 +271,16 @@ public class ReciboController extends Controller {
     }
 
     private void initTabelaRecibos() {
-        dataCol.setCellValueFactory(new PropertyValueFactory<>("data"));
+//        dataCol.setCellValueFactory(new PropertyValueFactory<>("data"));
+
+        dataCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Recibo,String>, ObservableValue<String>>() {
+            @Override 
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Recibo,String> d) {
+                SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
+                return new SimpleObjectProperty<>(dt.format(d.getValue().getData()));
+            }
+        });
+        
         reciboCol.setCellValueFactory(new PropertyValueFactory<>("tipo"));
     }
        
@@ -309,6 +323,7 @@ public class ReciboController extends Controller {
     
     
     private void mostraRecibo() {
+        dataRecibo.setValue(Util.ld(recibo.getData()));
         nomeRecibo.setText(recibo.getTipo());
         valorRecibo.setText(BigDecToStr(recibo.getValor()));
         htmlEditorCabecalho.setHtmlText(recibo.getCabecalho());
@@ -317,6 +332,7 @@ public class ReciboController extends Controller {
     }
     
     private void limpaRecibo() {
+        dataRecibo.setValue(null);
         nomeRecibo.clear();
         valorRecibo.clear();
         htmlEditorCabecalho.setHtmlText(null);
@@ -327,6 +343,7 @@ public class ReciboController extends Controller {
     
     private Boolean preencheRecibo(Recibo recib) {        
         Boolean resultado = Boolean.FALSE;
+        recib.setData(Util.udate(dataRecibo.getValue()));
         recib.setTipo(nomeRecibo.getText());
         recib.setPaciente(sopPaciente.get());
         try {    
@@ -400,6 +417,7 @@ public class ReciboController extends Controller {
     }
     
     public void habilEdicaoFired() {
+        dataRecibo.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         nomeRecibo.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         valorRecibo.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         htmlEditorCabecalho.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));

@@ -265,7 +265,7 @@ public class GrupoExamesController extends Controller {
         GUIFactory nomeGUI;
         
         nomeGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
-        nomeGUI.initialze();
+//        nomeGUI.initialze();
         GrupoExamesController controller = (GrupoExamesController) nomeGUI.getController();        
         nomeGUI.showAndWait();       
         
