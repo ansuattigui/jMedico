@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.LoginController">
+<children>
+      <VBox alignment="TOP_CENTER" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="TOP_RIGHT" blendMode="DARKEN">
+               <children>
+                  <VBox alignment="CENTER_LEFT" spacing="5.0">
+                     <children>
+                        <Text fill="WHITE" stroke="#6d7fa7" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="2.0" text="Login">
+                           <font>
+                              <Font name="Belgium" size="36.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="100.0" top="10.0" />
+                           </HBox.margin>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <Line endX="100.0" startX="-100.0" stroke="#6d7fa7" strokeWidth="2.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/Login_View_48.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <TabPane fx:id="tabLogin" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Dados do usuário">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="fundo">
+                           <children>
+                              <VBox alignment="CENTER" fillWidth="false" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+                  <children>
+                                    <VBox alignment="CENTER_RIGHT" spacing="10.0">
+                                       <children>
+                                          <HBox alignment="CENTER_RIGHT" spacing="5.0">
+                        <children>
+                                                <Label text="Usuario:" />
+                                                <TextField fx:id="usuario" prefWidth="160.0" />
+                        </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_RIGHT" spacing="5.0">
+                        <children>
+                                                <Label text="Senha:" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+                                                <PasswordField fx:id="senha" prefWidth="160.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </PasswordField>
+                        </children>
+                                          </HBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <HBox alignment="CENTER" spacing="10.0">
+                                       <children>
+                        <Button fx:id="btnSair" cancelButton="true" minWidth="105.0" mnemonicParsing="false" onAction="#btnSairFired" styleClass="botaomd" text="Sair" textAlignment="CENTER">
+                        <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                        <image>
+                        <Image url="@../imagens/Door-Out.png" />
+                        </image>
+                        </ImageView>
+                        </graphic>
+                        <font>
+                        <Font name="System Bold" size="12.0" />
+                        </font>
+                        </Button>
+                        <Button fx:id="btnEntrar" defaultButton="true" minWidth="105.0" mnemonicParsing="false" onAction="#btnEntrarFired" styleClass="botaomd" text="Entrar" textAlignment="CENTER">
+                        <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                        <Image url="@../imagens/accept.png" />
+                        </image>
+                                                </ImageView>
+                        </graphic>
+                        <font>
+                        <Font name="System Bold" size="12.0" />
+                        </font>
+                                          </Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                  </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Servidor de BD">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                           <children>
+                              <VBox alignment="CENTER" fillWidth="false" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" prefWidth="230.0" spacing="5.0">
+                                       <children>
+                                          <Label text="Driver:" textFill="#6b5200">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="driver" prefWidth="160.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" prefWidth="230.0" spacing="5.0">
+                                       <children>
+                                          <Label text="Endereço:" textFill="#6b5200">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="endereco" prefWidth="160.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" layoutX="45.0" layoutY="45.0" prefWidth="230.0" spacing="5.0">
+                                       <children>
+                                          <Label text="Porta:" textFill="#6b5200">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="porta" prefWidth="160.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox fx:id="hboxServidor1" alignment="CENTER_RIGHT" layoutX="64.0" layoutY="97.0" prefWidth="230.0" spacing="5.0">
+                                       <children>
+                                          <Label text="BD:" textFill="#6b5200">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="bancodedados" prefWidth="160.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox fx:id="hboxServidor11" alignment="CENTER_RIGHT" layoutX="84.0" layoutY="128.0" prefWidth="230.0" spacing="5.0">
+                                       <children>
+                                          <Label text="Usuario:" textFill="#6b5200">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="usuariobd" prefWidth="160.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox fx:id="hboxServidor111" alignment="CENTER_RIGHT" layoutX="54.0" layoutY="146.0" prefWidth="230.0" spacing="5.0">
+                                       <children>
+                                          <Label text="Senha:" textFill="#6b5200">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="senhabd" prefWidth="160.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" prefWidth="300.0">
+                                       <children>
+                                          <Button fx:id="btnSalvaConfig" mnemonicParsing="false" onAction="#btnSalvaConfigFired" prefWidth="120.0" text="Conectar" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                             <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../imagens/Network%202%20Start.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" right="30.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+               <VBox.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" />
+               </VBox.margin>
+            </TabPane>
+         </children>
+      </VBox>
+</children></AnchorPane>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pedido" pageWidth="419" pageHeight="595" columnWidth="383" leftMargin="22" rightMargin="14" topMargin="42" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idPedido" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nomePaciente" class="java.lang.String"/>
+	<parameter name="dataPedido" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="logoCabecalho" class="java.awt.Image" isForPrompting="false"/>
+	<parameter name="logoRodape" class="java.awt.Image"/>
+	<parameter name="indicacaoClinica" class="java.lang.String"/>
+	<parameter name="comData" class="java.lang.Boolean"/>
+	<queryString>
+		<![CDATA[SELECT
+     exame.`exame` AS exame_exame,
+     exame.`material` AS exame_material
+FROM
+     `exame` exame
+WHERE
+     pedido_id = $P{idPedido}
+ORDER BY
+     exame.material, exame.exame]]>
+	</queryString>
+	<field name="exame_exame" class="java.lang.String"/>
+	<field name="exame_material" class="java.lang.String"/>
+	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<group name="material">
+		<groupExpression><![CDATA[$F{exame_material}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="119" y="4" width="264" height="16" uuid="894e2cb3-80f4-4057-bcde-5e2fb856539d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isItalic="false" isUnderline="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{exame_material}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band height="511" splitType="Stretch">
+			<line>
+				<reportElement x="115" y="20" width="1" height="470" uuid="295d0edd-cab3-4684-9c0a-4e7ff0eccfa9"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<image hAlign="Center" vAlign="Top">
+				<reportElement x="10" y="0" width="90" height="40" uuid="77e23b40-5490-4472-8cd4-786e7d528401"/>
+				<imageExpression><![CDATA[$P{logoCabecalho}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="56" width="110" height="16" uuid="3d23d98f-1346-401d-8518-3453df1a87e6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[j. horácio t. de carvalho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="72" width="110" height="16" uuid="7e72e765-807a-4cc8-bba1-ce675863d86f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[crm: 52.21.543-3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="41" width="110" height="16" uuid="73b1be57-4d34-4de4-8c43-80e9d4664633"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[clínica médica e cardiológica]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="19" y="424" width="70" height="60" uuid="5aa6c704-9eb7-40cf-84f7-442216a325bb"/>
+				<imageExpression><![CDATA[$P{logoRodape}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="85">
+			<textField>
+				<reportElement x="119" y="40" width="264" height="16" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="122" y="68" width="194" height="16" uuid="827428a1-67c3-4423-a81b-6ee31a76d2ba"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Solicito os seguintes exames:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="119" y="0" width="264" height="16" uuid="14edf13a-b0de-4cd1-9962-ca45b67974d8"/>
+				<textElement verticalAlignment="Top">
+					<font size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{row_NUMBER}+") "+$F{exame_exame}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="37">
+			<staticText>
+				<reportElement x="0" y="0" width="383" height="37" uuid="26e1350e-d142-42e6-bea4-42e1e98db40a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
+				</textElement>
+				<text><![CDATA[Consultório: Estrada de Jacarepaguá, 7709 - Grupo 409/411
+Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="103" y="45" width="264" height="16" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc">
+					<printWhenExpression><![CDATA[$P{comData}.equals( true )]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rio de Janeiro, "+$P{dataPedido}]]></textFieldExpression>
+			</textField>
+			<elementGroup>
+				<staticText>
+					<reportElement x="191" y="109" width="100" height="14" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CRM 5221543-3]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="169" y="81" width="144" height="14" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="191" y="95" width="100" height="14" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Médico]]></text>
+				</staticText>
+			</elementGroup>
+			<textField>
+				<reportElement x="119" y="16" width="264" height="16" uuid="813a05de-dd09-4a75-a525-f4a152e4218d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

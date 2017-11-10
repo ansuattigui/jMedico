@@ -1,0 +1,1551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import jidefx.scene.control.field.DateField?>
+
+<AnchorPane minWidth="750.0" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.FichaMedicaController">
+<children>
+      <VBox layoutY="-44.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ToolBar>
+  <items>
+                  <Button fx:id="btnConfFichaMedica" contentDisplay="TOP" minWidth="65.0" mnemonicParsing="false" onAction="#confFichaMedicaFired" prefHeight="60.0" styleClass="botaotool" text="Confirma" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/Accept-32.png" />
+</image>
+</ImageView>
+</graphic>
+</Button>
+                  <Button fx:id="btnCancFichaMedica" contentDisplay="TOP" minWidth="65.0" mnemonicParsing="false" onAction="#cancFichaMedFired" prefHeight="60.0" styleClass="botaotool" text="Cancela" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/Cancel-32.png" />
+</image>
+</ImageView>
+</graphic>
+</Button>
+                  <Separator opacity="0.0" prefHeight="60.0" prefWidth="530.0" />
+                  <Button fx:id="btnSairFichaMedica" contentDisplay="TOP" minWidth="65.0" mnemonicParsing="false" onAction="#sairFichaMedicaFired" prefHeight="60.0" styleClass="botaotool" text="Sair" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/Door-Out.png" />
+</image>
+</ImageView>
+</graphic>
+</Button>
+  </items>
+<VBox.margin>
+<Insets bottom="5.0" />
+</VBox.margin>
+</ToolBar>
+            <VBox alignment="TOP_CENTER" layoutX="-14.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+                  <TabPane fx:id="tbPaneConsultas" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml">
+        <tabs>
+          <Tab fx:id="tabPrimCons" closable="false" text="Primeira Consulta">
+            <content>
+              <AnchorPane>
+      <children>
+                                    <VBox layoutX="5.0" layoutY="5.0" spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                        <Label text="Data:" />
+                                                      <DateField fx:id="dataPrimConsulta" alignment="CENTER" popupButtonVisible="true" prefWidth="140.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Button fx:id="btnAtualPrimCons" minHeight="32.0" minWidth="140.0" mnemonicParsing="false" onAction="#atualizaPrimConsFired" styleClass="botaotool" text="Editar Consulta">
+                                                   <graphic>
+                                                      <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../imagens/document_edit.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <TabPane rotateGraphic="true" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+                    <tabs>
+                      <Tab closable="false" text="Q.P. / H.D.A. / C.T.">
+                        <content>
+                          <AnchorPane>
+                  <children>
+                                                                  <VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <children>
+                  <VBox spacing="4.0">
+                  <children>
+                  <Label text="Queixa Principal" />
+                                                                              <TextArea fx:id="qpPrimeiraCons" prefHeight="95.0" wrapText="true" />
+                  </children>
+                  </VBox>
+                  <VBox spacing="4.0">
+                  <children>
+                  <Label text="História da Doença Atual" />
+                                                                              <TextArea fx:id="hdaPrimeiraCons" prefHeight="95.0" wrapText="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+                  </children>
+                  </VBox>
+                  <VBox spacing="4.0">
+                  <children>
+                  <Label text="Conduta Terapêutica" />
+                                                                              <TextArea fx:id="ctPrimeiraCons" prefHeight="95.0" wrapText="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+                  </children>
+                  </VBox>
+                  </children>
+                                                                     <padding>
+                                                                        <Insets left="10.0" right="10.0" top="10.0" />
+                                                                     </padding>
+                                                                  </VBox>
+                  </children>
+                                                            </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab closable="false" text="Anamnese">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0">
+                  <children>
+                                                                  <VBox alignment="TOP_CENTER" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <children>
+                                                                        <HBox alignment="CENTER_LEFT" spacing="4.0">
+                                                                           <children>
+                  <HBox spacing="2.0">
+                  <children>
+                                                                                    <CheckBox fx:id="hasPrimeiraCons" mnemonicParsing="false" text="H.A.S." />
+                                                                                    <CheckBox fx:id="hashfPrimeiraCons" mnemonicParsing="false" text="(H.F.)" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+                  </children>
+                  </HBox>
+                                                                              <HBox spacing="2.0">
+                  <children>
+                  <CheckBox fx:id="iamPrimeiraCons" mnemonicParsing="false" text="I.A.M." />
+                                                                                    <CheckBox fx:id="iamhfPrimeiraCons" mnemonicParsing="false" text="(H.F.)" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+                  </children>
+                  </HBox>
+                                                                              <HBox spacing="2.0">
+                  <children>
+                  <CheckBox fx:id="dmPrimeiraCons" mnemonicParsing="false" text="D.M." />
+                  <CheckBox fx:id="dmhfPrimeiraCons" mnemonicParsing="false" text="(H.F.)" />
+                  </children>
+                  </HBox>
+                                                                              <HBox spacing="2.0">
+                  <children>
+                  <CheckBox fx:id="dislipPrimeiraCons" mnemonicParsing="false" text="Dislipidemia" />
+                  <CheckBox fx:id="disliphfPrimeiraCons" mnemonicParsing="false" text="(H.F.)" />
+                  </children>
+                  </HBox>
+                                                                              <HBox spacing="2.0">
+                  <children>
+                  <CheckBox fx:id="avePrimeiraCons" mnemonicParsing="false" text="A.V.E." />
+                  <CheckBox fx:id="avehfPrimeiraCons" mnemonicParsing="false" text="(H.F.)" />
+                  </children>
+                  </HBox>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                                           <children>
+                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                  <children>
+                  <CheckBox fx:id="dpulmPrimeiraCons" mnemonicParsing="false" text="D.Pulmonares" />
+                  <CheckBox fx:id="dpulmhfPrimeiraCons" mnemonicParsing="false" onAction="#addCheckButtonsListener" text="(H.F.)" />
+                  </children>
+                  </HBox>
+                                                                              <TextField fx:id="dpulmtxtPrimeiraCons" prefWidth="400.0" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                                           <children>
+            <CheckBox fx:id="vpiPrimeiraCons" mnemonicParsing="false" text="V.P.I." />
+            <CheckBox fx:id="hepatPrimeiraCons" mnemonicParsing="false" text="Hepatite" />
+            <CheckBox fx:id="malarPrimeiraCons" mnemonicParsing="false" text="Malaria" />
+            <CheckBox fx:id="bkPrimeiraCons" mnemonicParsing="false" text="B.K." />
+            <CheckBox fx:id="dstPrimeiraCons" mnemonicParsing="false" text="D.S.T." />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                                           <children>
+            <CheckBox fx:id="infurPrimeiraCons" mnemonicParsing="false" text="Infecção Urinária" />
+                                                                              <CheckBox fx:id="constipPrimeiraCons" mnemonicParsing="false" onAction="#addCheckButtonsListener" text="Constipação" />
+            <TextField fx:id="constiptxtPrimeiraCons" prefWidth="330.0" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox spacing="8.0">
+                                                                           <children>
+                                                                              <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                                                 <children>
+                  <CheckBox fx:id="alergPrimeiraCons" mnemonicParsing="false" onAction="#addCheckButtonsListener" text="Alergia" />
+                  <TextField fx:id="alergtxtPrimeiraCons" prefWidth="650.0" />
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                                           <children>
+            <CheckBox fx:id="cirurgPrimeiraCons" mnemonicParsing="false" onAction="#addCheckButtonsListener" text="Cirurgia" />
+            <TextField fx:id="cirurgtxtPrimeiraCons" prefWidth="650.0" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                                           <children>
+            <CheckBox fx:id="stressPrimeiraCons" mnemonicParsing="false" text="Stress" />
+            <CheckBox fx:id="sedentPrimeiraCons" mnemonicParsing="false" text="Sedentarismo" />
+            <CheckBox fx:id="insonPrimeiraCons" mnemonicParsing="false" text="Insonia" />
+            <CheckBox fx:id="tabagPrimeiraCons" mnemonicParsing="false" text="Tabagismo" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox spacing="8.0">
+                                                                           <children>
+                                                                              <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                                                 <children>
+                  <CheckBox fx:id="medicamPrimeiraCons" mnemonicParsing="false" onAction="#addCheckButtonsListener" text="Medicamentos" />
+                  <TextField fx:id="medicamtxtPrimeiraCons" prefWidth="250.0" />
+                                                                                 </children>
+                                                                              </HBox>
+                                                                              <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                                                 <children>
+                  <CheckBox fx:id="etilisPrimeiraCons" mnemonicParsing="false" onAction="#addCheckButtonsListener" text="Etilismo" />
+                  <TextField fx:id="etilistxtPrimeiraCons" prefWidth="200.0" />
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox spacing="10.0">
+                                                                           <children>
+                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                  <children>
+                  <CheckBox fx:id="menarcPrimeiraCons" mnemonicParsing="false" onAction="#addCheckButtonsListener" text="Menarca" />
+                                                                                    <TextField fx:id="menarcAnosPrimeiraCons" prefWidth="35.0" />
+                                                                                    <Label text="anos" />
+                  </children>
+                  </HBox>
+                                                                              <HBox alignment="CENTER_LEFT" spacing="5.0">
+                  <children>
+                  <CheckBox fx:id="gestacPrimeiraCons" mnemonicParsing="false" onAction="#addCheckButtonsListener" text="Gestações" />
+                  <TextField fx:id="gestacNumPrimeiraCons" prefWidth="35.0" />
+                  </children>
+                  </HBox>
+                                                                              <HBox alignment="CENTER_LEFT" spacing="5.0">
+                  <children>
+                  <CheckBox fx:id="menopPrimeiraCons" mnemonicParsing="false" onAction="#addCheckButtonsListener" text="Menopausa" />
+                  <TextField fx:id="menopAnosPrimeiraCons" prefWidth="35.0" />
+                  <Label text="anos" />
+                  </children>
+                  </HBox>
+                                                                           </children>
+                                                                        </HBox>
+            <VBox spacing="4.0">
+            <children>
+            <Label text="Outras Informações" />
+            <TextArea fx:id="outinfoPrimeiraCons" prefHeight="50.0" wrapText="true" />
+            </children>
+            </VBox>
+                  </children>
+                                                                     <padding>
+                                                                        <Insets left="5.0" right="10.0" top="15.0" />
+                                                                     </padding>
+                                                                  </VBox>
+                  </children>
+                  <padding>
+                  <Insets left="5.0" />
+                  </padding>
+                                                            </AnchorPane>
+                        </content>
+                      </Tab>
+                                                      <Tab closable="false" text="Exame Físico">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0">
+                  <children>
+                                                                  <VBox alignment="CENTER" spacing="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <children>
+                                                                        <HBox spacing="8.0">
+                                                                           <children>
+                                                                              <VBox>
+                  <children>
+                                                                                    <Label text="Altura (m)" />
+                                                                                    <TextField fx:id="alturaPrimeiraCons" prefWidth="80.0" />
+                  </children>
+                                                                              </VBox>
+                                                                              <VBox>
+                  <children>
+                  <Label text="Peso (kg)" />
+                  <TextField fx:id="pesoPrimeiraCons" prefWidth="80.0" />
+                  </children>
+                  </VBox>
+                                                                              <VBox>
+                  <children>
+                  <Label text="Ectoscopia" />
+                  <TextField fx:id="ectosPrimeiraCons" prefWidth="390.0" />
+                  </children>
+                  </VBox>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox spacing="8.0">
+                                                                           <children>
+                  <VBox>
+                  <children>
+                  <Label text="Pescoço" />
+                  <TextField fx:id="pescoPrimeiraCons" prefWidth="280.0" />
+                  </children>
+                  </VBox>
+                  <VBox>
+                  <children>
+                  <Label text="Jugulares" />
+                  <TextField fx:id="jugulPrimeiraCons" prefWidth="280.0" />
+                  </children>
+                  </VBox>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox spacing="8.0">
+                                                                           <children>
+                  <VBox>
+                  <children>
+                  <Label text="Tireóide" />
+                  <TextField fx:id="tireoPrimeiraCons" prefWidth="280.0" />
+                  </children>
+                  </VBox>
+                  <VBox>
+                  <children>
+                  <Label text="Gãnglios" />
+                  <TextField fx:id="ganglPrimeiraCons" prefWidth="280.0" />
+                  </children>
+                  </VBox>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox spacing="8.0">
+                                                                           <children>
+                  <VBox>
+                  <children>
+                  <Label text="Aparelho Circulatório" />
+                                                                                    <HBox>
+                                                                                       <children>
+                                                                                          <ComboBox fx:id="comboapcircPrimeiraCons" editable="true" prefHeight="23.0" prefWidth="280.0" />
+                                                                                       </children>
+                                                                                    </HBox>
+                  </children>
+                  </VBox>
+                  <HBox alignment="BOTTOM_CENTER" spacing="5.0">
+                  <children>
+                  <VBox>
+                  <children>
+                  <Label text="P.A. (mmHg)" />
+                  <TextField fx:id="psistoPrimeiraCons" prefWidth="60.0" />
+                  </children>
+                  </VBox>
+                  <Label alignment="CENTER" text="X" />
+                                                                                    <VBox alignment="BOTTOM_CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                  <children>
+                  <TextField fx:id="pdiastPrimeiraCons" prefWidth="60.0" />
+                  </children>
+                  </VBox>
+                  </children>
+                  </HBox>
+                                                                              <VBox>
+                  <children>
+                  <Label text="F.C. (bpm)" />
+                  <TextField fx:id="frcardPrimeiraCons" prefWidth="60.0" />
+                  </children>
+                  </VBox>
+                                                                              <VBox>
+                  <children>
+                  <Label text="Pulso" />
+                  <TextField fx:id="pulsoPrimeiraCons" prefWidth="60.0" />
+                  </children>
+                  </VBox>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox spacing="8.0">
+                                                                           <children>
+                  <VBox>
+                  <children>
+                  <Label text="Aparelho Respiratório" />
+                  <TextField fx:id="aprespPrimeiraCons" prefWidth="250.0" />
+                  </children>
+                  </VBox>
+                  <VBox>
+                  <children>
+                  <Label text="F.R. (bpm)" />
+                  <TextField fx:id="frrespPrimeiraCons" prefWidth="60.0" />
+                  </children>
+                  </VBox>
+                  <VBox fillWidth="false">
+                  <children>
+                  <Label text="Abdome" />
+                  <TextField fx:id="abdoPrimeiraCons" prefWidth="250.0" />
+                  </children>
+                  </VBox>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox spacing="8.0">
+                                                                           <children>
+                  <VBox>
+                  <children>
+                  <Label text="Membros Superiores" />
+                  <TextField fx:id="msuperPrimeiraCons" prefWidth="280.0" />
+                  </children>
+                  </VBox>
+                  <VBox>
+                  <children>
+                  <Label text="Membros Inferiores" />
+                  <TextField fx:id="minferPrimeiraCons" prefWidth="280.0" />
+                  </children>
+                  </VBox>
+                                                                           </children>
+                                                                        </HBox>
+            <VBox fillWidth="false">
+            <children>
+            <Label text="Sistema Nervoso" />
+            <TextField fx:id="sisnerPrimeiraCons" prefWidth="465.0" />
+            </children>
+            </VBox>
+                  </children>
+                                                                     <padding>
+                                                                        <Insets left="10.0" />
+                                                                     </padding>
+                                                                  </VBox>
+                  </children>
+                  <padding>
+                  <Insets top="10.0" />
+                  </padding>
+                                                            </AnchorPane>
+                    </content>
+                  </Tab>
+                                                      <Tab text="Exames - Laboratório">
+                                                        <content>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                               <children>
+                                                                  <HBox fillHeight="false" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="625.0" AnchorPane.topAnchor="0.0">
+                                                                           <children>
+                                                                              <TitledPane animated="false" collapsible="false" text="Colesterol (mg)">
+                                                                                <content>
+                                                                                  <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                   <children>
+                                                                                                      <Label text="Total" />
+                                                                                                      <TextField fx:id="colestTotPrimeiraCons" prefWidth="80.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_RIGHT" layoutX="21.0" layoutY="21.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
+                                                                                                   <children>
+                                                                                                      <Label text="HDL" />
+                                                                                                      <TextField fx:id="colestHDLPrimeiraCons" prefWidth="80.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="38.0" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="LDL" />
+                                                                                                      <TextField fx:id="colestLDLPrimeiraCons" prefWidth="80.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="Triglicerídeos (mg)">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                   <children>
+                                                                                                      <TextField fx:id="triglicPrimeiraCons" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="149.0" text="Acido Úrico (mg)">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                   <children>
+                                                                                                      <TextField fx:id="acUriPrimeiraCons" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" text="Glicemia">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                   <children>
+                                                                                                      <Label text="Hem Glic" />
+                                                                                                      <TextField fx:id="hemoGlicPrimeiraCons" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox layoutX="10.0" layoutY="10.0" spacing="5.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="625.0" AnchorPane.topAnchor="10.0">
+                                                                           <children>
+                                                                              <TitledPane animated="false" collapsible="false" text="Horm Tiroideanos">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="T3" />
+                                                                                                      <TextField fx:id="tirT3PrimeiraCons" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="T4" />
+                                                                                                      <TextField fx:id="tirT4PrimeiraCons" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="T4 Livre" />
+                                                                                                      <TextField fx:id="tirT4LivPrimeiraCons" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="TSH" />
+                                                                                                      <TextField fx:id="tirTSHPrimeiraCons" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="PSA">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                   <children>
+                                                                                                      <Label text="PSA Livre" />
+                                                                                                      <TextField fx:id="psaLivPrimeiraCons" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="PSA Total" />
+                                                                                                      <TextField fx:id="psaTotPrimeiraCons" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="38.0" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="Relação PSA T/L" />
+                                                                                                      <TextField fx:id="psaRelPrimeiraCons" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox layoutX="216.0" layoutY="10.0" spacing="5.0">
+                                                                           <children>
+                                                                              <TitledPane animated="false" collapsible="false" text="Hepatograma">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox spacing="5.0">
+                                                                                                   <children>
+                                                                                                      <HBox alignment="CENTER_RIGHT" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                         <children>
+                                                                                                            <Label text="TGO" />
+                                                                                                            <TextField fx:id="hepTGOPrimeiraCons" prefWidth="60.0" />
+                                                                                                         </children>
+                                                                                                      </HBox>
+                                                                                                      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" spacing="8.0">
+                                                                                                         <children>
+                                                                                                            <Label text="TGP" />
+                                                                                                            <TextField fx:id="hepTGPPrimeiraCons" prefWidth="60.0" />
+                                                                                                         </children>
+                                                                                                      </HBox>
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox spacing="5.0">
+                                                                                                   <children>
+                                                                                                      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="66.0" spacing="8.0">
+                                                                                                         <children>
+                                                                                                            <Label text="GGT" />
+                                                                                                            <TextField fx:id="hepGGTPrimeiraCons" prefWidth="60.0" />
+                                                                                                         </children>
+                                                                                                      </HBox>
+                                                                                                      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="38.0" spacing="8.0">
+                                                                                                         <children>
+                                                                                                            <Label text="F.A." />
+                                                                                                            <TextField fx:id="hepFAPrimeiraCons" prefWidth="60.0" />
+                                                                                                         </children>
+                                                                                                      </HBox>
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" text="Urina">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <TextArea fx:id="urinaPrimeiraCons" prefHeight="60.0" prefWidth="200.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="Fezes">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox>
+                                                                                                   <children>
+                                                                                                      <VBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="80.0" spacing="4.0">
+                                                                                                         <children>
+                                                                                                            <RadioButton fx:id="optNegFezesPrimeiraCons" mnemonicParsing="false" selected="true" text="Negativo">
+                                                                                                               <toggleGroup>
+                                                                                                                  <ToggleGroup fx:id="tgFezes" />
+                                                                                                               </toggleGroup>
+                                                                                                            </RadioButton>
+                                                                                                            <RadioButton fx:id="optOutFezesPrimeiraCons" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Outros" toggleGroup="$tgFezes" />
+                                                                                                         </children>
+                                                                                                      </VBox>
+                                                                                                      <TextArea fx:id="fezesPrimeiraCons" prefHeight="60.0" prefWidth="120.0" wrapText="true" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                           </children>
+                                                                        </VBox>
+                                                                     </children>
+                                                                     <padding>
+                                                                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                                                                     </padding>
+                                                                  </HBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                        </content>
+                                                      </Tab>
+                                                      <Tab text="Exames - Imagens">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                               <children>
+                                                                  <HBox prefHeight="350.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <VBox layoutX="216.0" layoutY="10.0" spacing="5.0">
+                                                                           <children>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="ECG">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox>
+                                                                                                   <children>
+                                                                                                      <VBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="80.0" spacing="4.0">
+                                                                                                         <children>
+                                                                                                            <RadioButton fx:id="optNormECGPrimeiraCons" mnemonicParsing="false" selected="true" text="Normal">
+                                                                                                               <toggleGroup>
+                                                                                                                  <ToggleGroup fx:id="tgECG" />
+                                                                                                               </toggleGroup>
+                                                                                                            </RadioButton>
+                                                                                                            <RadioButton fx:id="optOutECGPrimeiraCons" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Outros" toggleGroup="$tgECG" />
+                                                                                                         </children>
+                                                                                                      </VBox>
+                                                                                                      <TextArea fx:id="ecgPrimeiraCons" prefHeight="60.0" prefWidth="200.0" wrapText="true" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="RX Torax: PAP">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox>
+                                                                                                   <children>
+                                                                                                      <VBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="80.0" spacing="4.0">
+                                                                                                         <children>
+                                                                                                            <RadioButton fx:id="optNormPAPPrimeiraCons" mnemonicParsing="false" selected="true" text="Normal">
+                                                                                                               <toggleGroup>
+                                                                                                                  <ToggleGroup fx:id="tgPAP" />
+                                                                                                               </toggleGroup>
+                                                                                                            </RadioButton>
+                                                                                                            <RadioButton fx:id="optOutPAPPrimeiraCons" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Outros" toggleGroup="$tgPAP" />
+                                                                                                         </children>
+                                                                                                      </VBox>
+                                                                                                      <TextArea fx:id="papPrimeiraCons" prefHeight="60.0" prefWidth="200.0" wrapText="true" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="RX Abdomen">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <TextArea fx:id="rxAbdomPrimeiraCons" prefHeight="50.0" prefWidth="280.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox layoutX="10.0" layoutY="10.0" spacing="5.0">
+                                                                           <children>
+                                                                              <TitledPane animated="false" collapsible="false" text="RX Outros">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <TextArea fx:id="rxOutrPrimeiraCons" prefHeight="60.0" prefWidth="220.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" text="Outros - US">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <TextArea fx:id="outUSPrimeiraCons" prefHeight="60.0" prefWidth="220.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="TC">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <TextArea fx:id="tcPrimeiraCons" prefHeight="50.0" prefWidth="220.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                           </children>
+                                                                        </VBox>
+                                                                     </children>
+                                                                     <padding>
+                                                                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                                                                     </padding>
+                                                                  </HBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content>
+                                                      </Tab>
+                    </tabs>
+                  </TabPane>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+      </children>
+      <padding>
+      <Insets left="5.0" right="5.0" top="5.0" />
+      </padding>
+                              </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="tabConsSubs" closable="false" text="Consultas subsequentes">
+            <content>
+              <AnchorPane>
+      <children>
+                                    <HBox layoutX="5.0" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                                       <children>
+            <VBox fillWidth="false" layoutX="5.0" layoutY="5.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="320.0" AnchorPane.topAnchor="0.0">
+            <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label text="Data:" />
+                                                      <DateField fx:id="dataConsSubs" alignment="CENTER" popupButtonVisible="true" prefWidth="140.0" />
+                                                   </children>
+                                                </HBox>
+                                                <TabPane layoutX="58.0" layoutY="35.5" style="-fx-border-width: 0.5; -fx-border-color: #100;" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="85.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
+              <tabs>
+                <Tab closable="false" text="Q.P.">
+                  <content>
+                    <AnchorPane>
+            <children>
+                                                                  <VBox layoutX="226.0" layoutY="87.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+            <TextArea fx:id="qpConsSubs" wrapText="true" VBox.vgrow="ALWAYS" />
+            </children>
+                                                                  </VBox>
+            </children>
+            <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+                                                            </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab closable="false" text="Ex. Físico">
+                  <content>
+                    <AnchorPane>
+            <children>
+                                                                  <VBox layoutX="226.0" layoutY="87.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+            <TextArea fx:id="exafisConsSubs" wrapText="true" VBox.vgrow="ALWAYS" />
+            </children>
+            </VBox>
+            </children>
+            <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+                                                            </AnchorPane>
+                  </content>
+                </Tab>
+                                                      <Tab closable="false" text="Conduta">
+              <content>
+                <AnchorPane>
+            <children>
+                                                                  <VBox layoutX="226.0" layoutY="87.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+            <TextArea fx:id="conterConsSubs" wrapText="true" VBox.vgrow="ALWAYS" />
+            </children>
+            </VBox>
+            </children>
+            <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+                                                            </AnchorPane>
+              </content>
+            </Tab>
+                                                      <Tab closable="false" text="Outros">
+              <content>
+                <AnchorPane>
+            <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <children>
+                                                                  <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+      <VBox fillWidth="false">
+      <children>
+      <Label text="Aparelho Circulatório" />
+      <TextField fx:id="apcircConsSubs" prefWidth="465.0" />
+      </children>
+      </VBox>
+      <VBox fillWidth="false">
+      <children>
+      <Label text="Aparelho Respiratório" />
+      <TextField fx:id="aprespConsSubs" prefWidth="465.0" />
+      </children>
+      </VBox>
+      <VBox fillWidth="false">
+      <children>
+      <Label text="Abdome" />
+      <TextField fx:id="abdoConsSubs" prefWidth="465.0" />
+      </children>
+      </VBox>
+      <VBox fillWidth="false">
+      <children>
+      <Label text="Outros" />
+      <TextField fx:id="outrosConsSubs" prefWidth="465.0" />
+      </children>
+      </VBox>
+            </children>
+                                                                  </VBox>
+            </children>
+                                                            </AnchorPane>
+              </content>
+            </Tab>
+                                                      <Tab text="Sinais Vitais">
+                                                        <content>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <VBox spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+                                                                     <children>
+                                                                        <HBox alignment="BOTTOM_LEFT" spacing="4.0">
+                                                                           <children>
+                                                                              <VBox>
+                                                                                 <children>
+                                                                                    <Label text="P.A. (mmHg)" />
+                                                                                    <TextField fx:id="psistoConsSubs" prefWidth="60.0" />
+                                                                                 </children>
+                                                                              </VBox>
+                                                                              <Label alignment="CENTER" text="X" />
+                                                                              <VBox alignment="BOTTOM_CENTER" prefWidth="68.0">
+                                                                                 <children>
+                                                                                    <TextField fx:id="pdiastConsSubs" prefWidth="60.0" />
+                                                                                 </children>
+                                                                              </VBox>
+                                                                              <Button fx:id="btnGrafPA" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnGrafFired">
+                                                                                 <graphic>
+                                                                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                                       <image>
+                                                                                          <Image url="@../imagens/chart.png" />
+                                                                                       </image>
+                                                                                    </ImageView>
+                                                                                 </graphic>
+                                                                              </Button>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <VBox>
+                                                                           <children>
+                                                                              <HBox alignment="BOTTOM_LEFT" spacing="5.0">
+                                                                                 <children>
+                                                                                    <VBox>
+                                                                                       <children>
+                                                                                          <Label text="F.C. (bpm)" />
+                                                                                          <TextField fx:id="frcardConsSubs" prefWidth="60.0" />
+                                                                                       </children>
+                                                                                    </VBox>
+                                                                                    <Button fx:id="btnGrafFC" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnGrafFired">
+                                                                                       <graphic>
+                                                                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                                             <image>
+                                                                                                <Image url="@../imagens/chart.png" />
+                                                                                             </image>
+                                                                                          </ImageView>
+                                                                                       </graphic>
+                                                                                    </Button>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox>
+                                                                           <children>
+                                                                              <HBox alignment="BOTTOM_LEFT" spacing="5.0">
+                                                                                 <children>
+                                                                                    <VBox>
+                                                                                       <children>
+                                                                                          <Label text="Pulso" />
+                                                                                          <TextField fx:id="pulsoConsSubs" prefWidth="60.0" />
+                                                                                       </children>
+                                                                                    </VBox>
+                                                                                    <Button fx:id="btnGrafPu" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnGrafFired">
+                                                                                       <graphic>
+                                                                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                                             <image>
+                                                                                                <Image url="@../imagens/chart.png" />
+                                                                                             </image>
+                                                                                          </ImageView>
+                                                                                       </graphic>
+                                                                                    </Button>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </VBox>
+                                                                     </children>
+                                                                  </VBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                        </content>
+                                                      </Tab>
+                                                      <Tab text="Laboratório">
+                                                         <content>
+                                                            <AnchorPane>
+                                                               <children>
+                                                                  <HBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="625.0" AnchorPane.topAnchor="0.0">
+                                                                           <children>
+                                                                              <TitledPane animated="false" collapsible="false" text="Colesterol (mg)">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox alignment="CENTER_LEFT" spacing="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                   <children>
+                                                                                                      <Label text="Total" />
+                                                                                                      <TextField fx:id="colestTotConsSubs" prefWidth="80.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_LEFT" layoutX="21.0" layoutY="21.0" spacing="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
+                                                                                                   <children>
+                                                                                                      <Label text="HDL " />
+                                                                                                      <TextField fx:id="colestHDLConsSubs" prefWidth="80.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="38.0" spacing="3.0">
+                                                                                                   <children>
+                                                                                                      <Label text="LDL " />
+                                                                                                      <TextField fx:id="colestLDLConsSubs" prefWidth="80.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="Triglicerídeos (mg)">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                   <children>
+                                                                                                      <TextField fx:id="triglicConsSubs" prefWidth="80.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="149.0" text="Acido Úrico (mg)">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                   <children>
+                                                                                                      <TextField fx:id="acUriConsSubs" prefWidth="80.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" text="Glicemia">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                   <children>
+                                                                                                      <Label text="Hem Glic" wrapText="true" />
+                                                                                                      <TextField fx:id="hemoGlicConsSubs" prefWidth="80.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox layoutX="10.0" layoutY="10.0" spacing="5.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="625.0" AnchorPane.topAnchor="10.0">
+                                                                           <children>
+                                                                              <TitledPane animated="false" collapsible="false" text="Horm Tiroideanos">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="T3" />
+                                                                                                      <TextField fx:id="tirT3ConsSubs" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="T4" />
+                                                                                                      <TextField fx:id="tirT4ConsSubs" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="TSH" />
+                                                                                                      <TextField fx:id="tirTSHConsSubs" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="T4 Livre" wrapText="true" />
+                                                                                                      <TextField fx:id="tirT4LivConsSubs" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="PSA">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox alignment="CENTER_RIGHT" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                   <children>
+                                                                                                      <Label text="Livre" />
+                                                                                                      <TextField fx:id="psaLivConsSubs" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="Total" />
+                                                                                                      <TextField fx:id="psaTotConsSubs" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="38.0" spacing="8.0">
+                                                                                                   <children>
+                                                                                                      <Label text="T/L" wrapText="true" />
+                                                                                                      <TextField fx:id="psaRelConsSubs" prefWidth="60.0" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox layoutX="216.0" layoutY="10.0" spacing="5.0">
+                                                                           <children>
+                                                                              <TitledPane animated="false" collapsible="false" text="Hepatograma">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox spacing="5.0">
+                                                                                                   <children>
+                                                                                                      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" spacing="8.0">
+                                                                                                         <children>
+                                                                                                            <Label text="TGP" />
+                                                                                                            <TextField fx:id="hepTGPConsSubs" prefWidth="60.0" />
+                                                                                                         </children>
+                                                                                                      </HBox>
+                                                                                                      <HBox alignment="CENTER_RIGHT" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                         <children>
+                                                                                                            <Label text="TGO" />
+                                                                                                            <TextField fx:id="hepTGOConsSubs" prefWidth="60.0" />
+                                                                                                         </children>
+                                                                                                      </HBox>
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <HBox spacing="5.0">
+                                                                                                   <children>
+                                                                                                      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="38.0" spacing="8.0">
+                                                                                                         <children>
+                                                                                                            <Label text="F.A." />
+                                                                                                            <TextField fx:id="hepFAConsSubs" prefWidth="60.0" />
+                                                                                                         </children>
+                                                                                                      </HBox>
+                                                                                                      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="66.0" spacing="8.0">
+                                                                                                         <children>
+                                                                                                            <Label text="GGT" />
+                                                                                                            <TextField fx:id="hepGGTConsSubs" prefWidth="60.0" />
+                                                                                                         </children>
+                                                                                                      </HBox>
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" text="Urina">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <TextArea fx:id="urinaConsSubs" prefHeight="60.0" prefWidth="200.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="Fezes">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox>
+                                                                                                   <children>
+                                                                                                      <RadioButton fx:id="optOutFezesConsSubs" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Outros">
+                                                                                                         <toggleGroup>
+                                                                                                            <ToggleGroup fx:id="tgFezes1" />
+                                                                                                         </toggleGroup>
+                                                                                                      </RadioButton>
+                                                                                                      <RadioButton fx:id="optNegFezesConsSubs" mnemonicParsing="false" selected="true" text="Negativo" toggleGroup="$tgFezes1" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <TextArea fx:id="fezesConsSubs" prefHeight="40.0" prefWidth="130.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                           </children>
+                                                                        </VBox>
+                                                                     </children>
+                                                                     <padding>
+                                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                                     </padding>
+                                                                  </HBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content>
+                                                      </Tab>
+                                                      <Tab text="Imagens">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                               <children>
+                                                                  <HBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <VBox layoutX="216.0" layoutY="10.0" spacing="5.0">
+                                                                           <children>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="ECG">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox spacing="4.0">
+                                                                                                   <children>
+                                                                                                      <RadioButton fx:id="optNormECGConsSubs" mnemonicParsing="false" selected="true" text="Normal">
+                                                                                                         <toggleGroup>
+                                                                                                            <ToggleGroup fx:id="tgECG1" />
+                                                                                                         </toggleGroup>
+                                                                                                      </RadioButton>
+                                                                                                      <RadioButton fx:id="optOutECGConsSubs" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Outros" toggleGroup="$tgECG1" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <TextArea fx:id="ecgConsSubs" prefHeight="60.0" prefWidth="240.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="RX Torax: PAP">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <HBox spacing="4.0">
+                                                                                                   <children>
+                                                                                                      <RadioButton fx:id="optOutPAPConsSubs" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Outros">
+                                                                                                         <toggleGroup>
+                                                                                                            <ToggleGroup fx:id="tgPAP1" />
+                                                                                                         </toggleGroup>
+                                                                                                      </RadioButton>
+                                                                                                      <RadioButton fx:id="optNormPAPConsSubs" mnemonicParsing="false" selected="true" text="Normal" toggleGroup="$tgPAP1" />
+                                                                                                   </children>
+                                                                                                </HBox>
+                                                                                                <TextArea fx:id="papConsSubs" prefHeight="60.0" prefWidth="240.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="RX Abdomen">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <TextArea fx:id="rxAbdomConsSubs" prefHeight="60.0" prefWidth="240.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox fillWidth="false" layoutX="10.0" layoutY="10.0" spacing="5.0">
+                                                                           <children>
+                                                                              <TitledPane animated="false" collapsible="false" text="RX Outros">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <TextArea fx:id="rxOutrConsSubs" prefHeight="60.0" prefWidth="240.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" text="Outros - US">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <TextArea fx:id="outUSConsSubs" prefHeight="60.0" prefWidth="240.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="15.0" text="TC">
+                                                                                 <content>
+                                                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                                                       <children>
+                                                                                          <VBox layoutX="11.199999809265137" layoutY="11.199999809265137" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <TextArea fx:id="tcConsSubs" prefHeight="60.0" prefWidth="240.0" wrapText="true" />
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </content>
+                                                                              </TitledPane>
+                                                                           </children>
+                                                                        </VBox>
+                                                                     </children>
+                                                                     <padding>
+                                                                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                                                                     </padding>
+                                                                  </HBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content>
+                                                      </Tab>
+              </tabs>
+            </TabPane>
+            </children>
+            <padding>
+            <Insets bottom="5.0" left="5.0" right="4.0" top="5.0" />
+            </padding>
+            </VBox>
+                                          <VBox alignment="TOP_CENTER">
+                                             <children>
+                                                <TitledPane id="tabDatas" alignment="CENTER" animated="false" collapsible="false" minHeight="467.0" style="-fx-border-width: 0.5; -fx-border-color: #100;" text="Consultas">
+                                                  <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane>
+                                                                     <children>
+                                                                        <VBox fx:id="datasConsultas1" alignment="TOP_CENTER" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                                                           <children>
+                                                                              <Button fx:id="btnNovaConsSubs" minHeight="32.0" minWidth="140.0" mnemonicParsing="false" onAction="#novaConsSubsFired" styleClass="botaotool" text="Nova Consulta">
+                                                                                 <graphic>
+                                                                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                                                       <image>
+                                                                                          <Image url="@../imagens/document_add.png" />
+                                                                                       </image>
+                                                                                    </ImageView>
+                                                                                 </graphic>
+                                                                              </Button>
+                                                                              <Button fx:id="btnAtualConsSubs" minHeight="32.0" minWidth="140.0" mnemonicParsing="false" onAction="#atualConsSubsFired" styleClass="botaotool" text="Editar Consulta">
+                                                                                 <graphic>
+                                                                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                                                       <image>
+                                                                                          <Image url="@../imagens/document_edit.png" />
+                                                                                       </image>
+                                                                                    </ImageView>
+                                                                                 </graphic>
+                                                                              </Button>
+                                                                              <Button fx:id="btnDelConsSubs" minHeight="32.0" minWidth="140.0" mnemonicParsing="false" onAction="#delConsSubsFired" styleClass="botaotool" text="Excluir Consulta">
+                                                                                 <graphic>
+                                                                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                                                       <image>
+                                                                                          <Image url="@../imagens/document_delete.png" />
+                                                                                       </image>
+                                                                                    </ImageView>
+                                                                                 </graphic>
+                                                                              </Button>
+                                                                           </children>
+                                                                        </VBox>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                            </VBox>
+                                                            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="11.0" layoutY="11.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+                                                              <content>
+                                                                <AnchorPane>
+                                                                     <children>
+                                                                        <VBox fx:id="datasConsultas" alignment="TOP_CENTER" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                                                     </children></AnchorPane>
+                                                              </content>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </padding>
+                                                            </ScrollPane>
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </content>
+                                                </TitledPane>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+      </children>
+      <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+                              </AnchorPane>
+            </content>
+          </Tab>
+                        <Tab text="Prontuário">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0">
+                                 <children>
+                                    <TabPane style="-fx-border-width: 0.5; -fx-border-color: #100;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                       <tabs>
+                                          <Tab closable="false" text="Queixa Principal">
+                                             <content>
+                                                <AnchorPane>
+                                                   <children>
+                                                      <VBox layoutX="226.0" layoutY="87.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <TextArea fx:id="qpProntuario" wrapText="true" VBox.vgrow="SOMETIMES" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </padding>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                          <Tab closable="false" text="Exame Físico">
+                                             <content>
+                                                <AnchorPane>
+                                                   <children>
+                                                      <VBox layoutX="226.0" layoutY="87.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <TextArea fx:id="exafisProntuario" wrapText="true" VBox.vgrow="SOMETIMES" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </padding>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                          <Tab closable="false" text="Conduta">
+                                             <content>
+                                                <AnchorPane>
+                                                   <children>
+                                                      <VBox layoutX="226.0" layoutY="87.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <TextArea fx:id="conterProntuario" wrapText="true" VBox.vgrow="SOMETIMES" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </padding>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                       </tabs>
+                                    </TabPane>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+        </tabs>
+      </TabPane>
+      </children>
+      <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" />
+      </padding>
+            </VBox>
+         </children>
+      </VBox>
+</children></AnchorPane>

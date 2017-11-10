@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="523.0" snapToPixel="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.LocPacController">
+  <children>
+    <ImageView depthTest="INHERIT" disable="true" fitHeight="420.0" fitWidth="523.0" opacity="0.3" pickOnBounds="true" preserveRatio="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <effect>
+        <ColorAdjust brightness="0.8571428571428572" contrast="1.0" saturation="-1.0" />
+      </effect>
+    </ImageView>
+    <BorderPane maxHeight="-Infinity" prefHeight="380.0" prefWidth="523.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <bottom>
+        <HBox id="" alignment="TOP_LEFT" fillHeight="true" maxWidth="-1.0" prefHeight="160.0" prefWidth="190.0" spacing="50.0" BorderPane.alignment="TOP_LEFT">
+          <children>
+            <VBox id="VBox" alignment="CENTER" spacing="5.0">
+              <children>
+                <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Receitas do Paciente" textFill="BLACK">
+                  <font>
+                    <Font name="System Bold" size="12.0" />
+                  </font>
+                </Label>
+                <TableView fx:id="tableReceitas" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#onReceitasSelect" prefHeight="135.0" prefWidth="210.0">
+                  <columns>
+                    <TableColumn fx:id="viewDataCol" maxWidth="5000.0" minWidth="10.0" prefWidth="132.0" resizable="false" text="Data Receita" />
+                    <TableColumn fx:id="viewReceitaCol" prefWidth="50.0" resizable="false" text="" />
+                  </columns>
+                </TableView>
+              </children>
+            </VBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
+              <children>
+                <GridPane id="GridPane" alignment="TOP_CENTER" disable="false" focusTraversable="false" gridLinesVisible="false" hgap="10.0" vgap="0.0" visible="true">
+                  <children>
+                    <VBox id="VBox" alignment="CENTER" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                      <children>
+                        <Button id="btnSaveReceita" fx:id="btnEditarReceita" contentDisplay="GRAPHIC_ONLY" maxWidth="-1.0" mnemonicParsing="false" onAction="#btnEditarReceitaFired" prefHeight="40.0" prefWidth="-1.0" text="Button">
+                          <graphic>
+                            <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                <Image url="@../imagens/Page-Edit.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </Button>
+                        <Button id="btnCancelaREceita" fx:id="btnDuplicaReceita" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnDuplicaReceitaFired" prefHeight="40.0" prefWidth="-1.0" text="">
+                          <graphic>
+                            <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                <Image url="@../imagens/Page-Copy.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </Button>
+                        <Button id="btnCancelaREceita" fx:id="btnNovaReceita" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnNovaReceitaFired" prefHeight="40.0" prefWidth="-1.0" text="Button">
+                          <graphic>
+                            <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                <Image url="@../imagens/Page-Add.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </Button>
+                      </children>
+                    </VBox>
+                    <Button id="btnSaveReceita" fx:id="btnSelecPaciente" contentDisplay="GRAPHIC_ONLY" maxWidth="-1.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="-1.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.valignment="TOP">
+                      <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@../imagens/AlertDialog.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                      <GridPane.margin>
+                        <Insets top="6.0" />
+                      </GridPane.margin>
+                    </Button>
+                  </children>
+                  <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="60.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  </columnConstraints>
+                  <padding>
+                    <Insets top="20.0" />
+                  </padding>
+                  <rowConstraints>
+                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                </GridPane>
+              </children>
+            </HBox>
+          </children>
+          <padding>
+            <Insets left="15.0" />
+          </padding>
+          <BorderPane.margin>
+            <Insets />
+          </BorderPane.margin>
+        </HBox>
+      </bottom>
+      <center>
+        <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" maxHeight="-Infinity" prefHeight="140.0" prefWidth="200.0" rowValignment="CENTER" BorderPane.alignment="TOP_CENTER">
+          <children>
+            <TableView fx:id="tablePacientes" maxWidth="-Infinity" minHeight="-Infinity" onMouseClicked="#onPacientesSelect" prefHeight="105.0" prefWidth="500.0">
+              <columns>
+                <TableColumn fx:id="codCol" editable="false" prefWidth="74.0" text="Codigo" />
+                <TableColumn fx:id="codAntCol" editable="false" prefWidth="90.0" text="Cod.Antigo" />
+                <TableColumn fx:id="nomeCol" editable="false" prefWidth="324.0" text="Nome" />
+              </columns>
+            </TableView>
+          </children>
+        </FlowPane>
+      </center>
+      <top>
+        <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="110.0" prefWidth="500.0" BorderPane.alignment="TOP_CENTER">
+          <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Localizar um paciente" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="TOP">
+              <font>
+                <Font name="System Bold" size="19.0" />
+              </font>
+              <GridPane.margin>
+                <Insets left="10.0" fx:id="x1" />
+              </GridPane.margin>
+            </Text>
+            <Line endX="460.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <VBox id="HBox" alignment="CENTER_LEFT" fillWidth="false" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.valignment="TOP">
+              <children>
+                <Label text="Codigo:" />
+                <TextField id="tfChave" fx:id="chaveCod" onAction="#chaveCodFired" prefWidth="80.0" />
+              </children>
+              <padding>
+                <Insets />
+              </padding>
+            </VBox>
+            <VBox id="HBox" alignment="CENTER_LEFT" fillWidth="false" padding="$x1" prefHeight="45.0" prefWidth="157.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+              <children>
+                <Label text="Cod.Antigo:" />
+                <TextField id="tfChave" fx:id="chaveCodAnt" onAction="#chaveCodAntFired" prefWidth="80.0" />
+              </children>
+            </VBox>
+            <VBox id="HBox" alignment="CENTER_LEFT" fillWidth="false" padding="$x1" prefHeight="45.0" prefWidth="157.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
+              <children>
+                <Label text="Nome:" />
+                <TextField id="tfChave" fx:id="chaveNome" onAction="#chaveNomeFired" prefWidth="257.0" />
+              </children>
+            </VBox>
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="97.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="296.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints fillHeight="false" maxHeight="40.0" minHeight="10.0" prefHeight="35.0" valignment="TOP" vgrow="NEVER" />
+            <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" valignment="TOP" vgrow="NEVER" />
+          </rowConstraints>
+          <BorderPane.margin>
+            <Insets left="15.0" right="15.0" top="10.0" />
+          </BorderPane.margin>
+        </GridPane>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>

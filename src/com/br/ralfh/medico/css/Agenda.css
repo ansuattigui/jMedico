@@ -1,0 +1,140 @@
+.table-view {
+    -fx-background-color: linear-gradient(to bottom,#a6b5c9,white);      
+}
+
+.table-column {
+    -fx-font-size: 12px;
+}
+
+.table-view .column-header .label {
+    -fx-pref-height: 35;
+
+    -fx-background-color: 
+        #a6b5c9,
+        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),
+        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);
+    -fx-text-fill: white;
+
+    -fx-font-family: 'arial';
+    -fx-font-weight: bold;
+    -fx-font-style: normal;
+    -fx-font-size: 12;
+}
+
+.split-pane:horizontal > * > .split-pane-divider {
+    -fx-border-color: transparent #1d1d1d transparent #1d1d1d;
+}
+
+.split-pane {
+    -fx-padding: 1 0 0 0;
+}
+
+.menu-bar {
+    -fx-font-size: 12px;
+}
+.menu-bar .label {
+        -fx-text-fill: #000000;
+}
+
+.context-menu {
+     -fx-font-size: 12px;
+}
+.menu-item .label {
+     -fx-text-fill: #000000;
+}
+
+.text-field {
+    -fx-font-size: 12;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.button {
+    -fx-background-color: 
+        #707070,
+        linear-gradient(#fcfcfc, #f3f3f3),
+        linear-gradient(#f2f2f2 0%, #ebebeb 49%, #dddddd 50%, #cfcfcf 100%);
+    -fx-text-fill: black;
+    -fx-font: arial;
+    -fx-font-size: 12px;
+}
+
+.button:hover {
+    -fx-background-color: 
+        #707070,
+        linear-gradient(#fcfcfc, #f3f3f3),
+        #999999;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.botaotool {
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 3,2,1;
+    -fx-padding: 3 10 3 10;
+}
+.botaopq {
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 3,2,1;
+    -fx-padding: 5 15 5 15;
+}
+.botaomd {
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 3,2,1;
+    -fx-padding: 5 20 5 20;
+}
+
+.titled-pane {
+    -fx-font-family: arial;
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+}
+
+.titled-pane > .title {
+    -fx-background-color: #6D7FA7;    
+}
+
+.label, .radio-button {
+    -fx-font-family: arial;
+    -fx-font-size: 12px;
+    -fx-text-fill: #000000;
+}
+
+.titled-pane > .title > .arrow-button > .arrow{
+    -fx-background-color: white;
+}
+
+/* Ralfh - CSS Controles Agenda
+*/
+
+.vbox {
+    -fx-background-color: gray;
+}
+
+
+#lblDataAgenda {
+    -fx-font-size: 16px;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 4;
+    -fx-background-color: transparent;
+    -fx-background-radius: 4;
+    -fx-alignment: center;
+    -fx-text-fill: #6D7FA7;
+}
+
+.check-box:disabled {
+    -fx-opacity: 1.0;
+}
+
+.split-menu-button, .menu-button {
+    -fx-background-color: 
+        #707070,
+        linear-gradient(#fcfcfc, #f3f3f3),
+        linear-gradient(#f2f2f2 0%, #ebebeb 49%, #dddddd 50%, #cfcfcf 100%);
+}
+
+.split-menu-button .label, .menu-button .label {
+    -fx-font-family: arial;
+    -fx-text-fill: black; 
+    -fx-font-size: 12px;
+    -fx-font-weight: normal;
+}

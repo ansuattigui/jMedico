@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.ConvenioController">
+<children>
+<VBox alignment="TOP_CENTER" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><MenuBar xmlns:fx="http://javafx.com/fxml">
+  <menus>
+    <Menu mnemonicParsing="false" text="Convenio">
+      <items><MenuItem fx:id="miCriarConvenio" mnemonicParsing="false" text="Criar" /><MenuItem fx:id="miAtualConvenio" mnemonicParsing="false" text="Atualizar" /><SeparatorMenuItem mnemonicParsing="false" /><MenuItem fx:id="miDelConvenio" mnemonicParsing="false" text="Deletar" /><SeparatorMenuItem mnemonicParsing="false" /><MenuItem fx:id="miConfConvenio" mnemonicParsing="false" text="Confirma" /><MenuItem fx:id="miCancConvenio" mnemonicParsing="false" text="Cancela" /><SeparatorMenuItem mnemonicParsing="false" /><MenuItem fx:id="miProcConvenio" mnemonicParsing="false" text="Procurar" /><SeparatorMenuItem mnemonicParsing="false" />
+        <MenuItem fx:id="miSairConvenio" mnemonicParsing="false" text="Sair" />
+      </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Editar">
+      <items>
+        <MenuItem mnemonicParsing="false" text="Delete" />
+      </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Ajuda">
+      <items>
+        <MenuItem mnemonicParsing="false" text="About" />
+      </items>
+    </Menu>
+  </menus>
+</MenuBar><ToolBar xmlns:fx="http://javafx.com/fxml">
+  <items>
+    <Button fx:id="btnCriarConvenio" contentDisplay="TOP" mnemonicParsing="false" onAction="#criaConvenioFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Criar">
+<graphic><ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-add.png" />
+</image></ImageView>
+</graphic></Button><Button fx:id="btnAtualConvenio" contentDisplay="TOP" mnemonicParsing="false" onAction="#atualizaConvenioFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Atualizar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-edit.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Button fx:id="btnDelConvenio" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnDelConvenioFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Deletar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-delete.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Separator opacity="0.0" prefWidth="20.0" /><Button fx:id="btnConfConvenio" contentDisplay="TOP" mnemonicParsing="false" onAction="#confConvenioFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Confirma" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-check.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Button fx:id="btnCancConvenio" contentDisplay="TOP" mnemonicParsing="false" onAction="#cancConvenioFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Cancela" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-restrict.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Separator opacity="0.0" prefWidth="110.0" />
+<Button fx:id="btnProcurar" contentDisplay="TOP" layoutX="403.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnProcurarFired" prefHeight="60.0" styleClass="botaotool" text="Procurar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/pacientes/paciente-search.png" />
+</image>
+</ImageView>
+</graphic>
+</Button><Button fx:id="btnSairConvenio" contentDisplay="TOP" mnemonicParsing="false" onAction="#sairConvenioFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Sair" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/Door-Out.png" />
+</image>
+</ImageView>
+</graphic>
+</Button>
+  </items>
+<VBox.margin>
+<Insets />
+</VBox.margin>
+</ToolBar>
+</children>
+</VBox>
+      <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <VBox fillWidth="false" spacing="4.0">
+<children>
+                  <Label text="Codigo ANS" />
+                  <HBox>
+<children>
+                        <TextField fx:id="codANS" alignment="CENTER" prefWidth="130.0" />
+</children>
+                  </HBox>
+</children>
+            </VBox>
+            <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+<children>
+<Label text="Nome" />
+                  <HBox spacing="1.0">
+<children>
+<TextField fx:id="nomeConvenio" prefHeight="25.0" prefWidth="250.0" />
+                        <Button fx:id="btnProcNome" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnProcNomeFired" text="Button" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<graphic>
+<ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../imagens/find.png" />
+</image>
+</ImageView>
+</graphic>
+</Button>
+</children>
+                  </HBox>
+</children>
+</VBox>
+<VBox fillWidth="false" layoutX="122.0" layoutY="15.0" prefHeight="50.0" spacing="4.0" visible="false">
+<children>
+<Label text="CNPJ" />
+<HBox>
+<children>
+<TextField fx:id="cnpjConvenio" prefHeight="25.0" prefWidth="174.0" />
+</children>
+</HBox>
+</children>
+</VBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+         </padding>
+      </HBox>
+      <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="170.0">
+        <tabs>
+          <Tab text="Informações gerais">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0">
+                     <children>
+                  <VBox alignment="TOP_CENTER" spacing="4.0" styleClass="fundo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <children>
+                              <HBox spacing="4.0">
+                                 <children>
+                  <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="Endereço" />
+                                          <TextField fx:id="enderConvenio" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+                  </children>
+                  </VBox>
+                  <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="Nº" />
+                                          <TextField fx:id="numEndConvenio" alignment="CENTER" prefWidth="60.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+                  </children>
+                  </VBox>
+                  <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="Complemento" />
+                                          <TextField fx:id="compEndConvenio" alignment="CENTER" prefWidth="150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+                  </children>
+                  </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="4.0">
+                                 <children>
+                  <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="Bairro" />
+                  <TextField fx:id="bairroConvenio" alignment="CENTER" prefWidth="200.0" />
+                  </children>
+                  </VBox>
+                  <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="CEP" />
+                  <TextField fx:id="cepConvenio" alignment="CENTER" prefWidth="100.0" />
+                  </children>
+                  </VBox>
+                  <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="Cidade" />
+                  <TextField fx:id="cidadeConvenio" alignment="CENTER" prefWidth="200.0" />
+                  </children>
+                  </VBox>
+                                    <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="UF" />
+                                          <ChoiceBox fx:id="ufConvenio" prefWidth="85.0" />
+                  </children>
+                  </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="4.0">
+                                 <children>
+                  <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="Telefones" />
+                  <TextField fx:id="telCom1Convenio" alignment="CENTER" prefWidth="140.0" />
+                  </children>
+                  </VBox>
+                  <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label />
+                  <TextField fx:id="telCom2Convenio" alignment="CENTER" prefWidth="140.0" />
+                  </children>
+                  </VBox>
+                  <VBox fillWidth="false" layoutX="160.0" layoutY="15.0" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label />
+                  <TextField fx:id="telCom3Convenio" alignment="CENTER" prefWidth="140.0" />
+                  </children>
+                  </VBox>
+                  <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="Fax" />
+                  <TextField fx:id="faxConvenio" alignment="CENTER" prefWidth="140.0" />
+                  </children>
+                  </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="4.0">
+                                 <children>
+                                    <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="email" />
+                  <TextField fx:id="emailConvenio" alignment="CENTER" prefWidth="260.0" />
+                  </children>
+                  </VBox>
+                  <VBox fillWidth="false" layoutX="15.0" layoutY="65.0" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="www" />
+                  <TextField fx:id="wwwConvenio" alignment="CENTER" prefWidth="260.0" />
+                  </children>
+                  </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="4.0">
+                                 <children>
+                  <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="Consulta (R$)" />
+                                          <TextField fx:id="valorConsulta" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="120.0" />
+                  </children>
+                  </VBox>
+                  <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="ECG (R$)" />
+                                          <TextField fx:id="valorECG" alignment="CENTER_RIGHT" prefWidth="120.0" />
+                  </children>
+                  </VBox>
+                                    <VBox fillWidth="false" prefHeight="50.0" spacing="4.0">
+                  <children>
+                  <Label text="Internação (R$)" />
+                  <TextField fx:id="valorInternacao" alignment="CENTER_RIGHT" prefWidth="120.0" />
+                  </children>
+                  </VBox>
+                                 </children>
+                              </HBox>
+            <VBox spacing="8.0">
+            <children>
+                                    <Label text="Entrega da Documentação" />
+            <HBox alignment="CENTER_LEFT" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+            <HBox alignment="CENTER_LEFT" spacing="2.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+            <Label text="Do dia:" />
+            <TextField fx:id="diaIniEntrega" alignment="CENTER" prefHeight="25.0" prefWidth="50.0" />
+            </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="2.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+            <Label text="Até o dia:" />
+            <TextField fx:id="diaFimEntrega" alignment="CENTER" prefWidth="50.0" />
+            </children>
+            </HBox>
+            <Label text="de cada mês" />
+            </children>
+            <VBox.margin>
+            <Insets left="15.0" />
+            </VBox.margin>
+            </HBox>
+            </children>
+            </VBox>
+                  </children>
+                  <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </padding>
+                  </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Procedimentos autorizados">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+</children></AnchorPane>

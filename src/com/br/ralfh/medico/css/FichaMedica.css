@@ -1,0 +1,67 @@
+.mainFxmlClass {
+
+}
+
+.button {
+}
+
+.button:hover {
+}
+
+.label, .check-box {
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+}
+
+.table-column {
+    -fx-border-insets: 2;
+}
+
+.table-column .label {
+    -fx-background-color: #A60000;
+}
+
+.table-view .table-column .label {
+    -fx-text-fill: white;
+}
+
+.tab-pane, .fundo {
+    -fx-border-width: 1;
+    -fx-border-color: #6C3100;
+    -fx-background-color: radial-gradient(focus-angle 45deg, focus-distance 20%, center 25% 25%, radius 50%, reflect, #94C1BF, #94C1BF 75%, #3A807D);
+}
+
+.tab:selected {
+    -fx-background-color: #FFFFFF;    
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #3A807D;
+    -fx-font-weight: bold;
+}
+
+.tab-label {
+    -fx-font-family: sans-serif;
+    -fx-text-fill: black;
+}
+
+.tab-header-background, .menu-bar {
+    -fx-background-color: #206966;
+}
+
+.choice-box:disabled,.combo-box:disabled,.date-picker:disabled,.check-box:disabled {
+    -fx-opacity: 1;
+}
+
+.menu .label {
+    -fx-text-fill: white;
+}
+
+.menu-item .label {
+    -fx-text-fill: black;
+}
+
+.text-field, .text-area {
+    -fx-font-family: sans-serif;
+    -fx-font-size: 13;
+}

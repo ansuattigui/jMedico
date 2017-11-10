@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Faturamento Convenios" pageWidth="595" pageHeight="842" columnWidth="539" leftMargin="28" rightMargin="28" topMargin="28" bottomMargin="28" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fim" class="java.util.Date"/>
+	<parameter name="periodo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["99/99/9999 a 00/00/0000"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     @curRow:=@curRow+1 AS rank,
+     tmc.cod_convenio AS cod,
+     count(tmc.cod_convenio) AS cons,
+     (SELECT count(ecg) AS necg FROM `tab_consultas` tmc2 WHERE tmc2.cod_convenio = tmc.cod_convenio and ecg IS true and tmc2.data BETWEEN $P{inicio} and $P{fim}) as necg,
+     tc.`nome_convenio` AS nome
+FROM
+     `tab_convenio` tc
+INNER JOIN `tab_consultas` tmc ON tc.`cod_convenio` = tmc.`cod_convenio`
+INNER JOIN (SELECT @curRow := 0) r
+WHERE
+     tmc.data BETWEEN $P{inicio} and $P{fim} and tmc.atendido is true
+GROUP BY
+     tmc.cod_convenio
+ORDER BY
+     nome]]>
+	</queryString>
+	<field name="rank" class="java.lang.Long"/>
+	<field name="cod" class="java.lang.Integer"/>
+	<field name="cons" class="java.lang.Long"/>
+	<field name="necg" class="java.lang.Long"/>
+	<field name="nome" class="java.lang.String"/>
+	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="totConsultas" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{cons}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{cons}]]></initialValueExpression>
+	</variable>
+	<variable name="totECG" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{necg}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{necg}]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="72">
+			<staticText>
+				<reportElement x="111" y="4" width="317" height="20" uuid="1a015f8e-5af1-4de4-9dc6-f22f345ef5b0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Faturamento de Convenios]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="128" y="31" width="282" height="20" uuid="ceeb3e06-6ba1-44a1-a9e5-07ff9c5a8c1f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{periodo}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="81" height="72" uuid="694b3917-f8d1-4676-a798-7f24c6ff0be9"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="31">
+			<rectangle>
+				<reportElement x="0" y="0" width="539" height="31" backcolor="#CCCCCC" uuid="a7261b29-7952-4d95-9395-93125c8d277d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="9" y="5" width="65" height="20" uuid="8f227f59-614f-4af6-a4c3-45b3250de57b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ordem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="5" width="100" height="20" uuid="cdb74692-eb7b-40e6-af63-407b875e4f0a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Convenio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="5" width="83" height="20" uuid="097ad5ec-c5a7-43c9-aafe-e33558fbbff9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Consultas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="447" y="5" width="69" height="20" uuid="9d3646b1-4c32-45ae-894a-a8a4d0a5664e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ECG]]></text>
+			</staticText>
+			<line>
+				<reportElement x="83" y="0" width="1" height="31" uuid="fdbf37cb-98fc-4971-9d7e-9bf4e2bc891b"/>
+			</line>
+			<line>
+				<reportElement x="322" y="0" width="1" height="31" uuid="0780305b-557b-4d0a-9bb5-e943c1652866"/>
+			</line>
+			<line>
+				<reportElement x="422" y="0" width="1" height="31" uuid="a5986ecd-6adb-48fe-b81b-c10a00da34c3"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="539" height="31" uuid="3ec23752-283a-4aae-8451-63ed7fabe526"/>
+			</rectangle>
+			<textField>
+				<reportElement x="329" y="6" width="83" height="20" uuid="365f84bb-15ef-4c4a-848e-5eec5c521332"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cons}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="447" y="6" width="69" height="20" uuid="eac695c3-7e2d-45f2-b558-2eba71515ed2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{necg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="6" width="222" height="20" uuid="62ed30df-8dda-4152-a144-dd9b47f7e66d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="19" y="6" width="44" height="20" uuid="818dc9e8-80a7-4849-8568-dd41bdb2db2d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{rank}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="83" y="0" width="1" height="31" uuid="3c90e360-2f07-4365-adbe-f0e5270e6e17"/>
+			</line>
+			<line>
+				<reportElement x="422" y="0" width="1" height="31" uuid="b0953539-fff9-4a01-85e4-7eb7ebf548cc"/>
+			</line>
+			<line>
+				<reportElement x="322" y="0" width="1" height="31" uuid="9964302d-6451-448c-9ef2-1f083dd0cdf1"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="36">
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="1" y="9" width="100" height="20" uuid="ed6b29d2-79b8-4d89-9d8e-d6d661d6abf6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="9" width="100" height="20" uuid="bd4458a4-d76d-4a4e-9109-aece899f4fca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="32" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="539" height="32" backcolor="#CCCCCC" uuid="35f00e70-c741-4d1a-b7ae-71dfaee51e51"/>
+			</rectangle>
+			<elementGroup/>
+			<textField>
+				<reportElement x="330" y="8" width="82" height="20" uuid="0799dd75-1ede-48ed-961a-75743a8aa899"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totConsultas}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="322" y="0" width="1" height="31" uuid="c64bd2b0-b952-46ad-9585-62fe888e8189"/>
+			</line>
+			<line>
+				<reportElement x="422" y="1" width="1" height="31" uuid="a468e2c1-76bd-4acc-9679-bc1278f63d24"/>
+			</line>
+			<staticText>
+				<reportElement x="214" y="7" width="100" height="20" uuid="a558491b-d121-448b-80c8-c9aeb4d3045f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Totais:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="447" y="8" width="69" height="20" uuid="8dfc90f5-a7e3-43f0-ab87-199079685222"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totECG}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

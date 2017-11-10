@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.HTMLEditor?>
+
+<AnchorPane snapToPixel="false" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.ReciboController">
+  <children>
+      <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar id="" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Recibo">
+                     <items>
+                        <MenuItem fx:id="miNovoRecibo" mnemonicParsing="false" onAction="#btnNovoReciboFired" text="Criar" />
+                        <MenuItem fx:id="miEditaRecibo" mnemonicParsing="false" onAction="#btnEditaReciboFired" text="Atualizar" />
+                        <MenuItem fx:id="miExcluiRecibo" mnemonicParsing="false" onAction="#btnExcluiReciboFired" text="Excluir" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="miConfirma" mnemonicParsing="false" onAction="#btnConfirmaFired" text="Confirma" />
+                        <MenuItem fx:id="miCancela" mnemonicParsing="false" onAction="#btnCancelaFired" text="Cancelar" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="miClonar" mnemonicParsing="false" onAction="#btnClonarFired" text="Duplica" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Imprimir">
+                     <items>
+                        <MenuItem fx:id="miReciboCartaT" mnemonicParsing="false" onAction="#miReciboCartaFired" text="Papel Carta" />
+                        <MenuItem fx:id="miReciboA4T" mnemonicParsing="false" onAction="#miReciboA4Fired" text="Papel A4" />
+                        <MenuItem fx:id="miReciboGavetaT" mnemonicParsing="false" onAction="#miReciboGavetaFired" text="Papel Gaveta" />
+                        <MenuItem fx:id="miReciboMeioA4T" mnemonicParsing="false" onAction="#miReciboMeioA4Fired" text="Papel 1/2 A4" />
+                        <MenuItem fx:id="miReciboReduzidoT" mnemonicParsing="false" onAction="#miReciboReduzidoFired" text="Papel Reduzido" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Ajuda">
+                     <items>
+                        <MenuItem fx:id="mnItemSobre" mnemonicParsing="false" text="Sobre o JReceita" />
+                     </items>
+                  </Menu>
+               </menus>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </MenuBar>
+            <ToolBar>
+               <items>
+                  <Button fx:id="btnNovoRecibo" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnNovoReciboFired" prefWidth="70.0" styleClass="botaotool" text="Criar">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/Page-Add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="btnSaveReceita" fx:id="btnEditaRecibo" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnEditaReciboFired" prefWidth="70.0" styleClass="botaotool" text="Atualizar">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/Page-Edit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="btnCancelaREceita" fx:id="btnExcluiRecibo" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnExcluiReciboFired" prefWidth="70.0" styleClass="botaotool" text="Excluir">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/montagens/Page-Cancel.fw.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Separator opacity="0.0" orientation="VERTICAL" prefWidth="10.0" />
+                  <Button id="btnSaveReceita" fx:id="btnConfirma" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnConfirmaFired" prefWidth="70.0" styleClass="botaotool" text="Confirma">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/montagens/Page-Save.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="btnSaveReceita" fx:id="btnCancela" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnCancelaFired" prefWidth="70.0" styleClass="botaotool" text="Cancela">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/montagens/Page-Delete.fw.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Separator layoutX="178.0" layoutY="10.0" opacity="0.0" orientation="VERTICAL" prefWidth="10.0" />
+                  <Button id="btnSaveReceita" fx:id="btnClonar" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnClonarFired" prefWidth="70.0" styleClass="botaotool" text="Duplica">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/montagens/Page-Copy.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <SplitMenuButton fx:id="btnPrintAtestado" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" mnemonicParsing="false" prefWidth="110.0" styleClass="botaotool" text="Imprimir" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView disable="true" fitHeight="32.0" fitWidth="32.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/Printer.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <items>
+                        <MenuItem fx:id="miReciboCarta" mnemonicParsing="false" onAction="#miReciboCartaFired" text="Papel Carta" />
+                        <MenuItem fx:id="miReciboA4" mnemonicParsing="false" onAction="#miReciboA4Fired" text="Papel A4" />
+                        <MenuItem fx:id="miReciboGaveta" mnemonicParsing="false" onAction="#miReciboGavetaFired" text="Papel Gaveta" />
+                        <MenuItem fx:id="miReciboMeioA4" mnemonicParsing="false" onAction="#miReciboMeioA4Fired" text="Papel 1/2 A4" />
+                        <MenuItem fx:id="miReciboReduzido" mnemonicParsing="false" onAction="#miReciboReduzidoFired" text="Papel Reduzido" />
+                     </items>
+                  </SplitMenuButton>
+                  <Separator opacity="0.0" orientation="VERTICAL" prefWidth="10.0" />
+                  <Button fx:id="btnSair1" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnSairFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Sair">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/Door-Out.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </items>
+            </ToolBar>
+         </children>
+      </VBox><VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
+<children>
+            <HBox spacing="20.0">
+               <children>
+            <TableView fx:id="tabelaRecibos" prefHeight="165.0">
+              <columns>
+                        <TableColumn fx:id="dataCol" editable="false" minWidth="100.0" prefWidth="100.0" resizable="false" sortable="false" style="-fx-text-alignment: center;" text="Data" />
+                <TableColumn fx:id="reciboCol" editable="false" minWidth="-1.0" prefWidth="270.0" resizable="false" sortable="false" text="Nome do Recibo" />
+              </columns>
+                     <padding>
+                        <Insets left="2.0" right="4.0" />
+                     </padding>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+            </TableView>
+               </children>
+            </HBox>
+            <VBox spacing="10.0">
+               <children>
+                  <HBox spacing="5.0">
+                     <children>
+                        <VBox prefWidth="155.0">
+                           <children>
+                              <Label text="Data:">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="dataRecibo" prefWidth="150.0" />
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <Label text="Recibo:">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="nomeRecibo" prefHeight="26.0" prefWidth="355.0" />
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <Label text="Recibo (R$):">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="valorRecibo" alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="131.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <TabPane prefWidth="610.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" tabMinWidth="80.0">
+                     <tabs>
+                        <Tab closable="false" text="Cabeçalho">
+                           <content>
+                              <HBox>
+                                 <children>
+                                    <HTMLEditor fx:id="htmlEditorCabecalho" htmlText="" prefHeight="270.0" />
+                                 </children>
+                              </HBox>
+                           </content>
+                        </Tab>
+                        <Tab closable="false" text="Corpo">
+                           <content>
+                              <VBox>
+                                 <children>
+                                    <HTMLEditor fx:id="htmlEditorCorpo" htmlText="" prefHeight="230.0" />
+                                    <HBox>
+                                       <children>
+                                          <Button fx:id="nomepac" mnemonicParsing="false" onAction="#nomepacFired" text="Nome" />
+                                          <Button fx:id="nascpac" mnemonicParsing="false" onAction="#nascpacFired" text="Nascimento" />
+                                          <Button fx:id="identpac" mnemonicParsing="false" onAction="#identpacFired" text="Identidade" />
+                                          <Button fx:id="cpfpac" layoutX="139.0" layoutY="10.0" mnemonicParsing="false" onAction="#cpfpacFired" text="CPF" />
+                                          <Button fx:id="datapac" layoutX="212.0" layoutY="10.0" mnemonicParsing="false" onAction="#datapacFired" text="Data do Dia" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab closable="false" text="Rodapé">
+                           <content>
+                              <HBox>
+                                 <children>
+                                    <HTMLEditor fx:id="htmlEditorRodape" htmlText="" prefHeight="270.0" />
+                                 </children>
+                              </HBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </VBox>
+</children></VBox>
+  </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" />
+   </padding>
+</AnchorPane>

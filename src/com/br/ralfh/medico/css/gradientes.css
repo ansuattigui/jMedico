@@ -1,0 +1,15 @@
+root { 
+    display: block;
+}
+
+.gradienteTeal {
+    -fx-background-color: linear-gradient(to top, silver, teal, silver);    
+    -fx-border-width: 1;
+    -fx-border-color: linear-gradient(to bottom, teal, silver, teal);
+}
+
+.gradienteA64B00 {
+    -fx-background-color: linear-gradient(to top, transparent,#A64B00);
+    -fx-border-width: 1;
+    -fx-border-color: linear-gradient(to top, #A64B00, transparent);
+}

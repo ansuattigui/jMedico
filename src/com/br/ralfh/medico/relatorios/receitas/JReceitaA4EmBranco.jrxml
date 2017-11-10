@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receita" pageWidth="595" pageHeight="844" whenNoDataType="AllSectionsNoDetail" columnWidth="545" leftMargin="22" rightMargin="28" topMargin="56" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idReceita" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataReceita" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="logoCabecalho" class="java.awt.Image"/>
+	<parameter name="logoRodape" class="java.awt.Image"/>
+	<parameter name="prescricao" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="aplicacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medicamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modoUso" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="receita_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="posologia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="viaAdmin" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="controlada" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<sortField name="viaAdmin"/>
+	<sortField name="medicamento"/>
+	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<background>
+		<band height="700" splitType="Stretch">
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="180" y="55" width="1" height="645" uuid="ee865d23-7fb8-47b9-9892-54429aab492e"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="9" y="93" width="160" height="20" uuid="7e71249e-fce7-4b4f-a0e0-20c406cdde25"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[clínica médica e cardiológica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="120" width="160" height="20" uuid="76122470-d628-4b75-8959-91746ea73186"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[j. horácio t. de carvalho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="138" width="160" height="20" uuid="5aabb5cd-87d8-4347-be8a-39e656af053d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[crm: 52.21.543-3]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="2" y="0" width="180" height="91" uuid="123c722d-9e4c-4393-a569-048e88d6f48d"/>
+				<imageExpression><![CDATA[$P{logoCabecalho}]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="33" y="616" width="90" height="79" uuid="c4c37735-3782-4ac3-9a5a-7f596088f568"/>
+				<imageExpression><![CDATA[$P{logoRodape}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<detail>
+		<band height="50"/>
+	</detail>
+	<pageFooter>
+		<band height="37">
+			<staticText>
+				<reportElement x="0" y="0" width="545" height="37" uuid="f012012e-6811-4449-9588-9c6695513fa7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
+				</textElement>
+				<text><![CDATA[Consultório: Estrada de Jacarepaguá, 7709 - Grupo 409/411
+Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

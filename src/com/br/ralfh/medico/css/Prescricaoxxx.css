@@ -1,0 +1,36 @@
+/* 
+    Document   : Prescreve
+    Created on : 25/04/2013, 14:28:32
+    Author     : ralfh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#fundo {
+    -fx-border-width: 1;
+    -fx-border-color: #6C3100;
+    -fx-background-color: radial-gradient(focus-angle 45deg, focus-distance 20%, center 25% 25%, radius 50%, reflect, gray, darkgray 75%, dimgray);
+}
+
+.botao {
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.botao-telaPrincipal:hover {
+    -fx-stroke: darkred;
+    -fx-stroke-width: 1px;
+    -fx-stroke-type: outside;
+}
+
+.botaoConfirmar {
+    -fx-background-image: url("../imagens/accept.png");
+}
+
+.botaoCancelar {
+    -fx-background-image: url("../imagens/cancel.png");
+}

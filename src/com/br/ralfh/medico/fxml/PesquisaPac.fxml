@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="523.0" snapToPixel="false" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.PesquisaPacController">
+  <children>
+      <VBox spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+         <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Localizar um paciente" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="TOP">
+        <font>
+          <Font name="System Bold" size="19.0" />
+        </font>
+        <GridPane.margin>
+          <Insets left="10.0" fx:id="x1" />
+        </GridPane.margin>
+      </Text>
+         </children>
+         <padding>
+            <Insets left="15.0" right="10.0" />
+         </padding>
+      </VBox>
+      <HBox fillHeight="false" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <VBox>
+               <children>
+          <Label text="Cod.Antigo:" />
+          <TextField id="tfChave" fx:id="chaveCodAnt" prefWidth="90.0" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+          <Label text="Codigo:" />
+          <TextField id="tfChave" fx:id="chaveCod" prefWidth="90.0" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+          <Label text="Nome:" />
+          <TextField id="tfChave" fx:id="chaveNome" prefWidth="260.0" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="15.0" />
+         </padding>
+      </HBox>
+      <VBox alignment="TOP_CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+         <children>
+      <TableView fx:id="tablePacientes" maxWidth="-Infinity" prefHeight="110.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="170.0">
+        <columns>
+          <TableColumn fx:id="codCol" editable="false" maxWidth="80.0" text="Codigo" />
+          <TableColumn fx:id="codAntCol" editable="false" maxWidth="80.0" text="Cod.Antigo" />
+          <TableColumn fx:id="nomeCol" editable="false" maxWidth="320.0" prefWidth="320.0" text="Nome" />
+        </columns>
+      </TableView>
+         </children>
+      </VBox>
+<VBox id="VBox" alignment="TOP_CENTER" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="220.0">
+  <children>
+    <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Consultas do Paciente" textFill="BLACK" />
+    <TableView fx:id="tableDatas" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="210.0">
+      <columns>
+        <TableColumn fx:id="dataCol" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="200.0" resizable="false" text="Data" />
+      </columns>
+    </TableView>
+  </children>
+</VBox>
+      <ToolBar style="-fx-background-color: transparent;" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="240.0">
+         <items>
+            <Button fx:id="btnBuscar" contentDisplay="TOP" mnemonicParsing="false" onAction="#buscarFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Buscar">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/pacientes/paciente-search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnAgenda" contentDisplay="TOP" disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#agendaFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Agenda">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/Date.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnLimpar" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#limparFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Limpar">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/pencil-eraser.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnSair" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#sairFired" prefHeight="60.0" prefWidth="65.0" styleClass="botaotool" text="Sair">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/Door-Out.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </items>
+      </ToolBar>
+  </children>
+</AnchorPane>

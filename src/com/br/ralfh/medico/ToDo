@@ -1,0 +1,27 @@
+1. Cadastrar pacientes a partir da agenda devolvendo dados para registro nesta...OK
+2, Encaixe deve vir com registro para agendamento (em branco) e não preenchido como está... OK
+3. Em confirmar, não funciona reversão de presente (faltou) quando este já está salvo assim... OK
+3.1. Em agenda, bloquear edição qdo não há registro selecionado
+4. Implementar transferir
+5. Implementar autorizar OK
+6. Implementar Faturamento de Convênios OK
+7. Cadastro de usuários com problema na atualização de botões...
+7.1. Criptografia na senha
+8. Replace em Estado Civil - CASADA(O) with ""....
+9. Replace em Sexo - F - FEMININO, M - MASCULINO
+10. Replace em presente - false where presente is null
+11. Replace em atendido - false where atendido is null
+
+12. Observar criação da tabela conexao.
+
+13. Replace em USUARIO Tipousuário "Medico"
+
+Em usuario - criar campo Administrador (Boolean), Complemento (Varchar(30)), numero(VARCHAR(6)), 
+TELEFONE1 (VARCHAR(20)), TELEFONE2 (VARCHAR(20)), TIPOUSUARIO(VARCHAR(45))
+
+Criar tabela modeloatestado
+
+Tabela usuario
+    Alterar tipo de campo data_expira - de varchar para datetime
+
+    

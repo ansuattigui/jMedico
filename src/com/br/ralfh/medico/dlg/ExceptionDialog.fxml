@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-preview-i18n-resource AlertDialog_en.properties?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.dlg.ExceptionDialogController">
+<children>
+  <GridPane hgap="14.0" vgap="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+  <children>
+    <ImageView fx:id="iconeDlg" blendMode="MULTIPLY" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+      <image>
+        <Image url="@../imagens/Exclamacao.png" />
+      </image>
+    </ImageView>
+    <VBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="350.0" spacing="7.0" GridPane.columnIndex="1">
+      <children>
+        <Label fx:id="messageLabel" text="message.label" textAlignment="LEFT" wrapText="true">
+<font>
+<Font name="Arial Bold" size="13.0" />
+</font></Label>
+      </children>
+    </VBox>
+    <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <children>
+                  <Separator opacity="0.0" prefHeight="27.0" prefWidth="120.0" />
+        <Button fx:id="okButton" cancelButton="true" mnemonicParsing="false" onAction="#okButtonPressed" prefWidth="80.0" text="OK" HBox.hgrow="NEVER">
+          <HBox.margin>
+            <Insets />
+          </HBox.margin>
+        </Button>
+      </children>
+    </HBox>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="NEVER" />
+    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="+Infinity" minWidth="-Infinity" />
+  </columnConstraints>
+  <padding>
+    <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+  </padding>
+  <rowConstraints>
+    <RowConstraints maxHeight="Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="ALWAYS" />
+    <RowConstraints vgrow="NEVER" />
+  </rowConstraints>
+</GridPane>
+</children>
+</AnchorPane>

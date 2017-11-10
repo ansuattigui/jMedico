@@ -1,0 +1,103 @@
+.table-column {
+    -fx-font-family: arial;
+    -fx-font-size: 13px;
+}
+
+.table-cell {
+    -fx-font-size: 13px;
+}
+
+
+.column-header-background { 
+    visibility: hidden; 
+    -fx-padding: -1em; 
+}
+.fundo {    
+    -fx-background-color: radial-gradient(focus-angle 45deg, focus-distance 20%, center 25% 25%, radius 50%, reflect, #ffffff, #dbd6d6 25%, #ffffff);
+}
+
+.button {
+    -fx-text-fill: black;
+    -fx-font: arial;
+    -fx-font-size: 13px;
+}
+
+.button {
+    -fx-background-color: 
+        #707070,
+        linear-gradient(#fcfcfc, #f3f3f3),
+        linear-gradient(#f2f2f2 0%, #ebebeb 49%, #dddddd 50%, #cfcfcf 100%);
+}
+
+.button:hover {
+    -fx-background-color: 
+        #707070,
+        linear-gradient(#fcfcfc, #f3f3f3),
+        #999999;
+}
+.botaotool {
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 3,2,1;
+    -fx-padding: 2 6 2 6;
+}
+.botaopq {
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 3,2,1;
+    -fx-padding: 3 10 3 10;
+}
+.botaomd {
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 3,2,1;
+    -fx-padding: 5 20 5 20;
+}
+
+
+.text-field, .text-area, .choice-box, .choice-box .label {
+    -fx-font-family: arial;
+    -fx-font-size: 13px;
+}
+
+
+.tab-pane, #tabDatas {
+    -fx-border-width: 1;
+    -fx-border-color: #666666;
+}
+
+.tab {
+    -fx-font: arial;
+    -fx-font-size: 12px;
+}
+
+.tab .tab-label {
+    -fx-font-size: 14px;
+    -fx-wrap-text: true;
+}
+
+.tab:selected, .tab-header-background, #tabDatas {
+    -fx-background-color: 
+        #a6b5c9,
+        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),
+        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);
+        -fx-text-fill: white;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.combo-box {
+    -fx-font-size: 14px;
+}
+
+.choice-box:disabled,.combo-box:disabled,.date-picker:disabled, .check-box:disabled {
+    -fx-text-fill: black;
+    -fx-opacity: 1;
+}
+
+.label, .radio-button, .check-box {
+    -fx-font-family: arial;
+    -fx-font-size: 13px;
+    -fx-text-fill: black;
+}
+

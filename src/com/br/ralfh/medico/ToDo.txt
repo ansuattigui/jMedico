@@ -1,0 +1,7 @@
+Tarefas para aqdequação do BD Sistema JDocplus
+
+A fazer - alterar no BD Tab tab_convenio
+   campo codigo_convenio para registroANS
+
+
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
