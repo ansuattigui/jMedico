@@ -26,7 +26,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Background;
@@ -53,17 +52,12 @@ public class GrupoExamesController extends Controller {
     private ExamesGrupo exame;
     private SimpleObjectProperty<GrupoExames> sopGrupo;
     private ObservableList<GrupoExames> sopGrupos ;    
-//    private SimpleObjectProperty<Paciente> sopPaciente;        
     private ObservableList<ExamesGrupo> sopExames = FXCollections.observableArrayList() ;    
     private StatusBtn status;
     private GUIFactory exameGUI;
     
-
-    @FXML public TextField nomeGrupoExames;
     @FXML public Button btnConfirmaNome;
     @FXML public Button btnCancelaNome;
-    
-    
     
     @FXML public TableView<GrupoExames> tabelaGrupos;
     @FXML public TableColumn<GrupoExames,String> ordemCol;
@@ -97,27 +91,22 @@ public class GrupoExamesController extends Controller {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        initTabelas();
-        setToolTips();
-        //sopPaciente = new SimpleObjectProperty<>();
         sopGrupo = new SimpleObjectProperty<>();
         sopGrupos = FXCollections.observableArrayList();
-        sopGrupos.setAll(GruposExames.getLista());
         sopExames = FXCollections.observableArrayList();
+
+        initTabelas();
         initListeners();
+        setToolTips();
+
+        sopGrupos.setAll(GruposExames.getLista());
         
         status = StatusBtn.IDLE;
         setButtons();  
         habilEdicaoFired();
     }    
-/*    
-    public void setPaciente(Paciente paciente) {
-        this.sopPaciente.set(paciente);  
-    }    
-*/
     
     public void initListeners() {
-        //addPacienteListener();
         AddSelecGrupoListener();
         addGrupoListener();
         addGruposListener();
@@ -186,7 +175,7 @@ public class GrupoExamesController extends Controller {
         });        
     }        
     public void AddSelecGrupoListener() {
-/*        tabelaGrupos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+        tabelaGrupos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
                 if (status==StatusBtn.IDLE | status==StatusBtn.SHOWING) {
@@ -195,7 +184,7 @@ public class GrupoExamesController extends Controller {
                     sopGrupo.set(grupoExames); 
                 }
             }
-        }); */
+        }); 
     }
     
     private void addExamesListener() { 
@@ -210,12 +199,12 @@ public class GrupoExamesController extends Controller {
     }
        
     private void addSelecExameListener() { 
-/*        tabelaExames.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+        tabelaExames.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {                
                 exame = tabelaExames.getSelectionModel().getSelectedItem();
             }
-        }); */
+        }); 
     }
 
     
@@ -226,13 +215,13 @@ public class GrupoExamesController extends Controller {
           }
         });           
 
-/*        nomeGrupo.setCellValueFactory(new Callback<CellDataFeatures<GrupoExames,String>, ObservableValue<String>>() {
+        nomeGrupo.setCellValueFactory(new Callback<CellDataFeatures<GrupoExames,String>, ObservableValue<String>>() {
             @Override 
             public ObservableValue<String> call(TableColumn.CellDataFeatures<GrupoExames,String> rec) {
                 return new SimpleObjectProperty<>(rec.getValue().getNome());
             }
-        });  */
-        nomeGrupo.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        });  
+        //nomeGrupo.setCellValueFactory(new PropertyValueFactory<>("nome"));
     }           
     
     public void initTabelaExames() {
@@ -245,8 +234,9 @@ public class GrupoExamesController extends Controller {
         //grupoExames.setIndicacaoClinica(indicacaoClinica.getText());
         if ((grupoExames.getExames()==null)||(grupoExames.getExames().isEmpty())) {
             ShowDialog("EX", "Prescreva ao menos um exame", null,this.getStage());
-        } else if ((grupoExames.getIndicacaoClinica()==null)||(grupoExames.getIndicacaoClinica().isEmpty())) {
+    /*    } else if ((grupoExames.getIndicacaoClinica()==null)||(grupoExames.getIndicacaoClinica().isEmpty())) {
             ShowDialog("EX", "Informe a Indicação Clínica", null,this.getStage());
+        */
         } else {
             resultado = Boolean.TRUE;
         }
@@ -258,40 +248,27 @@ public class GrupoExamesController extends Controller {
         status = StatusBtn.INSERTING;
         grupoExames = new GrupoExames();
         
-        String fxmlGUI = "fxml/NomeGrupo.fxml"; 
-        StageStyle fxmlStyle = StageStyle.DECORATED;
-        String fxmlTitle = "Nome dd Grupo de Exames";
-        
+        String fxmlGUI = "dlg/NomeGrupo.fxml"; 
+        StageStyle fxmlStyle = StageStyle.UTILITY;
+        String fxmlTitle = "Nome do Grupo de Exames";
+
         GUIFactory nomeGUI;
-        
         nomeGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
-//        nomeGUI.initialze();
-        GrupoExamesController controller = (GrupoExamesController) nomeGUI.getController();        
+        
+        NomeGrupoController controller = (NomeGrupoController) nomeGUI.getController();
+        controller.addStageCloseListener();
+        
         nomeGUI.showAndWait();       
         
-        if (!controller.nomeGrupoExames.getText().isEmpty()) {    
-            grupoExames.setNome(controller.nomeGrupoExames.getText());
-        }        
-        
-        sopGrupo.set(grupoExames);
-        sopGrupos.add(grupoExames);
+        if (!controller.getNomeGrupo().isEmpty()) {
+            setButtons();
+            habilEdicaoFired();
+            grupoExames.setNome(controller.getNomeGrupo());
+            sopGrupo.set(grupoExames);
+            sopGrupos.add(grupoExames);
+        }
     }
     
-    @FXML
-    public void btnApagaNomeFired(ActionEvent ae) {
-        nomeGrupoExames.clear();
-    }
-    
-    @FXML 
-    public void btnConfirmaNomeFired(ActionEvent ae) {
-        nomeGrupoExames.clear();
-    }
-
-    @FXML 
-    public void btnCancelaNomeFired(ActionEvent ae) {
-        nomeGrupoExames.clear();
-    }
-
     @FXML
     public void btnDuplicaGrupoFired(ActionEvent event) {
         status = StatusBtn.INSERTING;

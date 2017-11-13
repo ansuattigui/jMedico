@@ -231,7 +231,8 @@ public class ReceitaController extends Controller {
     
     public void initTabelaReceitas() {
         ordemCol.setCellValueFactory(new Callback<CellDataFeatures<Receita, String>, ObservableValue<String>>() {
-          @Override public ObservableValue<String> call(CellDataFeatures<Receita, String> p) {
+          @Override 
+          public ObservableValue<String> call(CellDataFeatures<Receita, String> p) {
             return new ReadOnlyObjectWrapper(tabelaReceitas.getItems().indexOf(p.getValue())+1 + "");
           }
         });           

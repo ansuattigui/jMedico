@@ -61,7 +61,6 @@ public class ExameGrupoController extends Controller {
     public void initialize(URL url, ResourceBundle rb) {
         oper = "";
         exames = new ArrayList<>();
-        initComboMaterial(); 
         initTGroup();
         addTGMaterialListener();
         setToolTips();        
@@ -109,7 +108,6 @@ public class ExameGrupoController extends Controller {
     }
     
     public void actionCancelar(ActionEvent ae) {       
-        //exame = null;
         this.getStage().close();
     }
     
@@ -124,21 +122,7 @@ public class ExameGrupoController extends Controller {
         }
         return resultado;
     }
-    
-    
-    private void initComboMaterial(){
-        ArrayList<String> materiais = new ArrayList<>();
-        if (!cbMaterial.getItems().isEmpty()) {
-            cbMaterial.getItems().clear();
-        }
-        cbMaterial.getItems().add(0, "");
-        cbMaterial.getItems().add(1, "Fezes");
-        cbMaterial.getItems().add(2, "Sangue");
-        cbMaterial.getItems().add(3, "Urina");
-        cbMaterial.getItems().add(4, "Imagem");
-        cbMaterial.getItems().add(5, "Outros");
-    }
-    
+
     public void initExame(ExamesGrupo exame) {
         oper = "EDIT";
         this.exame = exame;

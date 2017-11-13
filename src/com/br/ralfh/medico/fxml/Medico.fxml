@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="210.0" prefHeight="550.0" prefWidth="210.0" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.MedicoController">
+<AnchorPane focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="210.0" prefHeight="550.0" prefWidth="210.0" styleClass="fundo" stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.MedicoController">
   <children>
       <VBox alignment="CENTER" layoutX="-18.0" layoutY="-18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -110,7 +110,7 @@
                                     <Font name="Arial" size="11.0" fx:id="x211" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnGruposExames" alignment="CENTER" contentDisplay="TEXT_ONLY" disable="true" layoutX="44.0" layoutY="115.0" maxWidth="135.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnGruposExamesFired" styleClass="botaomd" text="Grupos de Exames" textAlignment="CENTER" wrapText="true">
+                              <Button fx:id="btnGruposExames" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="44.0" layoutY="115.0" maxWidth="135.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnGruposExamesFired" styleClass="botaomd" text="Grupos de Exames" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font name="Arial" size="11.0" fx:id="x2111" />
                                  </font>
