@@ -1,5 +1,6 @@
 package com.br.ralfh.medico;
 
+import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.modelos.ExamesGrupo;
 import com.br.ralfh.medico.modelos.GrupoExames;
 import com.br.ralfh.medico.modelos.GruposExames;
@@ -61,7 +62,7 @@ public class GrupoExamesController extends Controller {
     
     @FXML public TableView<GrupoExames> tabelaGrupos;
     @FXML public TableColumn<GrupoExames,String> ordemCol;
-    @FXML public TableColumn<GrupoExames,String> nomeGrupo;    
+    @FXML public TableColumn<GrupoExames,String> indicacaoClinica;    
     
     @FXML public TableView<ExamesGrupo> tabelaExames;
     @FXML public TableColumn<ExamesGrupo,String> exameCol;
@@ -139,7 +140,7 @@ public class GrupoExamesController extends Controller {
         public void changed(ObservableValue o,Object oldVal,Object newVal) {
             if (sopPaciente.get() != null) {
                 try {
-                    nomeGrupo.setText(sopPaciente.get().getNome());
+                    indicacaoClinica.setText(sopPaciente.get().getNome());
                     sopGrupos.setAll(PedidosExames.getLista(sopPaciente.get()));
                 } catch (Exception ex) {
                     Logger.getLogger(MedicoController.class.getName()).log(Level.SEVERE, null, ex);
@@ -162,6 +163,7 @@ public class GrupoExamesController extends Controller {
             }
         });
     }       
+    
     private void addGruposListener() { 
         sopGrupos.addListener(new ListChangeListener() {
             @Override
@@ -215,10 +217,10 @@ public class GrupoExamesController extends Controller {
           }
         });           
 
-        nomeGrupo.setCellValueFactory(new Callback<CellDataFeatures<GrupoExames,String>, ObservableValue<String>>() {
+        indicacaoClinica.setCellValueFactory(new Callback<CellDataFeatures<GrupoExames,String>, ObservableValue<String>>() {
             @Override 
             public ObservableValue<String> call(TableColumn.CellDataFeatures<GrupoExames,String> rec) {
-                return new SimpleObjectProperty<>(rec.getValue().getNome());
+                return new SimpleObjectProperty<>(rec.getValue().getIndicacaoClinica());
             }
         });  
         //nomeGrupo.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -244,26 +246,26 @@ public class GrupoExamesController extends Controller {
     }
     
     @FXML
-    public void btnNovoGrupoFired(ActionEvent ae) throws IOException {
+    public void btnNovoGrupoFired(ActionEvent ae) throws IOException, CampoEmBrancoException {
         status = StatusBtn.INSERTING;
         grupoExames = new GrupoExames();
         
-        String fxmlGUI = "dlg/NomeGrupo.fxml"; 
+        String fxmlGUI = "dlg/IndicacaoClinica.fxml"; 
         StageStyle fxmlStyle = StageStyle.UTILITY;
-        String fxmlTitle = "Nome do Grupo de Exames";
+        String fxmlTitle = "Indicação Clínica";
 
         GUIFactory nomeGUI;
         nomeGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         
-        NomeGrupoController controller = (NomeGrupoController) nomeGUI.getController();
+        IndicacaoClinicaController controller = (IndicacaoClinicaController) nomeGUI.getController();
         controller.addStageCloseListener();
         
         nomeGUI.showAndWait();       
         
-        if (!controller.getNomeGrupo().isEmpty()) {
+        if (!controller.getIndClinica().isEmpty()) {
             setButtons();
             habilEdicaoFired();
-            grupoExames.setNome(controller.getNomeGrupo());
+            grupoExames.setIndicacaoClinica(controller.getIndClinica());
             sopGrupo.set(grupoExames);
             sopGrupos.add(grupoExames);
         }

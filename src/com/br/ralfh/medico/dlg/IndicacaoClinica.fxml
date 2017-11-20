@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane styleClass="fundo" stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.NomeGrupoController">
+<AnchorPane styleClass="fundo" stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.IndicacaoClinicaController">
    <children>
       <VBox prefWidth="450.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox spacing="4.0">
                <children>
-                  <Label style="-fx-font-weight: bold;" text="Nome do Grupo de Exames">
+                  <Label style="-fx-font-weight: bold;" text="Indicação Clínica">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -28,7 +28,7 @@
                <children>
                   <HBox spacing="2.0">
                      <children>
-                        <TextField fx:id="nomeGrupoExames" prefWidth="410.0" />
+                        <TextField fx:id="indicacaoClinica" prefWidth="410.0" />
                         <Button fx:id="btnApagaNome" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btnApagaNomeFired" prefHeight="25.0" prefWidth="25.0" styleClass="botaopq" textAlignment="CENTER">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" styleClass="botaopq">

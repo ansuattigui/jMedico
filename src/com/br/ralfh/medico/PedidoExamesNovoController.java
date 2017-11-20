@@ -3,6 +3,8 @@ package com.br.ralfh.medico;
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.jdbc.DataAccessRelatorios;
 import com.br.ralfh.medico.modelos.Exame;
+import com.br.ralfh.medico.modelos.ExamesGrupo;
+import com.br.ralfh.medico.modelos.GrupoExames;
 import com.br.ralfh.medico.modelos.Paciente;
 import com.br.ralfh.medico.modelos.PedidoExames;
 import com.br.ralfh.medico.modelos.PedidosExames;
@@ -82,6 +84,7 @@ public class PedidoExamesNovoController extends Controller {
     @FXML public TableColumn<Exame,String> materialCol;    
     
     @FXML public Button btnSair;
+    @FXML public Button btnNovoGrupo;
     @FXML public Button btnNovoExame;
     @FXML public Button btnAlteraExame;
     @FXML public Button btnExcluiExame;
@@ -329,6 +332,7 @@ public class PedidoExamesNovoController extends Controller {
                 if (PedidosExames.novoPedido(pedido)) {
                     status = StatusBtn.SHOWING;
                     ShowDialog("S", "O pedido foi salvo com sucesso", null,this.getStage());
+                    sopPedidos.setAll(PedidosExames.getLista(sopPaciente.get()));
                 } else {
                     ShowDialog("EX", "Não foi possível salvar o pedido", null,this.getStage());
                 }
@@ -359,6 +363,32 @@ public class PedidoExamesNovoController extends Controller {
         }
         setButtons();      
         habilEdicaoFired();
+    }
+
+    @FXML
+    public void btnNovoGrupoFired(ActionEvent ae) throws IOException, CampoEmBrancoException {        
+        String fxmlGUI = "fxml/SelecGrupoExames.fxml"; 
+        StageStyle fxmlStyle = StageStyle.DECORATED;
+        String fxmlTitle = "Selecionar Grupo de Exames";
+        
+        exameGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
+        exameGUI.initialize();
+        SelecGrupoExamesController controller = (SelecGrupoExamesController) exameGUI.getController();        
+        exameGUI.showAndWait();       
+        
+        if (controller.getGrupoExames()!=null) {    
+            GrupoExames grupo = controller.getGrupoExames();
+            indicacaoClinica.setText(grupo.getIndicacaoClinica());            
+            List<ExamesGrupo> exames = grupo.getExames();            
+            for(ExamesGrupo exam :exames) {                
+                Exame novoexame = new Exame();
+                novoexame.setPedidoExames(pedido);
+                novoexame.setMaterial(exam.getMaterial());
+                novoexame.setExame(exam.getExame());
+                pedido.getExames().add(novoexame);
+            }            
+            sopExames.setAll(pedido.getExames());
+        }        
     }
     
     @FXML
@@ -494,6 +524,7 @@ public class PedidoExamesNovoController extends Controller {
         miOpcaoMeioA4T.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         miOpcaoReduzidoT.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         
+        btnNovoGrupo.setDisable((status!=StatusBtn.INSERTING));//&(status!=StatusBtn.UPDATING));
         btnNovoExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         btnAlteraExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         btnExcluiExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));

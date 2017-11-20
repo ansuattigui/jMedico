@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.PedidoExamesNovoController">
+<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.PedidoExamesNovoController">
       <children>
       <VBox AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -206,7 +206,16 @@
           </TableView>
             <HBox alignment="CENTER_RIGHT" spacing="5.0">
                <children>
-                  <Button id="btnSaveReceita" fx:id="btnNovoExame" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnNovoExameFired" prefWidth="70.0" styleClass="botaotool" text="Incluir">
+                  <Button id="btnSaveReceita" fx:id="btnNovoGrupo" contentDisplay="TOP" mnemonicParsing="false" onAction="#btnNovoGrupoFired" prefWidth="70.0" styleClass="botaotool" text="Grupo">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/Medical%20Invoice%203D%20Add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="btnSaveReceita" fx:id="btnNovoExame" contentDisplay="TOP" layoutX="457.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnNovoExameFired" prefWidth="70.0" styleClass="botaotool" text="Incluir">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>

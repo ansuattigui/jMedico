@@ -10,7 +10,6 @@
 
 package com.br.ralfh.medico;
 
-import com.br.ralfh.medico.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -23,16 +22,16 @@ import javafx.scene.control.TextField;
  *
  * @author Ralfh
  */
-public class NomeGrupoController extends Controller {
+public class IndicacaoClinicaController extends Controller {
     
     @FXML public Button btnApagaNome;
     @FXML public Button btnConfirmaNome;
     @FXML public Button btnCancelaNome;
-    @FXML public TextField nomeGrupoExames;    
+    @FXML public TextField indicacaoClinica;    
 
-    private String nomeGrupo;
+    private String indClinica;
     
-    public NomeGrupoController() {
+    public IndicacaoClinicaController() {
     }
     
     
@@ -46,32 +45,32 @@ public class NomeGrupoController extends Controller {
     }      
     
     public void btnCancelaNomeFired(ActionEvent event) {
-        nomeGrupo = "";
+        indClinica = "";
         this.getStage().close();
     }
     
     
     public void btnConfirmaNomeFired(ActionEvent event) {                        
-        nomeGrupo = nomeGrupoExames.getText();
+        indClinica = indicacaoClinica.getText();
         this.getStage().close();
     }
 
     public void btnApagaNomeFired(ActionEvent event) {
-        nomeGrupo = "";
-        nomeGrupoExames.clear();
+        indClinica = "";
+        indicacaoClinica.clear();
     }
 
     
-    public String getNomeGrupo() {
-        return nomeGrupo;
+    public String getIndClinica() {
+        return indClinica;
     }
 
     /**
-     * @param nomeGrupo
+     * @param indClinica
      */
-    public void setNomeGrupo(String nomeGrupo) {
-        this.nomeGrupo = nomeGrupo;
-        this.nomeGrupoExames.setText(this.nomeGrupo);
+    public void setIndClinica(String indClinica) {
+        this.indClinica = indClinica;
+        this.indicacaoClinica.setText(this.indClinica);
     }
 
 }

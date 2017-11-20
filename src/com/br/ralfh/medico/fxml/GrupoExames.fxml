@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.GrupoExamesController">
+<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.GrupoExamesController">
       <children>
       <VBox AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -164,7 +164,7 @@
                   <TableView fx:id="tabelaGrupos" prefHeight="170.0">
                     <columns>
                       <TableColumn fx:id="ordemCol" editable="false" prefWidth="62.0" sortable="false" text="Ordem" />
-                      <TableColumn fx:id="nomeGrupo" editable="false" prefWidth="544.0" styleClass="align-centro" text="Nome do Grupo de Exames" />
+                      <TableColumn fx:id="indicacaoClinica" editable="false" prefWidth="544.0" styleClass="align-centro" text="Indicação Clínica" />
                     </columns>
                   </TableView>
                </children>
