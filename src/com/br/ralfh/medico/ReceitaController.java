@@ -549,7 +549,7 @@ public class ReceitaController extends Controller {
         btnExcluiReceita.setDisable(status!=StatusBtn.SHOWING);
         btnPrintReceita.setDisable(status!=StatusBtn.SHOWING);
         btnDuplicaReceita.setDisable(status!=StatusBtn.SHOWING);
-        btnSair.setDisable(status!=StatusBtn.SHOWING);
+        btnSair.setDisable(status==StatusBtn.SHOWING);
         
         miNovaReceita.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
         miAtualizaReceita.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));

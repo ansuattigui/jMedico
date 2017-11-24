@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.GrupoExamesController">
+<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.GrupoExamesController">
       <children>
       <VBox AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -118,7 +118,7 @@
                      </graphic>
                   </Button>
                   <Separator layoutX="178.0" layoutY="10.0" opacity="0.0" orientation="VERTICAL" prefWidth="10.0" />
-                  <Button id="btnSaveReceita" fx:id="btnDuplicaGrupo" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnDuplicaGrupoFired" prefWidth="70.0" styleClass="botaotool" text="Duplica">
+                  <Button id="btnSaveReceita" fx:id="btnDuplicaGrupo" contentDisplay="TOP" disable="true" minHeight="65.0" mnemonicParsing="false" onAction="#btnDuplicaGrupoFired" prefWidth="70.0" styleClass="botaotool" text="Duplica" visible="false">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -127,7 +127,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <SplitMenuButton fx:id="btnPrintGrupos" contentDisplay="TOP" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" mnemonicParsing="false" prefWidth="110.0" styleClass="botaotool" text="Imprimir" textAlignment="CENTER">
+                  <SplitMenuButton fx:id="btnPrintGrupos" contentDisplay="TOP" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" mnemonicParsing="false" prefWidth="110.0" styleClass="botaotool" text="Imprimir" textAlignment="CENTER" visible="false">
                      <graphic>
                         <ImageView disable="true" fitHeight="32.0" fitWidth="32.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
                            <image>
