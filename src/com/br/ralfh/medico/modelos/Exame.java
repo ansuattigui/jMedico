@@ -21,6 +21,7 @@ public class Exame implements Serializable {
     private PedidoExames pedido;
     private String exame;
     private String material;
+    private String indicacaoClinica;
     
     public Exame() {
     }
@@ -110,5 +111,19 @@ public class Exame implements Serializable {
         int hash = 7;
         hash = 37 * hash + Objects.hashCode(this.exame);
         return hash;
+    }
+
+    /**
+     * @return the indicacaoClinica
+     */
+    public String getIndicacaoClinica() {
+        return indicacaoClinica;
+    }
+
+    /**
+     * @param indicacaoClinica the indicacaoClinica to set
+     */
+    public void setIndicacaoClinica(String indicacaoClinica) {
+        this.indicacaoClinica = indicacaoClinica;
     }
 }

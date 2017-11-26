@@ -82,6 +82,7 @@ public class PedidoExamesNovoController extends Controller {
     @FXML public TableView<Exame> tableExames;
     @FXML public TableColumn<Exame,String> exameCol;
     @FXML public TableColumn<Exame,String> materialCol;    
+    @FXML public TableColumn<Exame,String> indicacaoCol;    
     
     @FXML public Button btnSair;
     @FXML public Button btnNovoGrupo;
@@ -172,7 +173,7 @@ public class PedidoExamesNovoController extends Controller {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
                 if (sopPedido.get()!=null) {
-                    indicacaoClinica.setText(sopPedido.get().getIndicacaoClinica());
+//                    indicacaoClinica.setText(sopPedido.get().getIndicacaoClinica());
                     cbxComData.setSelected(sopPedido.get().getComData());
                     sopExames.setAll(sopPedido.get().getExames());
                     setButtons();
@@ -239,17 +240,18 @@ public class PedidoExamesNovoController extends Controller {
                 return new SimpleObjectProperty<>(Util.formataDataExtenso(rec.getValue().getDataEmissao()));
             }
         }); 
-        iclinCol.setCellValueFactory(new PropertyValueFactory<>("indicacaoClinica"));
+//        iclinCol.setCellValueFactory(new PropertyValueFactory<>("indicacaoClinica"));
     }           
     
     public void initTabelaExames() {
         exameCol.setCellValueFactory(new PropertyValueFactory<>("exame"));
         materialCol.setCellValueFactory(new PropertyValueFactory<>("material"));
+        indicacaoCol.setCellValueFactory(new PropertyValueFactory<>("indicacaoClinica"));
     }      
     
     public boolean checaPedido() {
         boolean resultado = Boolean.FALSE;
-        pedido.setIndicacaoClinica(indicacaoClinica.getText());
+//        pedido.setIndicacaoClinica(indicacaoClinica.getText());
         pedido.setComData(cbxComData.isSelected());
         if ((pedido.getExames()==null)||(pedido.getExames().isEmpty())) {
             ShowDialog("EX", "Prescreva ao menos um exame", null,this.getStage());
@@ -278,7 +280,7 @@ public class PedidoExamesNovoController extends Controller {
         pedido = new PedidoExames();
         pedido.setPaciente(sopPaciente.get());
         pedido.setDataEmissao(Util.ldHoje());
-        pedido.setIndicacaoClinica(sopPedido.get().getIndicacaoClinica());
+//        pedido.setIndicacaoClinica(sopPedido.get().getIndicacaoClinica());
         pedido.setComData(sopPedido.get().getComData());
         
         for (Exame ex : sopPedido.get().getExames()) {
@@ -286,6 +288,7 @@ public class PedidoExamesNovoController extends Controller {
             try {
                 p.setExame(ex.getExame());
                 p.setMaterial(ex.getMaterial());
+                p.setIndicacaoClinica(ex.getIndicacaoClinica());
                 p.setPedidoExames(pedido);
                 pedido.getExames().add(p);
             } catch (CampoEmBrancoException cbex) {
@@ -376,15 +379,18 @@ public class PedidoExamesNovoController extends Controller {
         SelecGrupoExamesController controller = (SelecGrupoExamesController) exameGUI.getController();        
         exameGUI.showAndWait();       
         
+        salvar apenas os exames do grupo. possibilidade para mais de um grupo
+        
         if (controller.getGrupoExames()!=null) {    
             GrupoExames grupo = controller.getGrupoExames();
-            indicacaoClinica.setText(grupo.getIndicacaoClinica());            
+//            indicacaoClinica.setText(grupo.getIndicacaoClinica());            
             List<ExamesGrupo> exames = grupo.getExames();            
             for(ExamesGrupo exam :exames) {                
                 Exame novoexame = new Exame();
                 novoexame.setPedidoExames(pedido);
                 novoexame.setMaterial(exam.getMaterial());
                 novoexame.setExame(exam.getExame());
+                novoexame.setIndicacaoClinica(grupo.getIndicacaoClinica());
                 pedido.getExames().add(novoexame);
             }            
             sopExames.setAll(pedido.getExames());
