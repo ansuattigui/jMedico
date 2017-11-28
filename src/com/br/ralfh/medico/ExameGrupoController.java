@@ -102,7 +102,7 @@ public class ExameGrupoController extends Controller {
         if (PreencheExame()) {
             exames.add(exame);
             editExame.clear();
-            editMaterial.clear();
+            //editMaterial.clear();
         }
         
     }

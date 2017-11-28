@@ -29,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
@@ -77,7 +78,7 @@ public class PedidoExamesNovoController extends Controller {
     @FXML public TableColumn<PedidoExames,String> dataCol;    
     @FXML public TableColumn<PedidoExames,String> iclinCol;    
     
-    @FXML public TextField indicacaoClinica;
+    @FXML public DatePicker dataPedido;
     @FXML public CheckBox cbxComData;
     @FXML public TableView<Exame> tableExames;
     @FXML public TableColumn<Exame,String> exameCol;
@@ -173,8 +174,8 @@ public class PedidoExamesNovoController extends Controller {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
                 if (sopPedido.get()!=null) {
-//                    indicacaoClinica.setText(sopPedido.get().getIndicacaoClinica());
                     cbxComData.setSelected(sopPedido.get().getComData());
+                    dataPedido.setValue(sopPedido.get().getDataEmissao());
                     sopExames.setAll(sopPedido.get().getExames());
                     setButtons();
                     habilEdicaoFired();
@@ -240,7 +241,6 @@ public class PedidoExamesNovoController extends Controller {
                 return new SimpleObjectProperty<>(Util.formataDataExtenso(rec.getValue().getDataEmissao()));
             }
         }); 
-//        iclinCol.setCellValueFactory(new PropertyValueFactory<>("indicacaoClinica"));
     }           
     
     public void initTabelaExames() {
@@ -251,12 +251,10 @@ public class PedidoExamesNovoController extends Controller {
     
     public boolean checaPedido() {
         boolean resultado = Boolean.FALSE;
-//        pedido.setIndicacaoClinica(indicacaoClinica.getText());
+        pedido.setDataEmissao(dataPedido.getValue());
         pedido.setComData(cbxComData.isSelected());
         if ((pedido.getExames()==null)||(pedido.getExames().isEmpty())) {
             ShowDialog("EX", "Prescreva ao menos um exame", null,this.getStage());
-        } else if ((pedido.getIndicacaoClinica()==null)||(pedido.getIndicacaoClinica().isEmpty())) {
-            ShowDialog("EX", "Informe a Indicação Clínica", null,this.getStage());
         } else {
             resultado = Boolean.TRUE;
         }
@@ -280,7 +278,6 @@ public class PedidoExamesNovoController extends Controller {
         pedido = new PedidoExames();
         pedido.setPaciente(sopPaciente.get());
         pedido.setDataEmissao(Util.ldHoje());
-//        pedido.setIndicacaoClinica(sopPedido.get().getIndicacaoClinica());
         pedido.setComData(sopPedido.get().getComData());
         
         for (Exame ex : sopPedido.get().getExames()) {
@@ -295,16 +292,11 @@ public class PedidoExamesNovoController extends Controller {
                 Logger.getLogger(PedidoExamesNovoController.class.getName()).log(Level.SEVERE, null, cbex);
             }
         }
-//        pedido=recnew;   detached ex;
         sopPedido.set(pedido);
         
         if (PedidosExames.novoPedido(pedido)) {
             status = StatusBtn.SHOWING;
-
             sopPedidos.setAll(PedidosExames.getLista(sopPaciente.get()));
-            
-            //sopPedidos.add(pedido);
-
             ShowDialog("S", "O pedido foi salvo com sucesso", null,this.getStage());
         } else {
             ShowDialog("EX", "Não foi possível salvar o pedido", null,this.getStage());
@@ -377,13 +369,10 @@ public class PedidoExamesNovoController extends Controller {
         exameGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         exameGUI.initialize();
         SelecGrupoExamesController controller = (SelecGrupoExamesController) exameGUI.getController();        
-        exameGUI.showAndWait();       
-        
-        salvar apenas os exames do grupo. possibilidade para mais de um grupo
+        exameGUI.showAndWait();                       
         
         if (controller.getGrupoExames()!=null) {    
             GrupoExames grupo = controller.getGrupoExames();
-//            indicacaoClinica.setText(grupo.getIndicacaoClinica());            
             List<ExamesGrupo> exames = grupo.getExames();            
             for(ExamesGrupo exam :exames) {                
                 Exame novoexame = new Exame();
@@ -392,7 +381,7 @@ public class PedidoExamesNovoController extends Controller {
                 novoexame.setExame(exam.getExame());
                 novoexame.setIndicacaoClinica(grupo.getIndicacaoClinica());
                 pedido.getExames().add(novoexame);
-            }            
+            }                        
             sopExames.setAll(pedido.getExames());
         }        
     }
@@ -442,7 +431,6 @@ public class PedidoExamesNovoController extends Controller {
         if (ExcluiRegistroDlg("EP", "", null,this.getStage())) { 
             pedido.getExames().remove(exame);
             sopExames.setAll(pedido.getExames());
-//            status = StatusBtn.DELETINGPRESC;
         }
     }
         
@@ -537,7 +525,7 @@ public class PedidoExamesNovoController extends Controller {
     }
     
     public void habilEdicaoFired() {
-        this.indicacaoClinica.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
+//        this.indicacaoClinica.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
     }
     
     
