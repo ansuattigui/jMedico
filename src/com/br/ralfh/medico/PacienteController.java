@@ -1,3 +1,4 @@
+
 package com.br.ralfh.medico;
 
 import com.br.ralfh.medico.exceptions.CampoNuloException;
