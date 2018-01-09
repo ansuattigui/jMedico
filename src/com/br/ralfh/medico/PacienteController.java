@@ -34,6 +34,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -41,7 +42,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javax.persistence.EntityManager;
-import jidefx.scene.control.field.DateField;
 import jidefx.scene.control.field.FormattedTextField;
 import jidefx.scene.control.field.verifier.IntegerRangePatternVerifier;
 
@@ -79,7 +79,7 @@ public class PacienteController extends Controller {
     @FXML Button btnProcurar;                     @FXML Button btnFotografar;
     @FXML ImageView imageFotografia;              @FXML TextField codPaciente;
     @FXML TextField codAntPaciente;               @FXML TextField nomePaciente;
-    @FXML ChoiceBox<Sexo> sexoPaciente;           @FXML DateField nascPaciente;
+    @FXML ChoiceBox<Sexo> sexoPaciente;           @FXML DatePicker nascPaciente;
     @FXML TextField idade;                        @FXML ComboBox naturPaciente;
     @FXML ComboBox nacionPaciente;                @FXML ChoiceBox<String> estCivilPaciente;
     @FXML ChoiceBox<Etnia> etniaPaciente;         @FXML TextField rgPaciente;
@@ -150,7 +150,7 @@ public class PacienteController extends Controller {
         @Override
         public void changed(ObservableValue o,Object oldVal,Object newVal) {
             if (!Objects.isNull(newVal)) {
-                Integer Idade = Period.between(Util.ld(nascPaciente.valueProperty().get()), LocalDate.now()).getYears();
+                Integer Idade = Period.between(nascPaciente.valueProperty().get(), LocalDate.now()).getYears();
                 sopIdade.set(Idade);
             } else {
                 sopIdade.set(0);
@@ -521,7 +521,7 @@ public class PacienteController extends Controller {
             nomePaciente.setText(paciente.getNome()); 
             sexoPaciente.getSelectionModel().clearSelection();
             sexoPaciente.getSelectionModel().select(paciente.getSexo());
-            nascPaciente.setValue(paciente.getNascimento());
+            nascPaciente.setValue(Util.ld(paciente.getNascimento()));
             naturPaciente.getEditor().setText(paciente.getNaturalidade());
             nacionPaciente.getSelectionModel().select(paciente.getNacionalidade());
             estCivilPaciente.getSelectionModel().select(paciente.getEstadoCivil());
@@ -568,7 +568,7 @@ public class PacienteController extends Controller {
             paciente.setCodAntigo(Integer.parseInt(codAntPaciente.getText()));        
             paciente.setNome(nomePaciente.getText()); 
             paciente.setSexo(sexoPaciente.getSelectionModel().getSelectedItem());
-            paciente.setNascimento(nascPaciente.getValue());
+            paciente.setNascimento(Util.udate(nascPaciente.getValue()));
             paciente.setEtnia(etniaPaciente.getSelectionModel().getSelectedItem());
             paciente.setConvenio((String) convPaciente.getSelectionModel().getSelectedItem());
             paciente.setNumConveniado(matConvPaciente.getText());

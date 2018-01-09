@@ -23,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -34,7 +35,6 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
-import jidefx.scene.control.field.DateField;
 
 /**
  * FXML Controller class
@@ -77,7 +77,7 @@ public class FichaMedicaController extends Controller {
     
 //////////////////////////////////////////////////////////////////////////////////////    
     //@FXML DatePicker dataPrimeiraCons;       
-    @FXML DateField dataPrimConsulta;
+    @FXML DatePicker dataPrimConsulta;
     @FXML TextArea qpPrimeiraCons;           @FXML TextArea hdaPrimeiraCons;
     @FXML TextArea ctPrimeiraCons;           @FXML CheckBox hasPrimeiraCons;
     @FXML CheckBox hashfPrimeiraCons;        @FXML CheckBox dmPrimeiraCons;
@@ -129,7 +129,7 @@ public class FichaMedicaController extends Controller {
     @FXML TextArea tcPrimeiraCons;
     
     @FXML VBox datasConsultas;
-    @FXML DateField dataConsSubs; 
+    @FXML DatePicker dataConsSubs; 
     @FXML TextArea qpConsSubs;      @FXML TextArea exafisConsSubs;
     @FXML TextArea conterConsSubs;  @FXML TextField apcircConsSubs;
     @FXML TextField psistoConsSubs; @FXML TextField pdiastConsSubs;    
@@ -465,7 +465,7 @@ public class FichaMedicaController extends Controller {
 
         
     private void mostraPrimeiraConsulta() {   
-        dataPrimConsulta.setValue(primeiraconsulta.getData());
+        dataPrimConsulta.setValue(Util.ld(primeiraconsulta.getData()));
         qpPrimeiraCons.setText(primeiraconsulta.getQp());
         hdaPrimeiraCons.setText(primeiraconsulta.getHda());
         ctPrimeiraCons.setText(primeiraconsulta.getCondterap());
@@ -563,7 +563,7 @@ public class FichaMedicaController extends Controller {
     }
     
     private void setPrimeiraConsulta() throws Exception {
-        primeiraconsulta.setData(dataPrimConsulta.getValue());
+        primeiraconsulta.setData(Util.udate(dataPrimConsulta.getValue()));
         primeiraconsulta.setQp(qpPrimeiraCons.getText());
         primeiraconsulta.setHda(hdaPrimeiraCons.getText());
         primeiraconsulta.setCondterap(ctPrimeiraCons.getText());
@@ -701,7 +701,7 @@ public class FichaMedicaController extends Controller {
     }
     
     private void mostraConsultaSubs(ConsultaSubs consulta) {    
-        dataConsSubs.setValue(consulta.getId().getDataCS());
+        dataConsSubs.setValue(Util.ld(consulta.getId().getDataCS()));
         qpConsSubs.setText(consulta.getQp());
         exafisConsSubs.setText(consulta.getExamefisico());
         conterConsSubs.setText(consulta.getCondterap());
@@ -750,7 +750,7 @@ public class FichaMedicaController extends Controller {
 
     private void setConsultaSubs() throws FormatoNumericoInvalidoException { //  Boolean novaConsulta) {
         consubs.getId().setPaciente(this.paciente);
-        consubs.getId().setDataCS(dataConsSubs.getValue());
+        consubs.getId().setDataCS(Util.udate(dataConsSubs.getValue()));
         consubs.setQp(qpConsSubs.getText());
         consubs.setExamefisico(exafisConsSubs.getText());
         consubs.setCondterap(conterConsSubs.getText());
@@ -814,7 +814,7 @@ public class FichaMedicaController extends Controller {
     }
     
     public void apagaConsultaSubs() {
-        dataConsSubs.setValue(Util.dHoje());
+        dataConsSubs.setValue(Util.ldHoje());
         qpConsSubs.clear();
         exafisConsSubs.clear();
         conterConsSubs.clear();
