@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.GrupoExamesController">
+<AnchorPane stylesheets="@../css/Pacientes.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.GrupoExamesController">
       <children>
       <VBox AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -49,15 +49,6 @@
                   </MenuItem>
                 </items>
               </Menu>
-                  <Menu mnemonicParsing="false" text="Imprimir">
-                    <items>
-                      <MenuItem fx:id="miOpcaoCartaT" mnemonicParsing="false" onAction="#miOpcaoCartaFired" text="Papel Carta" />
-                        <MenuItem fx:id="miOpcaoA4T" mnemonicParsing="false" onAction="#miOpcaoA4Fired" text="Papel A4" />
-                        <MenuItem fx:id="miOpcaoGavetaT" mnemonicParsing="false" onAction="#miOpcaoGavetaFired" text="Papel Gaveta" />
-                        <MenuItem fx:id="miOpcaoMeioA4T" mnemonicParsing="false" onAction="#miOpcaoMeioA4Fired" text="Papel 1/2 A4" />
-                        <MenuItem fx:id="miOpcaoReduzidoT" mnemonicParsing="false" onAction="#miOpcaoReduzidoFired" text="Papel Reduzido" />
-                    </items>
-                  </Menu>
               <Menu mnemonicParsing="false" text="Ajuda">
                 <items>
                   <MenuItem fx:id="mnItemSobre" mnemonicParsing="false" text="Sobre o JReceita" />
@@ -117,6 +108,15 @@
                      </graphic>
                   </Button>
                   <Separator layoutX="178.0" layoutY="10.0" opacity="0.0" orientation="VERTICAL" prefWidth="10.0" />
+                  <Button id="btnSaveReceita" fx:id="btnDuplicaGrupo" contentDisplay="TOP" minHeight="65.0" mnemonicParsing="false" onAction="#btnDuplicaGrupoFired" prefWidth="70.0" styleClass="botaotool" text="Duplica">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/montagens/Page-Copy.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button id="btnSaveReceita" fx:id="btnDuplicaGrupo" contentDisplay="TOP" disable="true" minHeight="65.0" mnemonicParsing="false" onAction="#btnDuplicaGrupoFired" prefWidth="70.0" styleClass="botaotool" text="Duplica" visible="false">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
@@ -144,10 +144,11 @@
          <children>
             <HBox spacing="20.0">
                <children>
-                  <TableView fx:id="tabelaGrupos" prefHeight="170.0">
+                  <TableView fx:id="tabelaGrupos" prefHeight="170.0" prefWidth="655.0">
                     <columns>
                       <TableColumn fx:id="ordemCol" editable="false" prefWidth="62.0" sortable="false" text="Ordem" />
-                      <TableColumn fx:id="indicacaoClinica" editable="false" prefWidth="544.0" styleClass="align-centro" text="Indicação Clínica" />
+                      <TableColumn fx:id="indicacaoClinica" editable="false" prefWidth="479.0" styleClass="align-centro" text="Indicação Clínica" />
+                        <TableColumn fx:id="sexoCol" prefWidth="88.0" text="Sexo" />
                     </columns>
                   </TableView>
                </children>

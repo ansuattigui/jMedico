@@ -26,6 +26,7 @@ public class GrupoExames implements Serializable {
     private Integer id;    
     private String nome;
     private String indicacaoClinica;    
+    private String sexo;
     @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "grupo")
     @Column(nullable = false)
     private List<ExamesGrupo> exames;
@@ -101,6 +102,20 @@ public class GrupoExames implements Serializable {
         } else {
             this.indicacaoClinica = indicacaoClinica;
         }
+    }
+
+    /**
+     * @return the sexo
+     */
+    public String getSexo() {
+        return sexo;
+    }
+
+    /**
+     * @param sexo the sexo to set
+     */
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
         
 }

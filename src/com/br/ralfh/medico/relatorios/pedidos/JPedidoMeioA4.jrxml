@@ -10,36 +10,47 @@
 	<parameter name="dataPedido" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="logoCabecalho" class="java.awt.Image" isForPrompting="false"/>
 	<parameter name="logoRodape" class="java.awt.Image"/>
-	<parameter name="indicacaoClinica" class="java.lang.String"/>
 	<parameter name="comData" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[SELECT
-     exame.`exame` AS exame_exame,
-     exame.`material` AS exame_material
+     *
 FROM
      `exame` exame
 WHERE
      pedido_id = $P{idPedido}
 ORDER BY
-     exame.material, exame.exame]]>
+     indicacaoClinica,material]]>
 	</queryString>
-	<field name="exame_exame" class="java.lang.String"/>
-	<field name="exame_material" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="exame" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="material" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pedido_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="indicacaoClinica" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
 	</variable>
 	<group name="material">
-		<groupExpression><![CDATA[$F{exame_material}]]></groupExpression>
+		<groupExpression><![CDATA[$F{material}]]></groupExpression>
 		<groupHeader>
-			<band height="20">
+			<band height="18">
 				<textField>
-					<reportElement x="119" y="4" width="264" height="16" uuid="894e2cb3-80f4-4057-bcde-5e2fb856539d"/>
+					<reportElement x="119" y="1" width="264" height="16" uuid="894e2cb3-80f4-4057-bcde-5e2fb856539d"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isItalic="false" isUnderline="true"/>
 						<paragraph leftIndent="5"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{exame_material}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -108,7 +119,7 @@ ORDER BY
 					<font size="10"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{row_NUMBER}+") "+$F{exame_exame}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{exame}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -172,7 +183,7 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 					<font fontName="Arial" size="10" isBold="false"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $F{indicacaoClinica}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

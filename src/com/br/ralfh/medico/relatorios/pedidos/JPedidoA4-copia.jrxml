@@ -10,62 +10,39 @@
 	<parameter name="dataPedido" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="logoCabecalho" class="java.awt.Image"/>
 	<parameter name="logoRodape" class="java.awt.Image"/>
+	<parameter name="indicacaoClinica" class="java.lang.String"/>
 	<parameter name="comData" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[SELECT
-     *
+     exame.`exame` AS exame_exame,
+     exame.`material` AS exame_material
 FROM
      `exame` exame
 WHERE
-     pedido_id = $P{idPedido}
-ORDER BY
-     indicacaoClinica,material]]>
+     pedido_id = $P{idPedido}]]>
 	</queryString>
-	<field name="id" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="exame" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="material" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="pedido_id" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="indicacaoClinica" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="exame_exame" class="java.lang.String"/>
+	<field name="exame_material" class="java.lang.String"/>
+	<sortField name="exame_material"/>
+	<sortField name="exame_exame"/>
 	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
 	</variable>
-	<group name="indicacao">
-		<groupExpression><![CDATA[$F{material}]]></groupExpression>
+	<group name="material">
+		<groupExpression><![CDATA[$F{exame_material}]]></groupExpression>
 		<groupHeader>
-			<band height="28">
+			<band height="29">
 				<textField>
-					<reportElement x="198" y="4" width="274" height="20" uuid="6cf8f82f-e22c-47b7-9441-dfc289cd8bed"/>
+					<reportElement x="197" y="5" width="274" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isItalic="false" isUnderline="true"/>
 						<paragraph leftIndent="5"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{exame_material}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
-		<groupFooter>
-			<band height="32">
-				<textField>
-					<reportElement x="197" y="6" width="274" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isItalic="false" isUnderline="false"/>
-						<paragraph leftIndent="5"/>
-					</textElement>
-					<textFieldExpression><![CDATA["Indicação Clínica: " + $F{indicacaoClinica}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupFooter>
 	</group>
 	<background>
 		<band height="700" splitType="Stretch">
@@ -126,14 +103,14 @@ ORDER BY
 		</band>
 	</title>
 	<detail>
-		<band height="19" splitType="Stretch">
+		<band height="29" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToBandHeight" x="197" y="2" width="348" height="16" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="197" y="5" width="348" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
 				<textElement verticalAlignment="Top">
 					<font size="12"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{exame}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{row_NUMBER}+") "+$F{exame_exame}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -151,9 +128,9 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="96" splitType="Stretch">
+		<band height="137" splitType="Stretch">
 			<textField>
-				<reportElement x="237" y="8" width="268" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc">
+				<reportElement x="237" y="53" width="268" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc">
 					<printWhenExpression><![CDATA[$P{comData}.equals( true )]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -163,14 +140,14 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 			</textField>
 			<elementGroup>
 				<staticText>
-					<reportElement x="331" y="76" width="100" height="16" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
+					<reportElement x="331" y="121" width="100" height="16" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[CRM 5221543-3]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="309" y="45" width="144" height="16" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
+					<reportElement x="309" y="90" width="144" height="16" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
 					<box>
 						<pen lineWidth="0.0"/>
 						<topPen lineWidth="1.0"/>
@@ -184,13 +161,21 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="331" y="61" width="100" height="16" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
+					<reportElement x="331" y="106" width="100" height="16" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Médico]]></text>
 				</staticText>
 			</elementGroup>
+			<textField>
+				<reportElement x="197" y="20" width="348" height="22" uuid="d99be1a9-a91e-4f33-98f0-fce3adce9a5e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

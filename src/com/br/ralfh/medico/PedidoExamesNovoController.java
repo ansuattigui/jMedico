@@ -76,9 +76,11 @@ public class PedidoExamesNovoController extends Controller {
     @FXML public TableView<PedidoExames> tabelaPedidos;
     @FXML public TableColumn<PedidoExames,String> ordemCol;
     @FXML public TableColumn<PedidoExames,String> dataCol;    
+    @FXML public TableColumn<PedidoExames,String> descricaoCol;
     @FXML public TableColumn<PedidoExames,String> iclinCol;    
     
     @FXML public DatePicker dataPedido;
+    @FXML public TextField descricaoPedido;
     @FXML public CheckBox cbxComData;
     @FXML public TableView<Exame> tableExames;
     @FXML public TableColumn<Exame,String> exameCol;
@@ -176,6 +178,7 @@ public class PedidoExamesNovoController extends Controller {
                 if (sopPedido.get()!=null) {
                     cbxComData.setSelected(sopPedido.get().getComData());
                     dataPedido.setValue(sopPedido.get().getDataEmissao());
+                    descricaoPedido.setText(sopPedido.get().getDescricaoPedido());
                     sopExames.setAll(sopPedido.get().getExames());
                     setButtons();
                     habilEdicaoFired();
@@ -241,6 +244,7 @@ public class PedidoExamesNovoController extends Controller {
                 return new SimpleObjectProperty<>(Util.formataDataExtenso(rec.getValue().getDataEmissao()));
             }
         }); 
+        descricaoCol.setCellValueFactory(new PropertyValueFactory<>("descricaoPedido"));
     }           
     
     public void initTabelaExames() {
@@ -253,6 +257,7 @@ public class PedidoExamesNovoController extends Controller {
         boolean resultado = Boolean.FALSE;
         pedido.setDataEmissao(dataPedido.getValue());
         pedido.setComData(cbxComData.isSelected());
+        pedido.setDescricaoPedido(descricaoPedido.getText());
         if ((pedido.getExames()==null)||(pedido.getExames().isEmpty())) {
             ShowDialog("EX", "Prescreva ao menos um exame", null,this.getStage());
         } else {
@@ -278,6 +283,7 @@ public class PedidoExamesNovoController extends Controller {
         pedido = new PedidoExames();
         pedido.setPaciente(sopPaciente.get());
         pedido.setDataEmissao(Util.ldHoje());
+        pedido.setDescricaoPedido(sopPedido.get().getDescricaoPedido());
         pedido.setComData(sopPedido.get().getComData());
         
         for (Exame ex : sopPedido.get().getExames()) {
@@ -518,14 +524,14 @@ public class PedidoExamesNovoController extends Controller {
         miOpcaoMeioA4T.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         miOpcaoReduzidoT.setDisable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING)|(status!=StatusBtn.SHOWING));
         
-        btnNovoGrupo.setDisable((status!=StatusBtn.INSERTING));//&(status!=StatusBtn.UPDATING));
+        btnNovoGrupo.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         btnNovoExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         btnAlteraExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         btnExcluiExame.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
     }
     
     public void habilEdicaoFired() {
-//        this.indicacaoClinica.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
+        descricaoPedido.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
     }
     
     

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pedido" pageWidth="612" pageHeight="792" columnWidth="562" leftMargin="22" rightMargin="28" topMargin="56" bottomMargin="20" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="48"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="idPedido" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -10,36 +10,47 @@
 	<parameter name="dataPedido" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="logoCabecalho" class="java.awt.Image"/>
 	<parameter name="logoRodape" class="java.awt.Image"/>
-	<parameter name="indicacaoClinica" class="java.lang.String"/>
 	<parameter name="comData" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[SELECT
-     exame.`exame` AS exame_exame,
-     exame.`material` AS exame_material
+     *
 FROM
      `exame` exame
 WHERE
-     pedido_id = $P{idPedido}]]>
+     pedido_id = $P{idPedido}
+ORDER BY
+     indicacaoClinica,material]]>
 	</queryString>
-	<field name="exame_exame" class="java.lang.String"/>
-	<field name="exame_material" class="java.lang.String"/>
-	<sortField name="exame_material"/>
-	<sortField name="exame_exame"/>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="exame" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="material" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pedido_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="indicacaoClinica" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
 	</variable>
 	<group name="material">
-		<groupExpression><![CDATA[$F{exame_material}]]></groupExpression>
+		<groupExpression><![CDATA[$F{material}]]></groupExpression>
 		<groupHeader>
-			<band height="29">
+			<band height="26">
 				<textField>
-					<reportElement x="198" y="5" width="255" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
+					<reportElement x="198" y="3" width="255" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isItalic="false" isUnderline="true"/>
 						<paragraph leftIndent="5"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{exame_material}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -103,14 +114,14 @@ WHERE
 		</band>
 	</title>
 	<detail>
-		<band height="29" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToBandHeight" x="198" y="5" width="364" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="198" y="2" width="364" height="16" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
 				<textElement verticalAlignment="Top">
 					<font size="12"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{row_NUMBER}+") "+$F{exame_exame}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{exame}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -174,7 +185,7 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 					<font fontName="Arial" size="12" isBold="false"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $F{indicacaoClinica}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

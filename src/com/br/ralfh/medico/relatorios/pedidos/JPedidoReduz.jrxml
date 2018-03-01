@@ -8,27 +8,38 @@
 	</parameter>
 	<parameter name="nomePaciente" class="java.lang.String"/>
 	<parameter name="dataPedido" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="indicacaoClinica" class="java.lang.String"/>
 	<parameter name="comData" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[SELECT
-     exame.`exame` AS exame_exame,
-     exame.`material` AS exame_material
+     *
 FROM
      `exame` exame
 WHERE
-     pedido_id  = $P{idPedido}]]>
+     pedido_id = $P{idPedido}
+ORDER BY
+     indicacaoClinica,material]]>
 	</queryString>
-	<field name="exame_exame" class="java.lang.String"/>
-	<field name="exame_material" class="java.lang.String"/>
-	<sortField name="exame_material"/>
-	<sortField name="exame_exame"/>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="exame" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="material" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pedido_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="indicacaoClinica" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
 	</variable>
 	<group name="material">
-		<groupExpression><![CDATA[$F{exame_material}]]></groupExpression>
+		<groupExpression><![CDATA[$F{material}]]></groupExpression>
 		<groupHeader>
 			<band height="20">
 				<textField>
@@ -37,7 +48,7 @@ WHERE
 						<font fontName="Arial" size="10" isItalic="false" isUnderline="true"/>
 						<paragraph leftIndent="5"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{exame_material}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -70,14 +81,14 @@ WHERE
 					<font size="10"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{row_NUMBER}+") "+$F{exame_exame}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{exame}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<summary>
-		<band height="125" splitType="Stretch">
+		<band height="113" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="47" width="264" height="16" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc">
+				<reportElement x="0" y="36" width="264" height="16" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc">
 					<printWhenExpression><![CDATA[$P{comData}.equals( true )]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -87,14 +98,14 @@ WHERE
 			</textField>
 			<elementGroup>
 				<staticText>
-					<reportElement x="88" y="109" width="100" height="14" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
+					<reportElement x="88" y="98" width="100" height="14" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[CRM 5221543-3]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="66" y="81" width="144" height="14" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
+					<reportElement x="66" y="70" width="144" height="14" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
 					<box>
 						<pen lineWidth="0.0"/>
 						<topPen lineWidth="1.0"/>
@@ -108,7 +119,7 @@ WHERE
 					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="88" y="95" width="100" height="14" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
+					<reportElement x="88" y="84" width="100" height="14" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
 					</textElement>
@@ -116,12 +127,12 @@ WHERE
 				</staticText>
 			</elementGroup>
 			<textField>
-				<reportElement x="-1" y="7" width="264" height="19" uuid="34b2fda4-47c5-4d58-8a18-a11cfc9d9514"/>
+				<reportElement x="-1" y="3" width="264" height="16" uuid="34b2fda4-47c5-4d58-8a18-a11cfc9d9514"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="false"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $F{indicacaoClinica}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
