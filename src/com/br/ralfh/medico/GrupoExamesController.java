@@ -2,7 +2,6 @@ package com.br.ralfh.medico;
 
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.exceptions.CampoNuloException;
-import com.br.ralfh.medico.modelos.Exame;
 import com.br.ralfh.medico.modelos.ExamesGrupo;
 import com.br.ralfh.medico.modelos.GrupoExames;
 import com.br.ralfh.medico.modelos.GruposExames;
@@ -137,24 +136,6 @@ public class GrupoExamesController extends Controller {
 //        btnAlteraExame.setTooltip(new Tooltip("Atualiza o medicamento selecionado"));
         btnSair.setTooltip(new Tooltip("Fechar esta janela"));
     }
-
-/*    
-    private void addPacienteListener() { 
-        sopPaciente.addListener(new ChangeListener() {
-        @Override
-        public void changed(ObservableValue o,Object oldVal,Object newVal) {
-            if (sopPaciente.get() != null) {
-                try {
-                    indicacaoClinica.setText(sopPaciente.get().getNome());
-                    sopGrupos.setAll(PedidosExames.getLista(sopPaciente.get()));
-                } catch (Exception ex) {
-                    Logger.getLogger(MedicoController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        });
-    }   
-*/
     
     private void addGrupoListener() { 
         sopGrupo.addListener(new ChangeListener() {
@@ -313,8 +294,42 @@ public class GrupoExamesController extends Controller {
     }
 
     @FXML
-    public void btnAtualizaGrupoFired(ActionEvent ae) {
+    public void btnAtualizaGrupoFired(ActionEvent ae) throws IOException, CampoEmBrancoException {
         status = StatusBtn.UPDATING;
+        
+        String fxmlGUI = "dlg/IndicacaoClinica.fxml"; 
+        StageStyle fxmlStyle = StageStyle.UTILITY;
+        String fxmlTitle = "Indicação Clínica";
+
+        GUIFactory nomeGUI;
+        nomeGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
+        
+        IndicacaoClinicaController controller = (IndicacaoClinicaController) nomeGUI.getController();
+        controller.addStageCloseListener();
+        controller.setIndClinica(sopGrupo.get().getIndicacaoClinica());
+        if (sopGrupo.get().getSexo()!=null) {
+            controller.setSexoGrupoString(sopGrupo.get().getSexo());
+        }
+        
+        nomeGUI.showAndWait();       
+        
+        if (!controller.getIndClinica().isEmpty()) {
+            setButtons();
+            habilEdicaoFired();
+            grupoExames.setIndicacaoClinica(controller.getIndClinica());
+            grupoExames.setSexo(controller.getSexoGrupoString());
+            sopGrupo.set(grupoExames);
+            sopGrupos.remove(grupoExames);
+            sopGrupos.add(grupoExames);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
         setButtons();
         habilEdicaoFired();
     }

@@ -50,13 +50,13 @@ public class IndicacaoClinicaController extends Controller {
         initComboSexoGrupo();
     }      
     
-    public void btnCancelaNomeFired(ActionEvent event) {
+    public void btnCancelaFired(ActionEvent event) {
         indClinica = "";
         this.getStage().close();
     }
     
     
-    public void btnConfirmaNomeFired(ActionEvent event) {                        
+    public void btnConfirmaFired(ActionEvent event) {                        
         indClinica = indicacaoClinica.getText();
         this.getStage().close();
     }
@@ -100,6 +100,9 @@ public class IndicacaoClinicaController extends Controller {
      */
     public void setSexoGrupoString(String sexoGrupoString) {
         this.sexoGrupoString = sexoGrupoString;
+        if ((!sexoGrupoString.isEmpty()) || (sexoGrupoString!=null)  ) {
+            sexoGrupo.setValue(Sexo.valueOf(this.sexoGrupoString));
+        }
     }
     
 
