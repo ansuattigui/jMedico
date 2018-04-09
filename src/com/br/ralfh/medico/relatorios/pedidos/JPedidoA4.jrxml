@@ -117,11 +117,11 @@ ORDER BY
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="197" y="118" width="177" height="20" uuid="3195f5ce-c09c-4f0d-95e5-a9700cc23c98"/>
+				<reportElement x="197" y="118" width="45" height="20" uuid="3195f5ce-c09c-4f0d-95e5-a9700cc23c98"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<text><![CDATA[Solicito os seguintes exames:]]></text>
+				<text><![CDATA[Solicito:]]></text>
 			</staticText>
 		</band>
 	</title>

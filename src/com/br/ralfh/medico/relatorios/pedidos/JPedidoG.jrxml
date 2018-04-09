@@ -55,11 +55,11 @@ WHERE
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="2" y="29" width="193" height="20" uuid="24fd5f2e-bd6e-4c88-bc26-92ad10465921"/>
+				<reportElement x="2" y="29" width="45" height="20" uuid="24fd5f2e-bd6e-4c88-bc26-92ad10465921"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<text><![CDATA[Solicito os seguintes exames:]]></text>
+				<text><![CDATA[Solicito:]]></text>
 			</staticText>
 		</band>
 	</title>
