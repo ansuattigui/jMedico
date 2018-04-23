@@ -208,7 +208,7 @@ public class PrimeiraConsulta implements Serializable {
         this.aparcircul = "";
         this.condterap = "";
         this.constipacaoobs = "";
-        this.ectoscopia = "";
+        this.ectoscopia = "Mucosas coradas, anictéricas";
         this.etilismotipo = "";
         this.ganglios = "";
         this.hda = "";

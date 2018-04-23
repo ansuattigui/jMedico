@@ -40,18 +40,6 @@ ORDER BY
 	</variable>
 	<group name="material">
 		<groupExpression><![CDATA[$F{material}]]></groupExpression>
-		<groupHeader>
-			<band height="20">
-				<textField>
-					<reportElement x="0" y="3" width="264" height="16" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="10" isItalic="false" isUnderline="true"/>
-						<paragraph leftIndent="5"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupHeader>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -67,8 +55,10 @@ ORDER BY
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="2" y="32" width="36" height="16" uuid="4f02389d-12c7-4051-8d76-9eb488b3d1a5"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="0" y="32" width="45" height="16" uuid="4f02389d-12c7-4051-8d76-9eb488b3d1a5"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Solicito:]]></text>
 			</staticText>
 		</band>
@@ -127,7 +117,7 @@ ORDER BY
 				</staticText>
 			</elementGroup>
 			<textField>
-				<reportElement x="-1" y="3" width="264" height="16" uuid="34b2fda4-47c5-4d58-8a18-a11cfc9d9514"/>
+				<reportElement x="0" y="3" width="264" height="16" uuid="34b2fda4-47c5-4d58-8a18-a11cfc9d9514"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="false"/>
 					<paragraph leftIndent="5"/>

@@ -12,34 +12,36 @@
 	<parameter name="comData" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[SELECT
-     exame.`exame` AS exame_exame,
-     exame.`material` AS exame_material
+     *
 FROM
      `exame` exame
 WHERE
-     pedido_id = $P{idPedido}]]>
+     pedido_id = $P{idPedido}
+ORDER BY
+     indicacaoClinica ASC,
+     material ASC]]>
 	</queryString>
-	<field name="exame_exame" class="java.lang.String"/>
-	<field name="exame_material" class="java.lang.String"/>
-	<sortField name="exame_material"/>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="exame" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="material" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pedido_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="indicacaoClinica" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<variable name="row_NUMBER" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
 	</variable>
 	<group name="material">
-		<groupExpression><![CDATA[$F{exame_material}]]></groupExpression>
-		<groupHeader>
-			<band height="29">
-				<textField>
-					<reportElement x="0" y="5" width="313" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isItalic="false" isUnderline="true"/>
-						<paragraph leftIndent="5"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{exame_material}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupHeader>
+		<groupExpression><![CDATA[]]></groupExpression>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -55,23 +57,23 @@ WHERE
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="2" y="29" width="45" height="20" uuid="24fd5f2e-bd6e-4c88-bc26-92ad10465921"/>
+				<reportElement x="2" y="29" width="50" height="20" uuid="24fd5f2e-bd6e-4c88-bc26-92ad10465921"/>
 				<textElement verticalAlignment="Middle">
-					<font size="12"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Solicito:]]></text>
 			</staticText>
 		</band>
 	</title>
 	<detail>
-		<band height="29" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="5" width="377" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
-				<textElement verticalAlignment="Top">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="3" width="377" height="20" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
+				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{row_NUMBER}+") "+$F{exame_exame}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{exame}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -122,7 +124,7 @@ WHERE
 					<font fontName="Arial" size="12" isBold="false"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $F{indicacaoClinica}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

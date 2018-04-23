@@ -40,33 +40,6 @@ ORDER BY
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
 	</variable>
-	<group name="indicacao">
-		<groupExpression><![CDATA[$F{material}]]></groupExpression>
-		<groupHeader>
-			<band height="28">
-				<textField>
-					<reportElement x="198" y="4" width="274" height="20" uuid="6cf8f82f-e22c-47b7-9441-dfc289cd8bed"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isItalic="false" isUnderline="true"/>
-						<paragraph leftIndent="5"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupHeader>
-		<groupFooter>
-			<band height="32">
-				<textField>
-					<reportElement x="197" y="6" width="274" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isItalic="false" isUnderline="false"/>
-						<paragraph leftIndent="5"/>
-					</textElement>
-					<textFieldExpression><![CDATA["Indicação Clínica: " + $F{indicacaoClinica}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupFooter>
-	</group>
 	<background>
 		<band height="700" splitType="Stretch">
 			<line>
@@ -117,9 +90,9 @@ ORDER BY
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="197" y="118" width="45" height="20" uuid="3195f5ce-c09c-4f0d-95e5-a9700cc23c98"/>
+				<reportElement x="197" y="118" width="50" height="20" uuid="3195f5ce-c09c-4f0d-95e5-a9700cc23c98"/>
 				<textElement verticalAlignment="Middle">
-					<font size="12"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Solicito:]]></text>
 			</staticText>
@@ -151,9 +124,9 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="96" splitType="Stretch">
+		<band height="143" splitType="Stretch">
 			<textField>
-				<reportElement x="237" y="8" width="268" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc">
+				<reportElement x="237" y="46" width="268" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc">
 					<printWhenExpression><![CDATA[$P{comData}.equals( true )]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -163,14 +136,14 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 			</textField>
 			<elementGroup>
 				<staticText>
-					<reportElement x="331" y="76" width="100" height="16" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
+					<reportElement x="331" y="114" width="100" height="16" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[CRM 5221543-3]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="309" y="45" width="144" height="16" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
+					<reportElement x="309" y="83" width="144" height="16" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
 					<box>
 						<pen lineWidth="0.0"/>
 						<topPen lineWidth="1.0"/>
@@ -184,13 +157,21 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="331" y="61" width="100" height="16" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
+					<reportElement x="331" y="99" width="100" height="16" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Médico]]></text>
 				</staticText>
 			</elementGroup>
+			<textField>
+				<reportElement x="197" y="8" width="274" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isItalic="false" isUnderline="false"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $F{indicacaoClinica}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

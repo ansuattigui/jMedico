@@ -90,6 +90,8 @@ public class MedicoController extends Controller implements Observer {
     @FXML Button btnReceitaControlada;
     @FXML Button btnReceitaA4;
     @FXML Button btnReceitaMeioA4;
+    @FXML Button btnEnvelope162;
+    @FXML Button btnEnvelope229;
     @FXML ImageView ivFundo;
     @FXML Line lineFundo;    
     @FXML StackPane spTitle;
@@ -359,6 +361,49 @@ public class MedicoController extends Controller implements Observer {
         receitas.showAndWait();
     }
     
+    @FXML
+    public void btnEnvelope162Fired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/envelope_162_114.fxml";
+        StageStyle fxmlStyle = StageStyle.UTILITY;        
+        GUIFactory receitas = new GUIFactory(fxmlGUI,null,fxmlStyle,this.getStage());
+        receitas.showAndWait();
+    }
+    
+    @FXML
+    public void btnEnvelope229Fired(ActionEvent event) throws Exception {
+        String fxmlGUI = "fxml/envelope_229_114.fxml";
+        StageStyle fxmlStyle = StageStyle.UTILITY;        
+        GUIFactory receitas = new GUIFactory(fxmlGUI,null,fxmlStyle,this.getStage());
+        receitas.showAndWait();
+    }
+
+    @FXML
+    public void btnEnvelopeFired(ActionEvent event) throws Exception {
+        String fileName = "";
+        if (event.getSource().equals(btnEnvelope162)) {
+            fileName = "relatorios/Envelopes/envelope_162_114.jasper";
+        } else if (event.getSource().equals(btnEnvelope229)) {
+            fileName = "relatorios/Envelopes/envelope_229_114.jasper";
+        }
+        HashMap hm = new HashMap();        
+        ImageIcon logoCabecalho = new ImageIcon(getClass().getResource("imagens/logoJHTC-Envelope.gif"));
+        ImageIcon logoRodape = new ImageIcon(getClass().getResource("imagens/inforJHTC-Envelope.gif"));         
+        hm.put("logoCabecalho",logoCabecalho.getImage());
+        hm.put("logoRodape", logoRodape.getImage());
+        
+        DataAccessRelatorios relat = new DataAccessRelatorios();
+        try {
+            InputStream inputStream = getClass().getResourceAsStream(fileName);
+            relat.openReport( "Envelope",inputStream,hm);
+        } catch (JRException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
     
     @FXML
     public void btnReceitaEmBrancoFired(ActionEvent event) throws Exception {

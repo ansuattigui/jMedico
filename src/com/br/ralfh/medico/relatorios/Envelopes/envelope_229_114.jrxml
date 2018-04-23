@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="envelope_229_114" pageWidth="649" pageHeight="323" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="609" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="44a6e6ec-d41d-49f7-9b83-96033bd21bbb">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logoCabecalho" class="java.awt.Image"/>
+	<parameter name="logoRodape" class="java.awt.Image"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="150" splitType="Stretch">
+			<image vAlign="Middle">
+				<reportElement stretchType="RelativeToBandHeight" x="1" y="1" width="180" height="120" uuid="82c41372-e506-470f-8b8c-cf444f24c50a"/>
+				<imageExpression><![CDATA[$P{logoCabecalho}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch"/>
+	</detail>
+	<pageFooter>
+		<band height="50" splitType="Stretch">
+			<image vAlign="Middle">
+				<reportElement x="367" y="4" width="240" height="45" uuid="142e428e-b349-40cd-b36c-5e3a01cbc802"/>
+				<imageExpression><![CDATA[$P{logoRodape}]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>

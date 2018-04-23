@@ -235,6 +235,7 @@ public class FichaMedicaController extends Controller {
         comboapcircPrimeiraCons.getItems().add("rci");
         comboapcircPrimeiraCons.getItems().add("rcr, 2t");
         comboapcircPrimeiraCons.getItems().add("rcr, 2t, bnf");
+        comboapcircPrimeiraCons.getSelectionModel().select(2);
     }
         
     private void addFreqCardPrimConsListener() {
@@ -509,8 +510,12 @@ public class FichaMedicaController extends Controller {
         menopPrimeiraCons.setSelected(primeiraconsulta.getMenopausa());
         menopAnosPrimeiraCons.setText(String.valueOf(primeiraconsulta.getMenopidade()));
         outinfoPrimeiraCons.setText(primeiraconsulta.getOutros());        
-        alturaPrimeiraCons.setText(String.valueOf(primeiraconsulta.getAltura()));
-        pesoPrimeiraCons.setText(String.valueOf(primeiraconsulta.getPeso()));
+        if (!String.valueOf(primeiraconsulta.getAltura()).equals("0")) { 
+            alturaPrimeiraCons.setText(String.valueOf(primeiraconsulta.getAltura()));
+        }
+        if (!String.valueOf(primeiraconsulta.getPeso()).equals("0")) { 
+            pesoPrimeiraCons.setText(String.valueOf(primeiraconsulta.getPeso()));
+        }
         ectosPrimeiraCons.setText(primeiraconsulta.getEctoscopia());
         pescoPrimeiraCons.setText(primeiraconsulta.getPescoco());
         jugulPrimeiraCons.setText(primeiraconsulta.getJugulares());
@@ -518,12 +523,22 @@ public class FichaMedicaController extends Controller {
         ganglPrimeiraCons.setText(primeiraconsulta.getGanglios());        
         comboapcircPrimeiraCons.getEditor().setText(primeiraconsulta.getAparcircul());        
         //apcircPrimeiraCons.setText(primeiraconsulta.getAparcircul());
-        psistoPrimeiraCons.setText(String.valueOf(primeiraconsulta.getPa_sist()));
-        pdiastPrimeiraCons.setText(String.valueOf(primeiraconsulta.getPa_diast()));
-        frcardPrimeiraCons.setText(String.valueOf(primeiraconsulta.getFreqcard()));
-        pulsoPrimeiraCons.setText(String.valueOf(primeiraconsulta.getPulso()));
+        if (!String.valueOf(primeiraconsulta.getPa_sist()).equals("0")) { 
+            psistoPrimeiraCons.setText(String.valueOf(primeiraconsulta.getPa_sist()));
+        } 
+        if (!String.valueOf(primeiraconsulta.getPa_diast()).equals("0")) { 
+            pdiastPrimeiraCons.setText(String.valueOf(primeiraconsulta.getPa_diast()));
+        }
+        if (!String.valueOf(primeiraconsulta.getFreqcard()).equals("0")) { 
+            frcardPrimeiraCons.setText(String.valueOf(primeiraconsulta.getFreqcard()));
+        }
+        if (!String.valueOf(primeiraconsulta.getPulso()).equals("0")) { 
+            pulsoPrimeiraCons.setText(String.valueOf(primeiraconsulta.getPulso()));
+        }
         aprespPrimeiraCons.setText(primeiraconsulta.getApar_resp());
-        frrespPrimeiraCons.setText(String.valueOf(primeiraconsulta.getFreq_resp()));
+        if (!String.valueOf(primeiraconsulta.getFreq_resp()).equals("0")) { 
+            frrespPrimeiraCons.setText(String.valueOf(primeiraconsulta.getFreq_resp()));
+        }
         abdoPrimeiraCons.setText(primeiraconsulta.getAbdome());
         msuperPrimeiraCons.setText(primeiraconsulta.getMembsup());
         minferPrimeiraCons.setText(primeiraconsulta.getMembinf());
@@ -639,28 +654,28 @@ public class FichaMedicaController extends Controller {
         try {
             primeiraconsulta.setPa_sist(Integer.parseInt(psistoPrimeiraCons.getText().trim()));
         } catch (NullPointerException | NumberFormatException ex) {
-            primeiraconsulta.setPa_sist(0);
+            //primeiraconsulta.setPa_sist(0);
         }
         try {
             primeiraconsulta.setPa_diast(Integer.parseInt(pdiastPrimeiraCons.getText().trim()));
         } catch (NullPointerException | NumberFormatException ex) {
-            primeiraconsulta.setPa_diast(0);
+            //primeiraconsulta.setPa_diast(0);
         }
         try {
             primeiraconsulta.setFreqcard(Integer.parseInt(frcardPrimeiraCons.getText().trim()));
         } catch (NullPointerException | NumberFormatException ex) {
-            primeiraconsulta.setFreqcard(0);
+            //primeiraconsulta.setFreqcard(0);
         }
         try {
             primeiraconsulta.setPulso(Integer.parseInt(pulsoPrimeiraCons.getText().trim()));
         } catch (NullPointerException | NumberFormatException ex) {
-            primeiraconsulta.setPulso(0);
+            //primeiraconsulta.setPulso(0);
         }
         primeiraconsulta.setApar_resp(aprespPrimeiraCons.getText());
         try {
             primeiraconsulta.setFreq_resp(Integer.parseInt(frrespPrimeiraCons.getText()));
         } catch (NullPointerException | NumberFormatException ex) {
-            primeiraconsulta.setFreq_resp(0);
+            //primeiraconsulta.setFreq_resp(0);
         }
         primeiraconsulta.setAbdome(abdoPrimeiraCons.getText());
         primeiraconsulta.setMembsup(msuperPrimeiraCons.getText());

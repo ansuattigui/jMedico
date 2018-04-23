@@ -42,18 +42,6 @@ ORDER BY
 	</variable>
 	<group name="material">
 		<groupExpression><![CDATA[$F{material}]]></groupExpression>
-		<groupHeader>
-			<band height="26">
-				<textField>
-					<reportElement x="198" y="3" width="255" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isItalic="false" isUnderline="true"/>
-						<paragraph leftIndent="5"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupHeader>
 	</group>
 	<background>
 		<band height="650" splitType="Stretch">
@@ -97,7 +85,7 @@ ORDER BY
 	<title>
 		<band height="130">
 			<textField>
-				<reportElement x="198" y="75" width="364" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
+				<reportElement x="197" y="75" width="364" height="22" uuid="0210e1fa-6b3f-456b-86c3-c64141dce6b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 					<paragraph leftIndent="5"/>
@@ -105,9 +93,9 @@ ORDER BY
 				<textFieldExpression><![CDATA[$P{nomePaciente}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="199" y="106" width="45" height="20" uuid="9fd476a7-2e3b-443f-9910-18076237c7a6"/>
+				<reportElement x="197" y="106" width="50" height="20" uuid="9fd476a7-2e3b-443f-9910-18076237c7a6"/>
 				<textElement verticalAlignment="Middle">
-					<font size="12"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Solicito:]]></text>
 			</staticText>
@@ -116,7 +104,7 @@ ORDER BY
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToBandHeight" x="198" y="2" width="364" height="16" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="197" y="2" width="364" height="16" uuid="9c48463f-28db-40f2-a413-f66d7dbe085d"/>
 				<textElement verticalAlignment="Top">
 					<font size="12"/>
 					<paragraph leftIndent="5"/>
@@ -139,7 +127,7 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="137" splitType="Stretch">
+		<band height="229" splitType="Stretch">
 			<textField>
 				<reportElement x="236" y="48" width="288" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc">
 					<printWhenExpression><![CDATA[$P{comData}.equals( true )]]></printWhenExpression>
@@ -180,7 +168,7 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 				</staticText>
 			</elementGroup>
 			<textField>
-				<reportElement x="198" y="12" width="364" height="22" uuid="62329177-fc85-475e-b7b5-7102d4b01715"/>
+				<reportElement x="197" y="12" width="364" height="22" uuid="62329177-fc85-475e-b7b5-7102d4b01715"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="false"/>
 					<paragraph leftIndent="5"/>
