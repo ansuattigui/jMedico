@@ -21,8 +21,8 @@
 	</detail>
 	<pageFooter>
 		<band height="50" splitType="Stretch">
-			<image vAlign="Middle">
-				<reportElement x="280" y="4" width="325" height="45" uuid="142e428e-b349-40cd-b36c-5e3a01cbc802"/>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="315" y="4" width="290" height="45" uuid="142e428e-b349-40cd-b36c-5e3a01cbc802"/>
 				<imageExpression><![CDATA[$P{logoRodape}]]></imageExpression>
 			</image>
 		</band>
