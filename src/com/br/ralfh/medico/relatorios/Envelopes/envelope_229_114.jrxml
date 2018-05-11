@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="envelope_229_114" pageWidth="649" pageHeight="323" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="607" leftMargin="20" rightMargin="22" topMargin="22" bottomMargin="20" uuid="44a6e6ec-d41d-49f7-9b83-96033bd21bbb">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="envelope_229_114" pageWidth="649" pageHeight="323" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="604" leftMargin="20" rightMargin="25" topMargin="22" bottomMargin="20" uuid="44a6e6ec-d41d-49f7-9b83-96033bd21bbb">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -22,7 +22,7 @@
 	<pageFooter>
 		<band height="50" splitType="Stretch">
 			<image hAlign="Left" vAlign="Middle">
-				<reportElement x="315" y="4" width="290" height="45" uuid="142e428e-b349-40cd-b36c-5e3a01cbc802"/>
+				<reportElement x="281" y="4" width="320" height="45" uuid="142e428e-b349-40cd-b36c-5e3a01cbc802"/>
 				<imageExpression><![CDATA[$P{logoRodape}]]></imageExpression>
 			</image>
 		</band>
