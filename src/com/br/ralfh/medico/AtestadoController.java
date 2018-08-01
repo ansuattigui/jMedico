@@ -486,6 +486,10 @@ public class AtestadoController extends Controller {
         if (html.contains("@@datadodiaPaciente@@")) {
             html = html.replace("@@datadodiaPaciente@@", Util.formataData(Util.ldHoje()));
         }; 
+
+        if (html.contains("@@enderecoPaciente@@")) {
+            html = html.replace("@@enderecoPaciente@@", sopPaciente.get().getEnderecoCompleto());
+        }; 
         
         return html;
         

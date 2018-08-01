@@ -345,6 +345,15 @@ public class Paciente implements Serializable {
         }
     }
 
+    public String getEnderecoCompleto() {
+        if (endereco==null) {
+            return "";
+        } else {
+            return endereco+" , "+"nº "+numero+" "+complemento+" , "+bairro+" , "+cidade+" , "+estado;
+        }
+    }
+    
+    
     /**
      * @param bairro the bairro to set
      * @throws com.br.ralfh.medico.exceptions.CampoEmBrancoException

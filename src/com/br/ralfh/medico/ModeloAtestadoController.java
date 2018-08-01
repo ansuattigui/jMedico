@@ -69,6 +69,7 @@ public class ModeloAtestadoController extends Controller {
     @FXML public Button identpac;
     @FXML public Button cpfpac;
     @FXML public Button datapac;
+    @FXML public Button enderpac;
     
     public ModeloAtestadoController() {   
         this.status = StatusBtn.IDLE;
@@ -298,6 +299,14 @@ public class ModeloAtestadoController extends Controller {
         String htmlNew = Jsoup.parse(texto).html();
         htmlEditorCorpo.setHtmlText(htmlNew);
     }
+
+    public void enderpacFired(ActionEvent ae) {
+        String html = htmlEditorCorpo.getHtmlText();
+        String texto = new HtmlToPlainText().getPlainText(Jsoup.parse(html));
+        texto = texto.concat("@@enderecoPaciente@@");
+        String htmlNew = Jsoup.parse(texto).html();
+        htmlEditorCorpo.setHtmlText(htmlNew);
+    }
     
     public void habilEdicaoFired() {
         nomeModelo.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
@@ -318,6 +327,7 @@ public class ModeloAtestadoController extends Controller {
         identpac.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         cpfpac.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
         datapac.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
+        enderpac.setDisable((status!=StatusBtn.INSERTING)&(status!=StatusBtn.UPDATING));
     }
     
     
