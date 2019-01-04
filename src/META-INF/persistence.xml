@@ -20,7 +20,6 @@
     <class>com.br.ralfh.medico.modelos.ModeloAtestado</class>
     <class>com.br.ralfh.medico.modelos.Tuss</class>
     <class>com.br.ralfh.medico.modelos.Exame</class>
-    <class>com.br.ralfh.medico.modelos.PedidoExames</class>
     <class>com.br.ralfh.medico.modelos.AtestadoExterno</class>
     <class>com.br.ralfh.medico.modelos.PrescricaoExterno</class>
     <class>com.br.ralfh.medico.modelos.ReceitaExterno</class>

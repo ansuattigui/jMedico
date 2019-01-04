@@ -194,8 +194,8 @@
             </HBox>
             <VBox fillWidth="false" spacing="5.0">
                <children>
-                  <Label text="Descrição" />
-                  <TextField fx:id="descricaoPedido" editable="false" prefHeight="26.0" prefWidth="456.0" />
+                  <Label text="Indicação Clínica" />
+                  <TextField fx:id="indicacaoClinica" editable="false" prefHeight="26.0" prefWidth="456.0" />
                </children>
             </VBox>
          </children>
@@ -209,14 +209,13 @@
               <columns>
                 <TableColumn fx:id="ordemCol" editable="false" prefWidth="75.0" sortable="false" text="Ordem" />
                 <TableColumn fx:id="dataCol" editable="false" prefWidth="241.0" styleClass="align-centro" text="Data" />
-                  <TableColumn fx:id="descricaoCol" prefWidth="312.0" text="Descrição" />
+                  <TableColumn fx:id="indicacaoCol" prefWidth="312.0" text="Indicação Clinica" />
               </columns>
             </TableView>
           <TableView fx:id="tableExames" editable="true" prefHeight="250.0">
             <columns>
               <TableColumn fx:id="materialCol" editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="130.0" text="Material" />
-              <TableColumn fx:id="exameCol" editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="250.0" text="Exame" />
-              <TableColumn fx:id="indicacaoCol" prefWidth="250.0" text="IC" />
+              <TableColumn fx:id="exameCol" editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="502.0" text="Exame" />
             </columns>
           </TableView>
             <HBox alignment="CENTER_RIGHT" spacing="5.0">

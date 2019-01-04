@@ -11,6 +11,7 @@
 	<parameter name="logoCabecalho" class="java.awt.Image" isForPrompting="false"/>
 	<parameter name="logoRodape" class="java.awt.Image"/>
 	<parameter name="comData" class="java.lang.Boolean"/>
+	<parameter name="indicacaoClinica" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      *
@@ -40,6 +41,20 @@ ORDER BY
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
 	</variable>
+	<group name="material">
+		<groupExpression><![CDATA[$F{material}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<textField>
+					<reportElement x="118" y="2" width="264" height="20" uuid="42bbf03e-b24a-46ec-a573-f1d23dbe2a82"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Material: " + $F{material}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
 	<background>
 		<band height="511" splitType="Stretch">
 			<line>
@@ -167,10 +182,10 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 			<textField>
 				<reportElement x="118" y="16" width="264" height="16" uuid="813a05de-dd09-4a75-a525-f4a152e4218d"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="10" isBold="false"/>
+					<font fontName="Arial" size="10" isBold="true"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Indicação Clínica: " + $F{indicacaoClinica}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

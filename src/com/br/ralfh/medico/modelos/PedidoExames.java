@@ -39,7 +39,6 @@ public class PedidoExames implements Serializable {
     @Column(nullable = false)
     private Boolean comData;
     private String indicacaoClinica;
-    private String descricaoPedido;
     
     @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "pedido")
     @Column(nullable = false)
@@ -148,18 +147,4 @@ public class PedidoExames implements Serializable {
         this.comData = comData;
     }
 
-    /**
-     * @return the descricaoPedido
-     */
-    public String getDescricaoPedido() {
-        return descricaoPedido;
-    }
-
-    /**
-     * @param descricaoPedido the descricaoPedido to set
-     */
-    public void setDescricaoPedido(String descricaoPedido) {
-        this.descricaoPedido = descricaoPedido;
-    }
-    
 }

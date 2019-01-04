@@ -76,16 +76,14 @@ public class PedidoExamesNovoController extends Controller {
     @FXML public TableView<PedidoExames> tabelaPedidos;
     @FXML public TableColumn<PedidoExames,String> ordemCol;
     @FXML public TableColumn<PedidoExames,String> dataCol;    
-    @FXML public TableColumn<PedidoExames,String> descricaoCol;
-    @FXML public TableColumn<PedidoExames,String> iclinCol;    
+    @FXML public TableColumn<PedidoExames,String> indicacaoCol;
     
     @FXML public DatePicker dataPedido;
-    @FXML public TextField descricaoPedido;
+    @FXML public TextField indicacaoClinica;
     @FXML public CheckBox cbxComData;
     @FXML public TableView<Exame> tableExames;
     @FXML public TableColumn<Exame,String> exameCol;
     @FXML public TableColumn<Exame,String> materialCol;    
-    @FXML public TableColumn<Exame,String> indicacaoCol;    
     
     @FXML public Button btnSair;
     @FXML public Button btnNovoGrupo;
@@ -178,7 +176,7 @@ public class PedidoExamesNovoController extends Controller {
                 if (sopPedido.get()!=null) {
                     cbxComData.setSelected(sopPedido.get().getComData());
                     dataPedido.setValue(sopPedido.get().getDataEmissao());
-                    descricaoPedido.setText(sopPedido.get().getDescricaoPedido());
+                    indicacaoClinica.setText(sopPedido.get().getIndicacaoClinica());
                     sopExames.setAll(sopPedido.get().getExames());
                     setButtons();
                     habilEdicaoFired();
@@ -244,20 +242,19 @@ public class PedidoExamesNovoController extends Controller {
                 return new SimpleObjectProperty<>(Util.formataDataExtenso(rec.getValue().getDataEmissao()));
             }
         }); 
-        descricaoCol.setCellValueFactory(new PropertyValueFactory<>("descricaoPedido"));
+        indicacaoCol.setCellValueFactory(new PropertyValueFactory<>("indicacaoClinica"));
     }           
     
     public void initTabelaExames() {
         exameCol.setCellValueFactory(new PropertyValueFactory<>("exame"));
         materialCol.setCellValueFactory(new PropertyValueFactory<>("material"));
-        indicacaoCol.setCellValueFactory(new PropertyValueFactory<>("indicacaoClinica"));
     }      
     
     public boolean checaPedido() {
         boolean resultado = Boolean.FALSE;
         pedido.setDataEmissao(dataPedido.getValue());
         pedido.setComData(cbxComData.isSelected());
-        pedido.setDescricaoPedido(descricaoPedido.getText());
+        pedido.setIndicacaoClinica(indicacaoClinica.getText());
         if ((pedido.getExames()==null)||(pedido.getExames().isEmpty())) {
             ShowDialog("EX", "Prescreva ao menos um exame", null,this.getStage());
         } else {
@@ -283,7 +280,7 @@ public class PedidoExamesNovoController extends Controller {
         pedido = new PedidoExames();
         pedido.setPaciente(sopPaciente.get());
         pedido.setDataEmissao(Util.ldHoje());
-        pedido.setDescricaoPedido(sopPedido.get().getDescricaoPedido());
+        pedido.setIndicacaoClinica(sopPedido.get().getIndicacaoClinica());
         pedido.setComData(sopPedido.get().getComData());
         
         for (Exame ex : sopPedido.get().getExames()) {
@@ -291,7 +288,6 @@ public class PedidoExamesNovoController extends Controller {
             try {
                 p.setExame(ex.getExame());
                 p.setMaterial(ex.getMaterial());
-                p.setIndicacaoClinica(ex.getIndicacaoClinica());
                 p.setPedidoExames(pedido);
                 pedido.getExames().add(p);
             } catch (CampoEmBrancoException cbex) {
@@ -385,22 +381,23 @@ public class PedidoExamesNovoController extends Controller {
                 novoexame.setPedidoExames(pedido);
                 novoexame.setMaterial(exam.getMaterial());
                 novoexame.setExame(exam.getExame());
-                novoexame.setIndicacaoClinica(grupo.getIndicacaoClinica());
                 pedido.getExames().add(novoexame);
-            }                        
+            }         
+            pedido.setIndicacaoClinica(grupo.getIndicacaoClinica());
+            indicacaoClinica.setText(grupo.getIndicacaoClinica());
             sopExames.setAll(pedido.getExames());
         }        
     }
     
     @FXML
     public void btnNovoExameFired(ActionEvent ae) throws IOException {        
-        String fxmlGUI = "fxml/NovoExame.fxml"; 
+        String fxmlGUI = "fxml/NovoExame2.fxml"; 
         StageStyle fxmlStyle = StageStyle.DECORATED;
         String fxmlTitle = "Pedido de Exame";
         
         exameGUI = new GUIFactory(fxmlGUI,fxmlTitle,fxmlStyle,this.getStage());
         exameGUI.initialize();
-        NovoExameController controller = (NovoExameController) exameGUI.getController();        
+        NovoExame2Controller controller = (NovoExame2Controller) exameGUI.getController();        
         exameGUI.showAndWait();       
         
         if (controller.getExames()!=null) {    
@@ -447,12 +444,12 @@ public class PedidoExamesNovoController extends Controller {
         
     @FXML
     public void miOpcaoCartaFired(ActionEvent ev) {
-        String fileName = "relatorios/pedidos/JPedidoCarta.jasper";
+        String fileName = "relatorios/pedidos/JPedidoCarta-M.jasper";
         PrintPedido(fileName);
     }
     @FXML
     public void miOpcaoA4Fired(ActionEvent ev) {
-        String fileName = "relatorios/pedidos/JPedidoA4.jasper";
+        String fileName = "relatorios/pedidos/JPedidoA4-M.jasper";
         PrintPedido(fileName);
     }
     @FXML
@@ -462,12 +459,12 @@ public class PedidoExamesNovoController extends Controller {
     }
     @FXML
     public void miOpcaoMeioA4Fired(ActionEvent ev) {
-        String fileName = "relatorios/pedidos/JPedidoMeioA4.jasper";
+        String fileName = "relatorios/pedidos/JPedidoMeioA4-M.jasper";
         PrintPedido(fileName);
     }
     @FXML
     public void miOpcaoReduzidoFired(ActionEvent ev) {
-        String fileName = "relatorios/pedidos/JPedidoReduz.jasper";
+        String fileName = "relatorios/pedidos/JPedidoReduz-M.jasper";
         PrintPedido(fileName);
     }
     
@@ -531,7 +528,7 @@ public class PedidoExamesNovoController extends Controller {
     }
     
     public void habilEdicaoFired() {
-        descricaoPedido.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
+        indicacaoClinica.setEditable((status==StatusBtn.INSERTING)|(status==StatusBtn.UPDATING));
     }
     
     

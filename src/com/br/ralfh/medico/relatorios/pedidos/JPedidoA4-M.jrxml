@@ -20,7 +20,7 @@ FROM
 WHERE
      pedido_id = $P{idPedido}
 ORDER BY
-     indicacaoClinica,material]]>
+     material, exame]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -41,6 +41,20 @@ ORDER BY
 		<variableExpression><![CDATA[$V{row_NUMBER}]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
 	</variable>
+	<group name="material">
+		<groupExpression><![CDATA[$F{material}]]></groupExpression>
+		<groupHeader>
+			<band height="28">
+				<textField>
+					<reportElement x="197" y="5" width="308" height="20" uuid="847eafcb-060f-4989-98eb-892ffe47d785"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
 	<background>
 		<band height="700" splitType="Stretch">
 			<line>
@@ -168,7 +182,7 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 			<textField>
 				<reportElement x="197" y="8" width="274" height="20" uuid="1635f2d7-94cd-4ff3-ab70-43b604747281"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isItalic="false" isUnderline="false"/>
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>

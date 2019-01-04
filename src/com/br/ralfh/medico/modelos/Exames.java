@@ -83,9 +83,9 @@ public class Exames {
         EntityManager manager = JPAUtil.getEntityManager();
         String jpql;
         if (!"Outros".equals(material)) {
-            jpql = "select e from Exame e where e.material = :pmaterial order by e.exame";
+            jpql = "select distinct(e) from Exame e where e.material = :pmaterial order by e.material, e.exame";
         } else {
-            jpql = "select e from Exame e where e.material not in ('Fezes','Sangue','Urina','Imagem') order by e.exame";
+            jpql = "select distinct(e) from Exame e where e.material not in ('Fezes','Sangue','Urina','Imagem') order by e.material, e.exame";
         }
         TypedQuery<Exame> query = manager.createQuery(jpql,Exame.class);
         query.setParameter("pmaterial", material);

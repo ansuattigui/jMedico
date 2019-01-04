@@ -4,6 +4,7 @@ import com.br.ralfh.medico.JPAUtil;
 import com.br.ralfh.medico.Util;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javafx.scene.chart.XYChart;
@@ -243,12 +244,30 @@ public class FichaMedica {
             List<ConsultaSubs> consubs = getConsultasSubs(pac);            
             for (ConsultaSubs consulta :consubs) {
                 if (!"".equals(consulta.getQp().trim())) {
+                    char[] chars = new char[consulta.getDataExt().length()];
+                    Arrays.fill(chars, '=');
+                    String stuff = new String(chars);                    
+                    qp = qp + stuff + "\n";
+                    qp = qp + consulta.getDataExt() + "\n";
+                    qp = qp + stuff + "\n";
                     qp = qp + consulta.getQp() + "\n";
                 }
                 if (!"".equals(consulta.getExamefisico().trim())) {
+                    char[] chars = new char[consulta.getDataExt().length()];
+                    Arrays.fill(chars, '=');
+                    String stuff = new String(chars);                    
+                    ef = ef + stuff + "\n";
+                    ef = ef + consulta.getDataExt() + "\n";
+                    ef = ef + stuff + "\n";
                     ef = ef + consulta.getExamefisico() + "\n";
                 }
                 if (!"".equals(consulta.getCondterap().trim())) {
+                    char[] chars = new char[consulta.getDataExt().length()];
+                    Arrays.fill(chars, '=');
+                    String stuff = new String(chars);                    
+                    co = co + stuff + "\n";
+                    co = co + consulta.getDataExt() + "\n";
+                    co = co + stuff + "\n";
                     co = co + consulta.getCondterap() + "\n";
                 }
             }

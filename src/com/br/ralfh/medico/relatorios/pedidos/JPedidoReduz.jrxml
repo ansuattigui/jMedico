@@ -9,6 +9,7 @@
 	<parameter name="nomePaciente" class="java.lang.String"/>
 	<parameter name="dataPedido" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="comData" class="java.lang.Boolean"/>
+	<parameter name="indicacaoClinica" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      *
@@ -40,6 +41,17 @@ ORDER BY
 	</variable>
 	<group name="material">
 		<groupExpression><![CDATA[$F{material}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<textField>
+					<reportElement x="0" y="2" width="264" height="20" uuid="94598927-6faa-4a8a-a860-f9d73231f723"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Material: " + $F{material}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -119,10 +131,10 @@ ORDER BY
 			<textField>
 				<reportElement x="0" y="3" width="264" height="16" uuid="34b2fda4-47c5-4d58-8a18-a11cfc9d9514"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="10" isBold="false"/>
+					<font fontName="Arial" size="10" isBold="true"/>
 					<paragraph leftIndent="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Indicação Clínica: " + $F{indicacaoClinica}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

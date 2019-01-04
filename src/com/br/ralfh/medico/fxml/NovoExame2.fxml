@@ -2,11 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -17,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.NovoExameController">
+<AnchorPane stylesheets="@../css/prescricao.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.NovoExame2Controller">
    <children>
       <VBox spacing="15.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -109,22 +106,6 @@
                   </VBox>
                </children>
             </HBox>
-            <VBox prefHeight="300.0" spacing="5.0">
-               <children>
-                  <TableView fx:id="tabelaExames">
-                     <columns>
-                        <TableColumn fx:id="colExame" editable="false" minWidth="-Infinity" prefWidth="507.0" sortable="false" text="Exame" />
-                        <TableColumn fx:id="colMaterial" editable="false" minWidth="0.0" prefWidth="150.0" sortable="false" text="Material" />
-                     </columns>
-                  </TableView>
-                  <VBox spacing="4.0">
-                     <children>
-                        <Label text="Material" />
-                        <ComboBox fx:id="cbMaterial" prefWidth="280.0" />
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
          </children>
       </VBox>
    </children>
