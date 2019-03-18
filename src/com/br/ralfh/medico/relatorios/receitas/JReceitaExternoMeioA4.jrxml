@@ -150,14 +150,14 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 			</textField>
 			<elementGroup>
 				<staticText>
-					<reportElement x="187" y="83" width="100" height="14" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
+					<reportElement x="187" y="62" width="100" height="14" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[CRM 5221543-3]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="165" y="55" width="144" height="14" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
+					<reportElement x="165" y="34" width="144" height="14" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
 					<box>
 						<pen lineWidth="0.0"/>
 						<topPen lineWidth="1.0"/>
@@ -171,13 +171,20 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="187" y="69" width="100" height="14" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
+					<reportElement x="187" y="48" width="100" height="14" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Médico]]></text>
 				</staticText>
 			</elementGroup>
+			<staticText>
+				<reportElement x="186" y="76" width="100" height="14" uuid="15c1c4b2-749b-47f6-b0ed-41eecba70aa8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RQE 28972]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

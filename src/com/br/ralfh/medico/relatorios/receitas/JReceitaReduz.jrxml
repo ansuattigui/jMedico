@@ -105,14 +105,14 @@
 			</textField>
 			<elementGroup>
 				<staticText>
-					<reportElement x="88" y="109" width="100" height="14" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
+					<reportElement x="88" y="90" width="100" height="14" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[CRM 5221543-3]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="66" y="81" width="144" height="14" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
+					<reportElement x="66" y="62" width="144" height="14" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
 					<box>
 						<pen lineWidth="0.0"/>
 						<topPen lineWidth="1.0"/>
@@ -126,13 +126,20 @@
 					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="88" y="95" width="100" height="14" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
+					<reportElement x="88" y="76" width="100" height="14" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Médico]]></text>
 				</staticText>
 			</elementGroup>
+			<staticText>
+				<reportElement x="88" y="103" width="100" height="15" uuid="f1066908-df1b-489e-8131-085aaa3a3cd3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RQE 28972]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

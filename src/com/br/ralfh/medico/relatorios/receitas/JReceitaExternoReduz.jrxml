@@ -91,7 +91,7 @@
 	<summary>
 		<band height="137" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="12" width="264" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
+				<reportElement x="0" y="7" width="264" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10"/>
 				</textElement>
@@ -99,14 +99,14 @@
 			</textField>
 			<elementGroup>
 				<staticText>
-					<reportElement x="88" y="109" width="100" height="14" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
+					<reportElement x="88" y="96" width="100" height="14" uuid="311e8419-79f4-4d55-932a-16438ae3c624"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[CRM 5221543-3]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="66" y="81" width="144" height="14" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
+					<reportElement x="66" y="68" width="144" height="14" uuid="5bd0c4e9-dedf-4de8-90df-b3d768f49546"/>
 					<box>
 						<pen lineWidth="0.0"/>
 						<topPen lineWidth="1.0"/>
@@ -120,13 +120,20 @@
 					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="88" y="95" width="100" height="14" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
+					<reportElement x="88" y="82" width="100" height="14" uuid="2b1ebef6-c18b-4e54-9b1f-05dc6bdb273a"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Médico]]></text>
 				</staticText>
 			</elementGroup>
+			<staticText>
+				<reportElement x="88" y="110" width="100" height="15" uuid="ee6e2457-c7f1-4e29-81e2-a145916ade17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RQE 28972]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

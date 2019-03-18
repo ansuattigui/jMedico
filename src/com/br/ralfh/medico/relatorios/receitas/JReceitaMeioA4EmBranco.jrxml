@@ -83,6 +83,13 @@
 				<reportElement x="19" y="424" width="70" height="60" uuid="5aa6c704-9eb7-40cf-84f7-442216a325bb"/>
 				<imageExpression><![CDATA[$P{logoRodape}]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="0" y="88" width="115" height="15" uuid="2651444d-7e4b-4e5d-bb95-caeef94c434a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[rqe 28972]]></text>
+			</staticText>
 		</band>
 	</background>
 	<detail>
