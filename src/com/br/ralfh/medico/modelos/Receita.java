@@ -36,6 +36,8 @@ public class Receita implements Serializable {
     private Paciente paciente;
     @Temporal(TemporalType.DATE)
     private Date dataEmissao;
+    private Boolean comRQE;
+
     
     @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "receita")
     @Column(nullable = false)
@@ -114,5 +116,19 @@ public class Receita implements Serializable {
             throw new CampoNuloException("Prescreva ao menos um medicamento");
         }
     }         
+
+    /**
+     * @return the comRQE
+     */
+    public Boolean getComRQE() {
+        return comRQE;
+    }
+
+    /**
+     * @param comRQE the comRQE to set
+     */
+    public void setComRQE(Boolean comRQE) {
+        this.comRQE = comRQE;
+    }
     
 }

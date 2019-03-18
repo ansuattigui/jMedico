@@ -81,6 +81,7 @@ public class PedidoExamesNovoController extends Controller {
     @FXML public DatePicker dataPedido;
     @FXML public TextField indicacaoClinica;
     @FXML public CheckBox cbxComData;
+    @FXML public CheckBox cbxComRQE;
     @FXML public TableView<Exame> tableExames;
     @FXML public TableColumn<Exame,String> exameCol;
     @FXML public TableColumn<Exame,String> materialCol;    
@@ -175,6 +176,7 @@ public class PedidoExamesNovoController extends Controller {
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
                 if (sopPedido.get()!=null) {
                     cbxComData.setSelected(sopPedido.get().getComData());
+                    cbxComRQE.setSelected(sopPedido.get().getComRQE());
                     dataPedido.setValue(sopPedido.get().getDataEmissao());
                     indicacaoClinica.setText(sopPedido.get().getIndicacaoClinica());
                     sopExames.setAll(sopPedido.get().getExames());
@@ -254,6 +256,7 @@ public class PedidoExamesNovoController extends Controller {
         boolean resultado = Boolean.FALSE;
         pedido.setDataEmissao(dataPedido.getValue());
         pedido.setComData(cbxComData.isSelected());
+        pedido.setComRQE(cbxComRQE.isSelected());
         pedido.setIndicacaoClinica(indicacaoClinica.getText());
         if ((pedido.getExames()==null)||(pedido.getExames().isEmpty())) {
             ShowDialog("EX", "Prescreva ao menos um exame", null,this.getStage());
@@ -282,6 +285,7 @@ public class PedidoExamesNovoController extends Controller {
         pedido.setDataEmissao(Util.ldHoje());
         pedido.setIndicacaoClinica(sopPedido.get().getIndicacaoClinica());
         pedido.setComData(sopPedido.get().getComData());
+        pedido.setComRQE(sopPedido.get().getComRQE());
         
         for (Exame ex : sopPedido.get().getExames()) {
             Exame p = new Exame();
@@ -475,6 +479,7 @@ public class PedidoExamesNovoController extends Controller {
         hm.put("dataPedido", Util.formataDataExtenso(sopPedido.get().getDataEmissao()));    
         hm.put("indicacaoClinica", sopPedido.get().getIndicacaoClinica());    
         hm.put("comData", sopPedido.get().getComData());    
+        hm.put("comRQE", sopPedido.get().getComRQE());    
         
         ImageIcon logoCabecalho = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_03.gif"));
         ImageIcon logoRodape = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_14.gif"));         

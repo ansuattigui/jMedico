@@ -33,6 +33,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
@@ -89,6 +90,8 @@ public class ReceitaController extends Controller {
     @FXML TableColumn<Prescricao,String> viaAdminCol;
     @FXML TableColumn<Prescricao,String> quantidadeCol;
     @FXML TableColumn<Prescricao,Boolean>  excluiPrescricaoCol;   
+    
+    @FXML public CheckBox cbxComRQE;
     
     @FXML public Button btnSair;
     @FXML Button btnNovoMedicamento;
@@ -177,6 +180,7 @@ public class ReceitaController extends Controller {
             @Override
             public void changed(ObservableValue o,Object oldVal,Object newVal) {
                 if (sopReceita.get()!=null) {
+                    cbxComRQE.setSelected(sopReceita.get().getComRQE());
                     sopPrescricoes.setAll(sopReceita.get().getPrescricoes());
                     setButtons();
                 }
@@ -256,6 +260,7 @@ public class ReceitaController extends Controller {
         if (receita.getPrescricoes().isEmpty()) {
             ShowDialog("EX", "Prescreva ao menos um medicamento", null,this.getStage());
         } else {
+            receita.setComRQE(cbxComRQE.isSelected());
             resultado = Boolean.TRUE;
         }
         return resultado;
@@ -278,6 +283,7 @@ public class ReceitaController extends Controller {
         receita = new Receita();
         receita.setPaciente(sopPaciente.get());
         receita.setDataEmissao(Util.ldHoje());
+        receita.setComRQE(cbxComRQE.isSelected());
         
         for (Prescricao prescr : sopReceita.get().getPrescricoes()) {
             Prescricao p = new Prescricao();
@@ -497,7 +503,8 @@ public class ReceitaController extends Controller {
         HashMap hm = new HashMap();
         hm.put("idReceita", sopReceita.get().getReceita_id());
         hm.put("nomePaciente", sopPaciente.get().getNome());
-        hm.put("dataReceita", Util.formataDataExtenso(sopReceita.get().getDataEmissao()));    
+        hm.put("dataReceita", Util.formataDataExtenso(sopReceita.get().getDataEmissao())); 
+        hm.put("comRQE", sopReceita.get().getComRQE());
         
         ImageIcon logoCabecalho = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_03.gif"));
         ImageIcon logoRodape = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_14.gif"));         

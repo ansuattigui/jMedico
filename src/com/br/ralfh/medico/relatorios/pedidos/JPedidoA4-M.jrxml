@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pedido" pageWidth="595" pageHeight="844" columnWidth="545" leftMargin="22" rightMargin="28" topMargin="56" bottomMargin="22" uuid="e1a20c64-5d37-4b2d-a460-fa6eb5198aaf">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="192"/>
 	<parameter name="idPedido" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -12,6 +12,7 @@
 	<parameter name="logoRodape" class="java.awt.Image"/>
 	<parameter name="comData" class="java.lang.Boolean"/>
 	<parameter name="indicacaoClinica" class="java.lang.String"/>
+	<parameter name="comRQE" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[SELECT
      *
@@ -92,6 +93,15 @@ ORDER BY
 				<reportElement x="33" y="616" width="90" height="79" uuid="c4c37735-3782-4ac3-9a5a-7f596088f568"/>
 				<imageExpression><![CDATA[$P{logoRodape}]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="68" y="157" width="100" height="20" uuid="6d0c68aa-4267-4e75-8628-96915490682e">
+					<printWhenExpression><![CDATA[$P{comRQE}.equals( true )]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[rqe 28.972]]></text>
+			</staticText>
 		</band>
 	</background>
 	<title>
@@ -139,7 +149,7 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="143" splitType="Stretch">
+		<band height="169" splitType="Stretch">
 			<textField>
 				<reportElement x="237" y="46" width="268" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc">
 					<printWhenExpression><![CDATA[$P{comData}.equals( true )]]></printWhenExpression>
@@ -187,6 +197,15 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="331" y="129" width="100" height="20" uuid="1ec04fa6-4866-430b-bf9b-83445dd82958">
+					<printWhenExpression><![CDATA[$P{comRQE}.equals( true )]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[RQE 28.972]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

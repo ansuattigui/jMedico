@@ -38,6 +38,7 @@ public class PedidoExames implements Serializable {
     private Date dataEmissao;
     @Column(nullable = false)
     private Boolean comData;
+    private Boolean comRQE;
     private String indicacaoClinica;
     
     @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "pedido")
@@ -145,6 +146,20 @@ public class PedidoExames implements Serializable {
      */
     public void setComData(Boolean comData) {
         this.comData = comData;
+    }
+
+    /**
+     * @return the comRQE
+     */
+    public Boolean getComRQE() {
+        return comRQE;
+    }
+
+    /**
+     * @param comRQE the comRQE to set
+     */
+    public void setComRQE(Boolean comRQE) {
+        this.comRQE = comRQE;
     }
 
 }

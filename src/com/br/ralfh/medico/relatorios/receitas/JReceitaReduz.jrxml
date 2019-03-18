@@ -8,6 +8,7 @@
 	</parameter>
 	<parameter name="nomePaciente" class="java.lang.String"/>
 	<parameter name="dataReceita" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="comRQE" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[select * from prescricao where receita_id = $P{idReceita}]]>
 	</queryString>
@@ -134,11 +135,13 @@
 				</staticText>
 			</elementGroup>
 			<staticText>
-				<reportElement x="88" y="103" width="100" height="15" uuid="f1066908-df1b-489e-8131-085aaa3a3cd3"/>
+				<reportElement x="88" y="103" width="100" height="15" uuid="f1066908-df1b-489e-8131-085aaa3a3cd3">
+					<printWhenExpression><![CDATA[$P{comRQE}.equals( true )]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[RQE 28972]]></text>
+				<text><![CDATA[RQE 28.972]]></text>
 			</staticText>
 		</band>
 	</summary>

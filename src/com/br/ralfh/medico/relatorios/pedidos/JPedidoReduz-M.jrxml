@@ -10,6 +10,7 @@
 	<parameter name="dataPedido" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="comData" class="java.lang.Boolean"/>
 	<parameter name="indicacaoClinica" class="java.lang.String"/>
+	<parameter name="comRQE" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[SELECT
      *
@@ -88,7 +89,7 @@ ORDER BY
 		</band>
 	</detail>
 	<summary>
-		<band height="113" splitType="Stretch">
+		<band height="154" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="36" width="264" height="16" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc">
 					<printWhenExpression><![CDATA[$P{comData}.equals( true )]]></printWhenExpression>
@@ -136,6 +137,15 @@ ORDER BY
 				</textElement>
 				<textFieldExpression><![CDATA["Indicação Clínica: " + $P{indicacaoClinica}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="88" y="111" width="100" height="14" uuid="9915232e-f842-40ec-ae09-ac53f3ae1bab">
+					<printWhenExpression><![CDATA[$P{comRQE}.equals( true )]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RQE 28.972]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>
