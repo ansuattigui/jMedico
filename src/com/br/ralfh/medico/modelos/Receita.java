@@ -45,6 +45,7 @@ public class Receita implements Serializable {
     
     public Receita() {
         this.prescricoes = new ArrayList<>();
+        this.comRQE = Boolean.FALSE;
     }
 
     /**

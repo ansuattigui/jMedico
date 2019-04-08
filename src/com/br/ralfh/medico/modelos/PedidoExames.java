@@ -48,6 +48,7 @@ public class PedidoExames implements Serializable {
     public PedidoExames() {
         this.exames = new ArrayList<>();
         comData = Boolean.FALSE;
+        comRQE = Boolean.FALSE;
     }
 
     /**

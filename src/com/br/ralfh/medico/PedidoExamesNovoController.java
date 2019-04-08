@@ -272,6 +272,7 @@ public class PedidoExamesNovoController extends Controller {
         pedido = new PedidoExames();
         pedido.setPaciente(sopPaciente.get());
         pedido.setDataEmissao(Util.ldHoje());
+        
         sopPedido.set(pedido);
         sopPedidos.add(pedido);
     }
