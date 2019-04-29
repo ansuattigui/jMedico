@@ -24,6 +24,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
@@ -118,13 +120,25 @@ public class AgendaConsultasController extends Controller {
     @FXML TextField telefoneII;
     @FXML TextArea observacoes;
 
+    public Timer timer;
     public AgendaConsultasController(){
+        timer = new Timer();
         medico = Medicos.getMedicoWithId(1);
         perfilUsuario = MedicoController.getPerfilUsuario();
+    }  
+    
+    public void AddListenerTimer() {       
+        tvAgendaConsultas.focusedProperty().addListener(new ChangeListener() {
+        @Override
+        public void changed(ObservableValue o,Object oldVal,Object newVal) {
+            if (tvAgendaConsultas.isFocused()) {
+                initTimer();
+            } else {        
+                closeTimer();
+            }}
+        }); 
     }
-    
-    
-    
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {                        
         if (perfilUsuario.getTipoUsuario().equals("Medico")) {
@@ -139,10 +153,28 @@ public class AgendaConsultasController extends Controller {
         initCalendar();
         AddListenerSelecHorario();
         AddListenerHorario();
+        AddListenerTimer();
         calendAgenda.setCalendar(Calendar.getInstance());
         accAgenda.setExpandedPane(accAgenda.getPanes().get(0));
         AddDblClickAgenda();
     }  
+    
+    
+    
+    private void initTimer() {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+        @Override
+            public void run() {
+                initCalendar();
+                //initAgendaDados(Util.udate(calendAgenda.calendarProperty().getValue()));
+            }
+        },10000,120000); //executar após 10 segundos, intervalo         
+    }
+    
+    private void closeTimer() {
+        timer.cancel();
+    }
     
     public void initCalendar() {
         calendAgenda.calendarProperty().addListener(new ChangeListener() {
