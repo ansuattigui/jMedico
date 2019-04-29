@@ -166,8 +166,11 @@ public class AgendaConsultasController extends Controller {
         timer.schedule(new TimerTask() {
         @Override
             public void run() {
-                initCalendar();
-                //initAgendaDados(Util.udate(calendAgenda.calendarProperty().getValue()));
+                //initCalendar();
+                initAgendaDados(Util.udate(calendAgenda.calendarProperty().getValue()));
+                tvAgendaConsultas.getSelectionModel().selectFirst();
+                tvAgendaConsultas.requestFocus();
+                System.out.println("Porra");
             }
         },10000,120000); //executar após 10 segundos, intervalo         
     }
