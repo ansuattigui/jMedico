@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
@@ -63,6 +64,8 @@ public class ModeloAtestadoController extends Controller {
     @FXML public HTMLEditor htmlEditorCabecalho;
     @FXML public HTMLEditor htmlEditorCorpo;
     @FXML public HTMLEditor htmlEditorRodape;
+    
+   @FXML public CheckBox comRQE;
     
     @FXML public Button nomepac;
     @FXML public Button nascpac;
@@ -216,6 +219,10 @@ public class ModeloAtestadoController extends Controller {
         htmlEditorCabecalho.setHtmlText(modelo.getCabecalho());
         htmlEditorCorpo.setHtmlText(modelo.getCorpo());
         htmlEditorRodape.setHtmlText(modelo.getRodape());
+        if (modelo.getComRQE().booleanValue())
+            comRQE.setSelected( true);
+        else
+            comRQE.setSelected(false);
     }
     
     private void limpaModelo() {
@@ -223,6 +230,7 @@ public class ModeloAtestadoController extends Controller {
         htmlEditorCabecalho.setHtmlText("");
         htmlEditorCorpo.setHtmlText("");
         htmlEditorRodape.setHtmlText("");
+        comRQE.setSelected(false);
     }
     
     
@@ -252,6 +260,7 @@ public class ModeloAtestadoController extends Controller {
             } else {
                 modelo.setRodape(htmlEditorRodape.getHtmlText());
             }
+            modelo.setComRQE(comRQE.isSelected());
             resultado = Boolean.TRUE;
         } catch (CampoEmBrancoException ex) {
             ShowDialog("EX", ex.getMessage(), null,this.getStage());

@@ -22,6 +22,8 @@ public class ModeloAtestado implements Serializable {
     private String corpo;
     @Column(name = "rodape")
     private String rodape;
+    @Column(name = "comRQE")
+    private Boolean comRQE;
     
     
     public ModeloAtestado() {
@@ -96,6 +98,20 @@ public class ModeloAtestado implements Serializable {
      */
     public void setRodape(String rodape) {
         this.rodape = rodape;
+    }
+
+    /**
+     * @return the comRQE
+     */
+    public Boolean getComRQE() {
+        return comRQE;
+    }
+
+    /**
+     * @param comRQE the comRQE to set
+     */
+    public void setComRQE(Boolean comRQE) {
+        this.comRQE = comRQE;
     }
 
 

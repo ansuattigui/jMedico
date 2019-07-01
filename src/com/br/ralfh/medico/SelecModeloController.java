@@ -76,6 +76,10 @@ public class SelecModeloController extends Controller {
         return tabelaModelos.getSelectionModel().getSelectedItem().getRodape();
     }
 
+    public Boolean getcomRQEModelo() {
+        return tabelaModelos.getSelectionModel().getSelectedItem().getComRQE();
+    }
+
     /*
     public void AddListenerSelecModelo() {
         tabelaModelos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {

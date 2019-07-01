@@ -23,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
@@ -81,7 +82,6 @@ public class AtestadoController extends Controller {
     @FXML public MenuItem miAtestadoGavetaT;
     @FXML public MenuItem miAtestadoMeioA4T;
     @FXML public MenuItem miAtestadoReduzidoT;
-
     
     @FXML public TextField nomeAtestado;
     @FXML public DatePicker dataAtestado;
@@ -91,6 +91,8 @@ public class AtestadoController extends Controller {
     @FXML public HTMLEditor htmlEditorCabecalho;
     @FXML public HTMLEditor htmlEditorCorpo;
     @FXML public HTMLEditor htmlEditorRodape;
+    
+    @FXML public CheckBox comRQE;
     
     public AtestadoController() {   
         this.status = StatusBtn.IDLE;
@@ -143,6 +145,7 @@ public class AtestadoController extends Controller {
                 htmlEditorCabecalho.setHtmlText(controller.getCabecalhoModelo());
                 htmlEditorCorpo.setHtmlText(trataTagsAtestado(controller.getCorpoModelo()));
                 htmlEditorRodape.setHtmlText(controller.getRodapeModelo());
+                comRQE.setSelected(controller.getcomRQEModelo());
             } else {
             }
         } catch (IOException ex) {
@@ -208,6 +211,7 @@ public class AtestadoController extends Controller {
         
         hm.put("logoCabecalho",logoCabecalho.getImage());
         hm.put("logoRodape", logoRodape.getImage());
+        hm.put("printRQE", atestado.getComRQE());
         
         DataAccessRelatorios relat = new DataAccessRelatorios();
         try {
@@ -349,7 +353,12 @@ public class AtestadoController extends Controller {
         htmlEditorCabecalho.setHtmlText(atestado.getCabecalho());
         htmlEditorCorpo.setHtmlText(atestado.getCorpo());
         htmlEditorRodape.setHtmlText(atestado.getRodape());
+        if (atestado.getComRQE())
+            comRQE.setSelected( true);
+        else
+            comRQE.setSelected(false);
     }
+    
     
     private void limpaAtestado() {
         dataAtestado.setValue(null);
@@ -357,6 +366,7 @@ public class AtestadoController extends Controller {
         htmlEditorCabecalho.setHtmlText("");
         htmlEditorCorpo.setHtmlText("");
         htmlEditorRodape.setHtmlText("");
+        comRQE.setSelected(false);
     }
     
     
@@ -383,6 +393,12 @@ public class AtestadoController extends Controller {
             } else {
                 atest.setRodape(htmlEditorRodape.getHtmlText().trim());
             }
+            
+            if (comRQE.isSelected())
+                atest.setComRQE(true);
+            else
+                atest.setComRQE(false);
+            
             resultado = Boolean.TRUE;
         } catch (CampoEmBrancoException ex) {
             ShowDialog("EX", ex.getMessage(), null,this.getStage());

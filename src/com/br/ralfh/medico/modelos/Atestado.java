@@ -29,6 +29,8 @@ public class Atestado implements Serializable {
     private String corpo;
     @Column(name = "rodape")
     private String rodape;
+    @Column(name = "comRQE")
+    private Boolean comRQE;
     @ManyToOne 
     @JoinColumn(name="IDPaciente", nullable=false, updatable=false)
     private Paciente paciente;
@@ -133,6 +135,20 @@ public class Atestado implements Serializable {
      */
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
+    }
+
+    /**
+     * @return the comRQE
+     */
+    public Boolean getComRQE() {
+        return comRQE;
+    }
+
+    /**
+     * @param comRQE the comRQE to set
+     */
+    public void setComRQE(Boolean comRQE) {
+        this.comRQE = comRQE;
     }
 
 }

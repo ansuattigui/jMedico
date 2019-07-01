@@ -7,6 +7,9 @@
 	<parameter name="dataAtestado" class="java.lang.String"/>
 	<parameter name="logoCabecalho" class="java.awt.Image"/>
 	<parameter name="logoRodape" class="java.awt.Image"/>
+	<parameter name="printRQE" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      tab_atestados_paciente.`IDAtestado` AS tab_atestados_paciente_IDAtestado,
@@ -123,7 +126,7 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="132" splitType="Stretch">
+		<band height="175" splitType="Stretch">
 			<textField pattern="">
 				<reportElement x="227" y="23" width="288" height="20" uuid="f27d5e88-9b6e-44cd-98c4-9f0fb2d7cefc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -137,7 +140,7 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 					<reportElement x="291" y="67" width="161" height="1" uuid="8674fe38-3a76-4ee5-af1c-ceb022946128"/>
 				</line>
 				<staticText>
-					<reportElement x="291" y="106" width="161" height="20" uuid="8d1095c2-1094-4e4c-9544-59c59b64a152"/>
+					<reportElement x="291" y="111" width="161" height="20" uuid="8d1095c2-1094-4e4c-9544-59c59b64a152"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="12" isBold="true"/>
 					</textElement>
@@ -156,6 +159,15 @@ Celular: (21) 99987-2756  e-mail: jhtcarvalho@yahoo.com.br]]></text>
 						<font fontName="Times New Roman" size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[J. Horácio T. de Carvalho]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="291" y="132" width="161" height="20" uuid="724f7606-fdcf-47b2-ba9a-4b556de5164a">
+						<printWhenExpression><![CDATA[$P{printRQE}.equals( true )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[RQE: 28972]]></text>
 				</staticText>
 			</elementGroup>
 		</band>
