@@ -168,11 +168,10 @@ public class AgendaConsultasController extends Controller {
             public void run() {
                 //initCalendar();
                 initAgendaDados(Util.udate(calendAgenda.calendarProperty().getValue()));
-                tvAgendaConsultas.getSelectionModel().selectFirst();
-                tvAgendaConsultas.requestFocus();
-                System.out.println("Porra");
+                //tvAgendaConsultas.getSelectionModel().selectFirst();
+                tvAgendaConsultas.requestFocus();                
             }
-        },10000,120000); //executar após 10 segundos, intervalo         
+        },10000,600000); //executar após 10 segundos, intervalo         
     }
     
     private void closeTimer() {
