@@ -159,8 +159,6 @@ public class AgendaConsultasController extends Controller {
         AddDblClickAgenda();
     }  
     
-    
-    
     private void initTimer() {
         timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -268,7 +266,7 @@ public class AgendaConsultasController extends Controller {
     }
     
     public void initAgendaDados(Date data) {        
-        horarios = new HorariosAgenda(data);
+        horarios = new HorariosAgenda(data);        
         RadioButton tg = (RadioButton) tgHorarios.getSelectedToggle();        
         switch (tg.getUserData().toString()) {
             case "TODOS":
@@ -613,6 +611,8 @@ public class AgendaConsultasController extends Controller {
                     reg.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));                 
                 } else if(Objects.equals(item, "Primeira Vez")) {
                     reg.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));                 
+                } else if(Objects.equals(item, "Primeira Vez - Dois Horários")) {
+                    reg.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));                 
                 } else if(Objects.equals(item, "Receita")) {
                     reg.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));                 
                 } else if(Objects.equals(item, "Receita Controlada")) {

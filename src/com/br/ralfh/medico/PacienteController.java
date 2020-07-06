@@ -42,6 +42,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javax.persistence.EntityManager;
+import jidefx.scene.control.field.DateField;
 import jidefx.scene.control.field.FormattedTextField;
 import jidefx.scene.control.field.verifier.IntegerRangePatternVerifier;
 
@@ -92,7 +93,7 @@ public class PacienteController extends Controller {
     @FXML TextField emailPaciente;                @FXML ComboBox convPaciente;
     @FXML TextField matConvPaciente;
     
-    @FXML TextField indicacao;                    @FXML TextField dataPrimConsulta;    
+    @FXML TextField indicacao;                    @FXML DateField dataPrimConsulta;    
     @FXML ComboBox<StatusPaciente> statusPac;     @FXML ComboBox<SitCadastro> sitCadastro;
     
     private byte[] bFotografia; 

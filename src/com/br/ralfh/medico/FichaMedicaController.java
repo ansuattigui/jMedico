@@ -1,12 +1,15 @@
 package com.br.ralfh.medico;
 
 import com.br.ralfh.medico.exceptions.FormatoNumericoInvalidoException;
+import com.br.ralfh.medico.jdbc.DataAccessRelatorios;
 import com.br.ralfh.medico.modelos.ConsultaSubs;
 import com.br.ralfh.medico.modelos.FichaMedica;
 import com.br.ralfh.medico.modelos.Paciente;
 import com.br.ralfh.medico.modelos.PrimeiraConsulta;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -24,7 +27,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
@@ -35,6 +40,8 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
+import javax.swing.ImageIcon;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  * FXML Controller class
@@ -65,8 +72,10 @@ public class FichaMedicaController extends Controller {
     
     
     @FXML Button btnNovaConsSubs;           @FXML Button btnAtualConsSubs;
-    @FXML Button btnDelConsSubs;            //@FXML MenuItem miNovaConsulta;
-    //@FXML MenuItem miAtualizaConsulta;      //@FXML MenuItem miExcluiConsulta;
+    @FXML Button btnDelConsSubs;            @FXML MenuItem miProntuarioA4Fired;
+    @FXML SplitMenuButton btnPrintProntuario;
+    //@FXML MenuItem miProntuarioMeioA4;      
+    @FXML MenuItem miProntuarioA4;
     //@FXML MenuItem miPrimeiraConsulta;      
     @FXML Button btnGrafPA;
     @FXML Button btnGrafFC;                 @FXML Button btnAtualPrimCons;
@@ -849,7 +858,45 @@ public class FichaMedicaController extends Controller {
         conterProntuario.clear();
     }
     
+    public void PrintProntuario(String file) {
+        HashMap hm = new HashMap();
+
+        hm.put("idPaciente", paciente.getId());   
+        hm.put("nomePaciente", paciente.getNome());   
+        hm.put("dataProntuario", Util.formataDataExtenso(Util.dHoje()));   
+        hm.put("dataPrimeiraConsulta", FichaMedica.getDataPrimCons(paciente));   
+        hm.put("prontuario", prontuario.getQp());   
+        
+        ImageIcon logoCabecalho = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_03.gif"));
+        ImageIcon logoRodape = new ImageIcon(getClass().getResource("imagens/formularioJHTC-Rev1_14.gif"));
+        
+        hm.put("logoCabecalho",logoCabecalho.getImage());
+        hm.put("logoRodape", logoRodape.getImage());
+        
+        DataAccessRelatorios relat = new DataAccessRelatorios();
+        try {
+            InputStream inputStream = getClass().getResourceAsStream(file);
+            relat.openReport( "Prontuario",inputStream,hm);
+        } catch (JRException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
     
+    @FXML
+    public void miProntuarioA4Fired(ActionEvent ev) {
+        String fileName = "relatorios/Prontuario/JProntuarioA4-Novo-2.jasper";
+        PrintProntuario(fileName);
+    }
+/*    @FXML
+    public void miProntuarioMeioA4Fired(ActionEvent ev) {
+        String fileName = "relatorios/Prontuario/JProntuarioA4.jasper";
+        PrintProntuario(fileName);
+    }
+*/    
     private void habilEdicaoPrimConsFired() {        
         this.abdoPrimeiraCons.setEditable(status!=StatusBtn.IDLE);
         this.alergPrimeiraCons.setDisable(status==StatusBtn.IDLE);
@@ -955,5 +1002,8 @@ public class FichaMedicaController extends Controller {
         btnConfFichaMedica.setDisable(status==StatusBtn.IDLE);
         btnCancFichaMedica.setDisable(status==StatusBtn.IDLE);             
         btnSairFichaMedica.setDisable(status!=StatusBtn.IDLE); 
+        btnPrintProntuario.setDisable((status!=StatusBtn.IDLE) | (tbPaneConsultas.getSelectionModel().getSelectedIndex()!=2));
+        miProntuarioA4.setDisable((status!=StatusBtn.IDLE) | (tbPaneConsultas.getSelectionModel().getSelectedIndex()!= 2));        
+//        miProntuarioMeioA4.setDisable((status!=StatusBtn.IDLE) | (tbPaneConsultas.getSelectionModel().getSelectedIndex()!= 2));        
     }
 }

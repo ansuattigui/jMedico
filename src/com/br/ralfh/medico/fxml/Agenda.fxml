@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import jfxtras.labs.scene.control.CalendarPicker?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="890.0" stylesheets="@../css/Agenda.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.AgendaConsultasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="890.0" stylesheets="@../css/Agenda.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.ralfh.medico.AgendaConsultasController">
 <children>
 <HBox fillHeight="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 <children><VBox alignment="TOP_CENTER" layoutX="357.0" layoutY="70.0" AnchorPane.leftAnchor="0.0">
@@ -281,6 +281,15 @@
                                     <HBox alignment="CENTER">
                                        <children>
                                           <Label alignment="CENTER" prefHeight="34.0" prefWidth="95.0" style="-fx-background-color: red;" text="Primeira vez" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="20.0" layoutY="64.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="34.0" prefWidth="95.0" style="-fx-background-color: green;" text="Dois Horáros" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>

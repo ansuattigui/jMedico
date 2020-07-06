@@ -10,6 +10,7 @@ import static com.br.ralfh.medico.Controller.ShowDialog;
 import com.br.ralfh.medico.exceptions.CampoEmBrancoException;
 import com.br.ralfh.medico.modelos.Convenios;
 import com.br.ralfh.medico.modelos.HorarioAgenda;
+import com.br.ralfh.medico.modelos.HorariosAgenda;
 import com.br.ralfh.medico.modelos.Paciente;
 import com.br.ralfh.medico.modelos.Pacientes;
 import java.math.BigDecimal;
@@ -57,6 +58,7 @@ public class AgendamentoController extends Controller {
     private SimpleObjectProperty<Paciente> sopPaciente;
     private ObservableList<Paciente> sopPacientes;    
     private final ArrayList<String> listaEventos;
+    private EntityManager manager;
     
     @FXML Button btnAgendar;
 //    @FXML Button btnExcluir;
@@ -96,6 +98,8 @@ public class AgendamentoController extends Controller {
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -185,6 +189,10 @@ public class AgendamentoController extends Controller {
                     ShowDialog("S", "Atingido limite de agendamentos para Primeira Vez!", null,getStage());
                     btnAgendar.setDisable(true);
                 }
+            } else if (comboEvento.getSelectionModel().getSelectedItem()=="Primeira Vez - Dois Horários") {
+                numIntervalos.setNumber(BigDecimal.valueOf(2));           
+            } else if (comboEvento.getSelectionModel().getSelectedItem()!="Primeira Vez - Dois Horários") {
+                numIntervalos.setNumber(BigDecimal.valueOf(1));          
             } else if (comboEvento.getSelectionModel().getSelectedItem()=="Emergência") {
 /*                if (Objects.equals(AgendaConsultasController.horarios.estatistica, 
                         AgendaConsultasController.medico.getLimDiaPrimvez())) {
@@ -271,12 +279,14 @@ public class AgendamentoController extends Controller {
         }            
     }
         
-    private Boolean descarregaHorario() {  
+    private Boolean descarregaHorario() {                  
         Boolean resultado = Boolean.FALSE;
         try {
+            // testar para horarios ocupados
+            horario.setDataHora(Util.udate(LocalDateTime.of(Util.ld(horario.getDataHora()),horaMarcada.getLocalTime())));
+            horario.setIntervalos(numIntervalos.getNumber().intValue());
             horario.setEcg(ecg.isSelected());            
-//            horario.setEncaixe(tipoTar.equals(TipoTarefa.ENCAIXAR)?Boolean.TRUE:Boolean.FALSE);
-            
+//            horario.setEncaixe(tipoTar.equals(TipoTarefa.ENCAIXAR)?Boolean.TRUE:Boolean.FALSE);            
             if (nomePaciente.getText().isEmpty()) {
                 throw new CampoEmBrancoException("Informe o nome do paciente");
             } else horario.setPaciente(nomePaciente.getText());
@@ -286,8 +296,7 @@ public class AgendamentoController extends Controller {
             } else {
                 horario.setTelefone1(telefone1.getText());
                 horario.setTelefone2(telefone2.getText());
-            }
-            
+            }            
             if ((String) comboConvenio.getValue()==null) {
                 throw new CampoEmBrancoException("Informe o convenio do paciente");
             } else {
@@ -300,15 +309,38 @@ public class AgendamentoController extends Controller {
                 horario.setEvento((String) comboEvento.getValue());
             }            
             horario.setObservacoes(observacoes.getText());               
-            horario.setDataHora(Util.udate(LocalDateTime.of(Util.ld(horario.getDataHora()),horaMarcada.getLocalTime())));
             
             if (rbCompareceu.isSelected()) {
                 horario.setHoraChegada(Util.udate(LocalDateTime.of(Util.ld(horario.getDataHora()),LocalTime.now())));
                 horario.setPresente(true);
             } else {
                 horario.setPresente(false);
-            }
+            }     
             
+            if (horario.getIntervalos() == 2) {         
+                //substituir por variável que contenha o tamanho do intervalo no dia da semana
+                LocalDateTime data = Util.ldt(horario.getDataHora()).plusMinutes(15);              
+                if (HorariosAgenda.getHorarioSeguinteOcupado(Util.udate(data))) {
+                    throw new CampoEmBrancoException("Horário seguinte indisponível. Selecione outro horário");
+                } /* else {
+//                    EntityManager manager = JPAUtil.getEntityManager();
+//                    manager.getTransaction().begin();        
+                    HorarioAgenda horario_2;
+                    horario_2 = new HorarioAgenda();
+                    horario_2.setData(horario.getData());
+                    horario_2.setDataHora(horario.getDataHora());
+                    horario_2.setDataHora(Util.udate(data));
+                    horario_2.setDataAgendamento(Util.dHoje());
+                    horario_2.setDataAtualizacao(Util.dHoje());
+                    horario_2.setCodAntigoPaciente(horario.getCodAntigoPaciente());
+                    horario_2.setCodPaciente(horario.getCodPaciente());
+                    horario_2.setIntervalos(1);
+                    horario_2.setPaciente(horario.getPaciente());
+                    manager.persist(horario_2);
+//                    manager.getTransaction().commit();
+//                    manager.close();
+                } */
+            }            
             resultado = Boolean.TRUE;
         } catch (CampoEmBrancoException ceb) {
             ShowDialog("EX", ceb.getMessage(), null,this.getStage());
@@ -328,7 +360,7 @@ public class AgendamentoController extends Controller {
     }
     
     public void executaTarefa(ActionEvent e) {
-        EntityManager manager = JPAUtil.getEntityManager();
+        manager = JPAUtil.getEntityManager();
         manager.getTransaction().begin();        
         if (descarregaHorario()) {
             if (tipoTar.equals(TipoTarefa.AGENDAR) || tipoTar.equals(TipoTarefa.ENCAIXAR)) {
@@ -364,6 +396,7 @@ public class AgendamentoController extends Controller {
         listaEventos.add("Consulta");
         listaEventos.add("Emergência");
         listaEventos.add("Primeira Vez");
+        listaEventos.add("Primeira Vez - Dois Horários");
         listaEventos.add("Receita");
         listaEventos.add("Receita Controlada");
         listaEventos.add("Representante");

@@ -68,6 +68,16 @@ public class HorariosAgenda {
             manager.close();  
         }
     }
+    
+    public static Boolean getHorarioSeguinteOcupado(Date horario) {
+        EntityManager manager = JPAUtil.getEntityManager();
+        String jpql = "select ha from HorarioAgenda ha where ha.dataHora = :horario";
+        TypedQuery<HorarioAgenda> query = manager.createQuery(jpql,HorarioAgenda.class);
+        query.setParameter("horario",horario);
+        ArrayList<HorarioAgenda> horarios = (ArrayList) query.getResultList();                
+        manager.close();    
+        return (!horarios.isEmpty());
+    }
 
     public static ArrayList<HorarioAgenda> getListaPaciente(Paciente pac) {        
         EntityManager manager = JPAUtil.getEntityManager();
@@ -194,10 +204,12 @@ public class HorariosAgenda {
                
         Boolean achou;
         Boolean vazio;
+        Boolean dois_horarios = Boolean.FALSE;
         for (Integer i=0;i<listaA.size();i++) {
             achou = Boolean.FALSE;
-            vazio = Boolean.TRUE;
+            vazio = Boolean.TRUE;            
             Integer indice = -1;
+            dois_horarios = (listaA.get(i).getIntervalos() == 2);
             for (Integer j=0;j<listaB.size();j++) {
                 if (listaA.get(i).getDataHora().equals(listaB.get(j).getDataHora())) {
                     achou = Boolean.TRUE;
@@ -230,7 +242,14 @@ public class HorariosAgenda {
                     listaB.get(indice).setIntervalos(listaA.get(i).getIntervalos());
                     listaB.get(indice).setObservacoes(listaA.get(i).getObservacoes());
                     listaB.get(indice).setTelefone1(listaA.get(i).getTelefone1());
-                    listaB.get(indice).setTelefone2(listaA.get(i).getTelefone2());                                        
+                    listaB.get(indice).setTelefone2(listaA.get(i).getTelefone2());   
+                    
+                    if (dois_horarios) {
+                        listaB.remove(indice+1);
+                        dois_horarios = Boolean.FALSE;
+                        continue;
+                }
+
                 } else {
                     listaB.add(indice,listaA.get(i));
                 }
@@ -252,23 +271,32 @@ public class HorariosAgenda {
         
         if (!livres) {
             lista = listaA;
-        } else {
-        
+        } else {        
             if (listaA.isEmpty()) {
                 lista.addAll(listaB);
             } else {
                 Boolean achou;
                 Boolean vazio;
+                Boolean dois_horarios = Boolean.FALSE;
                 for (Integer i=0;i<listaB.size();i++) {
                     achou = Boolean.FALSE;
-                    vazio = Boolean.TRUE;
-                    Integer indice = -1;
+                    //vazio = Boolean.TRUE;
+                    //Integer indice = -1;
+                    if (dois_horarios) {
+                        continue;
+                    }
                     for (Integer j=0;j<listaA.size();j++) {
                         if (listaB.get(i).getDataHora().equals(listaA.get(j).getDataHora())) {
                             achou = Boolean.TRUE;                        
+                            if (listaA.get(j).getIntervalos()==2) {
+                                dois_horarios = Boolean.TRUE;
+                            } else {
+                                dois_horarios = Boolean.FALSE;
+                            }
                             break;
                         }                                
                     }
+                    
                     if (!achou) {
                         if (livres) {
                             lista.add(listaB.get(i));

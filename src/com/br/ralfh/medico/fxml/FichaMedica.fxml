@@ -6,9 +6,11 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
@@ -46,6 +48,18 @@
 </ImageView>
 </graphic>
 </Button>
+                  <SplitMenuButton fx:id="btnPrintProntuario" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="65.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="127.0" styleClass="botaotool" text="Imprimir" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView disable="true" fitHeight="32.0" fitWidth="32.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagens/Printer.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <items>
+                        <MenuItem fx:id="miProntuarioA4" mnemonicParsing="false" onAction="#miProntuarioA4Fired" text="Papel A4" />
+                     </items>
+                  </SplitMenuButton>
                   <Separator opacity="0.0" prefHeight="60.0" prefWidth="530.0" />
                   <Button fx:id="btnSairFichaMedica" contentDisplay="TOP" minWidth="65.0" mnemonicParsing="false" onAction="#sairFichaMedicaFired" prefHeight="60.0" styleClass="botaotool" text="Sair" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 <graphic>
